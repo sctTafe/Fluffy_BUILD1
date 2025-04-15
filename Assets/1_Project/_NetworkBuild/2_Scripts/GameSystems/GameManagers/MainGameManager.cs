@@ -177,8 +177,17 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
     //}
     //#endregion END: SUB REGION - Handle SO Network Objects
 
-    public void DespawnPlayers()
+    public void fn_DespawnPlayers()
     {
+        Debug.Log("MainGameManager: fn_DespawnPlayers called");
+
+        if (!IsServer) 
+        {
+            Debug.LogError("This ");
+            return;
+        }
+            
+
         foreach (var clientPair in NetworkManager.Singleton.ConnectedClients)
         {
             var clientId = clientPair.Key;
