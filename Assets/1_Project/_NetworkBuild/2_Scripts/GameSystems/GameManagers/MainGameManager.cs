@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Cinemachine.Samples;
 using Unity.Netcode;
@@ -42,6 +43,12 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
         {
         }
     }
+    public void OnDisable()
+    {
+        NetworkManager.Singleton.SceneManager.OnLoadEventCompleted -= SceneManager_OnLoadEventCompleted;
+    }
+
+
     #endregion END: Unity Native Functions
 
 
@@ -86,6 +93,22 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
 
     #endregion END: Joining and Load Events
 
+
+    public void fn_EndGame()
+    {
+        fn_DespawnPlayers();
+        StartCoroutine(WaitThenChangeScene());
+    }
+
+    IEnumerator WaitThenChangeScene()
+    {
+        Debug.Log("Waiting for 1.5 seconds...");
+        yield return new WaitForSeconds(1.5f);
+        Debug.Log("Done waiting!");
+        NetworkSceneManager.Instance.fn_GoToScene("4_Lobby");
+
+        // You can add any logic you want to happen after the wait here
+    }
 
 
     #region Spawn & Despawn Network Objects
