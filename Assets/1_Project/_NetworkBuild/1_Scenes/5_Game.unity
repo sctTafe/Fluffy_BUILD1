@@ -627,8 +627,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  _playerPrefab: {fileID: 1969465956776278482, guid: 1bb3d2f73c79dbe48846b778d0cdab2e, type: 3}
-  _enemyPrefab: {fileID: 1969465956776278482, guid: 4e6312f1443e1f846a542e5c335a4471, type: 3}
+  _playerPrefab: {fileID: 9005902844290762139, guid: 7d98e0ce2434ef04290370d3365b69d4, type: 3}
+  _enemyPrefab: {fileID: 9005902844290762139, guid: 72cff7c5f7ea46e488c51cb67cc2596c, type: 3}
 --- !u!1001 &292929904
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4390,7 +4390,7 @@ Transform:
   m_GameObject: {fileID: 5136421541438994417}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.619995, y: 1.6660156, z: -19.68}
+  m_LocalPosition: {x: 1.1300049, y: 1.4730225, z: -7.0900006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4695,7 +4695,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &5145347070790300031
 MonoBehaviour:
   m_ObjectHideFlags: 0
