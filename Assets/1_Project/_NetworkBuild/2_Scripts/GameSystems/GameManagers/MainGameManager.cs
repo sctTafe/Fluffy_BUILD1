@@ -20,6 +20,9 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
     [SerializeField] private Vector3 _BadSpawnArea = Vector3.forward * 5;
     [SerializeField] private float _spawnRadius = 5f;
 
+    [SerializeField] private GameObject _endScreen;
+
+
     #region Unity Native Functions
     //private void Awake()
     //{
@@ -97,6 +100,7 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
     public void fn_EndGame()
     {
         fn_DespawnPlayers();
+        EnableEndScreenClientRPC();
         StartCoroutine(WaitThenChangeScene());
     }
 
@@ -108,6 +112,11 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
         NetworkSceneManager.Instance.fn_GoToScene("4_Lobby");
 
         // You can add any logic you want to happen after the wait here
+    }
+    [ClientRpc]
+    private void EnableEndScreenClientRPC()
+    {
+        _endScreen.gameObject.SetActive(true);
     }
 
 
