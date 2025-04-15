@@ -1,6 +1,7 @@
 using UnityEngine;
+using Unity.Netcode;
 
-public class ObjectiveManager : Singleton<ObjectiveManager>
+public class ObjectiveManager : NetworkSingleton<ObjectiveManager>
 {
 	public NetworkVariable<int> objectives_completed = new NetworkVariable<int>(0);
 
@@ -11,14 +12,18 @@ public class ObjectiveManager : Singleton<ObjectiveManager>
 		
 		if(objectives_completed.Value >= 3)
 		{
-			BoatReadyServerRPC();
+			BoatReady();
 		}
 	}
 
-	[ServerRpc(RequireOwnership = false)]
-	private void BoatReadyServerRPC()
+	private void BoatReady()
 	{
 		// Function that runs when all objectives have been completed, telling the boat that it's ready
 		Debug.Log("All 3 objectives are complete!");
+	}
+
+	public bool CanPlayersEscape()
+	{
+		return (objectives_completed.Value >= 3);
 	}
 }
