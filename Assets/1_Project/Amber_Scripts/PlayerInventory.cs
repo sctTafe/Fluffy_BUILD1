@@ -1,5 +1,6 @@
 using UnityEngine;
 using Unity.Netcode;
+using TMPro;
 
 /**
 * Script created by Amber to allow the player to pick up items and store them in an inventory
@@ -16,6 +17,13 @@ public class PlayerInventory : NetworkBehaviour
 	private PickUpItem target_data;
 	private NetworkObject target_network;
 	private DepositItemPoint deposit_point;
+	private TMP_Text inventory_prompt;
+
+	void Start()
+	{
+		inventory_prompt = GameObject.FindWithTag("inventory_prompt").GetComponent<TMP_Text>();
+		inventory_prompt.text = $"Held item:\n{held_item}";
+	}
 
     void Update()
     {
@@ -26,6 +34,7 @@ public class PlayerInventory : NetworkBehaviour
 				if(held_item == deposit_point.GetNeededItem())
 				{
 					held_item = "none";
+					inventory_prompt.text = $"Held item:\n{held_item}";
 					deposit_point.DepositItem();
 				}
 			}
@@ -34,6 +43,7 @@ public class PlayerInventory : NetworkBehaviour
 				if(held_item == "none")
 				{
 					held_item = target_data.GetItem();
+					inventory_prompt.text = $"Held item:\n{held_item}";
 					DestroyObjectServerRPC(target_network.NetworkObjectId);
 					Debug.Log(held_item);
 				}
