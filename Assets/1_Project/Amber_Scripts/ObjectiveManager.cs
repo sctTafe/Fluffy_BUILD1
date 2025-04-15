@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ObjectiveManager : MonoBehaviour
+public class ObjectiveManager : Singleton<ObjectiveManager>
 {
 	public int objectives_completed = 0;
 

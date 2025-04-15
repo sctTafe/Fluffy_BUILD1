@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Netcode;
 using TMPro;
+using System;
 
 public class DepositItemPoint : NetworkBehaviour
 {
@@ -29,8 +30,25 @@ public class DepositItemPoint : NetworkBehaviour
 
 		objective_manager = GameObject.FindWithTag("ObjectiveManager").GetComponent<ObjectiveManager>();
 	}
+    private void OnEnable()
+    {
+		current_amount.OnValueChanged += HandleOnValueChange;
+    }
 
-	public string GetNeededItem()
+    private void OnDisable()
+    {
+        current_amount.OnValueChanged -= HandleOnValueChange;
+    }
+
+	/// <summary>
+	/// Runs on all clinets when value changes
+	/// </summary>
+    private void HandleOnValueChange(int previousValue, int newValue)
+    {
+        UpdateUI();
+    }
+
+    public string GetNeededItem()
 	{
 		return item_needed;
 	}
@@ -47,8 +65,6 @@ public class DepositItemPoint : NetworkBehaviour
 
 		Debug.Log($"Deposited item! {current_amount.Value} / {amount_needed}");
 
-		objective_prompt.text = $"{objective_name} {current_amount.Value} / {amount_needed}";
-
 		if(current_amount.Value >= amount_needed)
 		{
 			BroadcastObjectiveComplete();
@@ -60,4 +76,9 @@ public class DepositItemPoint : NetworkBehaviour
 		objective_manager.CompletedObjective();
 		Destroy(GameObject.FindWithTag(objective_UI_tag));
 	}
+
+	public void UpdateUI()
+	{
+        objective_prompt.text = $"{objective_name} {current_amount.Value} / {amount_needed}";
+    }
 }
