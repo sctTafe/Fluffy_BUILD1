@@ -15,6 +15,7 @@ public class PlayerEscape : MonoBehaviour
     {
         if(other.CompareTag("boat_escape_point") && objectiveManager.CanPlayersEscape())
         {
+            MainGameManager.Instance.DespawnPlayers();
             networkSceneManager.fn_GoToScene("4_Lobby");
             Debug.Log("EndGame");
         }

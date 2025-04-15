@@ -177,6 +177,21 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
     //}
     //#endregion END: SUB REGION - Handle SO Network Objects
 
+    public void DespawnPlayers()
+    {
+        foreach (var clientPair in NetworkManager.Singleton.ConnectedClients)
+        {
+            var clientId = clientPair.Key;
+            var playerObject = clientPair.Value.PlayerObject;
+
+            if (playerObject != null && playerObject.IsSpawned)
+            {
+                // Despawn the player object (and optionally destroy it)
+                playerObject.Despawn(true);
+            }
+        }
+    }
+
     #endregion END: Spawn Network Objects
 
 
