@@ -2663,6 +2663,7 @@ GameObject:
   - component: {fileID: 1911637624041227569}
   - component: {fileID: 2379047970681924870}
   - component: {fileID: 3026330852310636051}
+  - component: {fileID: -4332349705842963752}
   m_Layer: 8
   m_Name: NetworkPlayerPrefab_RobotKyle
   m_TagString: Player
@@ -2937,6 +2938,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   held_item: none
+--- !u!114 &-4332349705842963752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5408246126893154181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c579b22bd38779469013a54aeab6b33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5413671998971313028
 GameObject:
   m_ObjectHideFlags: 0
