@@ -15,5 +15,9 @@ public class Bite_Receiver : Singleton<Bite_Receiver>
     //}
 
     //
+    public void fn_SetBiteMode()
+    {
+
+    }
 
 }

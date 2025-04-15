@@ -10,7 +10,9 @@ public class Bite_Activator : NetworkBehaviour
 
     void Update()
     {
-        Grab();
+        
+        
+        Grab_Update();
     }
     public void StartGrab(GameObject player)
     {
@@ -19,14 +21,13 @@ public class Bite_Activator : NetworkBehaviour
         Debug.Log("grab player player");
     }
 
-    public void Grab()
+    public void Grab_Update()
     {
         //have a time check.
         if (isGrabbing && player != null)
         {
             MovePlayerToGrabServerRpc(player.GetComponent<NetworkObject>().OwnerClientId, gameObject.GetComponent<NetworkObject>().OwnerClientId, grabPoint.position);
         }
-
     }
 
 
@@ -45,7 +46,7 @@ public class Bite_Activator : NetworkBehaviour
         //SpawnManager.SpawnedObjects[PlayerId].gameObject
         //GameObject playerObject =   .gameObject;
 
-        //NetworkManager.Singleton.ConnectedClients[PlayerId].PlayerObject.gameObject.GetComponent<AnimalCharacter>().DisableMovementRpc();
+        NetworkManager.Singleton.ConnectedClients[PlayerId].PlayerObject.gameObject.GetComponent<AnimalCharacter>().DisableMovementRpc();
         //GetComponent<AnimalCharacter>().MoveTo(targetPosition);
 
         //playerObject.GetComponent<NetworkTransform>().AuthorityMode = AuthorityModes.Server;
@@ -79,7 +80,7 @@ public class Bite_Activator : NetworkBehaviour
     private void ShowMessageClientRpc(ClientRpcParams clientRpcParams = default)
     {
         Debug.Log("This runs only on the target client.");
-        //Bite_Receiver.Instance
+        Bite_Receiver.Instance.fn_SetBiteMode();
     }
 
 }

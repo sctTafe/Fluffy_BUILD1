@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.Cinemachine.Samples;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -13,6 +14,10 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
     
     [SerializeField] private Transform _playerPrefab;
     [SerializeField] private Transform _enemyPrefab;
+
+    [SerializeField] private Vector3 _GoodSpawnArea = Vector3.zero;
+    [SerializeField] private Vector3 _BadSpawnArea = Vector3.forward * 5;
+    [SerializeField] private float _spawnRadius = 5f;
 
     #region Unity Native Functions
     //private void Awake()
@@ -48,23 +53,34 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
     private void SceneManager_OnLoadEventCompleted(string sceneName, UnityEngine.SceneManagement.LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
     {
         PlayerNetworkDataManager PDNM = PlayerNetworkDataManager.Instance;
+        Quaternion spawnRot = Quaternion.identity;
 
         Debug.Log("MainGameManger: OnLoadEventComplete Called");
         foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
         {
             if (PDNM.fn_GetClientTeamByClientID(clientId) == true)
             {
-                Transform playerTransform = Instantiate(_playerPrefab);
+                Vector3 spawnPos = GetRandomPointAround(_GoodSpawnArea, _spawnRadius);             
+                //Transform playerTransform = Instantiate(_playerPrefab);
+                Transform playerTransform = Instantiate(_playerPrefab, spawnPos, spawnRot);
                 playerTransform.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId, true);
                 playerTransform.gameObject.name = $"Player ({clientId}) MainGame Playable Character";
             }
             else 
             {
-                Transform playerTransform = Instantiate(_enemyPrefab);
+                Vector3 spawnPos = GetRandomPointAround(_GoodSpawnArea, _spawnRadius);
+                Transform playerTransform = Instantiate(_enemyPrefab, spawnPos, spawnRot);
+                //Transform playerTransform = Instantiate(_enemyPrefab);
                 playerTransform.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId, true);
                 playerTransform.gameObject.name = $"Player ({clientId}) MainGame Playable Enemy";
             }
 
+        }
+
+        Vector3 GetRandomPointAround(Vector3 center, float radius)
+        {
+            Vector2 randomCircle = UnityEngine.Random.insideUnitCircle * radius;
+            return center + new Vector3(randomCircle.x, 0f, randomCircle.y); // assuming Y-up
         }
     }
 
@@ -183,7 +199,7 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
 
         if (!IsServer) 
         {
-            Debug.LogError("This ");
+            Debug.LogError("This should only be called by the Server!");
             return;
         }
             
