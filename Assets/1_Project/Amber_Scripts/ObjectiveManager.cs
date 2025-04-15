@@ -10,6 +10,8 @@ public class ObjectiveManager : NetworkSingleton<ObjectiveManager>
 	{
 		objectives_completed.Value += 1;
 		
+		Debug.Log("Objective Complete!");
+		
 		if(objectives_completed.Value >= 3)
 		{
 			BoatReady();
