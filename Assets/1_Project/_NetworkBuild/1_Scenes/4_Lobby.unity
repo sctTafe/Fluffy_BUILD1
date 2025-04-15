@@ -1606,6 +1606,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1464690503}
+  - component: {fileID: 1464690513}
   - component: {fileID: 1464690506}
   - component: {fileID: 1464690510}
   - component: {fileID: 1464690508}
@@ -1748,6 +1749,18 @@ MonoBehaviour:
   currentTeam_txt: {fileID: 656644035}
   mutantsTotal_txt: {fileID: 1355861758}
   switchTeam_btn: {fileID: 1008549742}
+--- !u!114 &1464690513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464690502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2809f5e1628f56441b8851c2cafb988a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1571798968
 GameObject:
   m_ObjectHideFlags: 0
