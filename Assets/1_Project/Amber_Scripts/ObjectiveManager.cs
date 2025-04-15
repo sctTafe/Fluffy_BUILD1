@@ -5,6 +5,8 @@ public class ObjectiveManager : NetworkSingleton<ObjectiveManager>
 {
 	public NetworkVariable<int> objectives_completed = new NetworkVariable<int>(0);
 
+	float objectives_completed_offline = 0;
+
 	[ServerRpc(RequireOwnership = false)]
 	public void CompletedObjectiveServerRPC()
 	{
@@ -13,6 +15,18 @@ public class ObjectiveManager : NetworkSingleton<ObjectiveManager>
 		Debug.Log("Objective Complete!");
 		
 		if(objectives_completed.Value >= 3)
+		{
+			BoatReady();
+		}
+	}
+	
+	public void CompletedObjective()
+	{
+		objectives_completed_offline += 1
+		
+		Debug.Log("Objective Complete NonRPC!");
+		
+		if(objectives_completed_offline >= 3)
 		{
 			BoatReady();
 		}
@@ -26,6 +40,8 @@ public class ObjectiveManager : NetworkSingleton<ObjectiveManager>
 
 	public bool CanPlayersEscape()
 	{
-		return (objectives_completed.Value >= 3);
+		// return (objectives_completed.Value >= 3);
+		Debug.Log($"Players have completed {objectives_completed_offline}");
+		return (objectives_completed_offline >= 3);
 	}
 }
