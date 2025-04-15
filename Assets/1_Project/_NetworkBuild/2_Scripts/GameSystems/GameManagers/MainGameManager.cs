@@ -20,7 +20,11 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
     [SerializeField] private Vector3 _BadSpawnArea = Vector3.forward * 5;
     [SerializeField] private float _spawnRadius = 5f;
 
+    [Header("UI GameObjects")]
+    [SerializeField] private GameObject _friendlyUI;
+    [SerializeField] private GameObject _mutantUI;
     [SerializeField] private GameObject _endScreen;
+
 
 
     #region Unity Native Functions
@@ -44,6 +48,10 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
         }
         if (IsClient)
         {
+            PlayerNetworkDataManager playerNetworkDataManager = PlayerNetworkDataManager.Instance;
+            ulong localClientID = NetworkManager.Singleton.LocalClientId;
+            if (playerNetworkDataManager.fn_GetClientTeamByClientID(localClientID)) _friendlyUI.SetActive(true);
+            else _mutantUI.SetActive(true);
         }
     }
     public void OnDisable()
