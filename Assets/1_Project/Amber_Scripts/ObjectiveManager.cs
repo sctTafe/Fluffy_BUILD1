@@ -22,7 +22,7 @@ public class ObjectiveManager : NetworkSingleton<ObjectiveManager>
 	
 	public void CompletedObjective()
 	{
-		objectives_completed_offline += 1
+		objectives_completed_offline += 1;
 		
 		Debug.Log("Objective Complete NonRPC!");
 		
