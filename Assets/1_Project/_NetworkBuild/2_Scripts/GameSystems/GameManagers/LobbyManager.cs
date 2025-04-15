@@ -2,11 +2,17 @@ using System;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LobbyManager : NetworkSingleton<LobbyManager>
 {
     public event EventHandler OnStateChanged;
     public event EventHandler OnReadyChanged;
+
+    // Local Unity Events
+    // Used for enableing and disabling other UI Eellemtns 
+    public UnityEvent OnLocalPlayerReady;
+    public UnityEvent OnLocalPlayerNotReady;
 
     // Network Variable 
     private NetworkVariable<int> numberOfPlayersNV = new NetworkVariable<int>();
@@ -14,7 +20,7 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
 
     // local dictionary
     private Dictionary<ulong, bool> playerReadyDictionary;
-    private bool isLocalPlayerReady;
+    private bool isLocalPlayerReady = false;
 
 	PlayerNetworkDataManager playerNetworkDataManager;
 
@@ -77,6 +83,20 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
     public void fn_PlayerReadyToggle()
     {
         TogglePlayerReadyServerRpc();
+        UpdateLocalClientUIEvents();
+    }
+
+    private void UpdateLocalClientUIEvents()
+    {
+        isLocalPlayerReady = !isLocalPlayerReady;
+        if (isLocalPlayerReady) 
+        {
+                OnLocalPlayerReady?.Invoke();
+        } 
+        else 
+        {
+                OnLocalPlayerNotReady?.Invoke();
+        }
     }
 
     public void fn_StartGame()
