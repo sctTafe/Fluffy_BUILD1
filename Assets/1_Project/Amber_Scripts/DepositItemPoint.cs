@@ -1,5 +1,6 @@
 using UnityEngine;
 using Unity.Netcode;
+using TMPro;
 
 public class DepositItemPoint : NetworkBehaviour
 {
@@ -15,6 +16,15 @@ public class DepositItemPoint : NetworkBehaviour
 	public int amount_needed = 3;
 	public string item_needed = "yellow_test_item";
 	public NetworkVariable<int> current_amount = new NetworkVariable<int>(0);
+	public string objective_name = "Deposit petrol containers";
+
+	private TMP_Text objective_prompt;
+
+	public void Start()
+	{
+		objective_prompt = GameObject.FindWithTag("objective_prompt").GetComponent<TMP_Text>();
+		objective_prompt.text = $"{objective_name} {current_amount.Value} / {amount_needed}";
+	}
 
 	public string GetNeededItem()
 	{
@@ -32,6 +42,8 @@ public class DepositItemPoint : NetworkBehaviour
 		current_amount.Value += 1;
 
 		Debug.Log($"Deposited item! {current_amount.Value} / {amount_needed}");
+
+		objective_prompt.text = $"{objective_name} {current_amount.Value} / {amount_needed}";
 
 		if(current_amount.Value >= amount_needed)
 		{

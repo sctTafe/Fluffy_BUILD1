@@ -9,6 +9,8 @@ TagManager:
   - HealthBar
   - pick_up_item
   - deposit_point
+  - objective_prompt
+  - inventory_prompt
   layers:
   - Default
   - TransparentFX
