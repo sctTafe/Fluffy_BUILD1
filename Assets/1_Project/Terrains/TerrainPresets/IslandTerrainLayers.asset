@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c509dbaa7b6f416409e3195321a2187e, type: 3}
+  m_Name: IslandTerrainLayers
+  m_EditorClassIdentifier: 
+  PaletteLayers:
+  - {fileID: 8574412962073106934, guid: 9e518f774d8a4c1d92a0dd4068cea3e1, type: 2}
+  - {fileID: 8574412962073106934, guid: 76f8f662ff5244918cf18bb4325c4932, type: 2}
+  - {fileID: 8574412962073106934, guid: 49ae9b12d1864a269b897c06d42f52da, type: 2}
+  - {fileID: 8574412962073106934, guid: e20d75f9c104436bb37be23436d12527, type: 2}
+  - {fileID: 8574412962073106934, guid: fed28b647bca4804a1ff2d82a8d60e47, type: 2}
+  - {fileID: 8574412962073106934, guid: 7d07614027d344e5a1eb2906381787ed, type: 2}
+  - {fileID: 8574412962073106934, guid: 564981a455374bd581b1830ad8802e43, type: 2}
+  - {fileID: 8574412962073106934, guid: 7850a9fae7a14786911f0dee8c399eaa, type: 2}

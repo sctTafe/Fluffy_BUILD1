@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Fur Fin Lit Racoon
+  m_Shader: {fileID: 4800000, guid: e67c410637bd03c4ea96a271717270fd, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - DRAW_ORIG_POLYGON
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: _FurJoint
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: c2032f78fcd870041a3157c823c7329f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FurLengthMask:
+        m_Texture: {fileID: 2800000, guid: 94a3862f62ee7a84bb5746a2281cbf8b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FurMap:
+        m_Texture: {fileID: 2800000, guid: 06a14a1f370dddc4d852be45219dc8fc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: e0a62416f4c506d4798f004b12d84fc3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaCutout: 0.22
+    - _AppendMoreFins: 0
+    - _Damper: 1
+    - _Density: 5.7
+    - _DrawOrigPolygon: 1
+    - _FaceNormalFactor: 0.174
+    - _FaceViewProdThresh: 1
+    - _FinJointNum: 5
+    - _FinLength: 0.005
+    - _FurJoint: 0
+    - _FurLength: 0.09
+    - _Gravity: -2
+    - _Metallic: 0.45
+    - _MoveScale: 0.74
+    - _NormalFactor: 0.13
+    - _NormalScale: 1
+    - _Occlusion: 0.49
+    - _RandomDirection: 0.18
+    - _RimLightIntensity: 0.576
+    - _RimLightPower: 9.5
+    - _ShadowExtraBias: 0
+    - _Smoothness: 0.1
+    - _Spring: 5
+    - _TessFactor: 1.6
+    - _TessMaxDist: 50
+    - _TessMinDist: 9.53
+    m_Colors:
+    - _AmbientColor: {r: 0.04304024, g: 0.046488862, b: 0.05660379, a: 1}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseMove: {r: 0, g: -0.17, b: 0, a: 0}
+    - _FurLengthMask: {r: 1, g: 0.47155797, b: 0, a: 1}
+    - _WindFreq: {r: 0.27, g: 0.42, b: 0.74, a: 1}
+    - _WindMove: {r: 0.02, g: 0.03, b: 0.01, a: 2}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

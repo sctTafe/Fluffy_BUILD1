@@ -1,0 +1,251 @@
+using System;
+using System.Collections.Generic;
+using Unity.Netcode;
+using UnityEngine;
+
+/// <summary>
+/// Primarily Handles Server Side Management of the Main Game
+/// 
+/// NOTE: Only the server can spawn network objects
+/// </summary>
+public class MainGameManager : NetworkSingleton<MainGameManager>
+{
+    
+    [SerializeField] private Transform _playerPrefab;
+    [SerializeField] private Transform _enemyPrefab;
+
+    #region Unity Native Functions
+    //private void Awake()
+    //{
+    //}
+    //void Start()
+    //{
+    //}
+    //void Update()
+    //{        
+    //}
+    public override void OnNetworkSpawn()
+    {
+        //Debug.Log("PreGameLobbyManager: OnNetworkSpawn");
+        if (IsServer)
+        {
+            //NetworkManager.Singleton.OnClientDisconnectCallback += NetworkManager_OnClientDisconnectCallback; // NOT YET IMPLMENTED IN THIS VERSION - STILL NEEDS TO BE
+            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += SceneManager_OnLoadEventCompleted;
+            //NetworkManager.Singleton.OnClientConnectedCallback += Server_OnPlayerJoinedEvent; // NOT YET IMPLMENTED IN THIS VERSION - STILL NEEDS TO BE
+        }
+        if (IsClient)
+        {
+        }
+    }
+    #endregion END: Unity Native Functions
+
+
+    #region Joining and Load Event Responces
+    /// <summary>
+    /// Called On Scene Load
+    /// DOSE: Instantiate player Prefabs
+    /// </summary>
+    private void SceneManager_OnLoadEventCompleted(string sceneName, UnityEngine.SceneManagement.LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
+    {
+        PlayerNetworkDataManager PDNM = PlayerNetworkDataManager.Instance;
+
+        Debug.Log("MainGameManger: OnLoadEventComplete Called");
+        foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
+        {
+            if (PDNM.fn_GetClientTeamByClientID(clientId) == true)
+            {
+                Transform playerTransform = Instantiate(_playerPrefab);
+                playerTransform.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId, true);
+                playerTransform.gameObject.name = $"Player ({clientId}) MainGame Playable Character";
+            }
+            else 
+            {
+                Transform playerTransform = Instantiate(_enemyPrefab);
+                playerTransform.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId, true);
+                playerTransform.gameObject.name = $"Player ({clientId}) MainGame Playable Enemy";
+            }
+
+        }
+    }
+
+    #endregion END: Joining and Load Events
+
+
+
+    #region Spawn & Despawn Network Objects
+
+    //#region SUB REGION - Handle SO Network Objects
+    //[SerializeField] private NetworkObjectsListType1SO networkObjectsListType1SO; //List of network objects, for providing the index value
+
+
+    //public void fn_SpawnNetworkObjectType1(NetworkObjectsType1SO networkObjectType1SO)
+    //{
+    //    SpawnNetworkObjectType1ServerRpc(GetType1NetObjSOIndex(networkObjectType1SO));
+    //}
+    //public void fn_SpawnNetworkObjectType1(NetworkObjectsType1SO networkObjectType1SO, NetworkObject toBeParentNetObj)
+    //{
+    //    if (networkObjectType1SO == null)
+    //        Debug.LogWarning("networkObjectType1SO is Null!");
+    //    if (toBeParentNetObj == null)
+    //        Debug.LogWarning("toBeParentNetObj is Null!");
+
+    //    SpawnNetworkObjectType1ServerRpc(GetType1NetObjSOIndex(networkObjectType1SO), toBeParentNetObj.NetworkObjectId);
+    //}
+
+    //public void fn_SpawnNetworkObjectType1(NetworkObjectsType1SO networkObjectType1SO, INetworkObjectType1Parent networkObjectParent)
+    //{
+    //    SpawnNetworkObjectType1ServerRpc(GetType1NetObjSOIndex(networkObjectType1SO), networkObjectParent.GetNetworkObject());
+    //}
+
+    ///// <summary>
+    ///// 
+    ///// </summary>
+    ///// <param name="netObjType1SOIndex"> Index of the Network Object to be spawned </param>
+    ///// <param name="parentNetworkObjectRef"> NetworkObjectRefrence to the parent NetworkObject</param>
+    //[ServerRpc(RequireOwnership = false)]
+    //private void SpawnNetworkObjectType1ServerRpc(int netObjType1SOIndex, NetworkObjectReference parentNetworkObjectRef)
+    //{
+    //    NetworkObjectsType1SO type1NetworkObjectSO = GetType1NetObjSOFromIndex(netObjType1SOIndex);
+
+
+    //    parentNetworkObjectRef.TryGet(out NetworkObject NetObjType1ParentNetworkObject);
+    //    INetworkObjectType1Parent kitchenObjectParent = NetObjType1ParentNetworkObject.GetComponent<INetworkObjectType1Parent>();
+
+
+    //    if (kitchenObjectParent.HasKitchenObject())
+    //    {
+    //        // Parent already spawned an object
+    //        return;
+    //    }
+
+    //    Transform NetObjType1Prefab = Instantiate(type1NetworkObjectSO.prefab);
+
+    //    NetworkObject netObjType1NetObj = NetObjType1Prefab.GetComponent<NetworkObject>();
+    //    netObjType1NetObj.Spawn(true);
+
+    //    NetworkObjectType1 netObjT1 = NetObjType1Prefab.GetComponent<NetworkObjectType1>();
+    //    netObjT1.SetNetworkObjectParent(kitchenObjectParent);
+    //}
+
+    //[ServerRpc(RequireOwnership = false)]
+    //private void SpawnNetworkObjectType1ServerRpc(int netObjType1SOIndex)
+    //{
+    //    NetworkObjectsType1SO type1NetworkObjectSO = GetType1NetObjSOFromIndex(netObjType1SOIndex);
+
+    //    Transform NetObjType1Prefab = Instantiate(type1NetworkObjectSO.prefab);
+
+    //    NetworkObject netObjType1NetObj = NetObjType1Prefab.GetComponent<NetworkObject>();
+    //    netObjType1NetObj.Spawn(true);
+    //}
+
+
+    //[ServerRpc(RequireOwnership = false)]
+    //private void SpawnNetworkObjectType1ServerRpc(int netObjType1SOIndex, ulong parentNetObjId)
+    //{
+    //    Debug.Log($" SpawnNetworkObjectType1ServerRpc with parent id: {parentNetObjId}");
+    //    NetworkObjectsType1SO type1NetworkObjectSO = GetType1NetObjSOFromIndex(netObjType1SOIndex);
+
+    //    // Create new object
+    //    Transform NetObjType1Prefab = Instantiate(type1NetworkObjectSO.prefab);
+    //    NetworkObject netObjType1NetObj = NetObjType1Prefab.GetComponent<NetworkObject>();
+
+    //    // Add it to the network
+    //    netObjType1NetObj.Spawn(true);
+
+    //    //Set parent object
+    //    NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(parentNetObjId, out NetworkObject toBeParentNetObj);
+    //    if (toBeParentNetObj != null) {         
+    //        netObjType1NetObj.transform.parent = toBeParentNetObj.transform;
+    //    }
+    //    else
+    //    {
+    //        Debug.LogWarning("Couldnot find parent network ID");
+    //    }
+    //}
+
+
+
+
+    //public int GetType1NetObjSOIndex(NetworkObjectsType1SO type1NetObjSO)
+    //{
+    //    return networkObjectsListType1SO.notworkObjectType1SOList.IndexOf(type1NetObjSO);
+    //}
+
+    //public NetworkObjectsType1SO GetType1NetObjSOFromIndex(int kitchenObjectSOIndex)
+    //{
+    //    return networkObjectsListType1SO.notworkObjectType1SOList[kitchenObjectSOIndex];
+    //}
+    //#endregion END: SUB REGION - Handle SO Network Objects
+
+    #endregion END: Spawn Network Objects
+
+
+
+    #region Pause Game
+    /// <summary>
+    /// Event Driven Pause Handler
+    /// NOTE: Could Put this In its own Class
+    /// </summary>
+    public event EventHandler OnLocalGamePaused;
+    public event EventHandler OnLocalGameUnpaused;
+    private NetworkVariable<bool> isGamePaused = new NetworkVariable<bool>(false);
+    private Dictionary<ulong, bool> playerPausedDictionary;
+    private bool isLocalGamePaused = false;
+
+    public void TogglePauseGame()
+    {
+        isLocalGamePaused = !isLocalGamePaused;
+        if (isLocalGamePaused)
+        {
+            PauseGameServerRpc();
+
+            OnLocalGamePaused?.Invoke(this, EventArgs.Empty);
+        }
+        else
+        {
+            UnpauseGameServerRpc();
+
+            OnLocalGameUnpaused?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void PauseGameServerRpc(ServerRpcParams serverRpcParams = default)
+    {
+        playerPausedDictionary[serverRpcParams.Receive.SenderClientId] = true;
+
+        TestGamePausedState();
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void UnpauseGameServerRpc(ServerRpcParams serverRpcParams = default)
+    {
+        playerPausedDictionary[serverRpcParams.Receive.SenderClientId] = false;
+
+        TestGamePausedState();
+    }
+
+    private void TestGamePausedState()
+    {
+        foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
+        {
+            if (playerPausedDictionary.ContainsKey(clientId) && playerPausedDictionary[clientId])
+            {
+                // This player is paused
+                isGamePaused.Value = true;
+                return;
+            }
+        }
+
+        // All players are unpaused
+        isGamePaused.Value = false;
+    }
+    #endregion END: Pause Game
+
+
+}
+
+
+
+
+

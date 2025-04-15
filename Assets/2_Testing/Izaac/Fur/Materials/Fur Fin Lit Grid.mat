@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Fur Fin Lit Grid
+  m_Shader: {fileID: 4800000, guid: 9f6e9468949ea454eb72b4edd48e6e3b, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - DRAW_ORIG_POLYGON
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 724d6fc97a3b5984a9487257d7771554, type: 3}
+        m_Scale: {x: 4, y: 4}
+        m_Offset: {x: 0, y: 0}
+    - _FurMap:
+        m_Texture: {fileID: 2800000, guid: dfb39d2bbf74f534f9264f5835565461, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaCutout: 0.05
+    - _AppendMoreFins: 0
+    - _Density: 8
+    - _DrawOrigPolygon: 1
+    - _FaceNormalFactor: 0.154
+    - _FaceViewProdThresh: 1
+    - _FinJointNum: 3
+    - _FinLength: 0.127
+    - _Metallic: 0.107
+    - _NormalFactor: 0.196
+    - _NormalScale: 0
+    - _Occlusion: 0.491
+    - _RandomDirection: 0.165
+    - _RimLightIntensity: 0.469
+    - _RimLightPower: 5.6
+    - _ShadowExtraBias: -0.1
+    - _Smoothness: 0.305
+    - _TessFactor: 2.92
+    - _TessMaxDist: 10.3
+    - _TessMinDist: 1
+    m_Colors:
+    - _AmbientColor: {r: 0, g: 0, b: 0, a: 1}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseMove: {r: 0, g: -0.4, b: 0, a: 3}
+    - _WindFreq: {r: 1, g: 0.4, b: 0.2, a: 1}
+    - _WindMove: {r: 0.5, g: 0.3, b: 0.2, a: 2}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
