@@ -17,13 +17,17 @@ public class DepositItemPoint : NetworkBehaviour
 	public string item_needed = "yellow_test_item";
 	public NetworkVariable<int> current_amount = new NetworkVariable<int>(0);
 	public string objective_name = "Deposit petrol containers";
-
+	public string objective_UI_tag = "objective_prompt";
+	
+	private ObjectiveManager objective_manager;
 	private TMP_Text objective_prompt;
 
 	public void Start()
 	{
-		objective_prompt = GameObject.FindWithTag("objective_prompt").GetComponent<TMP_Text>();
+		objective_prompt = GameObject.FindWithTag(objective_UI_tag).GetComponent<TMP_Text>();
 		objective_prompt.text = $"{objective_name} {current_amount.Value} / {amount_needed}";
+
+		objective_manager = GameObject.FindWithTag("ObjectiveManager").GetComponent<ObjectiveManager>();
 	}
 
 	public string GetNeededItem()
@@ -53,8 +57,7 @@ public class DepositItemPoint : NetworkBehaviour
 
 	public void BroadcastObjectiveComplete()
 	{
-		Debug.Log("Unfinished function to indicate an objective is complete");
-		
-		//Put the code to call that an objective is complete here
+		objective_manager.CompletedObjective();
+		Destroy(GameObject.FindWithTag(objective_UI_tag));
 	}
 }
