@@ -775,10 +775,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  _playerPrefab: {fileID: 9005902844290762139, guid: 7d98e0ce2434ef04290370d3365b69d4, type: 3}
+  _playerPrefab: {fileID: 7907975427600931893, guid: f4d29aa6c9f83f6408b25fc857b249cf, type: 3}
   _enemyPrefab: {fileID: 9005902844290762139, guid: 72cff7c5f7ea46e488c51cb67cc2596c, type: 3}
   _GoodSpawnArea: {x: 0, y: 0, z: 0}
-  _BadSpawnArea: {x: 0, y: 0, z: 5}
+  _BadSpawnArea: {x: 0, y: 0, z: -10}
   _spawnRadius: 3
   _friendlyUI: {fileID: 1726719431}
   _mutantUI: {fileID: 448648687}

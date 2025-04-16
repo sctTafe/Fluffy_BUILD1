@@ -2660,7 +2660,6 @@ GameObject:
   - component: {fileID: 3358150238189878319}
   - component: {fileID: 7126122190191861419}
   - component: {fileID: 5662966264603675591}
-  - component: {fileID: 1911637624041227569}
   - component: {fileID: 2379047970681924870}
   - component: {fileID: 3026330852310636051}
   - component: {fileID: -4332349705842963752}
@@ -2895,20 +2894,6 @@ MonoBehaviour:
   - {fileID: 7768544496494002111}
   - {fileID: 6919371144061493333}
   _playersNetworkObject: {fileID: 0}
---- !u!114 &1911637624041227569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5408246126893154181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1ea3bcb79ec97c45906becffdf475ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  defaultInitialPositionOnPlane: {x: -3, y: 3}
 --- !u!114 &2379047970681924870
 MonoBehaviour:
   m_ObjectHideFlags: 0
