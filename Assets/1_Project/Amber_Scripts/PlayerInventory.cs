@@ -27,6 +27,11 @@ public class PlayerInventory : NetworkBehaviour
 
     void Update()
     {
+		if(!IsOwner)
+		{
+			return;
+		}
+
 		if(Input.GetKeyDown(KeyCode.E))
 		{
 			if(in_deposit_hitbox)
@@ -85,15 +90,6 @@ public class PlayerInventory : NetworkBehaviour
 			in_deposit_hitbox = false;
 		}
 	}
-	
-	// [Rpc.SendTo(Server)]
-	/**
-	[ServerRpc(RequireOwnership = false)]
-	private void DestroyObjectServerRPC(ulong to_destory)
-	{
-		Server_DestroyObjectServerRPC(to_destroy);
-	}
-	**/
 	
 	[ServerRpc(RequireOwnership = false)]
 	private void DestroyObjectServerRPC(ulong to_destroy)
