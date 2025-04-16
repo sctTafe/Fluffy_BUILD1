@@ -26,7 +26,10 @@ public class DepositItemPoint : NetworkBehaviour
 	public void Start()
 	{
 		objective_prompt = GameObject.FindWithTag(objective_UI_tag).GetComponent<TMP_Text>();
-		objective_prompt.text = $"{objective_name} {current_amount.Value} / {amount_needed}";
+		if(objective_prompt != null)
+		{
+			objective_prompt.text = $"{objective_name} {current_amount.Value} / {amount_needed}";
+		}
 
 		objective_manager = GameObject.FindWithTag("ObjectiveManager").GetComponent<ObjectiveManager>();
 	}
@@ -80,6 +83,9 @@ public class DepositItemPoint : NetworkBehaviour
 
 	public void UpdateUI()
 	{
-        objective_prompt.text = $"{objective_name} {current_amount.Value} / {amount_needed}";
+		if(objective_prompt != null)
+		{
+        	objective_prompt.text = $"{objective_name} {current_amount.Value} / {amount_needed}";
+		}
     }
 }
