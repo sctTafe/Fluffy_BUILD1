@@ -8,13 +8,15 @@ public class ItemManager : NetworkBehaviour
 
 	public override void OnNetworkSpawn()
 	{
+		if(!IsServer)
+			return;
+
         Debug.Log("ItemManager - OnNetworkSpawn");
 
         items = GameObject.FindGameObjectsWithTag("pick_up_item");
 		spawn_points = GameObject.FindGameObjectsWithTag("item_spawn_point");
 
-		
-
+	
 		foreach(GameObject item in items)
 		{
 			int i = Random.Range(0, spawn_points.Length);
