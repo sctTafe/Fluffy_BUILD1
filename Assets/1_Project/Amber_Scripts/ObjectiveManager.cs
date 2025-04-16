@@ -42,6 +42,6 @@ public class ObjectiveManager : NetworkSingleton<ObjectiveManager>
 	{
 		// return (objectives_completed.Value >= 3);
 		Debug.Log($"Players have completed {objectives_completed_offline}");
-		return (objectives_completed_offline >= 0);
+		return (objectives_completed_offline >= 3);
 	}
 }
