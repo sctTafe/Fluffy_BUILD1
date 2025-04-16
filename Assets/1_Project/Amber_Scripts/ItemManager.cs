@@ -6,12 +6,14 @@ public class ItemManager : NetworkBehaviour
 	public GameObject[] items;
 	public GameObject[] spawn_points;
 
-	public void OnNetworkSpawn()
+	public override void OnNetworkSpawn()
 	{
-		items = GameObject.FindGameObjectsWithTag("pick_up_item");
+        Debug.Log("ItemManager - OnNetworkSpawn");
+
+        items = GameObject.FindGameObjectsWithTag("pick_up_item");
 		spawn_points = GameObject.FindGameObjectsWithTag("item_spawn_point");
 
-		Debug.Log(items);
+		
 
 		foreach(GameObject item in items)
 		{
@@ -20,17 +22,17 @@ public class ItemManager : NetworkBehaviour
 		}
 	}
 	
-	public void Start()
-	{
-		items = GameObject.FindGameObjectsWithTag("pick_up_item");
-		spawn_points = GameObject.FindGameObjectsWithTag("item_spawn_point");
+	//public void Start()
+	//{
+	//	items = GameObject.FindGameObjectsWithTag("pick_up_item");
+	//	spawn_points = GameObject.FindGameObjectsWithTag("item_spawn_point");
 
-		Debug.Log(items);
+	//	Debug.Log(items);
 
-		foreach(GameObject item in items)
-		{
-			int i = Random.Range(0, spawn_points.Length);
-			item.transform.position = spawn_points[i].transform.position;
-		}
-	}
+	//	foreach(GameObject item in items)
+	//	{
+	//		int i = Random.Range(0, spawn_points.Length);
+	//		item.transform.position = spawn_points[i].transform.position;
+	//	}
+	//}
 }
