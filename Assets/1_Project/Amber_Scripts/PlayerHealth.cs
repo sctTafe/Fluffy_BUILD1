@@ -12,19 +12,19 @@ public class PlayerHealth : NetworkBehaviour
 
 	void Start()
 	{
-		health_bar = GameObject.FindGameObjectWithTag("HealthBar");
+	
 	}
 
 	void OnEnable()
 	{
-		player_health.OnValueChanged += RespondToEvent;
+        player_health.OnValueChanged += RespondToEvent;
 		//SetPlayerHealthServerRPC(1);
 		player_health.Value = 1;
 	}
 
 	void OnDisable()
 	{
-		player_health.OnValueChanged -= RespondToEvent;
+        player_health.OnValueChanged -= RespondToEvent;
 	}
 
 
@@ -60,7 +60,8 @@ public class PlayerHealth : NetworkBehaviour
         if (!IsClient)
             return;
 
-		ProcessHealthUpdate(1, player_health.Value);
+        health_bar = GameObject.FindGameObjectWithTag("HealthBar");
+        ProcessHealthUpdate(1, player_health.Value);
 		Debug.Log("(Client) Player health value: " + player_health.Value);
     }
 
@@ -79,7 +80,8 @@ public class PlayerHealth : NetworkBehaviour
 
 	void UpdatePlayerUI(float new_value)
 	{
-		health_bar.transform.localScale = new Vector3(new_value / 1, 1, 1);
+        if (health_bar != null)
+			health_bar.transform.localScale = new Vector3(new_value / 1, 1, 1);
 	}
 
 	void KillPlayer()

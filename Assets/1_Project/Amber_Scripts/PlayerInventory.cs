@@ -21,6 +21,9 @@ public class PlayerInventory : NetworkBehaviour
 
 	void Start()
 	{
+		if(!IsOwner)
+			return;
+
 		inventory_prompt = GameObject.FindWithTag("inventory_prompt").GetComponent<TMP_Text>();
 		inventory_prompt.text = $"Held item:\n{held_item}";
 	}

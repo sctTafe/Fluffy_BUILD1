@@ -142,6 +142,9 @@ namespace StarterAssets
         float _animVarLocalSpeed_Prev;
         float _animVarLocalMotionSpeed_Prev;
 
+        // local disable movement
+        bool _isMovementDistabled = false;
+
 
         // might need to update this with OnNetwrokStart 
         private void Awake()
@@ -203,8 +206,8 @@ namespace StarterAssets
         private void Update()
         {
             if (IsOwner)
-            {
-                HandleMovementAndPlayerInput();
+            {            
+                Update_HandleMovementAndPlayerInput();
                 Update_NetworkAnimationVaraibles();
                 Update_UpdateAnimatorWithLocalVariables();                               
             }
@@ -218,14 +221,19 @@ namespace StarterAssets
             }                               
         }
 
-        private void LateUpdate()
-        {
-            //CameraRotation();
-        }
+        //private void LateUpdate()
+        //{
+        //    //CameraRotation();
+        //}
 
         public void fn_Despawn()
         {
             NetworkObject.Despawn();
+        }
+
+        public void fn_IsMovementInputDisabled(bool isDisabled)
+        {
+            _isMovementDistabled = isDisabled;
         }
 
 
@@ -244,8 +252,12 @@ namespace StarterAssets
         }
 
 
-        private void HandleMovementAndPlayerInput()
+        private void Update_HandleMovementAndPlayerInput()
         {
+            // If movment is disabled return.
+            if (_isMovementDistabled)
+                return;
+
             JumpAndGravity();
             GroundedCheck();
             Move();
