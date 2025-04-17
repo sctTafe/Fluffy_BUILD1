@@ -1,8 +1,8 @@
 using StarterAssets;
-using System;
 using Unity.Netcode;
 using Unity.Netcode.Components;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// Local Client Bite_Receiver
@@ -12,18 +12,16 @@ using UnityEngine;
 /// </summary>
 public class Bite_Receiver : NetworkBehaviour
 {
-    public ThirdPersonController_Netcode controler;
-    
+    public UnityEvent OnBiteStart;
+    public UnityEvent OnBiteStop;
+
+    [SerializeField] private ThirdPersonController_Netcode controler;
+    [SerializeField] private Vector3 _positionOffset;
 
     public bool IsGrabbed {  get; private set; }
     private bool isGrabbed;
-    //void Start()
-    //{        
-    //}
 
-    //void Update()
-    //{ 
-    //}
+
     private void Awake()
     {
         if (controler == null)
@@ -44,10 +42,14 @@ public class Bite_Receiver : NetworkBehaviour
     {
         // Reposition the bite target transform position to that of the bitter
         this.transform.position = pos;
-        this.transform.eulerAngles = new Vector3(0f, 0f, 90f);
+        this.transform.localEulerAngles = new Vector3(0f, 0f, 90f); //set local child rotation
+        this.transform.position += _positionOffset;
+
 
         gameObject.GetComponent<NetworkTransform>().enabled = false;
         controler.fn_IsMovementInputDisabled(true);
+
+        OnBiteStart?.Invoke();
         isGrabbed = true;
     }
 
@@ -58,5 +60,6 @@ public class Bite_Receiver : NetworkBehaviour
         this.transform.eulerAngles = new Vector3(0f, 0f, 0f);
         controler.fn_IsMovementInputDisabled(false);
         isGrabbed = false;
+        OnBiteStop?.Invoke();
     }
 }

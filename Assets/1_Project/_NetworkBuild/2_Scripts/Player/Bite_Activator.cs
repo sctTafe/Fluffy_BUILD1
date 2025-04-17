@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// Bite Class for the Mutant
@@ -10,7 +11,6 @@ using UnityEngine;
 /// </summary>
 public class Bite_Activator : NetworkBehaviour
 {
-
     public Transform _holdingPoint;
 
     //Bite Box Collider
@@ -40,7 +40,7 @@ public class Bite_Activator : NetworkBehaviour
         }
 
 
-        //Grab_Update();
+        GrabTimedRelease_Update();
     }
 
     // Optional: draw the overlap box in scene view
@@ -106,7 +106,7 @@ public class Bite_Activator : NetworkBehaviour
     }
 
 
-    public void Grab_Update()
+    public void GrabTimedRelease_Update()
     {
         if (grabedPlayerGO != null)
         {
