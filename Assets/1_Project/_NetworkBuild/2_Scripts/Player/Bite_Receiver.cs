@@ -48,7 +48,7 @@ public class Bite_Receiver : NetworkBehaviour
 
         gameObject.GetComponent<NetworkTransform>().enabled = false;
         controler.fn_IsMovementInputDisabled(true);
-
+        if (IsOwner) gameObject.GetComponent<PlayerHealth>().ChangePlayerHealth(-0.1f);
         OnBiteStart?.Invoke();
         isGrabbed = true;
     }
