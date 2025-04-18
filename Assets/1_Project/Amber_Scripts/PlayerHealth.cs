@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.Events;
+using Unity.VisualScripting;
 //using System.Diagnostics;
 
 public class PlayerHealth : NetworkBehaviour
@@ -71,7 +72,7 @@ public class PlayerHealth : NetworkBehaviour
 		//Check if health is 0
 		if(new_value <= 0)
 		{
-			KillPlayer();
+			if (IsOwner) KillPlayerRpc(gameObject.GetComponent<NetworkObject>().NetworkObjectId);
 		}
 
 		//Update UI
@@ -84,10 +85,16 @@ public class PlayerHealth : NetworkBehaviour
 			health_bar.transform.localScale = new Vector3(new_value / 1, 1, 1);
 	}
 
-	void KillPlayer()
+	[Rpc(SendTo.Server)]
+	void KillPlayerRpc(ulong to_destroy)
 	{
 		Debug.Log("This is an unused function that will handle killing the player when they run out of health once we have that code implemented.");
-	}
+        if (NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(to_destroy, out NetworkObject target_object))
+		{
+            target_object.Despawn();
+        }
+        
+    }
 
 	public void ChangePlayerHealth(float change_amount)
 	{
