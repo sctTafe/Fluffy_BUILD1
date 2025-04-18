@@ -1,15 +1,17 @@
 using Unity.Netcode;
 using UnityEngine;
 
-public class NetworkGameTimer : INetworkGameTimer
+public class NetworkGameTimerDown : INetworkGameTimer
 {
     private float serverStartTime; // When the timer started (in seconds since game start)
-    private NetworkVariable<float> networkElapsedTime = new NetworkVariable<float>(default,
+    private NetworkVariable<float> networkMatchTime = new NetworkVariable<float>(default,
         NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
     public float ElapsedTime => Time.time - serverStartTime;
     private float lastSyncTime; // var for time to sync to the network variable
-
+    public float matchLengthMin = 10; 
+    public float matchLengthSec;
+    public float matchTimer => matchLengthSec - ElapsedTime;
     private bool isActive;
 
     public override void OnNetworkSpawn()
@@ -18,6 +20,7 @@ public class NetworkGameTimer : INetworkGameTimer
         {
             serverStartTime = Time.time;
             isActive = true;
+            matchLengthSec = matchLengthMin * 60;//turn mins into seconds
         }
     }
 
@@ -28,7 +31,7 @@ public class NetworkGameTimer : INetworkGameTimer
             // Update elapsed time periodically for syncing
             if (Time.time - lastSyncTime >= 1f) // Sync every second
             {
-                networkElapsedTime.Value = ElapsedTime;
+                networkMatchTime.Value = matchTimer;
                 lastSyncTime = Time.time;
             }
         }
@@ -46,7 +49,7 @@ public class NetworkGameTimer : INetworkGameTimer
 
     public override string GetCurrentTimeFormatted()
     {
-        float displayTime = IsServer ? ElapsedTime : networkElapsedTime.Value;
+        float displayTime = IsServer ? matchTimer : networkMatchTime.Value;
         return GetFormattedTime(displayTime);
     }
 

@@ -1041,6 +1041,7 @@ GameObject:
   - component: {fileID: 476438278}
   - component: {fileID: 476438280}
   - component: {fileID: 476438279}
+  - component: {fileID: 476438281}
   m_Layer: 0
   m_Name: '[GameTimer]'
   m_TagString: Untagged
@@ -1113,8 +1114,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7377ef14319aa094991922bb8cde73d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameTimer: {fileID: 476438279}
+  gameTimer: {fileID: 476438281}
   timerText: {fileID: 829378790}
+--- !u!114 &476438281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476438276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 679cf5db4c2abea4c8e75bf40ed99984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  matchLengthMin: 10
+  matchLengthSec: 0
 --- !u!4 &509332033 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4150320729586925891, guid: d2254d1b74ed66196bb62f55b095cc19, type: 3}

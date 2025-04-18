@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GameTimerUI : MonoBehaviour
 {
-    [SerializeField] private NetworkGameTimer gameTimer;
+    [SerializeField, SerializeReference] private INetworkGameTimer gameTimer;
     [SerializeField] private TextMeshProUGUI timerText;  // Reference to TextMeshProUGUI
 
     private void Update()
