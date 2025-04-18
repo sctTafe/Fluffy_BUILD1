@@ -74,9 +74,10 @@ public class PlayerHealth : NetworkBehaviour
 
         //Check if health is 0
         if (new_value <= 0)
-		{			
-			KillPlayerRpc(gameObject.GetComponent<NetworkObject>().NetworkObjectId);
-			MainGameManager.Instance.fn_SpawnGhost(NetworkManager.Singleton.LocalClientId, this.gameObject.transform.position);
+		{
+            //MainGameManager.Instance.fn_SpawnGhost(NetworkManager.Singleton.LocalClientId, this.gameObject.transform.position);
+            MainGameManager.Instance.fn_DelayedSpawnGhost(NetworkManager.Singleton.LocalClientId, this.gameObject.transform.position,2f);
+            KillPlayerRpc(gameObject.GetComponent<NetworkObject>().NetworkObjectId);		
 		}
 
 		//Update UI

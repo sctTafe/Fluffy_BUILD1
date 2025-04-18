@@ -1,7 +1,10 @@
+using System.Collections.Generic;
+using System.Linq;
 using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class NetworkGameTimerDown : INetworkGameTimer
 {
@@ -18,16 +21,25 @@ public class NetworkGameTimerDown : INetworkGameTimer
     public float matchTimer => matchLengthSec - ElapsedTime;
     private bool isActive;
 
+    // checking if all clients are in scene
+    private HashSet<ulong> clientsLoadedScene = new HashSet<ulong>();
+    string currentSceneName;
+
     public override void OnNetworkSpawn()
     {
         if (IsServer)
         {
-            serverStartTime = Time.time;
-            isActive = true;
-            matchLengthSec = matchLengthMin * 60;//turn mins into seconds
+            currentSceneName = SceneManager.GetActiveScene().name;
+            NetworkManager.SceneManager.OnLoadComplete += OnSceneLoaded;
         }
     }
-
+    public override void OnNetworkDespawn()
+    {
+        if (IsServer)
+        {
+            NetworkManager.SceneManager.OnLoadComplete -= OnSceneLoaded;
+        }
+    }
     private void Update()
     {
         if (IsServer && isActive)
@@ -38,11 +50,36 @@ public class NetworkGameTimerDown : INetworkGameTimer
                 CheckForTimeExhausted();
                 networkMatchTime.Value = matchTimer;
                 lastSyncTime = Time.time;
-
             }
         }
-
     }
+    private void StartMatchTimer()
+    {
+        serverStartTime = Time.time;
+        matchLengthSec += matchLengthMin * 60;
+        isActive = true;
+        lastSyncTime = Time.time;
+    }
+
+    private void OnSceneLoaded(ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
+    {
+        // Only run once, when all clients finish loading the game scene
+        if (!IsServer) return;
+
+        if (sceneName == currentSceneName) // Replace with your actual game scene name
+        {
+            clientsLoadedScene.Add(clientId);
+
+            // Start the match when all clients are ready
+            if (clientsLoadedScene.Count == NetworkManager.ConnectedClientsIds.Count)
+            {
+                Debug.Log("All Players Loaded Into Current Scene");
+                StartMatchTimer();
+            }
+        }
+    }
+
+
 
     public override string GetFormattedTime(float time)
     {

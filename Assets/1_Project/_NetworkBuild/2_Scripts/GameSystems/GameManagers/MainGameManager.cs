@@ -5,6 +5,7 @@ using Unity.Cinemachine.Samples;
 using Unity.Netcode;
 using UnityEditor.PackageManager;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 /// <summary>
 /// Primarily Handles Server Side Management of the Main Game
@@ -66,7 +67,6 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
 
     #endregion END: Unity Native Functions
 
-
     #region Joining and Load Event Responces
     /// <summary>
     /// Called On Scene Load
@@ -124,8 +124,6 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
         yield return new WaitForSeconds(1.5f);
         Debug.Log("Done waiting!");
         NetworkSceneManager.Instance.fn_GoToScene("4_Lobby");
-
-        // You can add any logic you want to happen after the wait here
     }
 
 
@@ -136,20 +134,29 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
     private void EnableEndScreenClientRPC(bool isFluffyWin)
     {
         _endScreen.gameObject.SetActive(true);
-
         if (isFluffyWin) 
-        {
             _endScreen_FluffyWin.gameObject.SetActive(true);
-        }
         else
-        {
-            _endScreen_FluffyWin.gameObject.SetActive(true);
-        }      
+            _endScreen_MutantWin.gameObject.SetActive(true); 
     }
 
     #endregion END: End Game
 
     #region Spawn & Despawn Network Objects
+
+    public void fn_DelayedSpawnGhost(ulong ghostPlayer, Vector3 pos, float waitTime)
+    {
+        if (IsOwner)
+        {
+            StartCoroutine(WaitThenSummonGhost(waitTime, ghostPlayer, pos));
+        }
+    }
+
+    IEnumerator WaitThenSummonGhost(float waitTime, ulong ghostPlayer, Vector3 pos)
+    {
+        yield return new WaitForSeconds(waitTime);
+        fn_SpawnGhost(ghostPlayer, pos);
+    }
 
     /// <summary>
     /// Spawns a ghost player prefab for the requesting player
@@ -161,6 +168,7 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
         if (IsOwner)
             SpawnGhostRPC(ghostPlayer, pos);
     }
+
 
     [Rpc(SendTo.Server)]
     private void SpawnGhostRPC(ulong ghostPlayer, Vector3 pos)
@@ -195,8 +203,6 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
     }
 
     #endregion END: Spawn Network Objects
-
-
 
     #region Pause Game
     /// <summary>

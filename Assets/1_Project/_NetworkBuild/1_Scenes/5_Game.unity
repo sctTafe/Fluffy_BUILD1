@@ -1146,10 +1146,10 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
-  matchLengthMin: 1
-  matchLengthSec: 0
+  matchLengthMin: 0
+  matchLengthSec: 10
 --- !u!4 &509332033 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4150320729586925891, guid: d2254d1b74ed66196bb62f55b095cc19, type: 3}
