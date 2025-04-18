@@ -20,6 +20,7 @@ public class Bite_Receiver : NetworkBehaviour
 
     public bool IsGrabbed {  get; private set; }
     private bool isGrabbed;
+    public float damage = 0.34f;
 
 
     private void Awake()
@@ -48,7 +49,7 @@ public class Bite_Receiver : NetworkBehaviour
 
         gameObject.GetComponent<NetworkTransform>().enabled = false;
         controler.fn_IsMovementInputDisabled(true);
-        if (IsOwner) gameObject.GetComponent<PlayerHealth>().ChangePlayerHealth(-0.1f);
+        if (IsOwner) gameObject.GetComponent<PlayerHealth>().ChangePlayerHealth(damage);
         OnBiteStart?.Invoke();
         isGrabbed = true;
     }
