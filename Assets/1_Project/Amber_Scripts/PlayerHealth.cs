@@ -91,11 +91,11 @@ public class PlayerHealth : NetworkBehaviour
 
 	public void ChangePlayerHealth(float change_amount)
 	{
-		if (IsOwner) player_health.Value += change_amount;
-        //ChangePlayerHealthServerRPC(change_amount);
+		//if (IsOwner) player_health.Value += change_amount;
+        if (IsOwner) ChangePlayerHealthServerRPC(change_amount);
     }
 
-	[Rpc(SendTo.ClientsAndHost)]
+	[Rpc(SendTo.Server)]
 	private void ChangePlayerHealthServerRPC(float change_amount)
 	{
 		player_health.Value += change_amount;
