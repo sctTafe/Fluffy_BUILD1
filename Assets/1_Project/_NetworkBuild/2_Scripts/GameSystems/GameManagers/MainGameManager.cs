@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Cinemachine.Samples;
 using Unity.Netcode;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 /// <summary>
@@ -15,6 +16,7 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
     
     [SerializeField] private Transform _playerPrefab;
     [SerializeField] private Transform _enemyPrefab;
+    [SerializeField] private Transform _ghostPrefab;
 
     [SerializeField] private Vector3 _GoodSpawnArea = Vector3.zero;
     [SerializeField] private Vector3 _BadSpawnArea = Vector3.forward * 5;
@@ -24,6 +26,8 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
     [SerializeField] private GameObject _friendlyUI;
     [SerializeField] private GameObject _mutantUI;
     [SerializeField] private GameObject _endScreen;
+    [SerializeField] private GameObject _endScreen_FluffyWin;
+    [SerializeField] private GameObject _endScreen_MutantWin;
 
 
 
@@ -104,11 +108,13 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
 
     #endregion END: Joining and Load Events
 
-
-    public void fn_EndGame()
+    #region End Game
+    public void fn_EndGame(bool isEndTriggeredByFluffies)
     {
-        fn_DespawnPlayers();
-        EnableEndScreenClientRPC();
+        fn_DespawnAllPlayers();
+
+        EnableEndScreenClientRPC(isEndTriggeredByFluffies);
+
         StartCoroutine(WaitThenChangeScene());
     }
 
@@ -121,119 +127,50 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
 
         // You can add any logic you want to happen after the wait here
     }
+
+
+    /// <summary>
+    /// Turns On The Win end UI
+    /// </summary>
     [ClientRpc]
-    private void EnableEndScreenClientRPC()
+    private void EnableEndScreenClientRPC(bool isFluffyWin)
     {
         _endScreen.gameObject.SetActive(true);
+
+        if (isFluffyWin) 
+        {
+            _endScreen_FluffyWin.gameObject.SetActive(true);
+        }
+        else
+        {
+            _endScreen_FluffyWin.gameObject.SetActive(true);
+        }      
     }
 
+    #endregion END: End Game
 
     #region Spawn & Despawn Network Objects
 
-    //#region SUB REGION - Handle SO Network Objects
-    //[SerializeField] private NetworkObjectsListType1SO networkObjectsListType1SO; //List of network objects, for providing the index value
+    /// <summary>
+    /// Spawns a ghost player prefab for the requesting player
+    /// </summary>
+    /// <param name="ghostPlayer">requesting ClientID</param>
+    /// <param name="pos">Spawn Position in world</param>
+    public void fn_SpawnGhost(ulong ghostPlayer, Vector3 pos)
+    {
+        if (IsOwner)
+            SpawnGhostRPC(ghostPlayer, pos);
+    }
 
+    [Rpc(SendTo.Server)]
+    private void SpawnGhostRPC(ulong ghostPlayer, Vector3 pos)
+    {
+        Transform playerTransform = Instantiate(_ghostPrefab, pos, Quaternion.identity);
+        playerTransform.GetComponent<NetworkObject>().SpawnAsPlayerObject(ghostPlayer, true);
+        playerTransform.gameObject.name = $"Player ({ghostPlayer}) MainGame Playable Ghost";
+    }
 
-    //public void fn_SpawnNetworkObjectType1(NetworkObjectsType1SO networkObjectType1SO)
-    //{
-    //    SpawnNetworkObjectType1ServerRpc(GetType1NetObjSOIndex(networkObjectType1SO));
-    //}
-    //public void fn_SpawnNetworkObjectType1(NetworkObjectsType1SO networkObjectType1SO, NetworkObject toBeParentNetObj)
-    //{
-    //    if (networkObjectType1SO == null)
-    //        Debug.LogWarning("networkObjectType1SO is Null!");
-    //    if (toBeParentNetObj == null)
-    //        Debug.LogWarning("toBeParentNetObj is Null!");
-
-    //    SpawnNetworkObjectType1ServerRpc(GetType1NetObjSOIndex(networkObjectType1SO), toBeParentNetObj.NetworkObjectId);
-    //}
-
-    //public void fn_SpawnNetworkObjectType1(NetworkObjectsType1SO networkObjectType1SO, INetworkObjectType1Parent networkObjectParent)
-    //{
-    //    SpawnNetworkObjectType1ServerRpc(GetType1NetObjSOIndex(networkObjectType1SO), networkObjectParent.GetNetworkObject());
-    //}
-
-    ///// <summary>
-    ///// 
-    ///// </summary>
-    ///// <param name="netObjType1SOIndex"> Index of the Network Object to be spawned </param>
-    ///// <param name="parentNetworkObjectRef"> NetworkObjectRefrence to the parent NetworkObject</param>
-    //[ServerRpc(RequireOwnership = false)]
-    //private void SpawnNetworkObjectType1ServerRpc(int netObjType1SOIndex, NetworkObjectReference parentNetworkObjectRef)
-    //{
-    //    NetworkObjectsType1SO type1NetworkObjectSO = GetType1NetObjSOFromIndex(netObjType1SOIndex);
-
-
-    //    parentNetworkObjectRef.TryGet(out NetworkObject NetObjType1ParentNetworkObject);
-    //    INetworkObjectType1Parent kitchenObjectParent = NetObjType1ParentNetworkObject.GetComponent<INetworkObjectType1Parent>();
-
-
-    //    if (kitchenObjectParent.HasKitchenObject())
-    //    {
-    //        // Parent already spawned an object
-    //        return;
-    //    }
-
-    //    Transform NetObjType1Prefab = Instantiate(type1NetworkObjectSO.prefab);
-
-    //    NetworkObject netObjType1NetObj = NetObjType1Prefab.GetComponent<NetworkObject>();
-    //    netObjType1NetObj.Spawn(true);
-
-    //    NetworkObjectType1 netObjT1 = NetObjType1Prefab.GetComponent<NetworkObjectType1>();
-    //    netObjT1.SetNetworkObjectParent(kitchenObjectParent);
-    //}
-
-    //[ServerRpc(RequireOwnership = false)]
-    //private void SpawnNetworkObjectType1ServerRpc(int netObjType1SOIndex)
-    //{
-    //    NetworkObjectsType1SO type1NetworkObjectSO = GetType1NetObjSOFromIndex(netObjType1SOIndex);
-
-    //    Transform NetObjType1Prefab = Instantiate(type1NetworkObjectSO.prefab);
-
-    //    NetworkObject netObjType1NetObj = NetObjType1Prefab.GetComponent<NetworkObject>();
-    //    netObjType1NetObj.Spawn(true);
-    //}
-
-
-    //[ServerRpc(RequireOwnership = false)]
-    //private void SpawnNetworkObjectType1ServerRpc(int netObjType1SOIndex, ulong parentNetObjId)
-    //{
-    //    Debug.Log($" SpawnNetworkObjectType1ServerRpc with parent id: {parentNetObjId}");
-    //    NetworkObjectsType1SO type1NetworkObjectSO = GetType1NetObjSOFromIndex(netObjType1SOIndex);
-
-    //    // Create new object
-    //    Transform NetObjType1Prefab = Instantiate(type1NetworkObjectSO.prefab);
-    //    NetworkObject netObjType1NetObj = NetObjType1Prefab.GetComponent<NetworkObject>();
-
-    //    // Add it to the network
-    //    netObjType1NetObj.Spawn(true);
-
-    //    //Set parent object
-    //    NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(parentNetObjId, out NetworkObject toBeParentNetObj);
-    //    if (toBeParentNetObj != null) {         
-    //        netObjType1NetObj.transform.parent = toBeParentNetObj.transform;
-    //    }
-    //    else
-    //    {
-    //        Debug.LogWarning("Couldnot find parent network ID");
-    //    }
-    //}
-
-
-
-
-    //public int GetType1NetObjSOIndex(NetworkObjectsType1SO type1NetObjSO)
-    //{
-    //    return networkObjectsListType1SO.notworkObjectType1SOList.IndexOf(type1NetObjSO);
-    //}
-
-    //public NetworkObjectsType1SO GetType1NetObjSOFromIndex(int kitchenObjectSOIndex)
-    //{
-    //    return networkObjectsListType1SO.notworkObjectType1SOList[kitchenObjectSOIndex];
-    //}
-    //#endregion END: SUB REGION - Handle SO Network Objects
-
-    public void fn_DespawnPlayers()
+    public void fn_DespawnAllPlayers()
     {
         Debug.Log("MainGameManager: fn_DespawnPlayers called");
 

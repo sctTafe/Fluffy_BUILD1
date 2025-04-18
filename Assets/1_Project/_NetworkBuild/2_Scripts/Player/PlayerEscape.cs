@@ -9,7 +9,7 @@ public class PlayerEscape : MonoBehaviour
         if(other.CompareTag("boat_escape_point") && ObjectiveManager.Instance.CanPlayersEscape())
         {
             Debug.Log("PlayerEscape: EndGame");
-            MainGameManager.Instance.fn_EndGame();        
+            MainGameManager.Instance.fn_EndGame(true);        
         }
     }
 

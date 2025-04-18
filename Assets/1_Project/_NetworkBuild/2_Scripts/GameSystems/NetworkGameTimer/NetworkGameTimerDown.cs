@@ -1,8 +1,12 @@
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class NetworkGameTimerDown : INetworkGameTimer
 {
+    public UnityEvent OnTimmerTrigger;
+
     private float serverStartTime; // When the timer started (in seconds since game start)
     private NetworkVariable<float> networkMatchTime = new NetworkVariable<float>(default,
         NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
@@ -31,8 +35,10 @@ public class NetworkGameTimerDown : INetworkGameTimer
             // Update elapsed time periodically for syncing
             if (Time.time - lastSyncTime >= 1f) // Sync every second
             {
+                CheckForTimeExhausted();
                 networkMatchTime.Value = matchTimer;
                 lastSyncTime = Time.time;
+
             }
         }
 
@@ -51,6 +57,15 @@ public class NetworkGameTimerDown : INetworkGameTimer
     {
         float displayTime = IsServer ? matchTimer : networkMatchTime.Value;
         return GetFormattedTime(displayTime);
+    }
+
+    private void CheckForTimeExhausted() 
+    {
+        if(matchTimer <= 0)
+        {
+            isActive = false;
+            OnTimmerTrigger?.Invoke();
+        }
     }
 
 }

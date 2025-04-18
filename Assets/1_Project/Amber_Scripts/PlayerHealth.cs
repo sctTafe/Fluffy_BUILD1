@@ -69,10 +69,14 @@ public class PlayerHealth : NetworkBehaviour
 	//Runs on all local clients when called
 	private void ProcessHealthUpdate(float previous_value, float new_value)
 	{
-		//Check if health is 0
-		if(new_value <= 0)
-		{
-			if (IsOwner) KillPlayerRpc(gameObject.GetComponent<NetworkObject>().NetworkObjectId);
+		if (!IsOwner)
+			return;
+
+        //Check if health is 0
+        if (new_value <= 0)
+		{			
+			KillPlayerRpc(gameObject.GetComponent<NetworkObject>().NetworkObjectId);
+			MainGameManager.Instance.fn_SpawnGhost(NetworkManager.Singleton.LocalClientId, this.gameObject.transform.position);
 		}
 
 		//Update UI
@@ -87,8 +91,7 @@ public class PlayerHealth : NetworkBehaviour
 
 	[Rpc(SendTo.Server)]
 	void KillPlayerRpc(ulong to_destroy)
-	{
-		Debug.Log("This is an unused function that will handle killing the player when they run out of health once we have that code implemented.");
+	{    
         if (NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(to_destroy, out NetworkObject target_object))
 		{
             target_object.Despawn();
