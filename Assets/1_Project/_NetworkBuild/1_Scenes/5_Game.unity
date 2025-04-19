@@ -377,7 +377,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8013600863374583224, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.836594
+      value: -1.72
       objectReference: {fileID: 0}
     - target: {fileID: 8013600863374583224, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -385,7 +385,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8013600863374583224, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.803961
+      value: 28.56
       objectReference: {fileID: 0}
     - target: {fileID: 8013600863374583224, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -777,7 +777,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   _playerPrefab: {fileID: 7907975427600931893, guid: f4d29aa6c9f83f6408b25fc857b249cf, type: 3}
-  _enemyPrefab: {fileID: 9005902844290762139, guid: 72cff7c5f7ea46e488c51cb67cc2596c, type: 3}
+  _enemyPrefab: {fileID: 9005902844290762139, guid: 8c6dd5ed76b552c4c843882877e909e6, type: 3}
   _ghostPrefab: {fileID: 7907975427600931893, guid: 5370bcdfb4c94fa42902a003cd5414e0, type: 3}
   _GoodSpawnArea: {x: 0, y: 0, z: 0}
   _BadSpawnArea: {x: 0, y: 0, z: -15}
@@ -1148,8 +1148,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  matchLengthMin: 0
-  matchLengthSec: 10
+  matchLengthMin: 5
+  matchLengthSec: 15
 --- !u!4 &509332033 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4150320729586925891, guid: d2254d1b74ed66196bb62f55b095cc19, type: 3}
@@ -2221,6 +2221,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InteractableObject_SpawnNetworkObjectIntoWorld
       objectReference: {fileID: 0}
+    - target: {fileID: 3771051800532034781, guid: 334d8727ac9d3da4fabd40afc8419bd4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3002,7 +3006,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8013600863374583224, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.113407
+      value: -4.73
       objectReference: {fileID: 0}
     - target: {fileID: 8013600863374583224, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3010,7 +3014,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8013600863374583224, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.6760387
+      value: 27.02
       objectReference: {fileID: 0}
     - target: {fileID: 8013600863374583224, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4826,7 +4830,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8013600863374583224, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.6734066
+      value: -8.69
       objectReference: {fileID: 0}
     - target: {fileID: 8013600863374583224, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4834,7 +4838,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8013600863374583224, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -22.46604
+      value: 29.26
       objectReference: {fileID: 0}
     - target: {fileID: 8013600863374583224, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5985,6 +5989,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InteractableObject_LocalOnly
       objectReference: {fileID: 0}
+    - target: {fileID: 7918446599420466889, guid: 09bf5e8ebc8240b43a1c2dfd04aebf91, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6216,6 +6224,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InteractableObject_NetworkBoolTrigger
       objectReference: {fileID: 0}
+    - target: {fileID: 5303840289838222939, guid: f84508489d7cd9c48bc36005e83ada52, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7639141687488526458, guid: f84508489d7cd9c48bc36005e83ada52, type: 3}
       propertyPath: OnTrigger.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -6340,10 +6352,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damping: {x: 0.1, y: 0.5, z: 0.3}
-  ShoulderOffset: {x: 1.13, y: 0, z: 0}
+  ShoulderOffset: {x: 1.13, y: 1, z: 0}
   VerticalArmLength: -0.04
   CameraSide: 1
-  CameraDistance: 7.09
+  CameraDistance: 6
   AvoidObstacles:
     Enabled: 1
     CollisionFilter:
