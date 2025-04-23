@@ -1,4 +1,5 @@
-﻿ using Unity.Netcode;
+﻿using System.Runtime.InteropServices;
+using Unity.Netcode;
  using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
@@ -144,6 +145,10 @@ namespace StarterAssets
 
         // local disable movement
         bool _isMovementDistabled = false;
+
+        // Movment Inputs
+        public void fn_SetIsSprintingInput(bool isSprinting) => _isSprinting_Input = isSprinting;
+        private bool _isSprinting_Input;
 
 
         // might need to update this with OnNetwrokStart 
@@ -306,10 +311,13 @@ namespace StarterAssets
                 _cinemachineTargetYaw, 0.0f);
         }
 
+
+
         private void Move()
         {
             // set target speed based on move speed, sprint speed and if sprint is pressed
-            float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+            //float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+            float targetSpeed = _isSprinting_Input ? SprintSpeed : MoveSpeed; //Externally Set
 
             // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 

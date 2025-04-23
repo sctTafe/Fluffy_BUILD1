@@ -2132,6 +2132,7 @@ GameObject:
   - component: {fileID: 2738397815988583428}
   - component: {fileID: 3657911424795443171}
   - component: {fileID: -6025897783477553730}
+  - component: {fileID: 174214447878495844}
   m_Layer: 8
   m_Name: NetworkPlayerPrefab_Abomination
   m_TagString: Player
@@ -2445,6 +2446,18 @@ MonoBehaviour:
   controler: {fileID: 8098111753333436752}
   _positionOffset: {x: 0, y: 0, z: 0}
   damage: -0.34
+--- !u!114 &174214447878495844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6103115944230435048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a610981c87caf047acdb645994c10a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6167483681963466577
 GameObject:
   m_ObjectHideFlags: 0
