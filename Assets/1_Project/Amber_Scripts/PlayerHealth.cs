@@ -1,8 +1,5 @@
 using UnityEngine;
 using Unity.Netcode;
-using UnityEngine.Events;
-using Unity.VisualScripting;
-//using System.Diagnostics;
 
 public class PlayerHealth : NetworkBehaviour
 {
@@ -73,12 +70,11 @@ public class PlayerHealth : NetworkBehaviour
 			return;
 
         //Check if health is 0
-        if (new_value <= 0)
+        if (player_health.Value <= 0)
 		{
-            //MainGameManager.Instance.fn_SpawnGhost(NetworkManager.Singleton.LocalClientId, this.gameObject.transform.position);
-            MainGameManager.Instance.fn_DelayedSpawnGhost(NetworkManager.Singleton.LocalClientId, this.gameObject.transform.position,2f);
-            KillPlayerRpc(gameObject.GetComponent<NetworkObject>().NetworkObjectId);		
-		}
+			Debug.Log($"Player {this.gameObject.name} has Died!");
+			KillPlayer();
+        }
 
 		//Update UI
 		UpdatePlayerUI(new_value);
@@ -90,14 +86,10 @@ public class PlayerHealth : NetworkBehaviour
 			health_bar.transform.localScale = new Vector3(new_value / 1, 1, 1);
 	}
 
-	[Rpc(SendTo.Server)]
-	void KillPlayerRpc(ulong to_destroy)
-	{    
-        if (NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(to_destroy, out NetworkObject target_object))
-		{
-            target_object.Despawn();
-        }
-        
+
+	void KillPlayer()
+	{
+		MainGameManager.Instance.fn_KillPlayerAndSpawnGhost(NetworkManager.Singleton.LocalClientId, this.gameObject.transform.position);
     }
 
 	public void ChangePlayerHealth(float change_amount)

@@ -360,6 +360,10 @@ PrefabInstance:
       value: red_test_item
       objectReference: {fileID: 0}
     - target: {fileID: 6214775143992500384, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
+      propertyPath: amount_needed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6214775143992500384, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: objective_name
       value: Find Red Gears
       objectReference: {fileID: 0}
@@ -779,8 +783,8 @@ MonoBehaviour:
   _playerPrefab: {fileID: 7907975427600931893, guid: f4d29aa6c9f83f6408b25fc857b249cf, type: 3}
   _enemyPrefab: {fileID: 9005902844290762139, guid: 8c6dd5ed76b552c4c843882877e909e6, type: 3}
   _ghostPrefab: {fileID: 7907975427600931893, guid: 5370bcdfb4c94fa42902a003cd5414e0, type: 3}
-  _GoodSpawnArea: {x: 0, y: 0, z: 0}
-  _BadSpawnArea: {x: 0, y: 0, z: -15}
+  _GoodSpawnArea: {x: 0, y: 0.5, z: 0}
+  _BadSpawnArea: {x: 0, y: 0.5, z: 15}
   _spawnRadius: 3
   _friendlyUI: {fileID: 1726719431}
   _mutantUI: {fileID: 448648687}
@@ -1148,8 +1152,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  matchLengthMin: 5
-  matchLengthSec: 15
+  matchLengthMin: 3
+  matchLengthSec: 30
 --- !u!4 &509332033 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4150320729586925891, guid: d2254d1b74ed66196bb62f55b095cc19, type: 3}
@@ -1823,7 +1827,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4150320729586925891, guid: d2254d1b74ed66196bb62f55b095cc19, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.48
+      value: 1.89
       objectReference: {fileID: 0}
     - target: {fileID: 4150320729586925891, guid: d2254d1b74ed66196bb62f55b095cc19, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2999,6 +3003,10 @@ PrefabInstance:
     - target: {fileID: 5086396994703095500, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: m_Name
       value: Objective_Group
+      objectReference: {fileID: 0}
+    - target: {fileID: 6214775143992500384, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
+      propertyPath: amount_needed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7349204528427925824, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: GlobalObjectIdHash
@@ -4811,6 +4819,10 @@ PrefabInstance:
     - target: {fileID: 6214775143992500384, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: item_needed
       value: grape
+      objectReference: {fileID: 0}
+    - target: {fileID: 6214775143992500384, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
+      propertyPath: amount_needed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6214775143992500384, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: objective_name

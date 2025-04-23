@@ -1,9 +1,5 @@
-using TMPro;
 using Unity.Netcode;
-using Unity.Netcode.Components;
-using UnityEditor.PackageManager;
 using UnityEngine;
-using static Unity.Netcode.Components.NetworkTransform;
 
 public class GrabPlayer : NetworkBehaviour
 {

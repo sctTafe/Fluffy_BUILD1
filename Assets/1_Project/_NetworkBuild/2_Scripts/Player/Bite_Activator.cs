@@ -22,11 +22,19 @@ public class Bite_Activator : NetworkBehaviour
     public bool isGrabbing = false;
     public GameObject grabedPlayerGO;
 
-    // Bite Time
+    // UnBite Time
     public float grabTime = 5f;
     public float grabbedTime;
 
+    // Bite CoolDown
+    private bool isBiteOnCooldown = false;
+    private float biteCooldown;
+    [SerializeField] private float biteCooldownLenght = 2f;
 
+    // Interaction Delay
+    private bool isInteractionDelayed = false;
+    private float interactionCooldown;
+    private float interactionCooldownLenght = 0.5f;
 
     void Update()
     {
@@ -39,8 +47,9 @@ public class Bite_Activator : NetworkBehaviour
             HandleGrabInput();
         }
 
-
-        GrabTimedRelease_Update();
+        Update_GrabTimedRelease();
+        Update_BiteCooldown();
+        Update_InteractionCooldown();
     }
 
     // Optional: draw the overlap box in scene view
@@ -57,6 +66,10 @@ public class Bite_Activator : NetworkBehaviour
 
     private void HandleGrabInput()
     {
+        if(IsInteractionOnCooldown())
+            return;
+
+        TriggerInteractionCooldown();
         if (!isGrabbing)
         {
             Debug.Log("Trying To Grab A Player");
@@ -80,6 +93,13 @@ public class Bite_Activator : NetworkBehaviour
             return;
         }
 
+        if (IsBiteOnCooldown())
+        {
+            Debug.Log("Bite is on cooldown!");
+            return;
+        }
+            
+        TriggerBiteCooldown();
         grabedPlayerGO = biteTarget;
         isGrabbing = true; //Activated Update Loop
 
@@ -106,7 +126,7 @@ public class Bite_Activator : NetworkBehaviour
     }
 
 
-    public void GrabTimedRelease_Update()
+    public void Update_GrabTimedRelease()
     {
         if (grabedPlayerGO != null)
         {
@@ -211,59 +231,43 @@ public class Bite_Activator : NetworkBehaviour
 
     #endregion
 
-    #region OLD
-    /// <summary>
-    /// 
-    /// </summary>
-    [ServerRpc]
-    public void OLD_MovePlayerToGrabServerRpc(ulong PlayerId, ulong id, Vector3 targetPosition)
+    #region Timers
+    private bool IsBiteOnCooldown() => isBiteOnCooldown;  
+    private void TriggerBiteCooldown()
     {
-        // Partent Bitten Object
-        Transform p = NetworkManager.Singleton.ConnectedClients[PlayerId].PlayerObject.gameObject.transform;
-        Transform t = NetworkManager.Singleton.ConnectedClients[id].PlayerObject.gameObject.transform;
-        p.parent = t;
-
-
-        //SpawnManager.SpawnedObjects[PlayerId].gameObject
-        //GameObject playerObject =   .gameObject;
-
-        NetworkManager.Singleton.ConnectedClients[PlayerId].PlayerObject.gameObject.GetComponent<AnimalCharacter>().DisableMovementRpc();
-        //GetComponent<AnimalCharacter>().MoveTo(targetPosition);
-
-        //playerObject.GetComponent<NetworkTransform>().AuthorityMode = AuthorityModes.Server;
-        //Debug.Log("moving" + playerObject.name);
-        //playerObject
-        //playerObject.transform.position = targetPosition;
-        //playerObject.GetComponent<NetworkTransform>().AuthorityMode = AuthorityModes.Owner;
+        biteCooldown = Time.time + biteCooldownLenght;
+        isBiteOnCooldown = true;
     }
-
-    public void OLD_CallClientRpcForOne(ulong clientId)
+    private void Update_BiteCooldown()
     {
-        if (!IsServer)
-        {
-            Debug.LogError("This Should only be called by the server!!!");
+        if (!isBiteOnCooldown)
             return;
-        }
 
-        var clientRpcParams = new ClientRpcParams
+        // End of Cooldown
+        if (biteCooldown <= Time.time)
         {
-            Send = new ClientRpcSendParams
-            {
-                TargetClientIds = new List<ulong> { clientId } // target just one client
-            }
-        };
-
-        OLD_ShowMessageClientRpc(clientRpcParams);
+            isBiteOnCooldown = false;
+        }
     }
 
-
-    [ClientRpc]
-    private void OLD_ShowMessageClientRpc(ClientRpcParams clientRpcParams = default)
+    private bool IsInteractionOnCooldown() => isInteractionDelayed;
+    private void TriggerInteractionCooldown()
     {
-        Debug.Log("This runs only on the target client.");
-        //Bite_Receiver.Instance.fn_SetBiteMode();
+        interactionCooldown = Time.time + interactionCooldownLenght;
+        isInteractionDelayed = true;
     }
-    #endregion
+    private void Update_InteractionCooldown()
+    {
+        if (!isInteractionDelayed)
+            return;
+
+        // End of Cooldown
+        if (interactionCooldown <= Time.time)
+        {
+            isInteractionDelayed = false;
+        }
+    }
+    #endregion END: Timers
 }
 
 
