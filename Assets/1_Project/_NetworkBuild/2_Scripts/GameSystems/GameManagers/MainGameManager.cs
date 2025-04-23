@@ -1,11 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Cinemachine.Samples;
 using Unity.Netcode;
-using UnityEditor.PackageManager;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 /// <summary>
 /// Primarily Handles Server Side Management of the Main Game
@@ -144,12 +141,29 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
 
     #region Spawn & Despawn Network Objects
 
-    public void fn_DelayedSpawnGhost(ulong ghostPlayer, Vector3 pos, float waitTime)
+    public void fn_KillPlayer(ulong networkObjectID)
     {
-        if (IsOwner)
+        DespawnNetworkObjectRPC(networkObjectID);
+    }
+    public void fn_KillPlayerAndSpawnGhost(ulong clientId, Vector3 pos)
+    {
+        Debug.Log("MainGameManager, fn_KillPlayerAndSpawnGhost Called");
+        
+        // Try Get the NetworkClient based on the clientID, then get back their primaryNO destory it, and clreate a new one (Ghost)
+        if (NetworkManager.Singleton.ConnectedClients.TryGetValue(clientId, out var networkClient))
         {
-            StartCoroutine(WaitThenSummonGhost(waitTime, ghostPlayer, pos));
+            var thePlayerObject = networkClient.PlayerObject; // This is the main NetworkObject associated with the client
+            ulong objectNetworkId = thePlayerObject.NetworkObjectId;
+            
+            DespawnNetworkObjectRPC(objectNetworkId);
+            DelayedSpawnGhost(clientId, pos, 2f);
         }
+    }
+
+    private void DelayedSpawnGhost(ulong ghostPlayer, Vector3 pos, float waitTime)
+    {
+        Debug.Log($"MainGameManager, DelayedSpawnGhost Called at position: {pos} ");
+        StartCoroutine(WaitThenSummonGhost(waitTime, ghostPlayer, pos));       
     }
 
     IEnumerator WaitThenSummonGhost(float waitTime, ulong ghostPlayer, Vector3 pos)
@@ -165,7 +179,6 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
     /// <param name="pos">Spawn Position in world</param>
     public void fn_SpawnGhost(ulong ghostPlayer, Vector3 pos)
     {
-        if (IsOwner)
             SpawnGhostRPC(ghostPlayer, pos);
     }
 
@@ -202,6 +215,15 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
         }
     }
 
+    [Rpc(SendTo.Server)]
+    private void DespawnNetworkObjectRPC(ulong networkObjectID)
+    {
+        Debug.Log($"DespawnNetworkObjectRPC called on {networkObjectID}");
+        if (NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(networkObjectID, out NetworkObject target_object))
+        {
+            target_object.Despawn();
+        }
+    }
     #endregion END: Spawn Network Objects
 
     #region Pause Game
