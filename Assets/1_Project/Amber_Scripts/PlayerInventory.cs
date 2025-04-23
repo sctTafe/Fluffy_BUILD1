@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using Unity.Netcode;
 using TMPro;
 
@@ -8,7 +10,7 @@ using TMPro;
 
 public class PlayerInventory : NetworkBehaviour
 {
-	public string held_item = "none";
+	public List<string> held_items = new List<string>();
 
 	private bool in_item_hitbox = false;
 	private bool in_deposit_hitbox = false;
@@ -25,7 +27,7 @@ public class PlayerInventory : NetworkBehaviour
 			return;
 
 		inventory_prompt = GameObject.FindWithTag("inventory_prompt").GetComponent<TMP_Text>();
-		inventory_prompt.text = $"Held item:\n{held_item}";
+		UpdateUI();
 	}
 
     void Update()
@@ -39,21 +41,19 @@ public class PlayerInventory : NetworkBehaviour
 		{
 			if(in_deposit_hitbox)
 			{
-				if(held_item == deposit_point.GetNeededItem())
+				if(held_items.Contains(deposit_point.GetNeededItem()))
 				{
-					held_item = "none";
-					inventory_prompt.text = $"Held item:\n{held_item}";
+					held_items.Remove(deposit_point.GetNeededItem());
+					UpdateUI();
 					deposit_point.DepositItem();
 				}
 			}
 			else if (in_item_hitbox)
 			{
-				if(held_item == "none")
+				if(held_items.Count < 3)
 				{
-					held_item = target_data.GetItem();
-					inventory_prompt.text = $"Held item:\n{held_item}";
+					AddToInventory(target_data.GetItem());
 					DestroyObjectServerRPC(target_network.NetworkObjectId);
-					Debug.Log(held_item);
 				}
 				else
 				{
@@ -106,6 +106,22 @@ public class PlayerInventory : NetworkBehaviour
 
 	public void AddToInventory(string item_name)
 	{
-		held_item = item_name;
+		if(held_items.Count < 3)
+		{
+			held_items.Add(item_name);
+			UpdateUI();
+		}
+	}
+
+	void UpdateUI()
+	{
+		string new_text = "Held items:";
+
+		foreach(string item in held_items)
+		{
+			new_text += $"\n{item}";
+		}
+
+		inventory_prompt.text = new_text;
 	}
 }
