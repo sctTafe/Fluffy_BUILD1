@@ -9,7 +9,7 @@ public class DestroyBush : NetworkBehaviour
     private InputManager_Singleton _input;
     public InputActionV2 _inputActions;
 
-    public BoxCollider collider;
+    public BoxCollider colliderBox;
     public string targetTag = "hide_trigger";
     //public LayerMask targetLayer;
 
@@ -54,23 +54,23 @@ public class DestroyBush : NetworkBehaviour
     {
         Target = null;
 
-        if (collider == null || !collider.isTrigger)
+        if (colliderBox == null || !colliderBox.isTrigger)
         {
             Debug.LogWarning("BoxCollider is null or not set as trigger!");
             return false;
         }
 
         // Calculate world-space bounds of the box
-        Vector3 center = collider.transform.TransformPoint(collider.center);
-        Vector3 halfExtents = Vector3.Scale(collider.size * 0.5f, collider.transform.lossyScale);
-        Quaternion orientation = collider.transform.rotation;
+        Vector3 center = colliderBox.transform.TransformPoint(colliderBox.center);
+        Vector3 halfExtents = Vector3.Scale(colliderBox.size * 0.5f, colliderBox.transform.lossyScale);
+        Quaternion orientation = colliderBox.transform.rotation;
 
         // Check all overlapping colliders
         Collider[] hits = Physics.OverlapBox(center, halfExtents, orientation);
 
         foreach (Collider hit in hits)
         {
-            if (hit == collider) continue; // Skip self
+            if (hit == colliderBox) continue; // Skip self
 
             if (hit.CompareTag(targetTag)) //||  (targetLayer.value == hit.gameObject.layer)
             {

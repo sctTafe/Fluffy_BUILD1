@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using UnityEngine;
 
 /// <summary>
@@ -17,6 +18,14 @@ public class MutantVariables : MonoBehaviour
     //private bool isBiteOnCooldown = false;
     //private float biteCooldown;
 
+    private void Awake()
+    {
+        energy = maxEnery;
+    }
+
+
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,5 +36,15 @@ public class MutantVariables : MonoBehaviour
     void Update()
     {
         
+    }
+
+
+
+    public void changeEnergy(int amount)
+    {
+        int newVal = energy + amount;
+        if (newVal > maxEnery) energy = maxEnery;
+        else if (newVal < 0) energy = 0; //tho im sure we just dont want to allow this (will have a function that checks this before change) 
+        else energy = newVal;
     }
 }
