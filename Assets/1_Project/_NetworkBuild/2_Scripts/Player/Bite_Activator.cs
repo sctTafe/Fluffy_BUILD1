@@ -36,6 +36,11 @@ public class Bite_Activator : NetworkBehaviour
     private float interactionCooldown;
     private float interactionCooldownLenght = 0.5f;
 
+    //cooldown general
+    private bool OnCooldown = false;
+    private float Cooldown;
+    //private float CooldownLenght = 0.5f;
+
     void Update()
     {
         if (!IsOwner) 
@@ -48,8 +53,9 @@ public class Bite_Activator : NetworkBehaviour
         }
 
         Update_GrabTimedRelease();
-        Update_BiteCooldown();
-        Update_InteractionCooldown();
+        //Update_BiteCooldown();
+        //Update_InteractionCooldown();
+        Update_Cooldown();
     }
 
     // Optional: draw the overlap box in scene view
@@ -66,10 +72,9 @@ public class Bite_Activator : NetworkBehaviour
 
     private void HandleGrabInput()
     {
-        if(IsInteractionOnCooldown())
-            return;
-
-        TriggerInteractionCooldown();
+        //if(IsInteractionOnCooldown()) return;
+        if (IsOnCooldown()) return;
+        //TriggerInteractionCooldown();
         if (!isGrabbing)
         {
             Debug.Log("Trying To Grab A Player");
@@ -77,6 +82,8 @@ public class Bite_Activator : NetworkBehaviour
         }
         else
         {
+            //if (IsOnCooldown()) return;
+            
             Debug.Log("Trying To Release A Grabed Player");
             TryRelease();
         }
@@ -92,17 +99,22 @@ public class Bite_Activator : NetworkBehaviour
             Debug.Log("Bite_Activator: Nothing To Grab!");
             return;
         }
-        //why is there a cooldown check here and one also in habdle grab input
+        //why is there a cooldown check here and one also in habdle grab input (shou;d not be trying to grab when is grab so 
+        /*
         if (IsBiteOnCooldown())
         {
             Debug.Log("Bite is on cooldown!");
             return;
         }
-            
-        TriggerBiteCooldown();
+        */    
+        //why is the start for the grab cooldown here (its gonna countdown while the player is grabbed)
+        //it should be starting the trigger cool down. (so can't trigger again)
+        //bite cooldown shoul start in the release
+        //TriggerBiteCooldown();
         grabedPlayerGO = biteTarget;
         isGrabbing = true; //Activated Update Loop
-
+        //SetCooldown(biteCooldownLenght);
+        SetCooldown(interactionCooldownLenght);
         Debug.Log($"{this.gameObject.name} Trying to Grab {biteTarget.gameObject.name}");
         BiteTargetPlayerServerRpc(biteTarget.GetComponent<NetworkObject>().OwnerClientId, gameObject.GetComponent<NetworkObject>().OwnerClientId);    
     }
@@ -112,43 +124,79 @@ public class Bite_Activator : NetworkBehaviour
         if (!IsOwner)
             return;
 
-        isGrabbing = false;
-        grabbedTime = 0; // reset bite hold timer
+        //isGrabbing = false;
+        //grabbedTime = 0; // reset bite hold timer
 
-        if (grabedPlayerGO == null)
+        if (IsGrabbed())//grabedPlayerGO == null)
         {
-            Debug.LogWarning("Bite_Activator Trying To Release null player!");           
+            ReleasePlayer();
+        }
+        else
+        {
+            Debug.LogWarning("Bite_Activator Trying To Release null player!");
             return;
         }
-
-        ReleaseTargetPlayerServerRpc(grabedPlayerGO.GetComponent<NetworkObject>().OwnerClientId, gameObject.GetComponent<NetworkObject>().OwnerClientId);
-        grabedPlayerGO = null;
+        //ReleaseTargetPlayerServerRpc(grabedPlayerGO.GetComponent<NetworkObject>().OwnerClientId, gameObject.GetComponent<NetworkObject>().OwnerClientId);
+        //grabedPlayerGO = null;
+        //SetCooldown(biteCooldownLenght);
     }
 
 
     public void Update_GrabTimedRelease()
     {
-        if (grabedPlayerGO != null)
+        if (IsGrabbed()) //grabedPlayerGO != null
         {
             grabbedTime += Time.deltaTime;
 
             //relase player if the player was grabed for a certain amount of time
             if (grabbedTime >= grabTime)
             {
-                isGrabbing = false;
-                grabbedTime = 0;
-                Debug.Log("release player");
-                ReleaseTargetPlayerServerRpc(grabedPlayerGO.GetComponent<NetworkObject>().OwnerClientId, gameObject.GetComponent<NetworkObject>().OwnerClientId);
-                grabedPlayerGO = null;
+                //isGrabbing = false;
+                //grabbedTime = 0;
+                //Debug.Log("release player");
+                //ReleaseTargetPlayerServerRpc(grabedPlayerGO.GetComponent<NetworkObject>().OwnerClientId, gameObject.GetComponent<NetworkObject>().OwnerClientId);
+                //grabedPlayerGO = null;
+                ReleasePlayer();
             }
         }
-        else
-        {
+        //else
+        //{
             //else check just in case the player gamebject dissappears
             //(ensure if for example the object is destroyed that the mutant will be immediatly free of the grab (won't have to wait for the grab timer))
-            isGrabbing = false;
-            grabbedTime = 0;
+            //isGrabbing = false;
+            //grabbedTime = 0;
+        //}
+    }
+
+    /// <summary>
+    /// runs the releasetarget rpc to release player from grab and resets all grab related variables
+    /// and set a cooldown on bite
+    /// </summary>
+    private void ReleasePlayer()
+    {
+        isGrabbing = false;
+        grabbedTime = 0;
+        Debug.Log("player released");
+        ReleaseTargetPlayerServerRpc(grabedPlayerGO.GetComponent<NetworkObject>().OwnerClientId, gameObject.GetComponent<NetworkObject>().OwnerClientId);
+        grabedPlayerGO = null;
+        SetCooldown(biteCooldownLenght);
+    }
+
+    /// <summary>
+    /// checks if grabedPlayerGO is not null when isgrabbing is true
+    /// if grabedPlayerGO is null then reset grab variables and return false
+    /// if grabedPlayerGO is not null then return true
+    /// </summary>
+    /// <returns>true if grabedPlayerGO is not null </returns>
+    private bool IsGrabbed()
+    {
+        if (grabedPlayerGO != null)
+        {
+            return true;
         }
+        isGrabbing = false;
+        grabbedTime = 0;
+        return false;
     }
 
     /// <summary>
@@ -232,6 +280,7 @@ public class Bite_Activator : NetworkBehaviour
     #endregion
 
     #region Timers
+    /*
     private bool IsBiteOnCooldown() => isBiteOnCooldown;  
     private void TriggerBiteCooldown()
     {
@@ -265,6 +314,28 @@ public class Bite_Activator : NetworkBehaviour
         if (interactionCooldown <= Time.time)
         {
             isInteractionDelayed = false;
+        }
+    }
+
+    */
+
+
+
+    private bool IsOnCooldown() => OnCooldown;
+    private void SetCooldown(float CooldownLenght)
+    {
+        Cooldown = Time.time + CooldownLenght;
+        OnCooldown = true;
+    }
+    private void Update_Cooldown()
+    {
+        if (!OnCooldown)
+            return;
+
+        // End of Cooldown
+        if (Cooldown <= Time.time)
+        {
+            OnCooldown = false;
         }
     }
     #endregion END: Timers
