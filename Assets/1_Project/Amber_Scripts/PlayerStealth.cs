@@ -9,7 +9,7 @@ public class PlayerStealth : NetworkBehaviour
 
     void Start()
     {
-    	geometry = transform.GetChild(2).gameObject;    
+    	geometry = transform.GetChild(1).gameObject;    
     }
 
 	void Update()
