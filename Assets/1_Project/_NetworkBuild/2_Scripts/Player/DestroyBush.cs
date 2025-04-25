@@ -43,6 +43,8 @@ public class DestroyBush : NetworkBehaviour
             Debug.Log("DestroyBush: No bush found!");
             return;
         }
+
+        DestroyObjectServerRPC(biteTarget.GetComponent<NetworkObject>().NetworkObjectId);
     }
 
 
@@ -78,5 +80,19 @@ public class DestroyBush : NetworkBehaviour
         }
 
         return false;
+    }
+
+
+
+
+
+    [ServerRpc(RequireOwnership = false)]
+    private void DestroyObjectServerRPC(ulong to_destroy)
+    {
+        if (IsServer)
+        {
+            NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(to_destroy, out NetworkObject target_object);
+            target_object.Despawn();
+        }
     }
 }
