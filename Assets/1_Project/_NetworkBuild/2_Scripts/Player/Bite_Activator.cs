@@ -92,7 +92,7 @@ public class Bite_Activator : NetworkBehaviour
             Debug.Log("Bite_Activator: Nothing To Grab!");
             return;
         }
-
+        //why is there a cooldown check here and one also in habdle grab input
         if (IsBiteOnCooldown())
         {
             Debug.Log("Bite is on cooldown!");
