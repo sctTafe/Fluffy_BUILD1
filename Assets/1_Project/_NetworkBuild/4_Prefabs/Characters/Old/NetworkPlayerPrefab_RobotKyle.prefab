@@ -2657,6 +2657,7 @@ GameObject:
   - component: {fileID: 4685717942135695358}
   - component: {fileID: 4163513301123435681}
   - component: {fileID: 4211056162011938339}
+  - component: {fileID: 4241788333812450795}
   - component: {fileID: 3358150238189878319}
   - component: {fileID: 7126122190191861419}
   - component: {fileID: 5662966264603675591}
@@ -2812,6 +2813,18 @@ CharacterController:
   m_SkinWidth: 0.02
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0.93, z: 0}
+--- !u!114 &4241788333812450795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5408246126893154181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31b7615a3fa13e79896057cdb1e3ef8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3358150238189878319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2922,7 +2935,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  held_item: none
+  held_items: []
 --- !u!114 &-4332349705842963752
 MonoBehaviour:
   m_ObjectHideFlags: 0
