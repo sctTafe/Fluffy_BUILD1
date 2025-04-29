@@ -25,11 +25,13 @@ public class AnimalCharacter : CharacterBase
     [SerializeField] private float GroundCheckRadius = 0.3f;
     [SerializeField] private float GroundCheckDistance = 0.2f;
     [SerializeField] private Vector3 groundCheckStartOffset = Vector3.up;
-    [SerializeField] private float GroundAlignmentForce = 20f;
+    [SerializeField] private float GroundAlignmentForce = 25f;
+    [SerializeField] private float GroundSpringDamping = 2f;
     [SerializeField] private bool DebugRaycasts = true;
-    [SerializeField] private float StepCorrectionRange = 0.25f;         // Max distance you want to correct for
+    //[SerializeField] private float StepCorrectionRange = 0.25f;         // Max distance you want to correct for, maybe later for better foot placement prediction
     [SerializeField] private float MaxGroundAlignmentForce = 50f;       // Cap the lift force
-    [SerializeField] private float GroundDamping = 8f;
+
+    [Header("Slope Settings")]
     [SerializeField] private float maxStableSlopeAngle = 40f; // Maximum walkable angle
     [SerializeField] private float slideAcceleration = 10f;   // How fast the character slides
 
@@ -40,23 +42,24 @@ public class AnimalCharacter : CharacterBase
     public Action StartJump;
     public Action EndJump;
 
-    private Vector3 rawInput;
-    private bool hasInput;
-    private bool shouldRotate;
-
     [Header("Animations")]
     // --- Network Animation Variables ---
     [SerializeField] private CharacterAnimator characterAnimator;
-    public NetworkVariable<float> _sidewaysSpeed_NWV = new NetworkVariable<float>(0f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-    public NetworkVariable<float> _forwardsSpeed_NWV = new NetworkVariable<float>(0f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    [HideInInspector] public NetworkVariable<float> _sidewaysSpeed_NWV = new NetworkVariable<float>(0f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    [HideInInspector] public NetworkVariable<float> _forwardsSpeed_NWV = new NetworkVariable<float>(0f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("Camera Vars")]
     bool m_InTopHemisphere = true;
     float m_TimeInHemisphere = 100;
     Vector3 m_LastRawInput;
     Quaternion m_Upsidedown = Quaternion.AngleAxis(180, Vector3.left);
-    public Camera CameraOverride;
+
+    public Camera CameraOverride; // cam override was left in for a zoom in cam change, todo
     public Camera Camera => CameraOverride == null ? Camera.main : CameraOverride;
+
+    private Vector3 rawInput;
+    private bool hasInput;
+    private bool shouldRotate;
 
     //breaedon code
     public bool isGrabbed = false;
@@ -240,7 +243,7 @@ public class AnimalCharacter : CharacterBase
                 float normalizedPenetration = penetration / GroundCheckDistance;
                 float upwardForce = normalizedPenetration * GroundAlignmentForce;
                 float verticalVelocity = Vector3.Dot(rb.linearVelocity, Vector3.up);
-                float damping = verticalVelocity * GroundDamping; // might adjust this term if needed.
+                float damping = verticalVelocity * GroundSpringDamping; // might adjust this term if needed.
                 alignmentForce = Vector3.up * (upwardForce - damping);
             }
 
