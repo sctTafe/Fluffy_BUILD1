@@ -270,9 +270,10 @@ GameObject:
   - component: {fileID: 8339968066992805734}
   - component: {fileID: 3057122829436377980}
   - component: {fileID: 8093215740078431720}
-  - component: {fileID: 8604784187001033267}
+  - component: {fileID: 6299073257326083189}
   - component: {fileID: 7738999733342622826}
   - component: {fileID: 4106776992958386527}
+  - component: {fileID: 2889422224823480686}
   m_Layer: 0
   m_Name: '[LocalPlayer]'
   m_TagString: Untagged
@@ -312,7 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1876885560
+  GlobalObjectIdHash: 920957501
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -355,7 +356,7 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &8604784187001033267
+--- !u!114 &6299073257326083189
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -364,7 +365,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4376204862264395760}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea64971350c4687478ee1539efb129b5, type: 3}
+  m_Script: {fileID: 11500000, guid: 03cd63d116c2efa4ab03399aeaa1a652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _playerInput: {fileID: 0}
@@ -403,6 +404,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ThirdPersonCamObject: {fileID: 7748169271336653156}
   FirstPersonCamObject: {fileID: 5524653545599403819}
+--- !u!114 &2889422224823480686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4376204862264395760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NotificationBehavior: 0
+  m_MaxPlayerCount: -1
+  m_AllowJoining: 1
+  m_JoinBehavior: 0
+  m_PlayerJoinedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_PlayerLeftEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_JoinAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 556d9a2b-fdd5-4824-9bd1-94fa9a8d1574
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_PlayerPrefab: {fileID: 0}
+  m_SplitScreen: 0
+  m_MaintainAspectRatioInSplitScreen: 0
+  m_FixedNumberOfSplitScreens: -1
+  m_SplitScreenRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!1 &6506900050505949020
 GameObject:
   m_ObjectHideFlags: 0
