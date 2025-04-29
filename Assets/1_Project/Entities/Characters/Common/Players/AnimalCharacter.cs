@@ -126,8 +126,8 @@ public class AnimalCharacter : CharacterBase
         PostUpdate?.Invoke(vel, m_IsSprinting ? JumpSpeed / SprintJumpSpeed : 1);
     }
 
-    // HandleMovement is used to receive the raw horizontal input.
-    public override void HandleMovement(Vector2 input)
+    // HandleMovement is used to receive the raw horizontal input. // it has been removed for now, but may be updated again in the future
+    public override void HandleMovement(Vector2 input) // Required to be here from the base class
     {
         
     }
@@ -240,7 +240,7 @@ public class AnimalCharacter : CharacterBase
                 float normalizedPenetration = penetration / GroundCheckDistance;
                 float upwardForce = normalizedPenetration * GroundAlignmentForce;
                 float verticalVelocity = Vector3.Dot(rb.linearVelocity, Vector3.up);
-                float damping = verticalVelocity; // You might adjust this term if needed.
+                float damping = verticalVelocity * GroundDamping; // might adjust this term if needed.
                 alignmentForce = Vector3.up * (upwardForce - damping);
             }
 
@@ -248,9 +248,7 @@ public class AnimalCharacter : CharacterBase
             Vector3 slideForce = Vector3.zero;
             if (slopeAngle > maxStableSlopeAngle)
             {
-                // Scale the slide force relative to how much the slope exceeds the stable angle.
                 float steepness = (slopeAngle - maxStableSlopeAngle) / (90f - maxStableSlopeAngle);
-                // Slide direction: project Vector3.down on the slope plane.
                 Vector3 slideDirection = Vector3.ProjectOnPlane(Vector3.down, hit.normal).normalized;
                 slideForce = slideDirection * slideAcceleration * steepness;
             }
