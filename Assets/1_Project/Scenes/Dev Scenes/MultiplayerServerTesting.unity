@@ -302,8 +302,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConnectAddress: 127.0.0.1
-  humanPrefab: {fileID: 6103115944230435048, guid: 1d33ba19d9f0b964e92e8b90c72dc645, type: 3}
-  mutantPrefab: {fileID: 6103115944230435048, guid: 1d33ba19d9f0b964e92e8b90c72dc645, type: 3}
+  humanPrefab: {fileID: 3543857407571293317, guid: 543f822f6f6507f42bd9b48bcb9b1e72, type: 3}
+  mutantPrefab: {fileID: 3543857407571293317, guid: 543f822f6f6507f42bd9b48bcb9b1e72, type: 3}
   spawnAsMutant: 0
   isHost: 1
 --- !u!1001 &255574206
@@ -2393,7 +2393,7 @@ GameObject:
   - component: {fileID: 1913196457}
   - component: {fileID: 1913196456}
   - component: {fileID: 1913196455}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
