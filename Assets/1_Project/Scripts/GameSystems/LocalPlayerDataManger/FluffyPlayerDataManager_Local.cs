@@ -67,6 +67,7 @@ public class FluffyPlayerDataManager_Local : NetworkBehaviour
 
     private void HandleStamina()
     {
+        
         if (isSprinting)
         {
             // IS Sprinting 
@@ -94,7 +95,7 @@ public class FluffyPlayerDataManager_Local : NetworkBehaviour
             currentStamina += staminaRechargePerSecond * Time.deltaTime;
             currentStamina = Mathf.Min(currentStamina, maxStamina);          
         }
-
+        
         if (isExhausted)
         {
             exhaustionTimer -= Time.deltaTime;
