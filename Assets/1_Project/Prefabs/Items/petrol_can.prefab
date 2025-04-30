@@ -34,7 +34,8 @@ Transform:
   m_LocalPosition: {x: -1.09, y: -0.62, z: 2.09}
   m_LocalScale: {x: 0.4, y: 0.8, z: 0.6}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6927739612637300593}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4843806797026017601
@@ -52,7 +53,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6381308660616304672}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -109,8 +110,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.63637376, y: 0.9922695, z: 1.0737119}
+  m_Center: {x: -0.0020269305, y: -0.009577647, z: -0.0052770474}
 --- !u!65 &7074256678244268757
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -144,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49a763980ce4f29a98428a83d64df19f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: yellow_test_item
+  name: petrol_can
 --- !u!114 &7183527205102019807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,3 +171,77 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
+--- !u!1001 &6295005842428678861
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1567503362938253015}
+    m_Modifications:
+    - target: {fileID: 3996975520232134076, guid: eea03d691e246bf498c15b01062b4b46, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 16.97471
+      objectReference: {fileID: 0}
+    - target: {fileID: 3996975520232134076, guid: eea03d691e246bf498c15b01062b4b46, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 8.487355
+      objectReference: {fileID: 0}
+    - target: {fileID: 3996975520232134076, guid: eea03d691e246bf498c15b01062b4b46, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 11.316471
+      objectReference: {fileID: 0}
+    - target: {fileID: 3996975520232134076, guid: eea03d691e246bf498c15b01062b4b46, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3996975520232134076, guid: eea03d691e246bf498c15b01062b4b46, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.957
+      objectReference: {fileID: 0}
+    - target: {fileID: 3996975520232134076, guid: eea03d691e246bf498c15b01062b4b46, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.829
+      objectReference: {fileID: 0}
+    - target: {fileID: 3996975520232134076, guid: eea03d691e246bf498c15b01062b4b46, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3996975520232134076, guid: eea03d691e246bf498c15b01062b4b46, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3996975520232134076, guid: eea03d691e246bf498c15b01062b4b46, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3996975520232134076, guid: eea03d691e246bf498c15b01062b4b46, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3996975520232134076, guid: eea03d691e246bf498c15b01062b4b46, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3996975520232134076, guid: eea03d691e246bf498c15b01062b4b46, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3996975520232134076, guid: eea03d691e246bf498c15b01062b4b46, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5906202293622914217, guid: eea03d691e246bf498c15b01062b4b46, type: 3}
+      propertyPath: m_Name
+      value: GasCan
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eea03d691e246bf498c15b01062b4b46, type: 3}
+--- !u!4 &6927739612637300593 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3996975520232134076, guid: eea03d691e246bf498c15b01062b4b46, type: 3}
+  m_PrefabInstance: {fileID: 6295005842428678861}
+  m_PrefabAsset: {fileID: 0}
