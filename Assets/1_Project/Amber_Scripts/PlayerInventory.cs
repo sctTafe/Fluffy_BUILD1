@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
+using UnityEngine.UI;
 using TMPro;
 
 /**
@@ -19,14 +20,22 @@ public class PlayerInventory : NetworkBehaviour
 	private PickUpItem target_data;
 	private NetworkObject target_network;
 	private DepositItemPoint deposit_point;
-	private TMP_Text inventory_prompt;
+	// private TMP_Text inventory_prompt;
+
+	public RawImage item_slot_1;
+	public RawImage item_slot_2;
+	public RawImage item_slot_3;
 
 	void Start()
 	{
 		if(!IsOwner)
 			return;
 
-		inventory_prompt = GameObject.FindWithTag("inventory_prompt").GetComponent<TMP_Text>();
+		item_slot_1 = GameObject.Find("item_slot_1").GetComponent<RawImage>();
+		item_slot_2 = GameObject.Find("item_slot_2").GetComponent<RawImage>();
+		item_slot_3 = GameObject.Find("item_slot_3").GetComponent<RawImage>();
+
+		// inventory_prompt = GameObject.FindWithTag("inventory_prompt").GetComponent<TMP_Text>();
 		UpdateUI();
 	}
 
@@ -115,6 +124,8 @@ public class PlayerInventory : NetworkBehaviour
 
 	void UpdateUI()
 	{
+		
+		/**
 		string new_text = "Held items:";
 
 		foreach(string item in held_items)
@@ -123,5 +134,35 @@ public class PlayerInventory : NetworkBehaviour
 		}
 
 		inventory_prompt.text = new_text;
+		**/	
+
+		if(held_items.Count == 3)
+		{
+			item_slot_3.texture = Resources.Load<Texture2D>("icons/" + held_items[2]);
+		}
+		else
+		{
+			item_slot_3.texture = Resources.Load<Texture2D>("icons/empty");
+		}
+
+		if(held_items.Count >= 2)
+		{
+			item_slot_2.texture = Resources.Load<Texture2D>("icons/" + held_items[1]);
+		}
+		else
+		{
+			item_slot_2.texture = Resources.Load<Texture2D>("icons/empty");
+		}
+
+		if(held_items.Count >= 1)
+		{
+			item_slot_1.texture = Resources.Load<Texture2D>("icons/" + held_items[0]);
+			Debug.Log("Image loaded!");
+		}
+		else
+		{
+			item_slot_1.texture = Resources.Load<Texture2D>("icons/empty");
+		}
+
 	}
 }
