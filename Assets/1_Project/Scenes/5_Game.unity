@@ -5366,6 +5366,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4207478064996298418, guid: 863443b9ea8d0fa61964e64b76dd2280, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2434938655
+      objectReference: {fileID: 0}
+    - target: {fileID: -4207478064996298418, guid: 863443b9ea8d0fa61964e64b76dd2280, type: 3}
+      propertyPath: InScenePlacedSourceGlobalObjectIdHash
+      value: 2559901219
+      objectReference: {fileID: 0}
     - target: {fileID: 180582671621227128, guid: 863443b9ea8d0fa61964e64b76dd2280, type: 3}
       propertyPath: m_Enabled
       value: 0
