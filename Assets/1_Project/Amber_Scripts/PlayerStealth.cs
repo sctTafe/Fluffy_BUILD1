@@ -30,6 +30,11 @@ public class PlayerStealth : NetworkBehaviour
 		}
 
 		force_reveal -= Time.deltaTime;
+
+		if(Input.GetKeyDown(KeyCode.Q))
+		{
+			force_reveal = 10;
+		}
 	}
 
 	void OnTriggerEnter(Collider other)

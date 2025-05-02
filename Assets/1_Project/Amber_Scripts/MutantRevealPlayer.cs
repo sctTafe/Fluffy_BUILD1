@@ -26,8 +26,10 @@ public class MutantRevealPlayer : MonoBehaviour
 			{
 				if(Vector3.Distance(player.transform.position, transform.position) < 15)
 				{
-					player.GetComponent<PlayerStealth>().force_unhide();
+					// player.GetComponent<PlayerStealth>().force_unhide();
 				}
+					
+				player.GetComponent<PlayerStealth>().force_unhide();
 			}
 		}
 	}

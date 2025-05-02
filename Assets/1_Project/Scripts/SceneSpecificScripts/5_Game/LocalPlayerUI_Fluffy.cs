@@ -13,6 +13,7 @@ public class LocalPlayerUI_Fluffy : Singleton<LocalPlayerUI_Fluffy>
     void Start()
     {
         _stamina = _maxStamina;
+        staminaBar = GameObject.FindWithTag("player_stamina_bar").GetComponent<Image>();
     }
 
     void Update()
