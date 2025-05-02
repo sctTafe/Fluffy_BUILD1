@@ -38,7 +38,7 @@ public class LocalPlayerUI_Fluffy : Singleton<LocalPlayerUI_Fluffy>
     void StaminaBarFiller()
     {
         float targetFill = _LocalPlayerData.fn_GetStaminaPercent();
-		stamina_bar.transform.localScale = new Vector3(targetFill, 1, 1);
+		staminaBar.transform.localScale = new Vector3(targetFill, 1, 1);
     }
 
 }
