@@ -22,7 +22,6 @@ public class ProximityHeartbeatEffect : MonoBehaviour
 
     void Start()
     {
-        heartbeatInstance.setParameterByName("DistanceToMutant", 999); //Abitrary distance away to start with
         GameObject mutant = GameObject.FindWithTag("Mutant");
         if (mutant != null)
             target = mutant.transform;
@@ -40,7 +39,9 @@ public class ProximityHeartbeatEffect : MonoBehaviour
         {
             heartbeatInstance = RuntimeManager.CreateInstance(heartbeatEvent);
             heartbeatInstance.start();
+            heartbeatInstance.setParameterByName("DistanceToMutant", 100); //Abitrary distance away to start with
         }
+        else { Debug.Log("You need to add a heartbeat sound event in the inspector"); }
     }
 
     void Update()
@@ -53,6 +54,10 @@ public class ProximityHeartbeatEffect : MonoBehaviour
 
         if (heartbeatInstance.isValid())
             heartbeatInstance.setParameterByName("DistanceToMutant", proximity);
+        else
+        {
+            Debug.LogWarning("Distance Param Invalid");
+        }
 
         pulseTimer += Time.deltaTime * Mathf.Lerp(0.5f, 2f, proximity) * pulseSpeed;
         float pulseValue = pulseCurve.Evaluate(pulseTimer % 1f);
