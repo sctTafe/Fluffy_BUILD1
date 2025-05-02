@@ -5,7 +5,7 @@ public class LocalPlayerUI_Fluffy : Singleton<LocalPlayerUI_Fluffy>
 {
     FluffyPlayerDataManager_Local _LocalPlayerData;
 
-    [SerializeField] private Image staminaBar;
+    [SerializeField] private GameObject staminaBar;
 
     float _stamina, _maxStamina = 1000;
     float _lerpSpeed = 5f;
@@ -13,7 +13,7 @@ public class LocalPlayerUI_Fluffy : Singleton<LocalPlayerUI_Fluffy>
     void Start()
     {
         _stamina = _maxStamina;
-        staminaBar = GameObject.FindWithTag("player_stamina_bar").GetComponent<Image>();
+        staminaBar = GameObject.FindWithTag("player_stamina_bar");
     }
 
     void Update()
@@ -38,7 +38,7 @@ public class LocalPlayerUI_Fluffy : Singleton<LocalPlayerUI_Fluffy>
     void StaminaBarFiller()
     {
         float targetFill = _LocalPlayerData.fn_GetStaminaPercent();
-        staminaBar.fillAmount = Mathf.Lerp(staminaBar.fillAmount, targetFill, _lerpSpeed * Time.deltaTime);
+		stamina_bar.transform.localScale = new Vector3(targetFill, 1, 1);
     }
 
 }
