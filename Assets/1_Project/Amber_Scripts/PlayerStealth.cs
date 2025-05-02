@@ -27,6 +27,8 @@ public class PlayerStealth : NetworkBehaviour
 				geometry.SetActive(false);
 				Debug.Log("Player Hidden!");
 			}
+
+			
 		}
 
 		force_reveal -= Time.deltaTime;
@@ -67,5 +69,6 @@ public class PlayerStealth : NetworkBehaviour
 	public void force_unhide()
 	{
 		force_reveal = 10;
+		geometry.SetActive(true);
 	}
 }
