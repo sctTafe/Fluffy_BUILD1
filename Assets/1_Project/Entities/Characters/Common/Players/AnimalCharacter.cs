@@ -63,6 +63,7 @@ public class AnimalCharacter : CharacterBase
 
     //breaedon code
     public bool isGrabbed = false;
+    public void fn_SetIsSprintingInput(bool isSprinting) => m_IsSprinting = isSprinting;
 
     protected override void Awake()
     {
@@ -187,18 +188,8 @@ public class AnimalCharacter : CharacterBase
         Vector3 force = desiredHorizontal * rb.mass * Acceleration;
         rb.AddForce(force, ForceMode.Force);
 
-        // Jumping logic
-        if (IsGrounded() && !m_IsJumping)
-        {
-            float jumpImpulse = m_IsSprinting ? SprintJumpSpeed : JumpSpeed;
-            rb.AddForce(Vector3.up * jumpImpulse, ForceMode.Impulse);
-            m_IsJumping = true;
-            StartJump?.Invoke();
-        }
-        else if (IsGrounded())
-        {
-            m_IsJumping = false;
-        }
+
+       
     }
 
     // --- Animation Synchronization ---
