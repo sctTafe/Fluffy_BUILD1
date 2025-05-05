@@ -50,6 +50,7 @@ public class Bite_Receiver : NetworkBehaviour
         gameObject.GetComponent<NetworkTransform>().enabled = false;
         controler.fn_IsMovementInputDisabled(true);
         if (IsOwner) gameObject.GetComponent<PlayerHealth>().ChangePlayerHealth(damage);
+        gameObject.GetComponent<Rigidbody>().isKinematic = true;
         OnBiteStart?.Invoke();
         isGrabbed = true;
     }
@@ -60,6 +61,7 @@ public class Bite_Receiver : NetworkBehaviour
         gameObject.GetComponent<NetworkTransform>().enabled = true;
         this.transform.eulerAngles = new Vector3(0f, 0f, 0f);
         controler.fn_IsMovementInputDisabled(false);
+        gameObject.GetComponent<Rigidbody>().isKinematic = false;
         isGrabbed = false;
         OnBiteStop?.Invoke();
     }
