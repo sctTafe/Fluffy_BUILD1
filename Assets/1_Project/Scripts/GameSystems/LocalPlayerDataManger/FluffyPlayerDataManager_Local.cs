@@ -22,7 +22,7 @@ public class FluffyPlayerDataManager_Local : NetworkBehaviour
     [SerializeField] private bool isSprinting;
     [SerializeField] private bool isExhausted;
     [SerializeField] private float exhaustionTimer;
-    [SerializeField] private bool isSprint = false;
+    [SerializeField] private bool isPressingSprint = false;
 
     void Start()
     {
@@ -31,9 +31,9 @@ public class FluffyPlayerDataManager_Local : NetworkBehaviour
             return;
 
         //Bind To UI Manager
-        //var mng = LocalPlayerUI_Fluffy.Instance;
-        //if(mng != null )
-            //mng.fn_BindLocalPlayerData(this); 
+        var mng = LocalPlayerUI_Fluffy.Instance;
+        if(mng != null )
+            mng.fn_BindLocalPlayerData(this); 
 
 
         currentStamina = maxStamina;
@@ -51,8 +51,8 @@ public class FluffyPlayerDataManager_Local : NetworkBehaviour
 
     void BindButton()
     {
-        _inputActions.Player.Sprint.performed += ctx => isSprint = true;
-        _inputActions.Player.Sprint.canceled += ctx => isSprint = false;
+        _inputActions.Player.Sprint.performed += ctx => isPressingSprint = true;
+        _inputActions.Player.Sprint.canceled += ctx => isPressingSprint = false;
     }
 
 
@@ -62,7 +62,6 @@ public class FluffyPlayerDataManager_Local : NetworkBehaviour
         // This only runs on the Player Owned Network Prefab
         if (!IsOwner)
             return;
-        Debug.Log(isSprint);
         HandleInput();
         HandleStamina();
     }
@@ -76,7 +75,7 @@ public class FluffyPlayerDataManager_Local : NetworkBehaviour
     {
         // Example input: hold Left Shift to sprint
         // isSprinting = Input.GetKey(KeyCode.LeftShift) && !isExhausted;
-        isSprinting =  isSprint && !isExhausted;
+        isSprinting = isPressingSprint && !isExhausted;
         //_input.sprint
     }
 

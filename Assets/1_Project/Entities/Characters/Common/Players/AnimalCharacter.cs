@@ -306,4 +306,9 @@ public class AnimalCharacter : CharacterBase
         gameObject.GetComponent<NetworkTransform>().enabled = false;
         isGrabbed = true;
     }
+
+    public void fn_IsMovementInputDisabled(bool isDisabled)
+    {
+        isGrabbed = isDisabled;
+    }
 }
