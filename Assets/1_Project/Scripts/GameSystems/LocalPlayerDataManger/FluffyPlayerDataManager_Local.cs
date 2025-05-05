@@ -31,9 +31,9 @@ public class FluffyPlayerDataManager_Local : NetworkBehaviour
             return;
 
         //Bind To UI Manager
-        //var mng = LocalPlayerUI_Fluffy.Instance;
-        //if(mng != null )
-            //mng.fn_BindLocalPlayerData(this); 
+        var mng = LocalPlayerUI_Fluffy.Instance;
+        if(mng != null )
+            mng.fn_BindLocalPlayerData(this); 
 
 
         currentStamina = maxStamina;

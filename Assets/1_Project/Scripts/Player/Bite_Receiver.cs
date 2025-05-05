@@ -15,7 +15,7 @@ public class Bite_Receiver : NetworkBehaviour
     public UnityEvent OnBiteStart;
     public UnityEvent OnBiteStop;
 
-    [SerializeField] private ThirdPersonController_Netcode controler;
+    [SerializeField] private AnimalCharacter controler;
     [SerializeField] private Vector3 _positionOffset;
 
     public bool IsGrabbed {  get; private set; }
@@ -26,7 +26,7 @@ public class Bite_Receiver : NetworkBehaviour
     private void Awake()
     {
         if (controler == null)
-            controler = GetComponent<ThirdPersonController_Netcode>();
+            controler = GetComponent<AnimalCharacter>();
     }
 
     //
