@@ -187,9 +187,6 @@ public class AnimalCharacter : CharacterBase
         Vector3 currentHorizontal = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
         Vector3 force = desiredHorizontal * rb.mass * Acceleration;
         rb.AddForce(force, ForceMode.Force);
-
-
-       
     }
 
     // --- Animation Synchronization ---

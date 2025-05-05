@@ -23,6 +23,7 @@ public class Bite_Receiver : NetworkBehaviour
     public float damage = 0.34f;
 
     public Transform skeleton;
+    public Collider coll;
 
     private void Awake()
     {
@@ -52,6 +53,7 @@ public class Bite_Receiver : NetworkBehaviour
         controler.fn_IsMovementInputDisabled(true);
         if (IsOwner) gameObject.GetComponent<PlayerHealth>().ChangePlayerHealth(damage);
         gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        coll.enabled = false;
         OnBiteStart?.Invoke();
         isGrabbed = true;
     }
@@ -63,6 +65,7 @@ public class Bite_Receiver : NetworkBehaviour
         skeleton.eulerAngles = new Vector3(0f, 0f, 0f);
         controler.fn_IsMovementInputDisabled(false);
         gameObject.GetComponent<Rigidbody>().isKinematic = false;
+        coll.enabled = true;
         isGrabbed = false;
         OnBiteStop?.Invoke();
     }
