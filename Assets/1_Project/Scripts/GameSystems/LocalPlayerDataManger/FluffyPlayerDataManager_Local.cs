@@ -6,9 +6,11 @@ using UnityEngine.InputSystem;
 public class FluffyPlayerDataManager_Local : NetworkBehaviour
 {
     [Header("References")]
-    private ThirdPersonController_Netcode _playerControler;
+    //private ThirdPersonController_Netcode _playerControler;
+    private AnimalCharacter _playerControler;
     private InputManager_Singleton _input;
     private PlayerInput _playerInput;
+    private InputActionV2 _inputActions;
 
     [Header("Stamina Settings")]
     public float maxStamina = 100f;
@@ -20,6 +22,7 @@ public class FluffyPlayerDataManager_Local : NetworkBehaviour
     [SerializeField] private bool isSprinting;
     [SerializeField] private bool isExhausted;
     [SerializeField] private float exhaustionTimer;
+    [SerializeField] private bool isSprint = false;
 
     void Start()
     {
@@ -28,27 +31,38 @@ public class FluffyPlayerDataManager_Local : NetworkBehaviour
             return;
 
         //Bind To UI Manager
-        var mng = LocalPlayerUI_Fluffy.Instance;
-        if(mng != null )
-            mng.fn_BindLocalPlayerData(this); 
+        //var mng = LocalPlayerUI_Fluffy.Instance;
+        //if(mng != null )
+            //mng.fn_BindLocalPlayerData(this); 
 
 
         currentStamina = maxStamina;
         
-        _playerControler = GetComponent<ThirdPersonController_Netcode>();
+        _playerControler = GetComponent<AnimalCharacter>();
         //TODO: clean up this mess of a player input system
         _input = InputManager_Singleton.Instance;
         _playerInput = _input._playerInput;
 
+        this._inputActions = _input._inputActions;
 
+
+        BindButton();
     }
+
+    void BindButton()
+    {
+        _inputActions.Player.Sprint.performed += ctx => isSprint = true;
+        _inputActions.Player.Sprint.canceled += ctx => isSprint = false;
+    }
+
+
 
     void Update()
     {
         // This only runs on the Player Owned Network Prefab
         if (!IsOwner)
             return;
-
+        Debug.Log(isSprint);
         HandleInput();
         HandleStamina();
     }
@@ -62,7 +76,8 @@ public class FluffyPlayerDataManager_Local : NetworkBehaviour
     {
         // Example input: hold Left Shift to sprint
         // isSprinting = Input.GetKey(KeyCode.LeftShift) && !isExhausted;
-        isSprinting = _input.sprint && !isExhausted;
+        isSprinting =  isSprint && !isExhausted;
+        //_input.sprint
     }
 
     private void HandleStamina()
