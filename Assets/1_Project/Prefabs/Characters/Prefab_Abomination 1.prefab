@@ -2350,6 +2350,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   held_items: []
+  item_slot_1: {fileID: 0}
+  item_slot_2: {fileID: 0}
+  item_slot_3: {fileID: 0}
 --- !u!114 &3657911424795443171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2429,6 +2432,7 @@ MonoBehaviour:
   isSprinting: 0
   isExhausted: 0
   exhaustionTimer: 0
+  isPressingSprint: 0
 --- !u!114 &6956996503622453850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2522,7 +2526,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   NetworkRigidbodyBaseExpanded: 0
-  UseRigidBodyForMotion: 1
+  UseRigidBodyForMotion: 0
   AutoUpdateKinematicState: 1
   AutoSetKinematicOnDespawn: 1
 --- !u!136 &1340729016870545582
