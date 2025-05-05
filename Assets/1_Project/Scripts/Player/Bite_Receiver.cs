@@ -23,7 +23,7 @@ public class Bite_Receiver : NetworkBehaviour
     public float damage = 0.34f;
 
     public Transform skeleton;
-    public Collider coll;
+    public CapsuleCollider coll;
 
     private void Awake()
     {
