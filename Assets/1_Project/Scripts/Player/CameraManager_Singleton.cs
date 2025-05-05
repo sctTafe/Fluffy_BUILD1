@@ -31,7 +31,7 @@ public class CameraManager : MonoBehaviour
         else { Debug.LogWarning($"Camera '{ThirdPersonCamObject.name}' does not have a CinemachineVirtualCamera component!"); }
     }
 
-    public void SetFirstPersonCamera(MutantCharacter character, Transform target)
+    public void SetFirstPersonCamera(MutantCharacterOld character, Transform target)
     {
         if (FirstPersonCamObject == null || target == null) { Debug.LogWarning("Camera or target is null!"); return; }
 
