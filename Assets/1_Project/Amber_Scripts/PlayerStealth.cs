@@ -21,7 +21,7 @@ public class PlayerStealth : NetworkBehaviour
 		{
 			time_in_bush += Time.deltaTime;
 
-			if(time_in_bush > 3.0)
+			if(time_in_bush > 0.8f)
 			{
 				geometry.SetActive(false);
 				Debug.Log("Player Hidden!");
