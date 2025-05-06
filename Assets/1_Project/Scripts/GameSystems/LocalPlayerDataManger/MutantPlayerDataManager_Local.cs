@@ -45,7 +45,7 @@ public class MutantPlayerDataManager_Local : PlayerDataManger_Local
 
     private void HandleStamina()
     {
-        if (_input.sprintInput && !isExhausted)
+        if (isSprinting)
         {
             // IS Sprinting 
             _playerControler.fn_SetIsSprintingInput(true);
