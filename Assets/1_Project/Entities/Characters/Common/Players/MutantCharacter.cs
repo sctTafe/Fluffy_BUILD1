@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.Events;
 public class MutantCharacter : CharacterBase
 {
+    private InputManager_Singleton _input;
+
     [Header("Movement Settings")]
     [SerializeField] private float Speed = 1f;
     [SerializeField] private float SprintSpeed = 4f;
@@ -77,6 +79,7 @@ public class MutantCharacter : CharacterBase
         {
             // Link our local camera to this character
             CameraManager.Instance.SetThirdPersonCamera(GetComponentInChildren<MutantCameraAimController>().transform);
+            _input = InputManager_Singleton.Instance;
         }
     }
 
@@ -85,7 +88,7 @@ public class MutantCharacter : CharacterBase
     {
         if (!IsOwner) return;
 
-        Vector2 movementInput = InputManager_Singleton.Instance?.move ?? Vector2.zero;
+        Vector2 movementInput = _input.movementInput;
 
         // Prepare input
         rawInput = new Vector3(movementInput.x, 0, movementInput.y);
@@ -111,7 +114,7 @@ public class MutantCharacter : CharacterBase
         if (!IsOwner) return;
         if (isGrabbed) return;
 
-        if (hasInput)
+        //if (hasInput)
         {
             ApplyMotion();
 
@@ -188,8 +191,21 @@ public class MutantCharacter : CharacterBase
         Vector3 force = desiredHorizontal * rb.mass * Acceleration;
         rb.AddForce(force, ForceMode.Force);
 
+        Debug.Log(_input.jumpInput+ " "+ m_IsJumping+ " "+ IsGrounded());
+        // Jumping logic
+        if (IsGrounded() && !m_IsJumping && _input.jumpInput)
+        {
+            Debug.Log("Jumped");
+            float jumpImpulse = m_IsSprinting ? SprintJumpSpeed : JumpSpeed;
+            rb.AddForce(Vector3.up * jumpImpulse, ForceMode.Impulse);
+            m_IsJumping = true;
+            StartJump?.Invoke();
+        }
+        else if (IsGrounded())
+        {
+            m_IsJumping = false;
+        }
 
-       
     }
 
     // --- Animation Synchronization ---
@@ -283,7 +299,7 @@ public class MutantCharacter : CharacterBase
 
     private bool IsGrounded()
     {
-        return Physics.SphereCast(transform.position+Vector3.up, GroundCheckRadius, Vector3.down, out RaycastHit hit, GroundCheckDistance, GroundMask);
+        return Physics.SphereCast(transform.position+Vector3.up, GroundCheckRadius, Vector3.down, out RaycastHit hit, GroundCheckDistance+.5f, GroundMask);
     }
 
     private Quaternion GetInputFrame()

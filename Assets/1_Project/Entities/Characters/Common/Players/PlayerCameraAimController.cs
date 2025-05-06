@@ -121,7 +121,7 @@ public class PlayerCameraAimController : MonoBehaviour
         //    return;
 
         // Retrieve current aim input every frame.
-        Vector2 aim = InputManager_Singleton.Instance?.look ?? Vector2.zero;
+        Vector2 aim = InputManager_Singleton.Instance?.lookInput ?? Vector2.zero;
 
         // Update our internal yaw and pitch.
         yaw += aim.x;

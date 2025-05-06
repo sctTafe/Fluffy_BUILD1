@@ -697,6 +697,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bridge
       objectReference: {fileID: 0}
+    - target: {fileID: 3003895916404592047, guid: 7a0d5fe105a6d1b4f8a625f88d56cfa6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -872,7 +876,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   _playerPrefab: {fileID: 7907975427600931893, guid: 1d33ba19d9f0b964e92e8b90c72dc645, type: 3}
-  _enemyPrefab: {fileID: 9005902844290762139, guid: 8e6d1eb2b5e513f4bafbde7b3e583c41, type: 3}
+  _enemyPrefab: {fileID: 1969465956776278482, guid: 543f822f6f6507f42bd9b48bcb9b1e72, type: 3}
   _ghostPrefab: {fileID: 7907975427600931893, guid: 5370bcdfb4c94fa42902a003cd5414e0, type: 3}
   _GoodSpawnArea: {x: 0, y: 0.5, z: 0}
   _BadSpawnArea: {x: 0, y: 0.5, z: 15}
@@ -3930,14 +3934,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03cd63d116c2efa4ab03399aeaa1a652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerInput: {fileID: 1339991500}
-  move: {x: 0, y: 0}
-  look: {x: 0, y: 0}
-  jump: 0
-  sprint: 0
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
+  AimSensitivity: 0.1
 --- !u!114 &1339991502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4174,7 +4174,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1469695759
 Transform:
   m_ObjectHideFlags: 0
@@ -4603,6 +4603,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bridge
       objectReference: {fileID: 0}
+    - target: {fileID: 3003895916404592047, guid: 7a0d5fe105a6d1b4f8a625f88d56cfa6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4810,8 +4814,7 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
-    m_RemovedComponents:
-    - {fileID: 4260398143892593599, guid: 6e29c36ae325b634a90c7017be5f7107, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

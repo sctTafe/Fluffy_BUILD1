@@ -2707,17 +2707,16 @@ GameObject:
   m_Component:
   - component: {fileID: 9005902844290762139}
   - component: {fileID: 5697457868752471246}
-  - component: {fileID: 7081132707218976800}
   - component: {fileID: 4685717942135695358}
+  - component: {fileID: 1284785521448653318}
+  - component: {fileID: 190996837337394622}
+  - component: {fileID: 7066980984767165633}
   - component: {fileID: 4163513301123435681}
   - component: {fileID: 7126122190191861419}
   - component: {fileID: 5662966264603675591}
   - component: {fileID: 1911637624041227569}
   - component: {fileID: 2567216198660850614}
   - component: {fileID: 3651755387491466470}
-  - component: {fileID: 7066980984767165633}
-  - component: {fileID: 190996837337394622}
-  - component: {fileID: 1284785521448653318}
   - component: {fileID: 4099647517296593973}
   m_Layer: 7
   m_Name: Prefab_Mutant
@@ -2761,33 +2760,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GlobalObjectIdHash: 3504919111
-  InScenePlacedSourceGlobalObjectIdHash: 413671955
+  InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
   AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
+  SynchronizeTransform: 0
   ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
-  SpawnWithObservers: 1
+  SceneMigrationSynchronization: 0
+  SpawnWithObservers: 0
   DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
-  SyncOwnerTransformWhenParented: 1
-  AllowOwnerToParent: 0
---- !u!114 &7081132707218976800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5408246126893154181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  TransitionStateInfoList: []
-  m_Animator: {fileID: 4163513301123435681}
+  AutoObjectParentSync: 0
+  SyncOwnerTransformWhenParented: 0
+  AllowOwnerToParent: 1
 --- !u!114 &4685717942135695358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2803,14 +2787,14 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   NetworkTransformExpanded: 0
   AuthorityMode: 1
-  TickSyncChildren: 0
+  TickSyncChildren: 1
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
   SyncPositionZ: 1
-  SyncRotAngleX: 1
-  SyncRotAngleY: 1
-  SyncRotAngleZ: 1
+  SyncRotAngleX: 0
+  SyncRotAngleY: 0
+  SyncRotAngleZ: 0
   SyncScaleX: 0
   SyncScaleY: 0
   SyncScaleZ: 0
@@ -2822,8 +2806,75 @@ MonoBehaviour:
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
   SwitchTransformSpaceWhenParented: 0
-  Interpolate: 1
+  Interpolate: 0
   SlerpPosition: 0
+--- !u!136 &1284785521448653318
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5408246126893154181}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.34
+  m_Height: 1.29
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &190996837337394622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5408246126893154181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkRigidbodyBaseExpanded: 0
+  UseRigidBodyForMotion: 0
+  AutoUpdateKinematicState: 1
+  AutoSetKinematicOnDespawn: 1
+--- !u!54 &7066980984767165633
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5408246126893154181}
+  serializedVersion: 4
+  m_Mass: 30
+  m_Drag: 1.5
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!95 &4163513301123435681
 Animator:
   serializedVersion: 7
@@ -2933,73 +2984,6 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   colliderBox: {fileID: 0}
   targetTag: hide_trigger
---- !u!54 &7066980984767165633
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5408246126893154181}
-  serializedVersion: 4
-  m_Mass: 30
-  m_Drag: 1.5
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
---- !u!114 &190996837337394622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5408246126893154181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  NetworkRigidbodyBaseExpanded: 0
-  UseRigidBodyForMotion: 0
-  AutoUpdateKinematicState: 1
-  AutoSetKinematicOnDespawn: 1
---- !u!136 &1284785521448653318
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5408246126893154181}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.34
-  m_Height: 1.29
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &4099647517296593973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3015,7 +2999,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   Speed: 1.5
   SprintSpeed: 4
-  JumpSpeed: 4
+  JumpSpeed: 23.87
   SprintJumpSpeed: 6
   Acceleration: 10
   RotationSpeed: 10
@@ -3026,8 +3010,8 @@ MonoBehaviour:
   GroundCheckRadius: 0.08
   GroundCheckDistance: 0.52
   groundCheckStartOffset: {x: 0, y: 0.51, z: 0}
-  GroundAlignmentForce: 40
-  GroundSpringDamping: 2
+  GroundAlignmentForce: 36.16
+  GroundSpringDamping: 2.3
   DebugRaycasts: 1
   MaxGroundAlignmentForce: 70.1
   maxStableSlopeAngle: 40
@@ -4594,9 +4578,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9005902844290762139}
     m_Modifications:
+    - target: {fileID: -7087431589455317569, guid: c586009007d450241a55df45a81be531, type: 3}
+      propertyPath: AuthorityMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1319494406888495962, guid: c586009007d450241a55df45a81be531, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4803663103294467083, guid: c586009007d450241a55df45a81be531, type: 3}
       propertyPath: m_Name
@@ -4649,7 +4637,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4803663103294467083, guid: c586009007d450241a55df45a81be531, type: 3}
-      insertIndex: -1
+      insertIndex: 1
       addedObject: {fileID: 3723036261096330479}
   m_SourcePrefab: {fileID: 100100000, guid: c586009007d450241a55df45a81be531, type: 3}
 --- !u!1 &6199513446949670716 stripped
@@ -4671,7 +4659,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerRotation: 2
   RotationDamping: 0.2
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 4099647517296593973}
 --- !u!4 &7018614605053377281 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8485962891292710966, guid: c586009007d450241a55df45a81be531, type: 3}

@@ -532,7 +532,6 @@ GameObject:
   - component: {fileID: 8800975699332771643}
   - component: {fileID: 7144020168917700283}
   - component: {fileID: 2769337873986926859}
-  - component: {fileID: 5979578549316456043}
   - component: {fileID: 3163929952665453821}
   m_Layer: 7
   m_Name: CharacterFriendly
@@ -605,7 +604,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   NetworkTransformExpanded: 0
   AuthorityMode: 1
-  TickSyncChildren: 0
+  TickSyncChildren: 1
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
@@ -624,7 +623,7 @@ MonoBehaviour:
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
   SwitchTransformSpaceWhenParented: 0
-  Interpolate: 1
+  Interpolate: 0
   SlerpPosition: 0
 --- !u!54 &2147838271753662695
 Rigidbody:
@@ -719,8 +718,8 @@ MonoBehaviour:
   GroundCheckRadius: 0.08
   GroundCheckDistance: 0.51
   groundCheckStartOffset: {x: 0, y: 0.51, z: 0}
-  GroundAlignmentForce: 32
-  GroundSpringDamping: 2
+  GroundAlignmentForce: 35.32
+  GroundSpringDamping: 2.22
   DebugRaycasts: 1
   MaxGroundAlignmentForce: 30.8
   maxStableSlopeAngle: 40
@@ -732,21 +731,6 @@ MonoBehaviour:
     m_InternalValue: 0
   CameraOverride: {fileID: 0}
   isGrabbed: 0
---- !u!114 &5979578549316456043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3543857407571293317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  TransitionStateInfoList: []
-  m_Animator: {fileID: 1199240227330271451}
 --- !u!114 &3163929952665453821
 MonoBehaviour:
   m_ObjectHideFlags: 0

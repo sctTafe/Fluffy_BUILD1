@@ -6,6 +6,9 @@ using UnityEngine;
 using UnityEngine.Events;
 public class AnimalCharacter : CharacterBase
 {
+
+    private InputManager_Singleton _input;
+
     [Header("Movement Settings")]
     [SerializeField] private float Speed = 1f;
     [SerializeField] private float SprintSpeed = 4f;
@@ -77,15 +80,15 @@ public class AnimalCharacter : CharacterBase
         {
             // Link our local camera to this character
             CameraManager.Instance.SetThirdPersonCamera(GetComponentInChildren<PlayerCameraAimController>().transform);
+            _input = InputManager_Singleton.Instance;
         }
     }
-
 
     private void Update()
     {
         if (!IsOwner) return;
 
-        Vector2 movementInput = InputManager_Singleton.Instance?.move ?? Vector2.zero;
+        Vector2 movementInput = _input.movementInput;
 
         // Prepare input
         rawInput = new Vector3(movementInput.x, 0, movementInput.y);
@@ -187,6 +190,21 @@ public class AnimalCharacter : CharacterBase
         Vector3 currentHorizontal = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
         Vector3 force = desiredHorizontal * rb.mass * Acceleration;
         rb.AddForce(force, ForceMode.Force);
+
+        // Jumping logic
+        if (IsGrounded() && !m_IsJumping && _input.jumpInput)
+        {
+            Debug.Log("");
+            float jumpImpulse = m_IsSprinting ? SprintJumpSpeed : JumpSpeed;
+            rb.AddForce(Vector3.up * jumpImpulse, ForceMode.Impulse);
+            m_IsJumping = true;
+            StartJump?.Invoke();
+        }
+        else if (IsGrounded())
+        {
+            m_IsJumping = false;
+        }
+
     }
 
     // --- Animation Synchronization ---
