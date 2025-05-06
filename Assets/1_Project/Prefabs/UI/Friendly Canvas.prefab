@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 3081892151363749623}
   m_Layer: 0
   m_Name: Stamina Fill Amount
-  m_TagString: Untagged
+  m_TagString: player_stamina_bar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -276,7 +276,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 8, y: 0}
-  m_SizeDelta: {x: 196.61, y: 49.3}
+  m_SizeDelta: {x: 430, y: 49.3}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &1372847917129061100
 CanvasRenderer:
