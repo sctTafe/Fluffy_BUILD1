@@ -7,7 +7,6 @@ public class DestroyBush : NetworkBehaviour
 
 
     private InputManager_Singleton _input;
-    public InputActionV2 _inputActions;
 
     public BoxCollider colliderBox;
     public string targetTag = "hide_trigger";
@@ -21,9 +20,6 @@ public class DestroyBush : NetworkBehaviour
         {
             _input = InputManager_Singleton.Instance;
 
-            this._inputActions = _input._inputActions;
-
-
             BindButton();
         }
 
@@ -31,7 +27,7 @@ public class DestroyBush : NetworkBehaviour
 
     void BindButton()
     {
-        _inputActions.Player.Interact4.performed += Handle_Interact4Performed;
+        _input._playerInput.Player.Interact4.performed += Handle_Interact4Performed;
     }
 
     private void Handle_Interact4Performed(InputAction.CallbackContext context)
@@ -81,10 +77,6 @@ public class DestroyBush : NetworkBehaviour
 
         return false;
     }
-
-
-
-
 
     [ServerRpc(RequireOwnership = false)]
     private void DestroyObjectServerRPC(ulong to_destroy)

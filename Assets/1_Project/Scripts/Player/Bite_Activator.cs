@@ -41,6 +41,15 @@ public class Bite_Activator : NetworkBehaviour
     private float Cooldown;
     //private float CooldownLenght = 0.5f;
 
+	// Added by Amber, mutant stamina code	
+	private MutantStamina s;
+
+	void Start()
+	{
+		s = GetComponent<MutantStamina>();
+	}
+	// End of portion by Amber
+
     void Update()
     {
         if (!IsOwner) 
@@ -72,6 +81,15 @@ public class Bite_Activator : NetworkBehaviour
 
     private void HandleGrabInput()
     {
+		// Added by Amber, reducing Mutant stamina when they bite
+		if(s.get_stamina() < 40)
+		{
+			return;
+		}
+
+		s.reduce_stamina(40);
+		//End of code added by Amber
+
         //if(IsInteractionOnCooldown()) return;
         if (IsOnCooldown()) return;
         //TriggerInteractionCooldown();

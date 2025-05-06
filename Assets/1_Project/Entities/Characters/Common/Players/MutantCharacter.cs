@@ -1,268 +1,325 @@
 using System;
+using Unity.Cinemachine;
 using Unity.Netcode;
+using Unity.Netcode.Components;
 using UnityEngine;
 using UnityEngine.Events;
-using Unity.Cinemachine;
-
-public class MutantCharacter : CharacterBase // (Assume CharacterBase inherits from NetworkBehaviour)
+public class MutantCharacter : CharacterBase
 {
+    private InputManager_Singleton _input;
+
     [Header("Movement Settings")]
-    public float Speed = 1f;
-    public float SprintSpeed = 4f;
-    public float JumpSpeed = 4f;
-    public float SprintJumpSpeed = 6f;
-    public float Acceleration = 10f;
+    [SerializeField] private float Speed = 1f;
+    [SerializeField] private float SprintSpeed = 4f;
+    [SerializeField] private float JumpSpeed = 4f;
+    [SerializeField] private float SprintJumpSpeed = 6f;
+    [SerializeField] private float Acceleration = 10f;
+    [SerializeField] private float RotationSpeed = 10f;
+    [SerializeField] private bool strafing = false;
+
+    private Rigidbody rb;
+    private Vector3 m_LastInput;
+    private bool m_IsSprinting;
+    private bool m_IsJumping;
 
     [Header("Ground Settings")]
-    public Vector3 groundCheckStartOffset = Vector3.zero;
-    public float GroundCheckDistance = 0.5f;
-    public float GroundCheckRadius = 0.4f;
-    public float GroundAlignmentForce = 20f;
-    public LayerMask GroundMask;
-    public bool DebugRaycasts = true;
+    [SerializeField] private LayerMask GroundMask;
+    [SerializeField] private float GroundCheckRadius = 0.3f;
+    [SerializeField] private float GroundCheckDistance = 0.2f;
+    [SerializeField] private Vector3 groundCheckStartOffset = Vector3.up;
+    [SerializeField] private float GroundAlignmentForce = 25f;
+    [SerializeField] private float GroundSpringDamping = 2f;
+    [SerializeField] private bool DebugRaycasts = true;
+    //[SerializeField] private float StepCorrectionRange = 0.25f;         // Max distance you want to correct for, maybe later for better foot placement prediction
+    [SerializeField] private float MaxGroundAlignmentForce = 50f;       // Cap the lift force
 
-    [Header("Mesh Rotation Settings")]
-    public Transform cinemachineCamera;
-    public Transform meshTransform;
+    [Header("Slope Settings")]
+    [SerializeField] private float maxStableSlopeAngle = 40f; // Maximum walkable angle
+    [SerializeField] private float slideAcceleration = 10f;   // How fast the character slides
 
     [Header("Events")]
-    public UnityEvent Landed = new UnityEvent();
+    //public UnityEvent Landed = new UnityEvent();
     public Action PreUpdate;
     public Action<Vector3, float> PostUpdate;
     public Action StartJump;
     public Action EndJump;
 
-    [Header("Camera")]
-    public Transform cameraTransform;
+    [Header("Animations")]
+    // --- Network Animation Variables ---
+    [SerializeField] private CharacterAnimator characterAnimator;
+    [HideInInspector] public NetworkVariable<float> _sidewaysSpeed_NWV = new NetworkVariable<float>(0f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    [HideInInspector] public NetworkVariable<float> _forwardsSpeed_NWV = new NetworkVariable<float>(0f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
-    public Animator animator;
+    [Header("Camera Vars")]
+    bool m_InTopHemisphere = true;
+    float m_TimeInHemisphere = 100;
+    Vector3 m_LastRawInput;
+    Quaternion m_Upsidedown = Quaternion.AngleAxis(180, Vector3.left);
 
-    private Rigidbody rb;
-    private Vector3 m_LastInput;
-    private bool m_IsSprinting;
-    private bool m_JumpInput;
+    public Camera CameraOverride; // cam override was left in for a zoom in cam change, todo
+    public Camera Camera => CameraOverride == null ? Camera.main : CameraOverride;
 
+    private Vector3 rawInput;
+    private bool hasInput;
+    private bool shouldRotate;
 
-    [SerializeField] private NetworkVariable<float> _sidewaysSpeed_NWV = new NetworkVariable<float>(0f);
-    [SerializeField] private NetworkVariable<float> _forwardsSpeed_NWV = new NetworkVariable<float>(0f);
-
-    private float _localSidewaysSpeed;
-    private float _localForwardsSpeed;
-    private float _prevLocalSidewaysSpeed;
-    private float _prevLocalForwardsSpeed;
-    private const float kAnimThreshold = 0.05f;
-
-    //bradeon stuff 
-    public bool isPouncing = false;
-    public float startPounceTime;
-    public float forwardForce = 1.25f;
-    public float upwardForce = 0.5f;
-
-    public GameObject grabBox;
-    public GameObject grabPoint;
+    //breaedon code
+    public bool isGrabbed = false;
+    public void fn_SetIsSprintingInput(bool isSprinting) => m_IsSprinting = isSprinting;
 
     protected override void Awake()
     {
         base.Awake();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-
-    }
-
-    public override void HandleMovement(Vector2 input)
-    {
-        Quaternion inputFrame = Quaternion.Euler(0, cinemachineCamera ? cinemachineCamera.eulerAngles.y : 0, 0);
-        Vector3 rawInput = new Vector3(input.x, 0, input.y);
-        m_LastInput = inputFrame * rawInput;
-        if (m_LastInput.sqrMagnitude > 1)
-            m_LastInput.Normalize();
-    }
-
-    //public override void HandleJumpInput()
-    //{
-    //    m_JumpInput = true;
-    //}
-    //
-    //public override void HandleAim(Vector2 aimInput)
-    //{
-    //    // Implement aiming if needed.
-    //}
-
-    private void Update()
-    {
-        PreUpdate?.Invoke();
-    }
-
-    private void FixedUpdate()
-    {
-        if (!isPouncing)
-            ApplyMotion();
-        else
-            Pounce();
-        ApplyGroundAlignment();
-        UpdateAnimationParameters();
-        m_JumpInput = false;
     }
     private void Start()
     {
         if (IsOwner)
         {
-            CameraManager.Instance.SetFirstPersonCamera(this, cameraTransform);
+            // Link our local camera to this character
+            CameraManager.Instance.SetThirdPersonCamera(GetComponentInChildren<MutantCameraAimController>().transform);
+            _input = InputManager_Singleton.Instance;
         }
     }
 
-    // Directly align the mesh's yaw with the camera's yaw.
-    private void LateUpdate()
+
+    private void Update()
     {
-        if (cinemachineCamera != null && meshTransform != null)
+        if (!IsOwner) return;
+
+        Vector2 movementInput = _input.movementInput;
+
+        // Prepare input
+        rawInput = new Vector3(movementInput.x, 0, movementInput.y);
+        shouldRotate = rawInput.sqrMagnitude > 0.001f;
+        hasInput = shouldRotate;
+
+        var inputFrame = GetInputFrame(Vector3.Dot(rawInput, m_LastRawInput) < 0.8f);
+        m_LastRawInput = rawInput;
+        m_LastInput = inputFrame * rawInput;
+
+        if (m_LastInput.sqrMagnitude > 1)
+            m_LastInput.Normalize();
+
+        PreUpdate?.Invoke(); // Still fire PreUpdate here
+
+        ApplyGroundAlignment();
+        UpdateAnimationParameters();
+    }
+
+
+    private void FixedUpdate()
+    {
+        if (!IsOwner) return;
+        if (isGrabbed) return;
+
+        //if (hasInput)
         {
-            float targetYaw = cinemachineCamera.eulerAngles.y;
-            meshTransform.rotation = Quaternion.Euler(0, targetYaw, 0);
+            ApplyMotion();
+
+            if (!strafing)
+            {
+                var qA = transform.rotation;
+                Quaternion targetRotation = Quaternion.LookRotation(m_LastInput, Vector3.up);
+                transform.rotation = Quaternion.Slerp(qA, targetRotation, RotationSpeed * Time.fixedDeltaTime);
+            }
         }
+
+        // Get local-space velocity after applying motion
+        var vel = Quaternion.Inverse(rb.rotation) * rb.linearVelocity;
+        vel.y = rb.linearVelocity.y;
+
+        PostUpdate?.Invoke(vel, m_IsSprinting ? JumpSpeed / SprintJumpSpeed : 1);
+    }
+
+    // HandleMovement is used to receive the raw horizontal input. // it has been removed for now, but may be updated again in the future
+    public override void HandleMovement(Vector2 input) // Required to be here from the base class
+    {
+        
+    }
+
+    Quaternion GetInputFrame(bool inputDirectionChanged)
+    {
+        // This code is trying to prevent gimbal lock
+
+        var frame = Camera.transform.rotation;
+
+        var playerUp = transform.up;
+        var up = frame * Vector3.up;
+
+        const float BlendTime = 2f;
+        m_TimeInHemisphere += Time.deltaTime;
+        bool inTopHemisphere = Vector3.Dot(up, playerUp) >= 0;
+        if (inTopHemisphere != m_InTopHemisphere)
+        {
+            m_InTopHemisphere = inTopHemisphere;
+            m_TimeInHemisphere = Mathf.Max(0, BlendTime - m_TimeInHemisphere);
+        }
+
+        var axis = Vector3.Cross(up, playerUp);
+        if (axis.sqrMagnitude < 0.001f && inTopHemisphere)
+            return frame;
+
+        var angle = UnityVectorExtensions.SignedAngle(up, playerUp, axis);
+        var frameA = Quaternion.AngleAxis(angle, axis) * frame;
+
+        Quaternion frameB = frameA;
+        if (!inTopHemisphere || m_TimeInHemisphere < BlendTime)
+        {
+            frameB = frame * m_Upsidedown;
+            var axisB = Vector3.Cross(frameB * Vector3.up, playerUp);
+            if (axisB.sqrMagnitude > 0.001f)
+                frameB = Quaternion.AngleAxis(180f - angle, axisB) * frameB;
+        }
+
+        if (inputDirectionChanged)
+            m_TimeInHemisphere = BlendTime;
+
+        if (m_TimeInHemisphere >= BlendTime)
+            return inTopHemisphere ? frameA : frameB;
+
+        if (inTopHemisphere)
+            return Quaternion.Slerp(frameB, frameA, m_TimeInHemisphere / BlendTime);
+        return Quaternion.Slerp(frameA, frameB, m_TimeInHemisphere / BlendTime);
     }
 
     private void ApplyMotion()
     {
-        float currentSpeed = m_IsSprinting ? SprintSpeed : Speed;
-        Vector3 desiredHorizontal = m_LastInput * currentSpeed;
+        Vector3 desiredHorizontal = m_LastInput * (m_IsSprinting ? SprintSpeed : Speed);
         Vector3 currentHorizontal = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
-        Vector3 force = (desiredHorizontal - currentHorizontal) * rb.mass * Acceleration;
+        Vector3 force = desiredHorizontal * rb.mass * Acceleration;
         rb.AddForce(force, ForceMode.Force);
 
-        if (m_JumpInput && IsGrounded())
+        Debug.Log(_input.jumpInput+ " "+ m_IsJumping+ " "+ IsGrounded());
+        // Jumping logic
+        if (IsGrounded() && !m_IsJumping && _input.jumpInput)
         {
+            Debug.Log("Jumped");
             float jumpImpulse = m_IsSprinting ? SprintJumpSpeed : JumpSpeed;
             rb.AddForce(Vector3.up * jumpImpulse, ForceMode.Impulse);
+            m_IsJumping = true;
             StartJump?.Invoke();
         }
+        else if (IsGrounded())
+        {
+            m_IsJumping = false;
+        }
+
+    }
+
+    // --- Animation Synchronization ---
+    // UpdateAnimationParameters syncs movement speeds.
+    private void UpdateAnimationParameters()
+    {
+        if (!characterAnimator) return;
+
+        if (IsOwner)
+        {
+            Vector3 localVel = Quaternion.Inverse(transform.rotation) * rb.linearVelocity;
+            _sidewaysSpeed_NWV.Value = localVel.x;
+            _forwardsSpeed_NWV.Value = localVel.z;
+        }
+        // Pass both the current velocity and networked speeds.
+        characterAnimator.UpdateAnimatorLocomotion(rb.linearVelocity, transform, IsOwner, _sidewaysSpeed_NWV.Value, _forwardsSpeed_NWV.Value);
     }
 
     // Raycast downward to maintain a desired distance from the ground.
     private void ApplyGroundAlignment()
     {
-        RaycastHit hit;
-        float rayLength = GroundCheckDistance + 1f;
-        if (Physics.SphereCast(transform.position + groundCheckStartOffset, GroundCheckRadius, Vector3.down, out hit, rayLength, GroundMask))
+        Vector3 origin = transform.position + groundCheckStartOffset;
+        Vector3 direction = Vector3.down;
+        float rayLength = GroundCheckDistance;
+
+        if (Physics.SphereCast(origin, GroundCheckRadius, direction, out RaycastHit hit, rayLength, GroundMask))
         {
             if (DebugRaycasts)
-                Debug.DrawLine(transform.position + groundCheckStartOffset, hit.point, Color.green);
+                Debug.DrawLine(origin, hit.point, Color.green);
 
-            float error = GroundCheckDistance - hit.distance;
-            if (error > 0)
+            // Get the slope angle from the hit normal.
+            float slopeAngle = Vector3.Angle(hit.normal, Vector3.up);
+
+            // Compute the penetration error (how far under our desired ground distance the hit is).
+            float distanceToGround = hit.distance;
+            float penetration = GroundCheckDistance - distanceToGround;
+
+            // Always try to correct vertically.
+            Vector3 alignmentForce = Vector3.zero;
+            if (penetration > 0f)
             {
-                rb.AddForce(Vector3.up * error * GroundAlignmentForce, ForceMode.Acceleration);
+                float normalizedPenetration = penetration / GroundCheckDistance;
+                float upwardForce = normalizedPenetration * GroundAlignmentForce;
+                float verticalVelocity = Vector3.Dot(rb.linearVelocity, Vector3.up);
+                float damping = verticalVelocity * GroundSpringDamping; // might adjust this term if needed.
+                alignmentForce = Vector3.up * (upwardForce - damping);
             }
+
+            // If the slope is too steep, calculate a slide force.
+            Vector3 slideForce = Vector3.zero;
+            if (slopeAngle > maxStableSlopeAngle)
+            {
+                float steepness = (slopeAngle - maxStableSlopeAngle) / (90f - maxStableSlopeAngle);
+                Vector3 slideDirection = Vector3.ProjectOnPlane(Vector3.down, hit.normal).normalized;
+                slideForce = slideDirection * slideAcceleration * steepness;
+            }
+
+            // Combine the upward alignment and sliding forces.
+            rb.AddForce(alignmentForce + slideForce, ForceMode.Acceleration);
         }
         else if (DebugRaycasts)
         {
-            Debug.DrawRay(transform.position + groundCheckStartOffset, Vector3.down * rayLength, Color.red);
+            Debug.DrawRay(origin, direction * rayLength, Color.red);
         }
     }
 
-    private void UpdateAnimationParameters()
+    public virtual void SetstrafingMode(bool b) { }
+    public virtual bool IsMoving { get; } // Implement as needed.
+
+
+    private void OnDrawGizmosSelected()
     {
-        if (animator == null)
-            return;
+        if (!DebugRaycasts) return;
 
-        Vector3 localVelocity = transform.InverseTransformDirection(rb.linearVelocity);
-        _localForwardsSpeed = localVelocity.z;
-        _localSidewaysSpeed = localVelocity.x;
+        Vector3 origin = transform.position + groundCheckStartOffset;
+        Vector3 direction = Vector3.down;
+        float rayLength = GroundCheckDistance;
 
-        if (IsOwner)
+        Gizmos.color = Color.yellow;
+
+        int steps = 2;
+        float stepLength = rayLength / steps;
+
+        for (int i = 0; i <= steps; i++)
         {
-            if (Mathf.Abs(_localSidewaysSpeed - _prevLocalSidewaysSpeed) > kAnimThreshold)
-            {
-                _prevLocalSidewaysSpeed = _localSidewaysSpeed;
-                UpdateSidewaysSpeedServerRpc(_localSidewaysSpeed);
-            }
-            if (Mathf.Abs(_localForwardsSpeed - _prevLocalForwardsSpeed) > kAnimThreshold)
-            {
-                _prevLocalForwardsSpeed = _localForwardsSpeed;
-                UpdateForwardsSpeedServerRpc(_localForwardsSpeed);
-            }
-            animator.SetFloat("SidewaysSpeed", _localSidewaysSpeed);
-            animator.SetFloat("ForwardsSpeed", _localForwardsSpeed);
-        }
-        else
-        {
-            animator.SetFloat("SidewaysSpeed", _sidewaysSpeed_NWV.Value);
-            animator.SetFloat("ForwardsSpeed", _forwardsSpeed_NWV.Value);
+            Vector3 pos = origin + direction * (stepLength * i);
+            Gizmos.DrawWireSphere(pos, GroundCheckRadius);
         }
     }
 
-    [ServerRpc]
-    private void UpdateSidewaysSpeedServerRpc(float newSpeed)
-    {
-        _sidewaysSpeed_NWV.Value = newSpeed;
-    }
 
-    [ServerRpc]
-    private void UpdateForwardsSpeedServerRpc(float newSpeed)
-    {
-        _forwardsSpeed_NWV.Value = newSpeed;
-    }
-
-    // Uses a raycast to check if the character is grounded.
     private bool IsGrounded()
     {
-        float rayLength = GroundCheckDistance + 0.1f;
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, rayLength, GroundMask))
-        {
-            if (DebugRaycasts)
-                Debug.DrawLine(transform.position, hit.point, Color.blue);
-            return true;
-        }
-        else if (DebugRaycasts)
-        {
-            Debug.DrawRay(transform.position, Vector3.down * rayLength, Color.red);
-        }
-        return false;
+        return Physics.SphereCast(transform.position+Vector3.up, GroundCheckRadius, Vector3.down, out RaycastHit hit, GroundCheckDistance+.5f, GroundMask);
     }
 
     private Quaternion GetInputFrame()
     {
-        return Camera.main ? Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) : Quaternion.identity;
+        return Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
     }
 
-
-    public override void Attack()
+    public void MoveTo(Vector3 pos)
     {
-        
-        if (isPouncing) return;
-
-        isPouncing = true;
-        startPounceTime = Time.time;
-
-
+        transform.position = pos;
+        if (IsOwner)
+        {
+            Debug.Log("im grabed");
+        }
     }
 
-
-    private void Pounce()
+    [Rpc(SendTo.Everyone)]
+    public void DisableMovementRpc()
     {
-        if (Time.time <= startPounceTime + 1f)
-        {
-            //cinemachineCamera
-            //pounceForce.z
-            Vector3 f = new Vector3(meshTransform.forward.x * forwardForce, upwardForce, meshTransform.forward.z * forwardForce);
-            Vector3 force = f * rb.mass * Acceleration;
-            rb.AddForce(force, ForceMode.Force);
-        }
-        else
-        {
-
-            if (IsGrounded())
-            {
-                isPouncing = false;
-                //grabBox.SetActive(false);
-            }
-            else
-            {
-                Vector3 force = (new Vector3(0, 0, forwardForce)) * rb.mass * Acceleration;
-                rb.AddForce(force, ForceMode.Force);
-            }
-            
-        }
-
+        gameObject.GetComponent<NetworkTransform>().enabled = false;
+        isGrabbed = true;
     }
 }

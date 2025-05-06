@@ -7,7 +7,6 @@ public class MutantPlayerDataManager_Local : PlayerDataManger_Local
     [Header("References")]
     private ThirdPersonController_Netcode _playerControler;
     private InputManager_Singleton _input;
-    private PlayerInput _playerInput;
 
     [Header("Stamina Settings")]
     public float maxStamina = 100f;
@@ -26,7 +25,6 @@ public class MutantPlayerDataManager_Local : PlayerDataManger_Local
 
         //TODO: clean up this mess of a player input system
         _input = InputManager_Singleton.Instance;
-        _playerInput = _input._playerInput;
     }
 
     void Update()
@@ -42,9 +40,7 @@ public class MutantPlayerDataManager_Local : PlayerDataManger_Local
 
     private void HandleInput()
     {
-        // Example input: hold Left Shift to sprint
-        // isSprinting = Input.GetKey(KeyCode.LeftShift) && !isExhausted;
-        isSprinting = _input.sprint && !isExhausted;
+        isSprinting = _input.sprintInput && !isExhausted;
     }
 
     private void HandleStamina()
