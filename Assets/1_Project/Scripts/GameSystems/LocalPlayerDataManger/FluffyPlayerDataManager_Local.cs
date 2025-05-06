@@ -39,6 +39,7 @@ public class FluffyPlayerDataManager_Local : NetworkBehaviour
         //TODO: clean up this mess of a player input system
         _input = InputManager_Singleton.Instance;
 
+
     }
 
 

@@ -40,14 +40,12 @@ public class MutantPlayerDataManager_Local : PlayerDataManger_Local
 
     private void HandleInput()
     {
-        // Example input: hold Left Shift to sprint
-        // isSprinting = Input.GetKey(KeyCode.LeftShift) && !isExhausted;
         isSprinting = _input.sprintInput && !isExhausted;
     }
 
     private void HandleStamina()
     {
-        if (isSprinting)
+        if (_input.sprintInput && !isExhausted)
         {
             // IS Sprinting 
             _playerControler.fn_SetIsSprintingInput(true);
