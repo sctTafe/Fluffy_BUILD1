@@ -14,8 +14,8 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
     public UnityEvent OnLocalPlayerReady;
     public UnityEvent OnLocalPlayerNotReady;
 
-    [SerializeField] private bool _isLoadingPlaytestingScene = false;
-    [SerializeField] private string _testGameSceneName = "5_Game_Playtesting";
+    public bool _isLoadingPlaytestingScene = false;
+    [SerializeField] private string _testGameSceneName = "X_Game_Playtesting";
 
     // Network Variable 
     private NetworkVariable<int> numberOfPlayersNV = new NetworkVariable<int>();
@@ -74,6 +74,10 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
     #endregion END: Unity Native Functions
 
     #region Public Functions
+
+    public void fn_UseTestingScene(bool useTestingScene) =>
+        _isLoadingPlaytestingScene = useTestingScene;
+    
     public int fn_GetNumberOfPlayersInLobby()
     {
         return numberOfPlayersNV.Value;
