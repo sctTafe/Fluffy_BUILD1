@@ -2711,7 +2711,6 @@ GameObject:
   - component: {fileID: 4685717942135695358}
   - component: {fileID: 4163513301123435681}
   - component: {fileID: 4211056162011938339}
-  - component: {fileID: 3358150238189878319}
   - component: {fileID: 7126122190191861419}
   - component: {fileID: 5662966264603675591}
   - component: {fileID: 1911637624041227569}
@@ -2720,6 +2719,7 @@ GameObject:
   - component: {fileID: 3945826943342811740}
   - component: {fileID: 2690234351273645908}
   - component: {fileID: 9050011078787946409}
+  - component: {fileID: 7566589443499182477}
   m_Layer: 7
   m_Name: NetworkPlayerPrefab_BackupMutant
   m_TagString: Mutant
@@ -2760,7 +2760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 413671955
+  GlobalObjectIdHash: 2287301573
   InScenePlacedSourceGlobalObjectIdHash: 413671955
   DeferredDespawnTick: 0
   Ownership: 1
@@ -2871,54 +2871,6 @@ CharacterController:
   m_SkinWidth: 0.02
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0.93, z: 0}
---- !u!114 &3358150238189878319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5408246126893154181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f30591018556fe842ae8e90c89ac6ba3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  MoveSpeed: 2
-  SprintSpeed: 5.335
-  RotationSmoothTime: 0.12
-  SpeedChangeRate: 10
-  LandingAudioClip: {fileID: 8300000, guid: ff697d3070687ce4583faa0561a145a2, type: 3}
-  FootstepAudioClips:
-  - {fileID: 8300000, guid: 72f526a6a9890f643a88e85a61c86c8a, type: 3}
-  - {fileID: 8300000, guid: 85016e0f2b01da248b9663dd49a161b0, type: 3}
-  - {fileID: 8300000, guid: 186de84b3207156479abe98f4958fed0, type: 3}
-  FootstepAudioVolume: 0.5
-  JumpHeight: 1.2
-  Gravity: -15
-  JumpTimeout: 0.5
-  FallTimeout: 0.15
-  Grounded: 1
-  GroundedOffset: -0.14
-  GroundedRadius: 0.28
-  GroundLayers:
-    serializedVersion: 2
-    m_Bits: 64
-  CinemachineCameraTarget: {fileID: 684008945860334424}
-  TopClamp: 70
-  BottomClamp: -30
-  CameraAngleOverride: 0
-  LockCameraPosition: 0
-  _jump_AnimatorVar_NWV:
-    m_InternalValue: 0
-  _grounded_AnimatorVar_NWV:
-    m_InternalValue: 0
-  _freefall_AnimatorVar_NWV:
-    m_InternalValue: 0
-  _speed_AnimatorVar_NWV:
-    m_InternalValue: 0
-  _motionSpeed_AnimatorVar_NWV:
-    m_InternalValue: 0
 --- !u!114 &7126122190191861419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3043,6 +2995,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da1ac76bebf593f9fb34689115c66592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7566589443499182477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5408246126893154181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac37ef443ad812e44863bf50c109a4fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  MoveSpeed: 2
+  SprintSpeed: 5.335
+  RotationSmoothTime: 0.12
+  SpeedChangeRate: 10
+  LandingAudioClip: {fileID: 0}
+  FootstepAudioClips: []
+  FootstepAudioVolume: 0.5
+  JumpHeight: 1.2
+  Gravity: -15
+  JumpTimeout: 0.5
+  FallTimeout: 0.15
+  Grounded: 1
+  GroundedOffset: -0.14
+  GroundedRadius: 0.28
+  GroundLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  CinemachineCameraTarget: {fileID: 684008945860334424}
+  TopClamp: 70
+  BottomClamp: -30
+  CameraAngleOverride: 0
+  LockCameraPosition: 0
+  _jump_AnimatorVar_NWV:
+    m_InternalValue: 0
+  _grounded_AnimatorVar_NWV:
+    m_InternalValue: 0
+  _freefall_AnimatorVar_NWV:
+    m_InternalValue: 0
+  _speed_AnimatorVar_NWV:
+    m_InternalValue: 0
+  _motionSpeed_AnimatorVar_NWV:
+    m_InternalValue: 0
 --- !u!1 &5413671998971313028
 GameObject:
   m_ObjectHideFlags: 0

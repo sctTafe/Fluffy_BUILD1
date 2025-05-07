@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class HUDPublisher_Fluffy : HUDPublisher
 {
+
+
+
+
     protected override void Start()
     {
         base.Start();
@@ -13,4 +17,9 @@ public class HUDPublisher_Fluffy : HUDPublisher
     {
         base.Update();
     }
+
+
+
+
+
 }
