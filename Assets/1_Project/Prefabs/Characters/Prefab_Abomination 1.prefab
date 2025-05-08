@@ -198,7 +198,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6103115944230435048}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c6524fb7342c8dc18b1270a4f63be52, type: 3}
   m_Name: 
@@ -334,7 +334,7 @@ MonoBehaviour:
   MaxGroundAlignmentForce: 30.8
   maxStableSlopeAngle: 40
   slideAcceleration: 6
-  characterAnimator: {fileID: 1656813676671470818, guid: 543f822f6f6507f42bd9b48bcb9b1e72, type: 3}
+  characterAnimator: {fileID: 0}
   _sidewaysSpeed_NWV:
     m_InternalValue: 0
   _forwardsSpeed_NWV:
@@ -550,7 +550,10 @@ PrefabInstance:
       value: SillyCat
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2155878246415263907, guid: 2da1ab33c310e3b488b172b0b3651421, type: 3}
+    - {fileID: -8403562073697079088, guid: 2da1ab33c310e3b488b172b0b3651421, type: 3}
+    - {fileID: 5134236669910987636, guid: 2da1ab33c310e3b488b172b0b3651421, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2da1ab33c310e3b488b172b0b3651421, type: 3}
