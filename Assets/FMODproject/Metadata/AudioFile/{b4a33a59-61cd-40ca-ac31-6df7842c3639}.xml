@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{b4a33a59-61cd-40ca-ac31-6df7842c3639}">
+		<property name="assetPath">
+			<value>SFX/Player Sounds/FootSteps/sand-walk-3.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>24</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.578125</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{1304a584-0065-42cb-bb27-692e2747de7a}</destination>
+		</relationship>
+	</object>
+</objects>
