@@ -38,7 +38,9 @@ public class LocalPlayerUI_Fluffy : Singleton<LocalPlayerUI_Fluffy>
     void StaminaBarFiller()
     {
         float targetFill = _LocalPlayerData.fn_GetStaminaPercent();
-		staminaBar.transform.localScale = new Vector3(targetFill, 1, 1);
+       // if (staminaBar != null) 
+       //    // staminaBar.fillAmount = Mathf.Lerp(staminaBar.fillAmount, targetFill, _lerpSpeed * Time.deltaTime);
+       // else { Debug.LogWarning("This kept returning null in other scenes, so I put a null check <3 Izaac"); }
     }
 
 }
