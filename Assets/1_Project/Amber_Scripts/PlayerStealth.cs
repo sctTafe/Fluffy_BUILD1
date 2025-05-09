@@ -1,5 +1,6 @@
 using UnityEngine;
 using Unity.Netcode;
+using TMPro;
 
 public class PlayerStealth : NetworkBehaviour
 {
@@ -7,43 +8,54 @@ public class PlayerStealth : NetworkBehaviour
 	private bool in_bush = false;
 	private float time_in_bush = 0;
 	private float force_reveal = 0;
+	private TMP_Text stealth_prompt;
+	private float text_cooldown = -1;
 
     void Start()
     {
     	geometry = transform.GetChild(1).gameObject;    
+		if(IsOwner)
+		{
+			stealth_prompt = GameObject.FindWithTag("stealth_prompt").GetComponent<TMP_Text>();
+		}
     }
 
 	void Update()
 	{
-		if(IsOwner)
-			return;
-
 		if(in_bush)
 		{
 			time_in_bush += Time.deltaTime;
 
 			if(time_in_bush > 0.8f && force_reveal <= 0)
 			{
-				geometry.SetActive(false);
-				Debug.Log("Player Hidden!");
+				if(!IsOwner)
+				{
+					geometry.SetActive(false);
+				}
+				else
+				{
+					stealth_prompt.text = "[ Hidden! ]";
+				}
 			}
-
-			
 		}
 
 		force_reveal -= Time.deltaTime;
 
-		if(Input.GetKeyDown(KeyCode.Q))
+		if(IsOwner)
 		{
-			force_reveal = 10;
+			if(text_cooldown > 0)
+			{
+				text_cooldown -= Time.deltaTime;
+			}
+			else
+			{
+				stealth_prompt.text = "";
+			}
 		}
 	}
 
 	void OnTriggerEnter(Collider other)
 	{
-    	if(IsOwner)
-			return;
-	
 		if(other.CompareTag("hide_trigger"))
 		{
 			in_bush = true;
@@ -53,14 +65,17 @@ public class PlayerStealth : NetworkBehaviour
 
 	void OnTriggerExit(Collider other)
 	{
-    	if(IsOwner)
-			return;
-	
 		if(other.CompareTag("hide_trigger"))
 		{
-			geometry.SetActive(true);
-			in_bush = false;
-			Debug.Log("Player not hidden!");
+			if(!IsOwner)
+			{
+				geometry.SetActive(true);
+				in_bush = false;
+			}
+			else
+			{
+				stealth_prompt.text = "";
+			}
 		}
 	}
 
@@ -69,6 +84,15 @@ public class PlayerStealth : NetworkBehaviour
 	public void force_unhide()
 	{
 		force_reveal = 10;
-		geometry.SetActive(true);
+		if(!IsOwner)
+		{
+			geometry.SetActive(true);
+		}
+		else
+		{
+			stealth_prompt.text = "[ Revealed! ]";
+			text_cooldown = 3;
+		}
+
 	}
 }

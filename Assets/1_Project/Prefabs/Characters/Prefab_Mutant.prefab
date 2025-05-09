@@ -2719,6 +2719,7 @@ GameObject:
   - component: {fileID: 3651755387491466470}
   - component: {fileID: 4099647517296593973}
   - component: {fileID: 1327659169825156494}
+  - component: {fileID: 8392898408515820549}
   m_Layer: 7
   m_Name: Prefab_Mutant
   m_TagString: Mutant
@@ -3037,6 +3038,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+--- !u!114 &8392898408515820549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5408246126893154181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f563180073c19e7228c5d33648252c41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5413671998971313028
 GameObject:
   m_ObjectHideFlags: 0
