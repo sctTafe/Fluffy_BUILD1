@@ -16,7 +16,7 @@ public class AllPlayersDeadCheck : MonoBehaviour
 
 			if(players.Length == 0)
 			{
-				MainGameManager.Instance.fn_EndGame(true);
+				MainGameManager.Instance.fn_EndGame(false);
 			}
 		}
 
