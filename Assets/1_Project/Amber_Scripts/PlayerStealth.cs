@@ -9,11 +9,10 @@ public class PlayerStealth : NetworkBehaviour
 	private float time_in_bush = 0;
 	private float force_reveal = 0;
 	private TMP_Text stealth_prompt;
-	private float text_cooldown = -1;
 
     void Start()
     {
-    	geometry = transform.GetChild(1).gameObject;    
+    	geometry = transform.GetChild(3).gameObject;    
 		if(IsOwner)
 		{
 			stealth_prompt = GameObject.FindWithTag("stealth_prompt").GetComponent<TMP_Text>();
@@ -41,17 +40,12 @@ public class PlayerStealth : NetworkBehaviour
 
 		force_reveal -= Time.deltaTime;
 
-		if(IsOwner)
+		// Doesn't show revealed text, probably needs to be an RPC
+		if(IsOwner && force_reveal > 0)
 		{
-			if(text_cooldown > 0)
-			{
-				text_cooldown -= Time.deltaTime;
-			}
-			else
-			{
-				stealth_prompt.text = "";
-			}
+			stealth_prompt.text = "[ Revealed! ]";
 		}
+
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -67,10 +61,11 @@ public class PlayerStealth : NetworkBehaviour
 	{
 		if(other.CompareTag("hide_trigger"))
 		{
+			in_bush = false;
+
 			if(!IsOwner)
 			{
 				geometry.SetActive(true);
-				in_bush = false;
 			}
 			else
 			{
@@ -81,6 +76,8 @@ public class PlayerStealth : NetworkBehaviour
 
 	// Forces the player to reveal for 10 seconds
 	// Called with mutant scan attack
+
+	// Reveal probably needs to be an RPC to get this to work
 	public void force_unhide()
 	{
 		force_reveal = 10;
@@ -91,7 +88,6 @@ public class PlayerStealth : NetworkBehaviour
 		else
 		{
 			stealth_prompt.text = "[ Revealed! ]";
-			text_cooldown = 3;
 		}
 
 	}
