@@ -5,9 +5,10 @@ using UnityEngine;
 /// Sends the Data/Refs To the HUD
 /// 
 /// </summary>
-public class HUDPublisher : MonoBehaviour
+public abstract class HUDPublisher : MonoBehaviour
 {
-    public HUDManager.HUDType _type;
+    public HUDManager.HUDType HUDType { get { return _type; } }
+    protected HUDManager.HUDType _type;
 
     protected virtual void Start()
     {     
@@ -21,6 +22,4 @@ public class HUDPublisher : MonoBehaviour
     {
         this._type = type;
     }
-
-
 }

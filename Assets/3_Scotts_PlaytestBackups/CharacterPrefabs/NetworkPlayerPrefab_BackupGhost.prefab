@@ -2128,6 +2128,8 @@ GameObject:
   - component: {fileID: 8984347503649952866}
   - component: {fileID: 5321180133262573405}
   - component: {fileID: 8607248295975972782}
+  - component: {fileID: 736005593907222294}
+  - component: {fileID: 7229105595755631234}
   m_Layer: 8
   m_Name: NetworkPlayerPrefab_BackupGhost
   m_TagString: Player
@@ -2354,6 +2356,42 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   _holdingPositionTansforms: []
   _playersNetworkObject: {fileID: 0}
+--- !u!114 &736005593907222294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6103115944230435048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f60227a05fd2ea7499a526cf9d344ad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ghostEnergy_ResoruceMngs: {fileID: 7229105595755631234}
+--- !u!114 &7229105595755631234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6103115944230435048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b96ea5929eeb51241ae92f1a68b0d659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  _resourceID: Ghost
+  _resourceTypeID: 4
+  isStartingAtMax: 0
+  isAutoRechargeEnabled: 0
+  rechargeDelaySecond: 1
+  valueRechargePerSecond: 10
+  OnExhaustionTriggered_UE:
+    m_PersistentCalls:
+      m_Calls: []
+  exhaustedCooldown: 2
 --- !u!1 &6167483681963466577
 GameObject:
   m_ObjectHideFlags: 0

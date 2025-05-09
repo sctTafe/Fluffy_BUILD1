@@ -143,7 +143,6 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
     bool _isMovementDistabled = false;
 
     // Movment Inputs
-    public void fn_SetIsSprintingInput(bool isSprinting) => _isSprinting_Input = isSprinting;
     private bool _isSprinting_Input;
 
     float _inputMagnitude; // Used for Animations / Blend Tree
@@ -250,15 +249,13 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
     }
 
     #region Public Functions
-    public void fn_Despawn()
-    {
-        NetworkObject.Despawn();
-    }
 
-    public void fn_IsMovementInputDisabled(bool isDisabled)
-    {
-        _isMovementDistabled = isDisabled;
-    }
+    public void fn_SetIsSprintingInput(bool isSprinting) => _isSprinting_Input = isSprinting;
+
+    public void fn_Despawn() => NetworkObject.Despawn();
+    
+    public void fn_IsMovementInputDisabled(bool isDisabled) => _isMovementDistabled = isDisabled;
+
     #endregion
 
     private void Update_HandleMovementAndPlayerInput()
@@ -321,8 +318,9 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
     private void Move()
     {
         // set target speed based on move speed, sprint speed and if sprint is pressed
-        float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
-
+        //float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed; //OLD
+        float targetSpeed = _isSprinting_Input ? SprintSpeed : MoveSpeed;
+        
         // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
         // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude

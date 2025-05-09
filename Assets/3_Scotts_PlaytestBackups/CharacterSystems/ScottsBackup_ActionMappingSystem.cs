@@ -1,0 +1,47 @@
+using Unity.Netcode;
+using UnityEngine;
+
+/// <summary>
+/// Inefficent way to do it but is currently providing an easy way to check the inputs are doing as expected 
+/// </summary>
+public class ScottsBackup_ActionMappingSystem : NetworkBehaviour
+{
+    ScottsBackupInputSystem playerInputs;
+
+    [SerializeReference] public PlayerActionBase _Action_Main;
+    [SerializeReference] public PlayerActionBase _Action_Sprint;
+    [SerializeReference] public PlayerActionBase _Action_Interaction1;
+
+    private void Start()
+    {
+        playerInputs = ScottsBackup_InputRefSingleton.Instance._inputs;
+
+        // Disable Self If Not Owner
+        if(!IsOwner)
+            this.enabled = false;
+    }
+
+    private void Update()
+    {
+        if (playerInputs.sprint == true)
+        {
+            // Is a pass through value, dont need to clear it
+            if(_Action_Sprint != null)
+                _Action_Sprint.fn_ReceiveActivationInput(true);
+        }
+
+        if (playerInputs.attack == true)
+        {
+            if (_Action_Main != null)
+                playerInputs.attack = _Action_Main.fn_ReceiveActivationInput(true);
+        }
+
+        if (playerInputs.interaction1 == true)
+        {
+            if (_Action_Interaction1 != null)
+                playerInputs.interaction1 = _Action_Interaction1.fn_ReceiveActivationInput(true);
+        }
+
+    }
+
+}

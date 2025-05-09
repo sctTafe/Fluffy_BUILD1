@@ -1633,7 +1633,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 74.89221, y: -62.835083}
+  m_AnchoredPosition: {x: 74.89209, y: -62.835083}
   m_SizeDelta: {x: 149.7845, y: 125.6702}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1068390531
@@ -1962,7 +1962,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  _isLoadingPlaytestingScene: 0
+  _isLoadingPlaytestingScene: 1
   _testGameSceneName: X_Game_Playtesting
 --- !u!114 &1464690511
 MonoBehaviour:

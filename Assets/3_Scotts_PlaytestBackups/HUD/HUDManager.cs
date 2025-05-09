@@ -18,6 +18,7 @@ public class HUDManager : Singleton<HUDManager>
         Ghost,
         Mutant
     }
+    private const bool ISDEBUGGING = true;
 
     // HUD Canvas GO's
     [SerializeField] GameObject _fluffyCanvasGO;
@@ -39,12 +40,13 @@ public class HUDManager : Singleton<HUDManager>
 
     public void fn_BindPublisherType(HUDPublisher hUDPublisher)
     {
-        Debug.Log("HUDPublisher: fn_BindPublisherType Called");
+        if (ISDEBUGGING) Debug.Log("HUDPublisher: fn_BindPublisherType Called");
+        Handle_BindPublisherType(hUDPublisher);
     }
 
     private void Handle_BindPublisherType(HUDPublisher hUDPublisher)
     {
-        HUDType ht = hUDPublisher._type;
+        HUDType ht = hUDPublisher.HUDType;
 
         if (ht == HUDType.error)
         {
@@ -59,14 +61,17 @@ public class HUDManager : Singleton<HUDManager>
             case HUDType.Fluffy:
                 _fluffyCanvasGO.SetActive(true);
                 _hUDPublisher_Fluffy.fn_Bind(hUDPublisher);
+                if (ISDEBUGGING) Debug.Log("HUDPublisher: Fluffy HUD Activated");
                 break;
             case HUDType.Mutant:
                 _mutantCanvasGO.SetActive(true);
                 _hUDPublisher_Mutant.fn_Bind(hUDPublisher);
+                if (ISDEBUGGING) Debug.Log("HUDPublisher: Mutant HUD Activated");
                 break;
             case HUDType.Ghost:
                 _ghostCanvasGO.SetActive(true);
                 _hUDPublisher_Ghost.fn_Bind(hUDPublisher);
+                if (ISDEBUGGING) Debug.Log("HUDPublisher: Ghost HUD Activated");
                 break;
         }
     }
