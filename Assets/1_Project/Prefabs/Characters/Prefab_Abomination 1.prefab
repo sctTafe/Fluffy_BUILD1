@@ -54,6 +54,7 @@ GameObject:
   - component: {fileID: 6091755371208914198}
   - component: {fileID: -1539381838798464947}
   - component: {fileID: -1529161446549516224}
+  - component: {fileID: 7082114420134920553}
   - component: {fileID: 1340729016870545582}
   m_Layer: 8
   m_Name: Prefab_Abomination 1
@@ -431,6 +432,19 @@ MonoBehaviour:
   UseRigidBodyForMotion: 0
   AutoUpdateKinematicState: 1
   AutoSetKinematicOnDespawn: 1
+--- !u!114 &7082114420134920553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6103115944230435048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f563180073c19e7228c5d33648252c41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
 --- !u!136 &1340729016870545582
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -548,6 +562,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 2da1ab33c310e3b488b172b0b3651421, type: 3}
       propertyPath: m_Name
       value: SillyCat
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2da1ab33c310e3b488b172b0b3651421, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
