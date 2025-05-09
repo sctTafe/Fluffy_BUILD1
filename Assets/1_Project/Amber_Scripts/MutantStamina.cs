@@ -21,8 +21,11 @@ public class MutantStamina : NetworkBehaviour
 
 		stamina += Time.deltaTime * 5;        
 		stamina = Mathf.Clamp(stamina,0,100);
-
-		stamina_bar.transform.localScale = new Vector3(stamina / 100, 1, 1);
+		if(stamina_bar != null)
+		{
+            stamina_bar.transform.localScale = new Vector3(stamina / 100, 1, 1);
+        }
+		
     }
 
 	public void reduce_stamina(float amount)

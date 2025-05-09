@@ -2718,6 +2718,11 @@ GameObject:
   - component: {fileID: 2567216198660850614}
   - component: {fileID: 3651755387491466470}
   - component: {fileID: 4099647517296593973}
+  - component: {fileID: 1327659169825156494}
+  - component: {fileID: 8392898408515820549}
+  - component: {fileID: -2536892860604820740}
+  - component: {fileID: 5506441397295310450}
+  - component: {fileID: 2590143351835448177}
   m_Layer: 7
   m_Name: Prefab_Mutant
   m_TagString: Mutant
@@ -2764,14 +2769,14 @@ MonoBehaviour:
   DeferredDespawnTick: 0
   Ownership: 1
   AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 0
+  SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 0
-  SpawnWithObservers: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
   DontDestroyWithOwner: 0
-  AutoObjectParentSync: 0
-  SyncOwnerTransformWhenParented: 0
-  AllowOwnerToParent: 1
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!114 &4685717942135695358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2792,9 +2797,9 @@ MonoBehaviour:
   SyncPositionX: 1
   SyncPositionY: 1
   SyncPositionZ: 1
-  SyncRotAngleX: 0
-  SyncRotAngleY: 0
-  SyncRotAngleZ: 0
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
   SyncScaleX: 0
   SyncScaleY: 0
   SyncScaleZ: 0
@@ -2806,7 +2811,7 @@ MonoBehaviour:
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
   SwitchTransformSpaceWhenParented: 0
-  Interpolate: 0
+  Interpolate: 1
   SlerpPosition: 0
 --- !u!136 &1284785521448653318
 CapsuleCollider:
@@ -2982,7 +2987,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  colliderBox: {fileID: 0}
+  colliderBox: {fileID: 6402720590088216435}
   targetTag: hide_trigger
 --- !u!114 &4099647517296593973
 MonoBehaviour:
@@ -2999,7 +3004,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   Speed: 1.5
   SprintSpeed: 4
-  JumpSpeed: 23.87
+  JumpSpeed: 98.92
   SprintJumpSpeed: 6
   Acceleration: 10
   RotationSpeed: 10
@@ -3023,6 +3028,68 @@ MonoBehaviour:
     m_InternalValue: 0
   CameraOverride: {fileID: 0}
   isGrabbed: 0
+--- !u!114 &1327659169825156494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5408246126893154181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f88079241109c54aae2a602b9c44ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+--- !u!114 &8392898408515820549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5408246126893154181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f563180073c19e7228c5d33648252c41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+--- !u!114 &-2536892860604820740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5408246126893154181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46a3f1cb650fc12a5b3b22714c3eec13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5506441397295310450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5408246126893154181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343dd248fa3cd29639fab39be884f18a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2590143351835448177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5408246126893154181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da1ac76bebf593f9fb34689115c66592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5413671998971313028
 GameObject:
   m_ObjectHideFlags: 0
@@ -4580,7 +4647,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -7087431589455317569, guid: c586009007d450241a55df45a81be531, type: 3}
       propertyPath: AuthorityMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1319494406888495962, guid: c586009007d450241a55df45a81be531, type: 3}
       propertyPath: m_Enabled
