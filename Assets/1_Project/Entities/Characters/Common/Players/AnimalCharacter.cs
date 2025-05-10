@@ -104,15 +104,15 @@ public class AnimalCharacter : CharacterBase
 
         PreUpdate?.Invoke(); // Still fire PreUpdate here
 
-        ApplyGroundAlignment();
         UpdateAnimationParameters();
     }
 
 
     private void FixedUpdate()
     {
-        if (!IsOwner) return;
-        if (isGrabbed) return;
+        if (!IsOwner || isGrabbed) return;
+
+        ApplyGroundAlignment();
 
         if (hasInput)
         {
@@ -194,9 +194,9 @@ public class AnimalCharacter : CharacterBase
         // Jumping logic
         if (IsGrounded() && !m_IsJumping && _input.jumpInput)
         {
-            Debug.Log("");
+            Debug.Log("Jumped ");
             float jumpImpulse = m_IsSprinting ? SprintJumpSpeed : JumpSpeed;
-            rb.AddForce(Vector3.up * jumpImpulse, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * jumpImpulse * rb.mass, ForceMode.Impulse);
             m_IsJumping = true;
             StartJump?.Invoke();
         }
@@ -298,7 +298,8 @@ public class AnimalCharacter : CharacterBase
 
     private bool IsGrounded()
     {
-        return Physics.SphereCast(transform.position+Vector3.up, GroundCheckRadius, Vector3.down, out RaycastHit hit, GroundCheckDistance, GroundMask);
+        //Vector3 origin = transform.position + groundCheckStartOffset;
+        return Physics.SphereCast(transform.position+Vector3.up, GroundCheckRadius, Vector3.down, out RaycastHit hit, GroundCheckDistance*2.0f, GroundMask);
     }
 
     private Quaternion GetInputFrame()
@@ -309,6 +310,8 @@ public class AnimalCharacter : CharacterBase
     public void MoveTo(Vector3 pos)
     {
         transform.position = pos;
+        rb.position = pos;
+        rb.linearVelocity = Vector3.zero;
         if (IsOwner)
         {
             Debug.Log("im grabed");
