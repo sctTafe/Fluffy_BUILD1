@@ -2714,7 +2714,6 @@ GameObject:
   - component: {fileID: 7126122190191861419}
   - component: {fileID: 5662966264603675591}
   - component: {fileID: 1911637624041227569}
-  - component: {fileID: 3651755387491466470}
   - component: {fileID: 9050011078787946409}
   - component: {fileID: 7566589443499182477}
   - component: {fileID: 6498338235879297589}
@@ -2922,21 +2921,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   defaultInitialPositionOnPlane: {x: -3, y: 3}
---- !u!114 &3651755387491466470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5408246126893154181}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8689c4bbfbeb6e41a596e2a34c54e28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  colliderBox: {fileID: 0}
-  targetTag: hide_trigger
 --- !u!114 &9050011078787946409
 MonoBehaviour:
   m_ObjectHideFlags: 0

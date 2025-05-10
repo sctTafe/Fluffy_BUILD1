@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -17,22 +18,28 @@ public class ScottsBackup_PlayerAction_DestroyObjects : PlayerActionBase, IHudAb
     public UnityEvent OnActivationSuccess_UE;
 
     public Action OnActivationFail_NotEnoughEnergy;
+    public Action OnActivationFail_OnCooldown;
 
 
     //interaction collider
+    [Header("Target Zone Collider")]
     [SerializeField] private BoxCollider colliderBox;
 
-    //stamina 
+    //stamina
+    [Header("Resoruce System")]
     [SerializeField] private ScottsBackup_ResourceMng _staminaSystem;
     [SerializeField] private float _enegryCost = 10f;
 
     //Cooldown
+    [Header("Ability Cooldown")]
     [SerializeField] private float _abilityCooldownLength = 10f;
 
+    [Header("Target Destruction Delay")]
     //Delay In Bush Destuction To give time for effects
     [SerializeField] private float _destructionDelay = 1.5f;
 
 
+    private bool _isOnCooldown;
     private bool _inputRecived;
 
     private void Start()
@@ -57,10 +64,16 @@ public class ScottsBackup_PlayerAction_DestroyObjects : PlayerActionBase, IHudAb
 
     private void Handle_InputRecived()
     {
+        if (_isOnCooldown){
+            if (ISDEBUGGING) Debug.Log("ScottsBackup_PlayerAction_DestroyObjects: OnActivationFail OnCooldown!");
+            OnActivationFail_OnCooldown?.Invoke();
+            return;
+        }
+
         //check if theres sufficent Stamina 
         if(_staminaSystem.fn_GetCurrentValue() < _enegryCost)
         {
-            if (ISDEBUGGING) Debug.Log("ScottsBackup_PlayerAction_DestroyObjects: OnActivationFail NotEnoughEnergy");
+            if (ISDEBUGGING) Debug.Log("ScottsBackup_PlayerAction_DestroyObjects: OnActivationFail NotEnoughEnergy!");
             OnActivationFail_NotEnoughEnergy?.Invoke();
             return;
         }
@@ -68,11 +81,22 @@ public class ScottsBackup_PlayerAction_DestroyObjects : PlayerActionBase, IHudAb
         // If sucessfull
         if (TryDestoryObject())
         {
+            StartCoroutine(StartCooldown(_abilityCooldownLength));
             _staminaSystem.fn_TryReduceValue(_enegryCost);
             OnActivationSuccess?.Invoke();
             OnActivationSuccess_UE?.Invoke();
             OnCooldownWithLengthTriggered?.Invoke(_abilityCooldownLength);
         }
+    }
+
+    IEnumerator StartCooldown(float delay)
+    {
+        _isOnCooldown = true;
+        yield return new WaitForSeconds(delay);
+
+        _isOnCooldown = false;
+
+        if (ISDEBUGGING) Debug.Log("ScottsBackup_PlayerAction_DestroyObjects: Cooldown Ended");
     }
 
     /// <summary>

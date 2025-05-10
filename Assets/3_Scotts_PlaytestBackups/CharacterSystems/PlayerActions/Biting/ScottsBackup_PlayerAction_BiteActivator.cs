@@ -11,8 +11,11 @@ using UnityEngine;
 /// 
 /// Part of a Two Part System with 'Bite_Activator' & 'Bite_Receiver'
 /// </summary>
-public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase
+public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbilityBinder
 {
+    public event Action<float> OnCooldownWithLengthTriggered;
+    public event Action OnCooldownCanceled;
+
     public Action OnInsufficientStamina;
     public Action OnAttemptToBite;
     public Action OnBiteSuccessful;
@@ -30,11 +33,13 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase
     public Transform _holdingPoint;
 
     //Bite Box Collider
+    [Header("Bite Zone Collider")]
     public BoxCollider triggerBox; // Set this in the Inspector
     public string targetTag = "Player"; // Set this as needed
     public LayerMask targetLayer; // Assign in Inspector (as a mask)
 
     // Bite Ref
+    [Header("Bite Debugging Refs")]
     public bool isBiting = false;
     public GameObject grabedPlayerGO;
 
@@ -171,7 +176,7 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase
         //_mutantStaminaSystem.reduce_stamina(40);
         _resourceSystem.fn_TryReduceValue(_biteActivationCost); // Bite Start Cost
 
-        TriggerBiteCooldown();
+        
         TriggerBiteReleaseCooldown();
 
         grabedPlayerGO = biteTarget;
@@ -244,6 +249,8 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase
         Debug.Log("player released");
         ReleaseTargetPlayerServerRpc(grabedPlayerGO.GetComponent<NetworkObject>().OwnerClientId, gameObject.GetComponent<NetworkObject>().OwnerClientId);
 
+        TriggerBiteCooldown();
+
         isBiting = false;
         grabedPlayerGO = null;
         grabbedTime = 0;
@@ -283,16 +290,8 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase
         Transform targetTrans = NetworkManager.Singleton.ConnectedClients[targetPlayerId].PlayerObject.gameObject.transform;
         targetTrans.parent = bitterTrans;
 
-        // Reposition the bite target transform position to that of the bitter - THis is done on Bitten players end prior to network transform disable
-        //  targetTrans.position = new Vector3(0, 0, 0);
-
         // Server Authorative - On the server, tell it to set the grabbed player's Bite_Receiver to call Is Bitten.
         NetworkManager.Singleton.ConnectedClients[targetPlayerId].PlayerObject.gameObject.GetComponent<ScottsBackup_BiteReceiver>().fn_SetBiteMode(true, _holdingPoint.position);
-
-
-        //find and runs a function on the grabbed players animal chaaracter script that disables the players network transformer and movement in the script
-        //NetworkManager.Singleton.ConnectedClients[PlayerId].PlayerObject.gameObject.GetComponent<AnimalCharacter>().DisableMovementRpc();
-
     }
 
     [ServerRpc]
@@ -353,6 +352,7 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase
     private bool IsBiteOnCooldown() => isBiteOnCooldown;
     private void TriggerBiteCooldown()
     {
+        OnCooldownWithLengthTriggered?.Invoke(biteCooldownLenght);
         biteCooldown = Time.time + biteCooldownLenght;
         isBiteOnCooldown = true;
     }
@@ -391,6 +391,7 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase
     private bool IsBiteReleaseOnCooldown() => isBiteReleaseOnCooldown;
     private void TriggerBiteReleaseCooldown()
     {
+        OnCooldownWithLengthTriggered?.Invoke(biteReleaseCooldownLenght);
         biteReleaseCooldown = Time.time + biteReleaseCooldownLenght;
         isBiteReleaseOnCooldown = true;
     }

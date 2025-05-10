@@ -1,15 +1,21 @@
 using System;
 using UnityEngine;
 
-public class ScottsBackup_PlayerAction_Sprint : PlayerActionBase
+public class ScottsBackup_PlayerAction_Sprint : PlayerActionBase, IHudAbilityBinder
 {
     private const bool ISDEBUGGING = false;
+
+    public event Action<float> OnCooldownWithLengthTriggered;
+    public event Action OnCooldownCanceled;
+
     [SerializeField] private ScottsBackup_ThirdPersonController _playerControler;
     [SerializeField] private ScottsBackup_ResourceMng _staminaSystem;
     [SerializeField] private float _sprintCostPerSec = 5f;
 
     private bool _inputRecived;
-    
+
+
+
     void Start()
     {
         // Disable Self If Not Owner
@@ -61,6 +67,7 @@ public class ScottsBackup_PlayerAction_Sprint : PlayerActionBase
         {
             if (ISDEBUGGING) Debug.Log("PlayerAction_Sprint: Is Sprinting");
             _playerControler.fn_SetIsSprintingInput(true);
+            OnCooldownWithLengthTriggered?.Invoke(0.5f);
         }
         else
         {

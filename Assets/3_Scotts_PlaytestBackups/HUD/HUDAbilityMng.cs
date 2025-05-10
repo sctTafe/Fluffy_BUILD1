@@ -7,14 +7,18 @@ public class HUDAbilityMng : MonoBehaviour
 
     private IHudAbilityBinder _boundAbility;
 
-    public void BindAbility(IHudAbilityBinder ability)
+    private void OnDisable()
     {
-        if (_boundAbility != null)
-        {
-            // Unsubscribe previous binding to avoid event leaks
-            _boundAbility.OnCooldownWithLengthTriggered -= _abilityDisplay.fn_StartCooldown;
-            _boundAbility.OnCooldownCanceled -= _abilityDisplay.fn_CancelCooldown;
-        }
+        Unbind();
+    }
+    private void OnDestroy()
+    {
+        Unbind();
+    }
+
+    public void fn_Bind(IHudAbilityBinder ability)
+    {
+        Unbind();
 
         _boundAbility = ability;
 
@@ -25,14 +29,17 @@ public class HUDAbilityMng : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    private void Unbind()
     {
         if (_boundAbility != null)
         {
             _boundAbility.OnCooldownWithLengthTriggered -= _abilityDisplay.fn_StartCooldown;
             _boundAbility.OnCooldownCanceled -= _abilityDisplay.fn_CancelCooldown;
+            _boundAbility = null;
         }
     }
+
+
 }
 
 public interface IHudAbilityBinder

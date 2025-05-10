@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
@@ -13,11 +12,11 @@ public class DestructibleObject_Reciver : NetworkBehaviour
     internal void fn_TriggerDestruction(float delay = 0f)
     {
         if (ISDEBUGGING) Debug.Log("DestructibleObject_Reciver: fn_TriggerDestruction Called!");
+        SendOnAttackedRpc(delay);
         StartCoroutine(DelayedDestoryFunctionCall(delay));
 
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         

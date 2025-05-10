@@ -11,6 +11,9 @@ public class ScottsBackup_ActionMappingSystem : NetworkBehaviour
     [SerializeReference] public PlayerActionBase _Action_Main;
     [SerializeReference] public PlayerActionBase _Action_Sprint;
     [SerializeReference] public PlayerActionBase _Action_Interaction1;
+    [SerializeReference] public PlayerActionBase _Action_Interaction2;
+    [SerializeReference] public PlayerActionBase _Action_Interaction3;
+    [SerializeReference] public PlayerActionBase _Action_Interaction4;
 
     private void Start()
     {
