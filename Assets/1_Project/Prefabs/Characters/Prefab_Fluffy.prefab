@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 207839948091399278}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -371,7 +371,7 @@ Transform:
   m_GameObject: {fileID: 1569990660716395642}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -499,7 +499,7 @@ Transform:
   m_GameObject: {fileID: 2586582537315772899}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.865, z: 0.395}
+  m_LocalPosition: {x: 0, y: 0.865, z: 0}
   m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -950,11 +950,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  Speed: 1.5
-  SprintSpeed: 4
-  JumpSpeed: 154.5
-  SprintJumpSpeed: 6
-  Acceleration: 10
+  Speed: 1
+  SprintSpeed: 2
+  JumpSpeed: 6.65
+  SprintJumpSpeed: 8
+  Acceleration: 9.22
   RotationSpeed: 10
   strafing: 0
   GroundMask:
@@ -963,17 +963,17 @@ MonoBehaviour:
   GroundCheckRadius: 0.08
   GroundCheckDistance: 0.51
   groundCheckStartOffset: {x: 0, y: 0.51, z: 0}
-  GroundAlignmentForce: 35.32
-  GroundSpringDamping: 2.22
+  GroundAlignmentForce: 38.38
+  GroundSpringDamping: 2.21
   DebugRaycasts: 1
-  MaxGroundAlignmentForce: 30.8
+  MaxGroundAlignmentForce: 100
   maxStableSlopeAngle: 40
   slideAcceleration: 6
   characterAnimator: {fileID: 3367660439844504618}
   _sidewaysSpeed_NWV:
-    m_InternalValue: 0
+    m_InternalValue: -0.010649449
   _forwardsSpeed_NWV:
-    m_InternalValue: 0
+    m_InternalValue: 0.18209498
   CameraOverride: {fileID: 0}
   isGrabbed: 0
 --- !u!114 &6091755371208914198
@@ -1222,7 +1222,7 @@ Transform:
   m_GameObject: {fileID: 7021858314352015342}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -1.2091023e-14, z: -0, w: 1}
-  m_LocalPosition: {x: 0.003025552, y: 0.21658331, z: 0.0039328113}
+  m_LocalPosition: {x: 0, y: 0.21658331, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1682,7 +1682,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3066390639022831831, guid: 09dbcf666b45b4041bc599612a7f3dac, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.188
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3066390639022831831, guid: 09dbcf666b45b4041bc599612a7f3dac, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1749,7 +1749,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8485962891292710966, guid: c586009007d450241a55df45a81be531, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.989
+      value: 0.693
       objectReference: {fileID: 0}
     - target: {fileID: 8485962891292710966, guid: c586009007d450241a55df45a81be531, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1883,7 +1883,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5932929396083703630, guid: 133cd8fbfac7dfb4f91d5a58fb3cda9e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.061914977
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5932929396083703630, guid: 133cd8fbfac7dfb4f91d5a58fb3cda9e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1891,7 +1891,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5932929396083703630, guid: 133cd8fbfac7dfb4f91d5a58fb3cda9e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.531038
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5932929396083703630, guid: 133cd8fbfac7dfb4f91d5a58fb3cda9e, type: 3}
       propertyPath: m_LocalRotation.w

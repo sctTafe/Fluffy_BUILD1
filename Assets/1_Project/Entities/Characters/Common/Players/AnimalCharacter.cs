@@ -104,15 +104,15 @@ public class AnimalCharacter : CharacterBase
 
         PreUpdate?.Invoke(); // Still fire PreUpdate here
 
-        ApplyGroundAlignment();
         UpdateAnimationParameters();
     }
 
 
     private void FixedUpdate()
     {
-        if (!IsOwner) return;
-        if (isGrabbed) return;
+        if (!IsOwner || isGrabbed) return;
+
+        ApplyGroundAlignment();
 
         if (hasInput)
         {
@@ -298,6 +298,7 @@ public class AnimalCharacter : CharacterBase
 
     private bool IsGrounded()
     {
+        //Vector3 origin = transform.position + groundCheckStartOffset;
         return Physics.SphereCast(transform.position+Vector3.up, GroundCheckRadius, Vector3.down, out RaycastHit hit, GroundCheckDistance*2.0f, GroundMask);
     }
 
@@ -309,6 +310,8 @@ public class AnimalCharacter : CharacterBase
     public void MoveTo(Vector3 pos)
     {
         transform.position = pos;
+        rb.position = pos;
+        rb.linearVelocity = Vector3.zero;
         if (IsOwner)
         {
             Debug.Log("im grabed");
