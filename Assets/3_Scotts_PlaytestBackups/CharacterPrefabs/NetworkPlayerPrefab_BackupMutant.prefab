@@ -2099,7 +2099,7 @@ Transform:
   m_GameObject: {fileID: 4191396440912747030}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.95, z: 0.773}
+  m_LocalPosition: {x: 0, y: 0.95, z: 0.892}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2720,6 +2720,7 @@ GameObject:
   - component: {fileID: 6498338235879297589}
   - component: {fileID: 1220139334186284262}
   - component: {fileID: 8589080861325465636}
+  - component: {fileID: 5348581995477502417}
   - component: {fileID: -991564175368876500}
   - component: {fileID: -8397057803743424606}
   m_Layer: 7
@@ -2739,7 +2740,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_LocalScale: {x: 1.15, y: 1.15, z: 1.15}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 509613623770532218}
@@ -2866,13 +2867,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 1.8
-  m_Radius: 0.28
+  m_Height: 1.75
+  m_Radius: 0.35
   m_SlopeLimit: 45
   m_StepOffset: 0.25
   m_SkinWidth: 0.02
   m_MinMoveDistance: 0
-  m_Center: {x: 0, y: 0.93, z: 0}
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &7126122190191861419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2968,7 +2969,7 @@ MonoBehaviour:
   LandingAudioClip: {fileID: 0}
   FootstepAudioClips: []
   FootstepAudioVolume: 0.5
-  JumpHeight: 1.2
+  JumpHeight: 2
   Gravity: -15
   JumpTimeout: 0.5
   FallTimeout: 0.15
@@ -3008,7 +3009,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   _Action_Main: {fileID: 1220139334186284262}
   _Action_Sprint: {fileID: 8589080861325465636}
-  _Action_Interaction1: {fileID: 0}
+  _Action_Interaction1: {fileID: 5348581995477502417}
 --- !u!114 &1220139334186284262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3053,6 +3054,27 @@ MonoBehaviour:
   _playerControler: {fileID: 7566589443499182477}
   _staminaSystem: {fileID: -991564175368876500}
   _sprintCostPerSec: 10
+--- !u!114 &5348581995477502417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5408246126893154181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aa755ccf1e9ccd48bd2c95d25437790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  OnActivationSuccess_UE:
+    m_PersistentCalls:
+      m_Calls: []
+  colliderBox: {fileID: 6402720590088216435}
+  _staminaSystem: {fileID: -991564175368876500}
+  _enegryCost: 10
+  _abilityCooldownLength: 10
+  _destructionDelay: 1.5
 --- !u!114 &-991564175368876500
 MonoBehaviour:
   m_ObjectHideFlags: 0

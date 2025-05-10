@@ -154,7 +154,7 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase
 
         if (!IsATargetInsideBiteCollider(out GameObject biteTarget))
         {
-            Debug.Log("Bite_Activator: Nothing To Grab!");
+            Debug.Log("ScottsBackup_PlayerAction_BiteActivator: Nothing To Grab!");
             return;
         }
 
@@ -199,7 +199,7 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase
         }
         else
         {
-            Debug.LogWarning("Bite_Activator Trying To Release null player!");
+            Debug.LogWarning("ScottsBackup_PlayerAction_BiteActivator Trying To Release null player!");
             return;
         }
     }
