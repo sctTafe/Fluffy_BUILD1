@@ -9,12 +9,13 @@ using UnityEngine.Events;
 /// Base on Braedon's, 'GrabPlayer' Script
 /// Part of a Two Part System with 'Bite_Activator' & 'Bite_Receiver'
 /// </summary>
-public class ScottsBackup_BiteReceiver : NetworkBehaviour
+public class ScottsBackup_Receiver_Bite : NetworkBehaviour
 {
     public UnityEvent OnBiteStart;
     public UnityEvent OnBiteStop;
 
     [SerializeField] private ScottsBackup_ThirdPersonController controler;   // The Character Controller
+    [SerializeField] private ScottsBackup_ResourceMng healthControler;
     [SerializeField] private Vector3 _positionOffset;
 
     public bool IsGrabbed { get; private set; }
@@ -28,6 +29,12 @@ public class ScottsBackup_BiteReceiver : NetworkBehaviour
     {
         if (controler == null)
             controler = GetComponent<ScottsBackup_ThirdPersonController>();
+        if (healthControler == null)
+        {
+            Debug.LogError("No Health Resrouce Manager Attached");
+            //healthControler = GetComponent<ScottsBackup_ResourceMng>();
+        }
+            
     }
    
     public void fn_SetBiteMode(bool isBitten, Vector3 pos)
@@ -50,9 +57,12 @@ public class ScottsBackup_BiteReceiver : NetworkBehaviour
         gameObject.GetComponent<NetworkTransform>().enabled = false;
         controler.fn_IsMovementInputDisabled(true);
 
-        if (IsOwner) 
+        if (IsOwner)
+        {
             gameObject.GetComponent<PlayerHealth>().ChangePlayerHealth(damage);
-       
+            healthControler.fn_ForceReduceValue(damage);
+        }
+                 
         OnBiteStart?.Invoke();
         isGrabbed = true;
     }

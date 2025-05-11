@@ -10,6 +10,7 @@ public class ScottsBackup_ActionMappingSystem : NetworkBehaviour
 
     [SerializeReference] public PlayerActionBase _Action_Main;
     [SerializeReference] public PlayerActionBase _Action_Sprint;
+    [SerializeReference] public PlayerActionBase _Action_Jump;
     [SerializeReference] public PlayerActionBase _Action_Interaction1;
     [SerializeReference] public PlayerActionBase _Action_Interaction2;
     [SerializeReference] public PlayerActionBase _Action_Interaction3;
@@ -33,6 +34,12 @@ public class ScottsBackup_ActionMappingSystem : NetworkBehaviour
                 _Action_Sprint.fn_ReceiveActivationInput(true);
         }
 
+        if (playerInputs.jump == true)
+        {
+            if (_Action_Jump != null)
+                playerInputs.jump = _Action_Jump.fn_ReceiveActivationInput(true);
+        }
+
         if (playerInputs.attack == true)
         {
             if (_Action_Main != null)
@@ -43,6 +50,24 @@ public class ScottsBackup_ActionMappingSystem : NetworkBehaviour
         {
             if (_Action_Interaction1 != null)
                 playerInputs.interaction1 = _Action_Interaction1.fn_ReceiveActivationInput(true);
+        }
+
+        if (playerInputs.interaction2 == true)
+        {
+            if (_Action_Interaction2 != null)
+                playerInputs.interaction2 = _Action_Interaction2.fn_ReceiveActivationInput(true);
+        }
+
+        if (playerInputs.interaction3 == true)
+        {
+            if (_Action_Interaction3 != null)
+                playerInputs.interaction3 = _Action_Interaction3.fn_ReceiveActivationInput(true);
+        }
+
+        if (playerInputs.interaction4 == true)
+        {
+            if (_Action_Interaction4 != null)
+                playerInputs.interaction4 = _Action_Interaction4.fn_ReceiveActivationInput(true);
         }
 
     }

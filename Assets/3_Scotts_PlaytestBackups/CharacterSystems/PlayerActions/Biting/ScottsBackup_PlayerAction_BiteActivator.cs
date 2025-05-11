@@ -291,7 +291,7 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
         targetTrans.parent = bitterTrans;
 
         // Server Authorative - On the server, tell it to set the grabbed player's Bite_Receiver to call Is Bitten.
-        NetworkManager.Singleton.ConnectedClients[targetPlayerId].PlayerObject.gameObject.GetComponent<ScottsBackup_BiteReceiver>().fn_SetBiteMode(true, _holdingPoint.position);
+        NetworkManager.Singleton.ConnectedClients[targetPlayerId].PlayerObject.gameObject.GetComponent<ScottsBackup_Receiver_Bite>().fn_SetBiteMode(true, _holdingPoint.position);
     }
 
     [ServerRpc]
@@ -301,7 +301,7 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
         p.transform.parent = null;
 
         //find and runs a function on the grabbed players animal chaaracter script that disables the players network transformer and movement in the script
-        p.GetComponent<ScottsBackup_BiteReceiver>().fn_SetBiteMode(false, Vector3.zero);
+        p.GetComponent<ScottsBackup_Receiver_Bite>().fn_SetBiteMode(false, Vector3.zero);
     }
 
 

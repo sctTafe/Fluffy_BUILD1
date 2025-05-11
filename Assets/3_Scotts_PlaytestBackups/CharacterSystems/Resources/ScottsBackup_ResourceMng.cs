@@ -103,6 +103,20 @@ public class ScottsBackup_ResourceMng : NetworkBehaviour
         return _currentValue;
     }
 
+    public void fn_ForceReduceValue(float amount)
+    {
+        if (amount < 0.00)
+            return;
+
+        _currentValue -= amount;
+        Trigger_RechargePaused();
+        CheckForExhaustion();
+        _OnValueChange?.Invoke();
+        _OnValueChangeUp?.Invoke(false);
+
+        if (ISDEBUGGING) Debug.Log($"ScottsBackup_ResourceMng: Amount Reduced {amount}");
+    }
+
     public bool fn_TryReduceValue(float amount)
     {
         // fail

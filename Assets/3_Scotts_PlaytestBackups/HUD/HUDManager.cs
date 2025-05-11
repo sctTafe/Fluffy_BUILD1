@@ -18,7 +18,7 @@ public class HUDManager : Singleton<HUDManager>
         Ghost,
         Mutant
     }
-    private const bool ISDEBUGGING = true;
+    private const bool ISDEBUGGING = false;
 
     // HUD Canvas GO's
     [SerializeField] GameObject _fluffyCanvasGO;

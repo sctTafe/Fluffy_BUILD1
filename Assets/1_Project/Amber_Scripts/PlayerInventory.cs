@@ -4,14 +4,19 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 /**
 * Script created by Amber to allow the player to pick up items and store them in an inventory
 **/
 
-public class PlayerInventory : NetworkBehaviour
+public class PlayerInventory : PlayerActionBase, IHudAbilityBinder
 {
-	public List<string> held_items = new List<string>();
+    public event Action<float> OnCooldownWithLengthTriggered;
+    public event Action OnCooldownCanceled;
+
+
+    public List<string> held_items = new List<string>();
 
 	private bool in_item_hitbox = false;
 	private bool in_deposit_hitbox = false;
@@ -26,17 +31,15 @@ public class PlayerInventory : NetworkBehaviour
 	public RawImage item_slot_2;
 	public RawImage item_slot_3;
 
-	void Start()
+    void Start()
 	{
 		if(!IsOwner)
 			return;
 
-		item_slot_1 = GameObject.Find("item_slot_1").GetComponent<RawImage>();
-		item_slot_2 = GameObject.Find("item_slot_2").GetComponent<RawImage>();
-		item_slot_3 = GameObject.Find("item_slot_3").GetComponent<RawImage>();
+		TryGetRefs();
 
-		// inventory_prompt = GameObject.FindWithTag("inventory_prompt").GetComponent<TMP_Text>();
-		UpdateUI();
+        // inventory_prompt = GameObject.FindWithTag("inventory_prompt").GetComponent<TMP_Text>();
+        UpdateUI();
 	}
 
     void Update()
@@ -46,9 +49,19 @@ public class PlayerInventory : NetworkBehaviour
 			return;
 		}
 
-		if(Input.GetKeyDown(KeyCode.E))
+		// Resoruce Load Check
+        if (item_slot_1 == null)
+        {
+			TryGetRefs();
+			Debug.LogWarning("PlayerInventory Unable to find UI Refs!");
+			return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
 		{
-			if(in_deposit_hitbox)
+            OnCooldownWithLengthTriggered?.Invoke(0.5f);
+
+            if (in_deposit_hitbox)
 			{
 				if(held_items.Contains(deposit_point.GetNeededItem()))
 				{
@@ -72,6 +85,29 @@ public class PlayerInventory : NetworkBehaviour
 			}
 		}
     }
+    public override bool fn_ReceiveActivationInput(bool b)
+    {
+        //Not Setup in theis version
+		return false;
+    }
+
+    private void TryGetRefs()
+	{
+        GameObject go;
+
+        go = GameObject.Find("item_slot_1");
+        if (go != null)
+            item_slot_1 = go.GetComponent<RawImage>();
+
+        go = GameObject.Find("item_slot_2");
+        if (go != null)
+            item_slot_2 = go.GetComponent<RawImage>();
+
+        go = GameObject.Find("item_slot_3");
+        if (go != null)
+            item_slot_3 = go.GetComponent<RawImage>();
+    }
+
 
 	void OnTriggerEnter(Collider other)
 	{
@@ -124,8 +160,17 @@ public class PlayerInventory : NetworkBehaviour
 
 	void UpdateUI()
 	{
-		
-		/**
+        // Resoruce Load Check
+        if (item_slot_1 == null)
+        {
+            TryGetRefs();
+            Debug.LogWarning("PlayerInventory Unable to find UI Refs!");
+            return;
+        }
+
+
+
+        /**
 		string new_text = "Held items:";
 
 		foreach(string item in held_items)
@@ -134,9 +179,9 @@ public class PlayerInventory : NetworkBehaviour
 		}
 
 		inventory_prompt.text = new_text;
-		**/	
+		**/
 
-		if(held_items.Count == 3)
+        if (held_items.Count == 3)
 		{
 			item_slot_3.texture = Resources.Load<Texture2D>("icons/" + held_items[2]);
 		}
@@ -165,4 +210,6 @@ public class PlayerInventory : NetworkBehaviour
 		}
 
 	}
+
+
 }

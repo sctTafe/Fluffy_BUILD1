@@ -65,10 +65,4 @@ public class DestructibleObject_Reciver : NetworkBehaviour
 
     #endregion
 
-
-
-
-
-
-
 }

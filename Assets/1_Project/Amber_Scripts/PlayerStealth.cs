@@ -14,9 +14,12 @@ public class PlayerStealth : NetworkBehaviour
     {
     	geometry = transform.GetChild(3).gameObject;    
 		if(IsOwner)
-		{
-			stealth_prompt = GameObject.FindWithTag("stealth_prompt").GetComponent<TMP_Text>();
-		}
+		{			
+			//stealth_prompt = GameObject.FindWithTag("stealth_prompt").GetComponent<TMP_Text>();
+			var Sp = GameObject.FindWithTag("stealth_prompt");
+			if(Sp != null)
+                stealth_prompt = Sp.GetComponent<TMP_Text>();
+        }
     }
 
 	void Update()
@@ -33,6 +36,7 @@ public class PlayerStealth : NetworkBehaviour
 				}
 				else
 				{
+					if(stealth_prompt)
 					stealth_prompt.text = "[ Hidden! ]";
 				}
 			}
@@ -43,7 +47,8 @@ public class PlayerStealth : NetworkBehaviour
 		// Doesn't show revealed text, probably needs to be an RPC
 		if(IsOwner && force_reveal > 0)
 		{
-			stealth_prompt.text = "[ Revealed! ]";
+            if (stealth_prompt)
+                stealth_prompt.text = "[ Revealed! ]";
 		}
 
 	}
@@ -69,7 +74,8 @@ public class PlayerStealth : NetworkBehaviour
 			}
 			else
 			{
-				stealth_prompt.text = "";
+                if (stealth_prompt)
+                    stealth_prompt.text = "";
 			}
 		}
 	}
@@ -87,7 +93,8 @@ public class PlayerStealth : NetworkBehaviour
 		}
 		else
 		{
-			stealth_prompt.text = "[ Revealed! ]";
+            if (stealth_prompt)
+                stealth_prompt.text = "[ Revealed! ]";
 		}
 
 	}
