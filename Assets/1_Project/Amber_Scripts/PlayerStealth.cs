@@ -80,15 +80,31 @@ public class PlayerStealth : NetworkBehaviour
 	// Reveal probably needs to be an RPC to get this to work
 	public void force_unhide()
 	{
-		force_reveal = 10;
 		if(!IsOwner)
 		{
+			force_reveal = 10;
 			geometry.SetActive(true);
 		}
-		else
-		{
-			stealth_prompt.text = "[ Revealed! ]";
-		}
+		
+		force_reveal_ServerRPC();
 
 	}
+
+	[ServerRpc(RequireOwnership = false)]
+	private void force_reveal_ServerRPC()
+	{
+		client_reveal_ClientRPC();
+	}
+
+	[Rpc(SendTo.ClientsAndHost)]
+	private void client_reveal_ClientRPC()
+	{
+		if(IsOwner)
+		{
+			Debug.Log("Server RPC to reveal player was called");
+			force_reveal = 10;
+			stealth_prompt.text = "[ Revealed! ]";
+		}
+	}
+
 }
