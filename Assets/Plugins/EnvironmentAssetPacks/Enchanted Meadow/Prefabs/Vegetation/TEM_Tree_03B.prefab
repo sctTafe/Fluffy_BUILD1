@@ -65,20 +65,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -5174309026023440356, guid: 6f90186c6601c30469601c9bcc20dcf9, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 25e2c9cb7506afe458aff9a5fef0a8b0, type: 2}
     - target: {fileID: -656334190516847540, guid: 6f90186c6601c30469601c9bcc20dcf9, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 25e2c9cb7506afe458aff9a5fef0a8b0, type: 2}
     - target: {fileID: -515518096867203799, guid: 6f90186c6601c30469601c9bcc20dcf9, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 25e2c9cb7506afe458aff9a5fef0a8b0, type: 2}
     - target: {fileID: 919132149155446097, guid: 6f90186c6601c30469601c9bcc20dcf9, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_03B
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6f90186c6601c30469601c9bcc20dcf9, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: 6f90186c6601c30469601c9bcc20dcf9, type: 3}
       propertyPath: m_Enabled

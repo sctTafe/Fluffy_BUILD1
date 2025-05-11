@@ -65,16 +65,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -3541535069561203614, guid: e79fa640762d0f94b9b3222552ebd089, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 25e2c9cb7506afe458aff9a5fef0a8b0, type: 2}
     - target: {fileID: -2632641616900682662, guid: e79fa640762d0f94b9b3222552ebd089, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 25e2c9cb7506afe458aff9a5fef0a8b0, type: 2}
     - target: {fileID: 919132149155446097, guid: e79fa640762d0f94b9b3222552ebd089, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_04B
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e79fa640762d0f94b9b3222552ebd089, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: e79fa640762d0f94b9b3222552ebd089, type: 3}
       propertyPath: m_FadeMode
@@ -97,7 +101,7 @@ PrefabInstance:
       value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 6345050289323327806, guid: e79fa640762d0f94b9b3222552ebd089, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 25e2c9cb7506afe458aff9a5fef0a8b0, type: 2}
     m_RemovedComponents: []
