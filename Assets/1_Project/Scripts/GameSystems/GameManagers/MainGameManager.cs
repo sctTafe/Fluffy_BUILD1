@@ -21,8 +21,8 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
     [SerializeField] private float _spawnRadius = 5f;
 
     [Header("UI GameObjects")]
-    [SerializeField] private GameObject _friendlyUI;
-    [SerializeField] private GameObject _mutantUI;
+    //[SerializeField] private GameObject _friendlyUI;
+    //[SerializeField] private GameObject _mutantUI;
     [SerializeField] private GameObject _endScreen;
     [SerializeField] private GameObject _endScreen_FluffyWin;
     [SerializeField] private GameObject _endScreen_MutantWin;
@@ -52,8 +52,10 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
         {
             PlayerNetworkDataManager playerNetworkDataManager = PlayerNetworkDataManager.Instance;
             ulong localClientID = NetworkManager.Singleton.LocalClientId;
-            if (playerNetworkDataManager.fn_GetClientTeamByClientID(localClientID)) _friendlyUI.SetActive(true);
-            else _mutantUI.SetActive(true);
+
+            // --- Old Mutant/Fluffy UI Enabler ---
+            //if (playerNetworkDataManager.fn_GetClientTeamByClientID(localClientID)) _friendlyUI.SetActive(true);
+            //else _mutantUI.SetActive(true);
         }
     }
     public void OnDisable()
