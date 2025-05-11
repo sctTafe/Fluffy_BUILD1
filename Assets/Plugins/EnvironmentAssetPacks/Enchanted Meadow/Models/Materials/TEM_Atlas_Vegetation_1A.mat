@@ -130,6 +130,7 @@ Material:
     - _Cutoff: 0.475
     - _DepthFade: 0
     - _DetailNormalMapScale: 1
+    - _DitherAlpha: 1
     - _DstBlend: 0
     - _EdgeHighlights: 0.45
     - _EnableWind: 1
@@ -177,3 +178,4 @@ Material:
     - _TopColor: {r: 1, g: 0, b: 0.24241966, a: 0}
     - _WindDirection: {r: 0.25, g: 0, b: 0.25, a: 0}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1
