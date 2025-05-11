@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1319494406888495962}
   - component: {fileID: 399493074441006581}
   - component: {fileID: -7087431589455317569}
+  - component: {fileID: 3832218568382178452}
   m_Layer: 0
   m_Name: Player Aiming Core
   m_TagString: Untagged
@@ -138,3 +139,23 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 1
+--- !u!114 &3832218568382178452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4803663103294467083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e578c506ef3c05140a2d6e70b910ea43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sphereCastRadius: 0.68
+  treeLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  fadeSpeed: 1
+  minFadeAmount: 0.5
+  startOffsetDistance: 2.45
+  offsetEndDistance: -1.11
