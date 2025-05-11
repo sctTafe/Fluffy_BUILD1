@@ -3,7 +3,7 @@ using UnityEngine;
 public class HUDPublisher_Mutant : HUDPublisher
 {
 
-    [Header("Action Mapping Systems")]
+    [Header("Action Mapping Systems (Auto Assings)")]
     ScottsBackup_ActionMappingSystem _ActionMappingSystem;
 
     [Header("Resource Systems")]

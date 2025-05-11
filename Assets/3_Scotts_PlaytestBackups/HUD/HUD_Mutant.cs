@@ -71,11 +71,24 @@ public class HUD_Mutant : HUD
 
     private void DisableAllActionButtons()
     {
-        _ActionUIElement_Main?.SetActive(false);
-        _ActionUIElement_1?.SetActive(false);
-        _ActionUIElement_2?.SetActive(false);
-        _ActionUIElement_3?.SetActive(false);
-        _ActionUIElement_4?.SetActive(false);
+        if (_ActionUIElement_Main != null)
+            _ActionUIElement_Main.SetActive(false);
+
+        if (_ActionUIElement_Sprint != null)
+            _ActionUIElement_Sprint.SetActive(false);
+
+        if (_ActionUIElement_1 != null)
+            _ActionUIElement_1.SetActive(false);
+
+        if (_ActionUIElement_2 != null)
+            _ActionUIElement_2.SetActive(false);
+
+        if (_ActionUIElement_3 != null)
+            _ActionUIElement_3.SetActive(false);
+
+        if (_ActionUIElement_4 != null)
+            _ActionUIElement_4.SetActive(false);
+
     }
 
     private void TryBindActionButtons()
