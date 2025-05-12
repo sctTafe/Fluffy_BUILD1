@@ -15,7 +15,9 @@ public class PlayerStealth : NetworkBehaviour
     	geometry = transform.GetChild(3).gameObject;    
 		if(IsOwner)
 		{
-			stealth_prompt = GameObject.FindWithTag("stealth_prompt").GetComponent<TMP_Text>();
+			GameObject stealthObject = GameObject.FindWithTag("stealth_prompt");
+            if (stealthObject)
+				stealth_prompt = stealthObject.GetComponent<TMP_Text>();
 		}
     }
 
