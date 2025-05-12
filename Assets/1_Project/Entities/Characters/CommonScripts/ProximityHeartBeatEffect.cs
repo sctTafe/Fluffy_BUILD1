@@ -2,8 +2,9 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using FMODUnity;
+using Unity.Netcode; // Add this at the top
 
-public class ProximityHeartbeatEffect : MonoBehaviour
+public class ProximityHeartbeatEffect : NetworkBehaviour
 {
     public float maxDistance = 50f;
 
@@ -22,6 +23,12 @@ public class ProximityHeartbeatEffect : MonoBehaviour
 
     void Start()
     {
+        if (!IsOwner)
+        {
+            enabled = false;
+            return;
+        }
+
         GameObject mutant = GameObject.FindWithTag("Mutant");
         if (mutant != null)
             target = mutant.transform;

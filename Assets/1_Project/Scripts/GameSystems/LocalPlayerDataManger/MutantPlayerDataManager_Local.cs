@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class MutantPlayerDataManager_Local : PlayerDataManger_Local
 {
     [Header("References")]
-    private ThirdPersonController_Netcode _playerControler;
+    private AnimalCharacter _playerControler;
     private InputManager_Singleton _input;
 
     [Header("Stamina Settings")]
@@ -23,6 +23,7 @@ public class MutantPlayerDataManager_Local : PlayerDataManger_Local
     {
         currentStamina = maxStamina;
 
+        _playerControler = GetComponent<AnimalCharacter>();
         //TODO: clean up this mess of a player input system
         _input = InputManager_Singleton.Instance;
     }

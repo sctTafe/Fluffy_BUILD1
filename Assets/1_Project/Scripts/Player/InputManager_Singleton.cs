@@ -53,7 +53,7 @@ public class InputManager_Singleton : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
     private void SetupInput()

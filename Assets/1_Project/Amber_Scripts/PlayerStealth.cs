@@ -14,12 +14,11 @@ public class PlayerStealth : NetworkBehaviour
     {
     	geometry = transform.GetChild(3).gameObject;    
 		if(IsOwner)
-		{			
-			//stealth_prompt = GameObject.FindWithTag("stealth_prompt").GetComponent<TMP_Text>();
-			var Sp = GameObject.FindWithTag("stealth_prompt");
-			if(Sp != null)
-                stealth_prompt = Sp.GetComponent<TMP_Text>();
-        }
+		{
+			GameObject stealthObject = GameObject.FindWithTag("stealth_prompt");
+            if (stealthObject)
+				stealth_prompt = stealthObject.GetComponent<TMP_Text>();
+		}
     }
 
 	void Update()
@@ -36,7 +35,6 @@ public class PlayerStealth : NetworkBehaviour
 				}
 				else
 				{
-					if(stealth_prompt)
 					stealth_prompt.text = "[ Hidden! ]";
 				}
 			}
@@ -47,8 +45,7 @@ public class PlayerStealth : NetworkBehaviour
 		// Doesn't show revealed text, probably needs to be an RPC
 		if(IsOwner && force_reveal > 0)
 		{
-            if (stealth_prompt)
-                stealth_prompt.text = "[ Revealed! ]";
+			stealth_prompt.text = "[ Revealed! ]";
 		}
 
 	}
@@ -74,8 +71,7 @@ public class PlayerStealth : NetworkBehaviour
 			}
 			else
 			{
-                if (stealth_prompt)
-                    stealth_prompt.text = "";
+				stealth_prompt.text = "";
 			}
 		}
 	}
@@ -86,16 +82,31 @@ public class PlayerStealth : NetworkBehaviour
 	// Reveal probably needs to be an RPC to get this to work
 	public void force_unhide()
 	{
-		force_reveal = 10;
 		if(!IsOwner)
 		{
+			force_reveal = 10;
 			geometry.SetActive(true);
 		}
-		else
-		{
-            if (stealth_prompt)
-                stealth_prompt.text = "[ Revealed! ]";
-		}
+		
+		force_reveal_ServerRPC();
 
 	}
+
+	[ServerRpc(RequireOwnership = false)]
+	private void force_reveal_ServerRPC()
+	{
+		client_reveal_ClientRPC();
+	}
+
+	[Rpc(SendTo.ClientsAndHost)]
+	private void client_reveal_ClientRPC()
+	{
+		if(IsOwner)
+		{
+			Debug.Log("Server RPC to reveal player was called");
+			force_reveal = 10;
+			stealth_prompt.text = "[ Revealed! ]";
+		}
+	}
+
 }

@@ -114,7 +114,7 @@ public class MutantCharacter : CharacterBase
         if (!IsOwner) return;
         if (isGrabbed) return;
 
-        //if (hasInput)
+        if (hasInput)
         {
             ApplyMotion();
 
