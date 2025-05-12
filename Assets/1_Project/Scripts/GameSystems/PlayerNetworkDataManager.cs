@@ -32,7 +32,7 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
     
     // Server NV
     private NetworkVariable<int> teamMonstersCountNV = new NetworkVariable<int>();
-    private NetworkList<PlayerData> playerDataNetworkList; //Must be initialized later 
+    public NetworkList<PlayerData> playerDataNetworkList; //Must be initialized later 
 
 
     // - Local Variables -
@@ -47,16 +47,13 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
 
         // Initialized network List (must be done here)
         playerDataNetworkList = new NetworkList<PlayerData>();
-        playerDataNetworkList.OnListChanged += Handle_PlayerDataNetworkList_OnListChanged;
-
-        // Client Updates
-        teamMonstersCountNV.OnValueChanged += Handle_teamMonstersCountNVValueChange;
     }
 
     override public void OnDestroy()
     {
         playerDataNetworkList.OnListChanged -= Handle_PlayerDataNetworkList_OnListChanged;
         teamMonstersCountNV.OnValueChanged -= Handle_teamMonstersCountNVValueChange;
+        NetworkManager.Singleton.OnClientConnectedCallback -= Handle_NetworkManagerClientConnectedCallback;
 
         base.OnDestroy();
     }
@@ -65,10 +62,11 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
     {
         base.OnNetworkSpawn();
 
-        if(isDebuggingOn) Debug.Log("PlayerNetworkDataManager: OnNetworkSpawn");
-        var netMng = NetworkManager.Singleton;
-        // On new clients joining the game
-        netMng.OnClientConnectedCallback += Handle_NetworkManagerClientConnectedCallback;
+        if (isDebuggingOn) Debug.Log("PlayerNetworkDataManager: OnNetworkSpawn");
+
+        playerDataNetworkList.OnListChanged += Handle_PlayerDataNetworkList_OnListChanged;
+        teamMonstersCountNV.OnValueChanged += Handle_teamMonstersCountNVValueChange;
+        NetworkManager.Singleton.OnClientConnectedCallback += Handle_NetworkManagerClientConnectedCallback;
 
         // TODO: should deal with both of these 
 
@@ -148,6 +146,10 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
     /// </summary>
     private void Handle_NetworkManagerClientConnectedCallback(ulong clientId)
     {
+        if (playerDataNetworkList == null)
+            Debug.LogWarning("Argrghjajkhasjhkl");
+
+
         if (IsServer)
         {
             // Create & Add New Player

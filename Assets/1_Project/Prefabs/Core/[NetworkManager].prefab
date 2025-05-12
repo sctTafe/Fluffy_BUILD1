@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5441948468463275615}
   - component: {fileID: 6274790143681390145}
   - component: {fileID: 1466282912584528552}
+  - component: {fileID: -2238241836938894069}
   m_Layer: 0
   m_Name: '[NetworkManager]'
   m_TagString: Untagged
@@ -120,3 +121,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   environment: production
   maxNumberOfConnections: 4
+--- !u!114 &-2238241836938894069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8117844682385557133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08925d11463e30a4bb168075db1327ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

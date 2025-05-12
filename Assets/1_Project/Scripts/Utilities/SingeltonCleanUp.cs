@@ -8,6 +8,7 @@ public class SingeltonCleanUp : MonoBehaviour
 {
     //Singelton Prefabs
     [SerializeField] Transform _NetworkManagerPrefab;
+    [SerializeField] GameObject _PlayerDate;
     
 
     private void Start()
@@ -21,9 +22,16 @@ public class SingeltonCleanUp : MonoBehaviour
         //    Instantiate(_NetworkManagerPrefab);
         //}
 
-        if (NetworkManager.Singleton == null)
+        //if (NetworkManager.Singleton == null)
+        //{
+        //    Instantiate(_NetworkManagerPrefab);
+        //}
+
+        if (PlayerNetworkDataManager.Instance == null)
         {
-            Instantiate(_NetworkManagerPrefab);
+            Instantiate(_PlayerDate);
         }
+
+
     }
 }

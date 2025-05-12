@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,6 +13,8 @@ public class NetworkSceneManager : Singleton<NetworkSceneManager>
     private Button _nextSceneButton;
     [SerializeField]
     private Button _quitButton;
+    [SerializeField]
+    private Button _shutdownNetworkButton;
 
 
     void Start()
@@ -35,7 +38,16 @@ public class NetworkSceneManager : Singleton<NetworkSceneManager>
                 Debug.Log("Menu_UIMng: Quit Btn Called, Quitting Application");
                 Application.Quit();
             });
+
+        if (_shutdownNetworkButton != null)
+            _shutdownNetworkButton?.onClick.AddListener(() =>
+            {
+                fn_Disconnect();
+            });
+
     }
+
+
 
     private void OnDestroy()
     {
@@ -47,6 +59,15 @@ public class NetworkSceneManager : Singleton<NetworkSceneManager>
 
         if (_quitButton != null)
             _quitButton.onClick.RemoveAllListeners();
+
+        if (NetworkManager.Singleton != null)
+            NetworkManager.Singleton.OnClientDisconnectCallback -= Handle_OnClientDisconnected;
+    }
+
+    private void Handle_OnClientDisconnected(ulong clientId)
+    {
+        Debug.Log("Hnadel_OnClientDisconnected Called!");
+        fn_GoToMainMenu();
     }
 
     string SceneName(int buildIndex)
@@ -75,9 +96,9 @@ public class NetworkSceneManager : Singleton<NetworkSceneManager>
     {
         Debug.Log("Home Scene Btn Called, loading next scene");
         
+
         if (NetworkManager.Singleton != null && NetworkManager.Singleton.SceneManager != null)
         {
-            NetworkManager.Singleton.Shutdown();
             NetworkManager.Singleton.SceneManager.LoadScene(SceneName(0), LoadSceneMode.Single);
         }
         else
@@ -100,6 +121,23 @@ public class NetworkSceneManager : Singleton<NetworkSceneManager>
         {
             fn_GoToMainMenu();
         }
+    }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    public void fn_Disconnect()
+    {
+        Debug.LogWarning("NetworkSceneManager: Disconnect Called!");
+
+        if (NetworkManager.Singleton == null)
+            fn_GoToMainMenu();
+
+        NetworkManager.Singleton.Shutdown();
+
+        if(PlayerNetworkDataManager.Instance != null)
+            Destroy(PlayerNetworkDataManager.Instance.gameObject);
+
+        fn_GoToMainMenu();
     }
 }

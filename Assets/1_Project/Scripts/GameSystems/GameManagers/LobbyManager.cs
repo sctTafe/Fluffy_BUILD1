@@ -61,6 +61,9 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
     {
         if (IsServer)
         {
+            if (NetworkManager.Singleton == null)
+                return;
+
             NetworkManager.Singleton.SceneManager.OnLoadEventCompleted -= SceneManager_OnLoadEventCompleted;
             NetworkManager.Singleton.OnClientConnectedCallback -= Server_OnPlayerJoinedEvent;
         }
