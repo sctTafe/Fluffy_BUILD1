@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8530650890046243544}
   - component: {fileID: 1993819870588323106}
   m_Layer: 0
-  m_Name: StaminaCaps
+  m_Name: StaminaCaps_OneShot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,7 +109,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5101767979164844667, guid: 1a0c2b44f9dd6774bad847f0af895bb9, type: 3}
+      propertyPath: _rootGOToDisable
+      value: 
+      objectReference: {fileID: 7084071009957247494}
+    - target: {fileID: 5101767979164844667, guid: 1a0c2b44f9dd6774bad847f0af895bb9, type: 3}
       propertyPath: targetResourceType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5101767979164844667, guid: 1a0c2b44f9dd6774bad847f0af895bb9, type: 3}
+      propertyPath: _disableAfterEffect
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7867436580929469084, guid: 1a0c2b44f9dd6774bad847f0af895bb9, type: 3}

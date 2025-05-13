@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6552654199739090440}
   - component: {fileID: 6831924559135702404}
   m_Layer: 0
-  m_Name: MutantCaps
+  m_Name: MutantCaps_OneShot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -215,6 +215,14 @@ PrefabInstance:
       propertyPath: targetTag
       value: Mutant
       objectReference: {fileID: 0}
+    - target: {fileID: 7931559862932332286, guid: 1e9171570b7eb0b45834b438867a572b, type: 3}
+      propertyPath: _rootGOToDisable
+      value: 
+      objectReference: {fileID: 7249021475405658918}
+    - target: {fileID: 7931559862932332286, guid: 1e9171570b7eb0b45834b438867a572b, type: 3}
+      propertyPath: _disableAfterEffect
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -236,6 +244,14 @@ PrefabInstance:
     - target: {fileID: 3545162685736455917, guid: 1a0c2b44f9dd6774bad847f0af895bb9, type: 3}
       propertyPath: m_Name
       value: ResourceInteractor_Player_HealthDown_OneShot
+      objectReference: {fileID: 0}
+    - target: {fileID: 5101767979164844667, guid: 1a0c2b44f9dd6774bad847f0af895bb9, type: 3}
+      propertyPath: _rootGOToDisable
+      value: 
+      objectReference: {fileID: 7249021475405658918}
+    - target: {fileID: 5101767979164844667, guid: 1a0c2b44f9dd6774bad847f0af895bb9, type: 3}
+      propertyPath: _disableAfterEffect
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7867436580929469084, guid: 1a0c2b44f9dd6774bad847f0af895bb9, type: 3}
       propertyPath: m_LocalPosition.x

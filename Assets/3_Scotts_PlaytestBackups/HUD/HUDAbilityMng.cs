@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class HUDAbilityMng : MonoBehaviour
 {
+    private const bool ISDEBUGGING = false;
+
     [SerializeField] private UI_AbilityDisplayControl _abilityDisplay;
 
     private IHudAbilityBinder _boundAbility;
@@ -18,7 +20,11 @@ public class HUDAbilityMng : MonoBehaviour
 
     public void fn_Bind(IHudAbilityBinder ability)
     {
+        if (ISDEBUGGING) Debug.Log($"HUDAbilityMng: fn_Bind Called! On {this.gameObject.name}");
+
         Unbind();
+
+        this.gameObject.SetActive(true);
 
         _boundAbility = ability;
 

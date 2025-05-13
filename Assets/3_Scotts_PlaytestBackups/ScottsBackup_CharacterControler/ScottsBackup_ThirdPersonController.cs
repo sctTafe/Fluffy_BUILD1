@@ -138,12 +138,12 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
     float _animVarLocalSpeed_Prev;
     float _animVarLocalMotionSpeed_Prev;
     #endregion
-    #region Control Overrides
-    // local disable movement
-    bool _isMovementDistabled = false;
 
-    // Movment Inputs
+    #region Control Overrides
+    // External Movment Inputs  (public fn Driven)
     private bool _isSprinting_Input;
+    private bool _isJumping_Input;
+    bool _isMovementDistabled = false;
 
     float _inputMagnitude; // Used for Animations / Blend Tree
     #endregion
@@ -248,9 +248,28 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
         CameraRotation();
     }
 
+
+
+
+
+
     #region Public Functions
 
     public void fn_SetIsSprintingInput(bool isSprinting) => _isSprinting_Input = isSprinting;
+    
+    /// <summary>
+    /// If able to jump, it activates the jump & returns true 
+    /// </summary>
+    public bool fn_TryJump()
+    {
+        if (Grounded && _jumpTimeoutDelta <= 0.0f)
+        {
+            //Can Jump
+            _isJumping_Input = true;
+            return true;
+        }
+        else return false;
+    }
 
     public void fn_Despawn() => NetworkObject.Despawn();
     
@@ -375,33 +394,20 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
         // move the player
         _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
                          new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
-
-
-
-        // Moved To Animation Handler
-
-        // update animator if using character
-        //if (_hasAnimator)
-        //{
-        //    _animator.SetFloat(_animIDSpeed, _animationBlend);
-        //    _animator.SetFloat(_animIDMotionSpeed, _inputMagnitude);
-        //}
     }
 
     private void JumpAndGravity()
     {
+
+        
+
+
+
         if (Grounded)
         {
             // reset the fall timeout timer
             _fallTimeoutDelta = FallTimeout;
 
-
-            // update animator if using character
-            //if (_hasAnimator)
-            //{
-            //    _animator.SetBool(_animIDJump, false);
-            //    _animator.SetBool(_animIDFreeFall, false);
-            //}
             _animVarLocal_Jump = false;
             _animVarLocal_Freefall = false;
 
@@ -413,16 +419,13 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
             }
 
             // Jump
-            if (_input.jump && _jumpTimeoutDelta <= 0.0f)
+            if (_isJumping_Input && _jumpTimeoutDelta <= 0.0f)
             {
+                _isJumping_Input = false;
+
                 // the square root of H * -2 * G = how much velocity needed to reach desired height
                 _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
 
-                // update animator if using character
-                //if (_hasAnimator)
-                //{
-                //    _animator.SetBool(_animIDJump, true);
-                //}
                 _animVarLocal_Jump = true;
             }
 
@@ -444,16 +447,8 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
             }
             else
             {
-                // update animator if using character
-                //if (_hasAnimator)
-                //{
-                //    _animator.SetBool(_animIDFreeFall, true);
-                //}
                 _animVarLocal_Freefall = true;
             }
-
-            // if we are not grounded, do not jump
-            _input.jump = false;
         }
 
         // apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)

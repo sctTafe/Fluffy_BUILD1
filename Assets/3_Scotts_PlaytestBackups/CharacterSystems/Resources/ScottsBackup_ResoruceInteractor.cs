@@ -24,10 +24,12 @@ public class ScottsBackup_ResoruceInteractor : MonoBehaviour
     [SerializeField] private float cooldownSeconds = 2f;
 
     [Header("Post Effect Behavior")]
-    [SerializeField] private bool disableAfterEffect = false;
+    [SerializeField] private bool _disableAfterEffect = false;
+    [SerializeField] private Transform _rootGOToDisable;
 
     private bool isOnCooldown = false;
     private Coroutine periodicCoroutine;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -88,9 +90,10 @@ public class ScottsBackup_ResoruceInteractor : MonoBehaviour
             StartCoroutine(CooldownRoutine());
         }
 
-        if (disableAfterEffect)
+        if (_disableAfterEffect)
         {
             gameObject.SetActive(false);
+            _rootGOToDisable.gameObject.SetActive(false);
         }
     }
 

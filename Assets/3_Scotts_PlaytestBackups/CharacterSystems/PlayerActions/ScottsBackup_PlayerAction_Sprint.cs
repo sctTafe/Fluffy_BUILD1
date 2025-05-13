@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ScottsBackup_PlayerAction_Sprint : PlayerActionBase, IHudAbilityBinder
 {
@@ -7,6 +8,8 @@ public class ScottsBackup_PlayerAction_Sprint : PlayerActionBase, IHudAbilityBin
 
     public event Action<float> OnCooldownWithLengthTriggered;
     public event Action OnCooldownCanceled;
+
+    public UnityEvent _OnAvilityActivation;
 
     [SerializeField] private ScottsBackup_ThirdPersonController _playerControler;
     [SerializeField] private ScottsBackup_ResourceMng _staminaSystem;
@@ -36,7 +39,7 @@ public class ScottsBackup_PlayerAction_Sprint : PlayerActionBase, IHudAbilityBin
 
         if (_inputRecived)
         {
-            TrySprint();
+            TryAction();
             _inputRecived = false;
         }
         else 
@@ -59,7 +62,7 @@ public class ScottsBackup_PlayerAction_Sprint : PlayerActionBase, IHudAbilityBin
 
 
 
-    private void TrySprint()
+    private void TryAction()
     {
         float spritCost = _sprintCostPerSec * Time.deltaTime;
         bool canSprint = _staminaSystem.fn_TryReduceValue(spritCost);
@@ -68,15 +71,12 @@ public class ScottsBackup_PlayerAction_Sprint : PlayerActionBase, IHudAbilityBin
             if (ISDEBUGGING) Debug.Log("PlayerAction_Sprint: Is Sprinting");
             _playerControler.fn_SetIsSprintingInput(true);
             OnCooldownWithLengthTriggered?.Invoke(0.5f);
+            _OnAvilityActivation?.Invoke();
         }
         else
         {
             if (ISDEBUGGING) Debug.Log("PlayerAction_Sprint: Is Not Sprinting");
             _playerControler.fn_SetIsSprintingInput(false);
         }
-
     }
-
-
-
 }

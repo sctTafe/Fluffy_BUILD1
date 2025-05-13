@@ -2,61 +2,63 @@ using UnityEngine;
 
 public class HUDPublisher_Mutant : HUDPublisher
 {
-
-    [Header("Action Mapping Systems (Auto Assings)")]
-    ScottsBackup_ActionMappingSystem _ActionMappingSystem;
+    private const bool ISDEBUGGING = false;
 
     [Header("Resource Systems")]
     [SerializeField] ScottsBackup_ResourceMng _mutantEng_ResoruceMngs;
     public ScottsBackup_ResourceMng _MutantResMng { get { return _mutantEng_ResoruceMngs; } }
 
+    private void Awake()
+    {
+        if (ISDEBUGGING) Debug.Log("HUDPublisher_Mutant: Awake Called");
+    }
 
-    [Header("Abiliities")]
-    [SerializeField] private PlayerActionBase _inputMain;
-    [SerializeField] private PlayerActionBase _inputSprint;
-    [SerializeField] private PlayerActionBase _Action_Interaction1;
-    [SerializeField] private PlayerActionBase _Action_Interaction2;
-    [SerializeField] private PlayerActionBase _Action_Interaction3;
-    [SerializeField] private PlayerActionBase _Action_Interaction4;
-    public PlayerActionBase InputMain => _inputMain;
-    public PlayerActionBase InputSprint => _inputSprint;
-    public PlayerActionBase ActionInteraction1 => _Action_Interaction1;
-    public PlayerActionBase ActionInteraction2 => _Action_Interaction2;
-    public PlayerActionBase ActionInteraction3 => _Action_Interaction3;
-    public PlayerActionBase ActionInteraction4 => _Action_Interaction4;
 
     protected override void Start()
     {
-        base.Start();
+        if (ISDEBUGGING) Debug.Log("HUDPublisher_Mutant: Start Called");
 
         SetHudType(HUDManager.HUDType.Mutant);
 
-        _ActionMappingSystem = GetComponent<ScottsBackup_ActionMappingSystem>();
-        if (_ActionMappingSystem == null)
+        base.Start();
+
+        if (ISDEBUGGING)
         {
-            Debug.LogError("ActionMappingSystem is Null!");
+            Debug.Log($"HUDPublisher_Mutant: _ActionMappingSystem: {_ActionMappingSystem.name}");
+            DebugOut();
         }
-        else
-        {
-            Bind_ActionMappingSystem();
-        }
-            
+
         if (_MutantResMng == null)
             Debug.LogError("MutantResMng is Null!");
 
         HUDManager.Instance.fn_BindPublisherType(this);
 
+        
     }
 
 
-    private void Bind_ActionMappingSystem()
+
+    private void DebugOut()
     {
-        _inputMain = _ActionMappingSystem._Action_Main;
-        _inputSprint = _ActionMappingSystem._Action_Sprint;
-        _Action_Interaction1 = _ActionMappingSystem._Action_Interaction1;
-        _Action_Interaction2 = _ActionMappingSystem._Action_Interaction2;
-        _Action_Interaction3 = _ActionMappingSystem._Action_Interaction3;
-        _Action_Interaction4 = _ActionMappingSystem._Action_Interaction4;
-    }
+        if (_inputMain != null)
+            Debug.Log("HUDPublisher_Mutant: _inputMain: Found");
 
+        if (_inputSprint != null)
+            Debug.Log("HUDPublisher_Mutant: _inputSprint: Found");
+
+        if (_inputJump != null)
+            Debug.Log("HUDPublisher_Mutant: _inputJump: Found");
+
+        if (_Action_Interaction1 != null)
+            Debug.Log("HUDPublisher_Mutant: _Action_Interaction1: Found");
+
+        if (_Action_Interaction2 != null)
+            Debug.Log("HUDPublisher_Mutant: _Action_Interaction2: Found");
+
+        if (_Action_Interaction3 != null)
+            Debug.Log("HUDPublisher_Mutant: _Action_Interaction3: Found");
+
+        if (_Action_Interaction4 != null)
+            Debug.Log("HUDPublisher_Mutant: _Action_Interaction4: Found");
+    }
 }

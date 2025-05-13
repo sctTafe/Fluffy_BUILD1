@@ -16,11 +16,5 @@ public class HUDPublisher_Ghost : HUDPublisher
             Debug.LogError("GhostResMng is Null!");
 
         HUDManager.Instance.fn_BindPublisherType(this);
-
-    }
-
-    protected override void Update()
-    {
-        base.Update();
     }
 }

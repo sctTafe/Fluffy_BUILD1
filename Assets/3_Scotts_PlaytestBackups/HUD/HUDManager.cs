@@ -59,19 +59,22 @@ public class HUDManager : Singleton<HUDManager>
         switch (ht)
         {
             case HUDType.Fluffy:
+                if (ISDEBUGGING) Debug.Log("HUDPublisher: Fluffy HUD Activated");
                 _fluffyCanvasGO.SetActive(true);
                 _hUDPublisher_Fluffy.fn_Bind(hUDPublisher);
-                if (ISDEBUGGING) Debug.Log("HUDPublisher: Fluffy HUD Activated");
+                
                 break;
             case HUDType.Mutant:
+                if (ISDEBUGGING) Debug.Log("HUDPublisher: Mutant HUD Activated");
                 _mutantCanvasGO.SetActive(true);
                 _hUDPublisher_Mutant.fn_Bind(hUDPublisher);
-                if (ISDEBUGGING) Debug.Log("HUDPublisher: Mutant HUD Activated");
+                
                 break;
             case HUDType.Ghost:
+                if (ISDEBUGGING) Debug.Log("HUDPublisher: Ghost HUD Activated");
                 _ghostCanvasGO.SetActive(true);
                 _hUDPublisher_Ghost.fn_Bind(hUDPublisher);
-                if (ISDEBUGGING) Debug.Log("HUDPublisher: Ghost HUD Activated");
+                
                 break;
         }
     }

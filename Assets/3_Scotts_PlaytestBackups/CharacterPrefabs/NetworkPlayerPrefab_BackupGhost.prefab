@@ -2125,11 +2125,15 @@ GameObject:
   - component: {fileID: -9134813166992334759}
   - component: {fileID: 4009507232335487725}
   - component: {fileID: 8564689662803245180}
-  - component: {fileID: 8984347503649952866}
   - component: {fileID: 5321180133262573405}
   - component: {fileID: 8607248295975972782}
-  - component: {fileID: 736005593907222294}
+  - component: {fileID: 8984347503649952866}
   - component: {fileID: 7229105595755631234}
+  - component: {fileID: 6382438664119781810}
+  - component: {fileID: 6580606540512392722}
+  - component: {fileID: 5015193681070810289}
+  - component: {fileID: 736005593907222294}
+  - component: {fileID: 5264834117913116960}
   m_Layer: 8
   m_Name: NetworkPlayerPrefab_BackupGhost
   m_TagString: Player
@@ -2272,13 +2276,45 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 1.6
+  m_Height: 1.45
   m_Radius: 0.28
   m_SlopeLimit: 45
   m_StepOffset: 0.25
   m_SkinWidth: 0.02
   m_MinMoveDistance: 0
-  m_Center: {x: 0, y: 0.8, z: 0}
+  m_Center: {x: 0, y: 0.75, z: 0}
+--- !u!114 &5321180133262573405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6103115944230435048}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1c5edb76d1824b4a8a317a52830d1c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  _interactableCheckPoint: {fileID: 9059494386361728620}
+--- !u!114 &8607248295975972782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6103115944230435048}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 254d71596295ad74884f132d685803b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  _holdingPositionTansforms: []
+  _playersNetworkObject: {fileID: 0}
 --- !u!114 &8984347503649952866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2292,8 +2328,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  MoveSpeed: 2
-  SprintSpeed: 5.335
+  MoveSpeed: 3.5
+  SprintSpeed: 5.2
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
   LandingAudioClip: {fileID: 0}
@@ -2324,51 +2360,6 @@ MonoBehaviour:
     m_InternalValue: 0
   _motionSpeed_AnimatorVar_NWV:
     m_InternalValue: 0
---- !u!114 &5321180133262573405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6103115944230435048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1c5edb76d1824b4a8a317a52830d1c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  _interactableCheckPoint: {fileID: 9059494386361728620}
---- !u!114 &8607248295975972782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6103115944230435048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 254d71596295ad74884f132d685803b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  _holdingPositionTansforms: []
-  _playersNetworkObject: {fileID: 0}
---- !u!114 &736005593907222294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6103115944230435048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f60227a05fd2ea7499a526cf9d344ad1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ghostEnergy_ResoruceMngs: {fileID: 7229105595755631234}
 --- !u!114 &7229105595755631234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2384,14 +2375,106 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   _resourceID: Ghost
   _resourceTypeID: 4
-  isStartingAtMax: 0
-  isAutoRechargeEnabled: 0
+  isStartingAtMax: 1
+  isAutoRechargeEnabled: 1
   rechargeDelaySecond: 1
-  valueRechargePerSecond: 10
+  valueRechargePerSecond: 0.5
   OnExhaustionTriggered_UE:
     m_PersistentCalls:
       m_Calls: []
   exhaustedCooldown: 2
+--- !u!114 &6382438664119781810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6103115944230435048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f6ebb6a496550644be8f580cdd81351, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  _Action_Main: {fileID: 0}
+  _Action_Sprint: {fileID: 6580606540512392722}
+  _Action_Jump: {fileID: 5015193681070810289}
+  _Action_Interaction1: {fileID: 0}
+  _Action_Interaction2: {fileID: 0}
+  _Action_Interaction3: {fileID: 0}
+  _Action_Interaction4: {fileID: 0}
+--- !u!114 &6580606540512392722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6103115944230435048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2956c6abd683b443925e3dc80d1d947, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  _OnAvilityActivation:
+    m_PersistentCalls:
+      m_Calls: []
+  _playerControler: {fileID: 8984347503649952866}
+  _staminaSystem: {fileID: 7229105595755631234}
+  _sprintCostPerSec: 0.5
+--- !u!114 &5015193681070810289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6103115944230435048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bce3baa156b3f674ebbe65831511acec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  _OnAvilityActivation:
+    m_PersistentCalls:
+      m_Calls: []
+  _playerControler: {fileID: 8984347503649952866}
+  _staminaSystem: {fileID: 7229105595755631234}
+  _abilityUseCost: 0.5
+  _abilityCoolDown: 0.5
+--- !u!114 &736005593907222294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6103115944230435048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f60227a05fd2ea7499a526cf9d344ad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputMain: {fileID: 0}
+  _inputSprint: {fileID: 0}
+  _inputJump: {fileID: 0}
+  _Action_Interaction1: {fileID: 0}
+  _Action_Interaction2: {fileID: 0}
+  _Action_Interaction3: {fileID: 0}
+  _Action_Interaction4: {fileID: 0}
+  _ghostEnergy_ResoruceMngs: {fileID: 7229105595755631234}
+--- !u!114 &5264834117913116960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6103115944230435048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f563180073c19e7228c5d33648252c41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
 --- !u!1 &6167483681963466577
 GameObject:
   m_ObjectHideFlags: 0

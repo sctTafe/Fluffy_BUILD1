@@ -2131,13 +2131,15 @@ GameObject:
   - component: {fileID: 6639843731572211527}
   - component: {fileID: 5928170330904496098}
   - component: {fileID: -6137494299052777976}
-  - component: {fileID: 7099943417741874242}
   - component: {fileID: 6377804535425610020}
+  - component: {fileID: 8046335248435032946}
   - component: {fileID: -1606878970198915638}
   - component: {fileID: 5335591145304952500}
   - component: {fileID: 4899998674329124845}
   - component: {fileID: -5489356403304203484}
   - component: {fileID: 1747774431182646062}
+  - component: {fileID: 7099943417741874242}
+  - component: {fileID: 1794063575882020223}
   m_Layer: 8
   m_Name: NetworkPlayerPrefab_BackupPlayer
   m_TagString: Player
@@ -2345,6 +2347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90a516ae295593b43947786d15b25d57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   maxDistance: 50
   volume: {fileID: 0}
   pulseCurve:
@@ -2439,28 +2442,8 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   _Action_Main: {fileID: 0}
   _Action_Sprint: {fileID: 6377804535425610020}
-  _Action_Jump: {fileID: 0}
+  _Action_Jump: {fileID: 8046335248435032946}
   _Action_Interaction1: {fileID: 2738397815988583428}
-  _Action_Interaction2: {fileID: 0}
-  _Action_Interaction3: {fileID: 0}
-  _Action_Interaction4: {fileID: 0}
---- !u!114 &7099943417741874242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6103115944230435048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0933997df70cc7a49b62bcb5a8ae3bb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _stamina_ResoruceMngs: {fileID: -5489356403304203484}
-  _health_ResoruceMngs: {fileID: 1747774431182646062}
-  _inputMain: {fileID: 0}
-  _inputSprint: {fileID: 0}
-  _Action_Interaction1: {fileID: 0}
   _Action_Interaction2: {fileID: 0}
   _Action_Interaction3: {fileID: 0}
   _Action_Interaction4: {fileID: 0}
@@ -2477,9 +2460,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  _OnAvilityActivation:
+    m_PersistentCalls:
+      m_Calls: []
   _playerControler: {fileID: 5928170330904496098}
   _staminaSystem: {fileID: -5489356403304203484}
   _sprintCostPerSec: 7.5
+--- !u!114 &8046335248435032946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6103115944230435048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bce3baa156b3f674ebbe65831511acec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  _OnAvilityActivation:
+    m_PersistentCalls:
+      m_Calls: []
+  _playerControler: {fileID: 5928170330904496098}
+  _staminaSystem: {fileID: -5489356403304203484}
+  _abilityUseCost: 2
+  _abilityCoolDown: 0.5
 --- !u!114 &-1606878970198915638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2659,6 +2665,40 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   exhaustedCooldown: 2
+--- !u!114 &7099943417741874242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6103115944230435048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0933997df70cc7a49b62bcb5a8ae3bb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputMain: {fileID: 0}
+  _inputSprint: {fileID: 0}
+  _inputJump: {fileID: 0}
+  _Action_Interaction1: {fileID: 0}
+  _Action_Interaction2: {fileID: 0}
+  _Action_Interaction3: {fileID: 0}
+  _Action_Interaction4: {fileID: 0}
+  _stamina_ResoruceMngs: {fileID: -5489356403304203484}
+  _health_ResoruceMngs: {fileID: 1747774431182646062}
+--- !u!114 &1794063575882020223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6103115944230435048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f563180073c19e7228c5d33648252c41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
 --- !u!1 &6167483681963466577
 GameObject:
   m_ObjectHideFlags: 0

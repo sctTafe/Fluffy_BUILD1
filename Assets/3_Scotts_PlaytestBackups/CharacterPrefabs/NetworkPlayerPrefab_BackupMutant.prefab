@@ -2718,10 +2718,12 @@ GameObject:
   - component: {fileID: 6498338235879297589}
   - component: {fileID: 1220139334186284262}
   - component: {fileID: 8589080861325465636}
+  - component: {fileID: 3028756115781371107}
   - component: {fileID: 5348581995477502417}
   - component: {fileID: 1312255123307783352}
   - component: {fileID: -991564175368876500}
-  - component: {fileID: -8397057803743424606}
+  - component: {fileID: 3416581053963996352}
+  - component: {fileID: 5270591487531536575}
   m_Layer: 7
   m_Name: NetworkPlayerPrefab_BackupMutant
   m_TagString: Mutant
@@ -2982,6 +2984,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   _Action_Main: {fileID: 1220139334186284262}
   _Action_Sprint: {fileID: 8589080861325465636}
+  _Action_Jump: {fileID: 3028756115781371107}
   _Action_Interaction1: {fileID: 5348581995477502417}
   _Action_Interaction2: {fileID: 1312255123307783352}
   _Action_Interaction3: {fileID: 0}
@@ -3027,9 +3030,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  _OnAvilityActivation:
+    m_PersistentCalls:
+      m_Calls: []
   _playerControler: {fileID: 7566589443499182477}
   _staminaSystem: {fileID: -991564175368876500}
   _sprintCostPerSec: 10
+--- !u!114 &3028756115781371107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5408246126893154181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bce3baa156b3f674ebbe65831511acec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  _OnAvilityActivation:
+    m_PersistentCalls:
+      m_Calls: []
+  _playerControler: {fileID: 7566589443499182477}
+  _staminaSystem: {fileID: -991564175368876500}
+  _abilityUseCost: 2
+  _abilityCoolDown: 0.5
 --- !u!114 &5348581995477502417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3110,7 +3136,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   exhaustedCooldown: 2
---- !u!114 &-8397057803743424606
+--- !u!114 &3416581053963996352
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3122,13 +3148,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be42a7be46e6fc47975509ab6d1c8b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mutantEng_ResoruceMngs: {fileID: -991564175368876500}
   _inputMain: {fileID: 0}
   _inputSprint: {fileID: 0}
+  _inputJump: {fileID: 0}
   _Action_Interaction1: {fileID: 0}
   _Action_Interaction2: {fileID: 0}
   _Action_Interaction3: {fileID: 0}
   _Action_Interaction4: {fileID: 0}
+  _mutantEng_ResoruceMngs: {fileID: -991564175368876500}
+--- !u!114 &5270591487531536575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5408246126893154181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f563180073c19e7228c5d33648252c41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
 --- !u!1 &5413671998971313028
 GameObject:
   m_ObjectHideFlags: 0
@@ -4727,6 +4767,10 @@ PrefabInstance:
     - target: {fileID: 4076672766109566877, guid: fdf1c80ba93f4e74db9d7c7a095bd081, type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4076672766109566877, guid: fdf1c80ba93f4e74db9d7c7a095bd081, type: 3}
+      propertyPath: moveWithTransform
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7208615103201981085, guid: fdf1c80ba93f4e74db9d7c7a095bd081, type: 3}
       propertyPath: m_Name
