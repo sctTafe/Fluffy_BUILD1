@@ -2127,8 +2127,8 @@ GameObject:
   - component: {fileID: 8564689662803245180}
   - component: {fileID: 2738397815988583428}
   - component: {fileID: 3657911424795443171}
-  - component: {fileID: 6956996503622453850}
   - component: {fileID: 6639843731572211527}
+  - component: {fileID: -8318112631276293116}
   - component: {fileID: 5928170330904496098}
   - component: {fileID: -6137494299052777976}
   - component: {fileID: 6377804535425610020}
@@ -2322,19 +2322,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c579b22bd38779469013a54aeab6b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6956996503622453850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6103115944230435048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31b7615a3fa13e79896057cdb1e3ef8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
 --- !u!114 &6639843731572211527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2382,6 +2369,19 @@ MonoBehaviour:
       Data3: 1522590884
       Data4: -1416451359
     Path: event:/SFX/PlayerSounds/HeartBeat
+--- !u!114 &-8318112631276293116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6103115944230435048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac1f698d97943304fbf5cb6d7709d28f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
 --- !u!114 &5928170330904496098
 MonoBehaviour:
   m_ObjectHideFlags: 0

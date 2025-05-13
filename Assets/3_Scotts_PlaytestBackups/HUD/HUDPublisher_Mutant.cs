@@ -16,6 +16,13 @@ public class HUDPublisher_Mutant : HUDPublisher
 
     protected override void Start()
     {
+        // Disable Self If Not Owner
+        if (!IsOwner)
+        {
+            this.enabled = false;
+            return;
+        }
+
         if (ISDEBUGGING) Debug.Log("HUDPublisher_Mutant: Start Called");
 
         SetHudType(HUDManager.HUDType.Mutant);

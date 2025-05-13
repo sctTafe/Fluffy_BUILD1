@@ -3,7 +3,7 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(PlayerStealth))]
+[RequireComponent(typeof(ScottsBackup_PlayerStealthMng))]
 public class ScottsBackup_Receiver_RevealFluffies : NetworkBehaviour
 {
     private const bool ISDEBUGGING = true;
@@ -19,7 +19,7 @@ public class ScottsBackup_Receiver_RevealFluffies : NetworkBehaviour
         TriggerRpc(delay);
 
         //Current Version of PlayerStealth only runs locallly
-        var c = GetComponent<PlayerStealth>();
+        var c = GetComponent<ScottsBackup_PlayerStealthMng>();
         if (c != null)
             c.force_unhide();
 

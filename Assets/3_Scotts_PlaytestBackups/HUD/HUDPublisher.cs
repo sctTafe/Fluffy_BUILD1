@@ -1,3 +1,4 @@
+using Unity.Netcode;
 using UnityEngine;
 
 /// <summary>
@@ -5,7 +6,7 @@ using UnityEngine;
 /// Sends the Data/Refs To the HUD
 /// 
 /// </summary>
-public abstract class HUDPublisher : MonoBehaviour
+public abstract class HUDPublisher : NetworkBehaviour
 {
     private const bool ISDEBUGGING = false;
 
@@ -33,6 +34,15 @@ public abstract class HUDPublisher : MonoBehaviour
 
     protected virtual void Start()
     {
+        // Disable Self If Not Owner
+        if (!IsOwner)
+        {
+            this.enabled = false;
+            return;
+        }
+
+
+
         if (ISDEBUGGING) Debug.Log("HUDPublisher Base Called");
 
         _ActionMappingSystem = GetComponent<ScottsBackup_ActionMappingSystem>();
