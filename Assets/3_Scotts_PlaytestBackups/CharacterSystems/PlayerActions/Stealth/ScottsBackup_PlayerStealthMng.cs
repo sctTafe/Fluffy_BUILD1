@@ -84,6 +84,7 @@ public class ScottsBackup_PlayerStealthMng : NetworkBehaviour
         }
     }
 
+
     // Forces the player to reveal for 10 seconds
     // Called with mutant scan attack
 
