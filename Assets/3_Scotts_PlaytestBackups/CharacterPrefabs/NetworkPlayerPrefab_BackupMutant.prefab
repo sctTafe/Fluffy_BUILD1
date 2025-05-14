@@ -3133,11 +3133,12 @@ MonoBehaviour:
   _activationRadius: 5
   _targetLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 384
   _effectDelay: 0.5
   _staminaSystem: {fileID: -991564175368876500}
   _enegryCost: 15
   _abilityCooldownLength: 10
+  _targetTag: Player
 --- !u!114 &-991564175368876500
 MonoBehaviour:
   m_ObjectHideFlags: 0
