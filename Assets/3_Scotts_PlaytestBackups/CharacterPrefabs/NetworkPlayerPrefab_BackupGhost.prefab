@@ -2134,7 +2134,7 @@ GameObject:
   - component: {fileID: 5015193681070810289}
   - component: {fileID: 736005593907222294}
   - component: {fileID: 5264834117913116960}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: NetworkPlayerPrefab_BackupGhost
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2454,6 +2454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60227a05fd2ea7499a526cf9d344ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   _inputMain: {fileID: 0}
   _inputSprint: {fileID: 0}
   _inputJump: {fileID: 0}
