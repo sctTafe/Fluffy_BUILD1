@@ -83,6 +83,7 @@ public class ScottsBackup_ActionPlayerItemPickUp : PlayerActionBase, IHudAbility
                 {
                     AddToInventory(target_data.GetItem());
                     DestroyObjectServerRPC(target_network.NetworkObjectId);
+                    in_item_hitbox = false;
                 }
                 else
                 {
