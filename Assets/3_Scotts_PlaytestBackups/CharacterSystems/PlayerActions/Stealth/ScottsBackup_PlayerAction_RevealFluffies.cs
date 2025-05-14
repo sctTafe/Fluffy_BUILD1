@@ -32,7 +32,7 @@ public class ScottsBackup_PlayerAction_RevealFluffies : PlayerActionBase, IHudAb
     [Header("Ability Cooldown")]
     [SerializeField] private float _abilityCooldownLength = 10f;
 
-
+    public string _targetTag;
 
     private bool _isOnCooldown;
     private bool _inputRecived;
@@ -92,6 +92,10 @@ public class ScottsBackup_PlayerAction_RevealFluffies : PlayerActionBase, IHudAb
             _staminaSystem.fn_TryReduceValue(_enegryCost);
             OnCooldownWithLengthTriggered?.Invoke(_abilityCooldownLength);
         }
+        else
+        {
+            if (ISDEBUGGING) Debug.Log($"ScottsBackup_PlayerAction_RevealFluffies: ");
+        }
     }
 
     /// <summary>
@@ -102,9 +106,13 @@ public class ScottsBackup_PlayerAction_RevealFluffies : PlayerActionBase, IHudAb
         var hitColliders = Physics.OverlapSphere(this.transform.position, _activationRadius, _targetLayer);
         foreach (Collider col in hitColliders)
         {          
-            if(col.gameObject.TryGetComponent<ScottsBackup_Receiver_RevealFluffies>(out ScottsBackup_Receiver_RevealFluffies dr))
+            if(col.CompareTag(_targetTag))
             {
+                if (ISDEBUGGING) Debug.Log($"ScottsBackup_PlayerAction_RevealFluffies: Found Player");
+
+                col.gameObject.TryGetComponent<ScottsBackup_Receiver_RevealFluffies>(out ScottsBackup_Receiver_RevealFluffies dr);
                 if (ISDEBUGGING) Debug.Log($"ScottsBackup_PlayerAction_RevealFluffies: Hit {col.name}");
+
                 dr.fn_Trigger();
             }
         }
