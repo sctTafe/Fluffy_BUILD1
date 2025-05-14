@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8042764554186983733}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Holly_MJump_Fence_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,6 +98,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_MutantJump_Fence (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1177259913043265426, guid: 5aca3d347d2ee404daa20f12c23c75f1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -119,6 +123,10 @@ PrefabInstance:
     - target: {fileID: 4115586820163973351, guid: 4ae42b16e637bb04fae045214bacb24d, type: 3}
       propertyPath: m_Name
       value: Wall_WithFluffyHole_MutantJumpable_Fence (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4115586820163973351, guid: 4ae42b16e637bb04fae045214bacb24d, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8724412578034189678, guid: 4ae42b16e637bb04fae045214bacb24d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -181,6 +189,10 @@ PrefabInstance:
     - target: {fileID: 4115586820163973351, guid: 4ae42b16e637bb04fae045214bacb24d, type: 3}
       propertyPath: m_Name
       value: Wall_WithFluffyHole_MutantJumpable_Fence (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4115586820163973351, guid: 4ae42b16e637bb04fae045214bacb24d, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8724412578034189678, guid: 4ae42b16e637bb04fae045214bacb24d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -292,6 +304,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_MutantJump_Fence (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1177259913043265426, guid: 5aca3d347d2ee404daa20f12c23c75f1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -361,6 +377,10 @@ PrefabInstance:
     - target: {fileID: 1177259913043265426, guid: 5aca3d347d2ee404daa20f12c23c75f1, type: 3}
       propertyPath: m_Name
       value: Wall_MutantJump_Fence (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1177259913043265426, guid: 5aca3d347d2ee404daa20f12c23c75f1, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -432,6 +452,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_MutantJump_Fence
       objectReference: {fileID: 0}
+    - target: {fileID: 1177259913043265426, guid: 5aca3d347d2ee404daa20f12c23c75f1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -501,6 +525,10 @@ PrefabInstance:
     - target: {fileID: 1177259913043265426, guid: 5aca3d347d2ee404daa20f12c23c75f1, type: 3}
       propertyPath: m_Name
       value: Wall_MutantJump_Fence (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1177259913043265426, guid: 5aca3d347d2ee404daa20f12c23c75f1, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

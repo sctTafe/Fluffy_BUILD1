@@ -117,6 +117,7 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
         StartCoroutine(WaitThenChangeScene());
     }
 
+
     IEnumerator WaitThenChangeScene()
     {
         Debug.Log("Waiting for 1.5 seconds...");
@@ -305,7 +306,7 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
             if (!NetworkManager.Singleton.IsServer)
             {
                 Debug.Log("Host disconnected. Returning to main menu.");
-                fn_EndGame(false);
+                NetworkSceneManager.Instance.fn_Disconnect();
             }
         }
     }

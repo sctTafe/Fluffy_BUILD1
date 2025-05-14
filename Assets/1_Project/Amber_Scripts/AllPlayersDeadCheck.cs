@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class AllPlayersDeadCheck : MonoBehaviour
 {
-	private float check_cooldown = 6;
+	public float check_peirod = 20;
+	private float check_cooldown = 20;
 
     void Update()
     {
@@ -10,14 +11,20 @@ public class AllPlayersDeadCheck : MonoBehaviour
 		
 		if(check_cooldown <= 0)
 		{
-			check_cooldown = 6;
+			check_cooldown = check_peirod;
 
 			GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            GameObject[] mutant = GameObject.FindGameObjectsWithTag("Mutant");
 
-			if(players.Length == 0)
+            if (players.Length == 0)
 			{
 				MainGameManager.Instance.fn_EndGame(false);
 			}
+			if (mutant.Length == 0)
+			{
+                MainGameManager.Instance.fn_EndGame(false);
+            }
+
 		}
 
 		// Debug key to give playtester more time when playing alone
