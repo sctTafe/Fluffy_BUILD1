@@ -46,6 +46,7 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
         {
             //NetworkManager.Singleton.OnClientDisconnectCallback += NetworkManager_OnClientDisconnectCallback; // NOT YET IMPLMENTED IN THIS VERSION - STILL NEEDS TO BE
             NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += SceneManager_OnLoadEventCompleted;
+            NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnect;
             //NetworkManager.Singleton.OnClientConnectedCallback += Server_OnPlayerJoinedEvent; // NOT YET IMPLMENTED IN THIS VERSION - STILL NEEDS TO BE
         }
         if (IsClient)
@@ -60,10 +61,9 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
     }
     public void OnDisable()
     {
+        NetworkManager.Singleton.OnClientDisconnectCallback -= OnClientDisconnect;
         NetworkManager.Singleton.SceneManager.OnLoadEventCompleted -= SceneManager_OnLoadEventCompleted;
     }
-
-
     #endregion END: Unity Native Functions
 
     #region Joining and Load Event Responces
@@ -289,7 +289,26 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
     }
     #endregion END: Pause Game
 
+    private void OnClientDisconnect(ulong clientId)
+    {
 
+
+
+
+        // Only execute if this is the local client being disconnected
+        if (clientId == NetworkManager.Singleton.LocalClientId)
+        {
+            Debug.Log("Local client has been disconnected.");
+
+            // Check if the server (host) was the one that disconnected
+            // If so, all clients will also be disconnected
+            if (!NetworkManager.Singleton.IsServer)
+            {
+                Debug.Log("Host disconnected. Returning to main menu.");
+                fn_EndGame(false);
+            }
+        }
+    }
 }
 
 
