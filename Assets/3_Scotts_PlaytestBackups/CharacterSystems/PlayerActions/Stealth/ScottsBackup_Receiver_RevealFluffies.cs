@@ -13,7 +13,7 @@ public class ScottsBackup_Receiver_RevealFluffies : NetworkBehaviour
     /// <summary>
     /// Triggers the Reveal on this character
     /// </summary>
-    internal void fn_Trigger(float delay = 0f)
+    public void fn_Trigger(float delay = 0f)
     {
         if (ISDEBUGGING) Debug.Log("RevealFluffies_Receiver: fn_Trigger Called!");
         TriggerRpc(delay);

@@ -102,10 +102,10 @@ public class ScottsBackup_PlayerAction_RevealFluffies : PlayerActionBase, IHudAb
         var hitColliders = Physics.OverlapSphere(this.transform.position, _activationRadius, _targetLayer);
         foreach (Collider col in hitColliders)
         {          
-            if(col.gameObject.TryGetComponent<DestructibleObject_Reciver>(out DestructibleObject_Reciver dr))
+            if(col.gameObject.TryGetComponent<ScottsBackup_Receiver_RevealFluffies>(out ScottsBackup_Receiver_RevealFluffies dr))
             {
                 if (ISDEBUGGING) Debug.Log($"ScottsBackup_PlayerAction_RevealFluffies: Hit {col.name}");
-                dr.fn_TriggerDestruction(_effectDelay); //Delay Effect On Fluffies, give them a chance to react to the mutant ability use
+                dr.fn_Trigger();
             }
         }
 
@@ -140,6 +140,7 @@ public class ScottsBackup_PlayerAction_RevealFluffies : PlayerActionBase, IHudAb
     [Rpc(SendTo.ClientsAndHost)]
     private void SendOnActionPerformedClientRpc()
     {
+
         OnActivationSuccess?.Invoke();
         OnActivationSuccess_UE?.Invoke();
 
