@@ -8,6 +8,8 @@ using System;
 
 public class ScottsBackup_ActionPlayerItemPickUp : PlayerActionBase, IHudAbilityBinder
 {
+    private const bool ISDEBUGGING = true;
+
     public event Action<float> OnCooldownWithLengthTriggered;
     public event Action OnCooldownCanceled;
 
@@ -27,7 +29,7 @@ public class ScottsBackup_ActionPlayerItemPickUp : PlayerActionBase, IHudAbility
     public RawImage item_slot_2;
     public RawImage item_slot_3;
 
-
+    bool _Input;
 
     void Start()
     {
@@ -43,7 +45,6 @@ public class ScottsBackup_ActionPlayerItemPickUp : PlayerActionBase, IHudAbility
     }
 
 
-
     void Update()
     {
 
@@ -55,19 +56,27 @@ public class ScottsBackup_ActionPlayerItemPickUp : PlayerActionBase, IHudAbility
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (_Input)
         {
+            _Input = false;
+
             OnCooldownWithLengthTriggered?.Invoke(0.5f);
 
             if (in_deposit_hitbox)
             {
+                if (ISDEBUGGING) Debug.Log($"ScottsBackup_ActionPlayerItemPickUp: in_deposit_hitbox ");
+
                 if (held_items.Contains(deposit_point.GetNeededItem()))
                 {
+
+                    if (ISDEBUGGING) Debug.Log($"ScottsBackup_ActionPlayerItemPickUp: held_items ");
+
                     held_items.Remove(deposit_point.GetNeededItem());
                     UpdateUI();
                     deposit_point.DepositItem();
                 }
             }
+
             else if (in_item_hitbox)
             {
                 if (held_items.Count < 3)
@@ -86,6 +95,7 @@ public class ScottsBackup_ActionPlayerItemPickUp : PlayerActionBase, IHudAbility
 
     public override bool fn_ReceiveActivationInput(bool b)
     {
+        _Input = true;
         //Not Setup in theis version
         return false;
     }
@@ -126,6 +136,7 @@ public class ScottsBackup_ActionPlayerItemPickUp : PlayerActionBase, IHudAbility
         }
     }
 
+
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("pick_up_item"))
@@ -139,6 +150,7 @@ public class ScottsBackup_ActionPlayerItemPickUp : PlayerActionBase, IHudAbility
         }
     }
 
+
     [ServerRpc(RequireOwnership = false)]
     private void DestroyObjectServerRPC(ulong to_destroy)
     {
@@ -151,6 +163,7 @@ public class ScottsBackup_ActionPlayerItemPickUp : PlayerActionBase, IHudAbility
             }
         }
     }
+
 
     public void AddToInventory(string item_name)
     {
@@ -171,18 +184,6 @@ public class ScottsBackup_ActionPlayerItemPickUp : PlayerActionBase, IHudAbility
             return;
         }
 
-
-
-        /**
-		string new_text = "Held items:";
-
-		foreach(string item in held_items)
-		{
-			new_text += $"\n{item}";
-		}
-
-		inventory_prompt.text = new_text;
-		**/
 
         if (held_items.Count == 3)
         {

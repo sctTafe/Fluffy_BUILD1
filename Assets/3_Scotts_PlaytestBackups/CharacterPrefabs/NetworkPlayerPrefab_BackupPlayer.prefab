@@ -2126,12 +2126,12 @@ GameObject:
   - component: {fileID: 4009507232335487725}
   - component: {fileID: 8564689662803245180}
   - component: {fileID: 3242255665682694393}
-  - component: {fileID: 2738397815988583428}
   - component: {fileID: 3657911424795443171}
   - component: {fileID: 6639843731572211527}
   - component: {fileID: -8318112631276293116}
   - component: {fileID: 5928170330904496098}
   - component: {fileID: -6137494299052777976}
+  - component: {fileID: -8235747474806435748}
   - component: {fileID: 6377804535425610020}
   - component: {fileID: 8046335248435032946}
   - component: {fileID: -1606878970198915638}
@@ -2318,23 +2318,6 @@ CapsuleCollider:
   m_Height: 1.5
   m_Direction: 1
   m_Center: {x: 0, y: 0.75, z: 0}
---- !u!114 &2738397815988583428
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6103115944230435048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c6524fb7342c8dc18b1270a4f63be52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  held_items: []
-  item_slot_1: {fileID: 0}
-  item_slot_2: {fileID: 0}
-  item_slot_3: {fileID: 0}
 --- !u!114 &3657911424795443171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2484,10 +2467,27 @@ MonoBehaviour:
   _Action_Main: {fileID: 0}
   _Action_Sprint: {fileID: 6377804535425610020}
   _Action_Jump: {fileID: 8046335248435032946}
-  _Action_Interaction1: {fileID: 2738397815988583428}
+  _Action_Interaction1: {fileID: -8235747474806435748}
   _Action_Interaction2: {fileID: 0}
   _Action_Interaction3: {fileID: 0}
   _Action_Interaction4: {fileID: 0}
+--- !u!114 &-8235747474806435748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6103115944230435048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74a80a158103379409abbc1a99ef3591, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  held_items: []
+  item_slot_1: {fileID: 0}
+  item_slot_2: {fileID: 0}
+  item_slot_3: {fileID: 0}
 --- !u!114 &6377804535425610020
 MonoBehaviour:
   m_ObjectHideFlags: 0
