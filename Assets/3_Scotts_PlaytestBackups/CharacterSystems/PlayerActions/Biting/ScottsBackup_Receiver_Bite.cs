@@ -11,6 +11,8 @@ using UnityEngine.Events;
 /// </summary>
 public class ScottsBackup_Receiver_Bite : NetworkBehaviour
 {
+    private const bool ISDEBUGGING = false;
+
     public UnityEvent OnBiteStart;
     public UnityEvent OnBiteStop;
 
@@ -27,11 +29,13 @@ public class ScottsBackup_Receiver_Bite : NetworkBehaviour
 
     private void Awake()
     {
+        if (ISDEBUGGING) Debug.Log("ScottsBackup_Receiver_Bite: Awake Called");
+
         if (controler == null)
             controler = GetComponent<ScottsBackup_ThirdPersonController>();
         if (healthControler == null)
         {
-            Debug.LogError("No Health Resrouce Manager Attached");
+            Debug.LogError("No Health Resrouce Manager Attached!");
             //healthControler = GetComponent<ScottsBackup_ResourceMng>();
         }
             
@@ -39,10 +43,19 @@ public class ScottsBackup_Receiver_Bite : NetworkBehaviour
    
     public void fn_SetBiteMode(bool isBitten, Vector3 pos)
     {
-        if (isBitten)
+        if (ISDEBUGGING) Debug.Log("ScottsBackup_Receiver_Bite: fn_SetBiteMode Called");
+
+        if (isBitten) {
+            if (IsOwner) {
+                healthControler.fn_ForceReduceValue(damage);
+            }
             ActivateBiteModeRpc(pos);
-        else
+        }
+        else 
+        {
             DisableBiteModeRPC();
+        }
+            
     }
 
     [Rpc(SendTo.Everyone)]
@@ -53,16 +66,9 @@ public class ScottsBackup_Receiver_Bite : NetworkBehaviour
         this.transform.localEulerAngles = new Vector3(0f, 0f, 90f); //set local child rotation
         this.transform.position += _positionOffset;
 
-
         gameObject.GetComponent<NetworkTransform>().enabled = false;
         controler.fn_IsMovementInputDisabled(true);
-
-        if (IsOwner)
-        {
-            gameObject.GetComponent<PlayerHealth>().ChangePlayerHealth(damage);
-            healthControler.fn_ForceReduceValue(damage);
-        }
-                 
+        
         OnBiteStart?.Invoke();
         isGrabbed = true;
     }

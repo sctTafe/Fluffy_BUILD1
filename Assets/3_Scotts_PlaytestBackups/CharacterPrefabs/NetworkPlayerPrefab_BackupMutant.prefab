@@ -2711,6 +2711,7 @@ GameObject:
   - component: {fileID: 4685717942135695358}
   - component: {fileID: 4163513301123435681}
   - component: {fileID: 4211056162011938339}
+  - component: {fileID: 8232159909809790923}
   - component: {fileID: 7126122190191861419}
   - component: {fileID: 5662966264603675591}
   - component: {fileID: 1911637624041227569}
@@ -2875,6 +2876,29 @@ CharacterController:
   m_StepOffset: 0.25
   m_SkinWidth: 0.02
   m_MinMoveDistance: 0
+  m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!136 &8232159909809790923
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5408246126893154181}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.3
+  m_Height: 1.65
+  m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &7126122190191861419
 MonoBehaviour:
@@ -3148,6 +3172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be42a7be46e6fc47975509ab6d1c8b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   _inputMain: {fileID: 0}
   _inputSprint: {fileID: 0}
   _inputJump: {fileID: 0}

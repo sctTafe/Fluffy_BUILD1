@@ -2125,6 +2125,7 @@ GameObject:
   - component: {fileID: -9134813166992334759}
   - component: {fileID: 4009507232335487725}
   - component: {fileID: 8564689662803245180}
+  - component: {fileID: 3242255665682694393}
   - component: {fileID: 2738397815988583428}
   - component: {fileID: 3657911424795443171}
   - component: {fileID: 6639843731572211527}
@@ -2293,6 +2294,29 @@ CharacterController:
   m_SkinWidth: 0.02
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0.78, z: 0}
+--- !u!136 &3242255665682694393
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6103115944230435048}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Height: 1.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.75, z: 0}
 --- !u!114 &2738397815988583428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2677,6 +2701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0933997df70cc7a49b62bcb5a8ae3bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   _inputMain: {fileID: 0}
   _inputSprint: {fileID: 0}
   _inputJump: {fileID: 0}
