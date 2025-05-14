@@ -11,7 +11,7 @@ using UnityEngine.Events;
 /// </summary>
 public class ScottsBackup_Receiver_Bite : NetworkBehaviour
 {
-    private const bool ISDEBUGGING = false;
+    private const bool ISDEBUGGING = true;
 
     public UnityEvent OnBiteStart;
     public UnityEvent OnBiteStop;
@@ -37,18 +37,15 @@ public class ScottsBackup_Receiver_Bite : NetworkBehaviour
         {
             Debug.LogError("No Health Resrouce Manager Attached!");
             //healthControler = GetComponent<ScottsBackup_ResourceMng>();
-        }
-            
+        }           
     }
-   
+
+ 
     public void fn_SetBiteMode(bool isBitten, Vector3 pos)
     {
         if (ISDEBUGGING) Debug.Log("ScottsBackup_Receiver_Bite: fn_SetBiteMode Called");
 
         if (isBitten) {
-            if (IsOwner) {
-                healthControler.fn_ForceReduceValue(damage);
-            }
             ActivateBiteModeRpc(pos);
         }
         else 
@@ -68,7 +65,13 @@ public class ScottsBackup_Receiver_Bite : NetworkBehaviour
 
         gameObject.GetComponent<NetworkTransform>().enabled = false;
         controler.fn_IsMovementInputDisabled(true);
-        
+
+        if (IsOwner)
+        {
+            if (ISDEBUGGING) Debug.Log("ScottsBackup_Receiver_Bite: ActivateBiteModeRpc Called");
+            healthControler.fn_ForceReduceValue(damage);
+        }
+
         OnBiteStart?.Invoke();
         isGrabbed = true;
     }
