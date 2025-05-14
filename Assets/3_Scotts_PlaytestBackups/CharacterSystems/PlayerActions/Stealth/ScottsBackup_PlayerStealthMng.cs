@@ -1,23 +1,28 @@
 using UnityEngine;
 using Unity.Netcode;
 using DG.Tweening.Core.Easing;
+using UnityEngine.Events;
 
 public class ScottsBackup_PlayerStealthMng : NetworkBehaviour
 {
     private const bool ISDEBUGGING = true;
 
-    GameObject geometry;
+    public UnityEvent _OnPlayerEnterBush_Local;
+    
+    [SerializeField] GameObject _ChatacterVisuals;
+
+
     private bool in_bush = false;
     private float time_in_bush = 0;
     private float force_reveal = 0;
 
+    
     HUD_PopUpMessages_Singelton _ref_hUDPopUpMessagesSingelton;
 
 
 
     void Start()
     {
-        geometry = transform.GetChild(3).gameObject;
 
         if (IsOwner)
         {
@@ -36,10 +41,11 @@ public class ScottsBackup_PlayerStealthMng : NetworkBehaviour
             {
                 if (!IsOwner)
                 {
-                    geometry.SetActive(false);
+                    _ChatacterVisuals.SetActive(false);
                 }
                 else
                 {
+                    _OnPlayerEnterBush_Local?.Invoke();
                     _ref_hUDPopUpMessagesSingelton.fn_PopupMessage("[ Hidden! ]", HUD_PopUpMessages_Singelton.PopupStyle.PopAndFade);
                 }
             }
@@ -60,6 +66,7 @@ public class ScottsBackup_PlayerStealthMng : NetworkBehaviour
         if (ISDEBUGGING) Debug.Log("ScottsBackup_PlayerStealthMng: fn_SetInBush Called");
         in_bush = true;
         time_in_bush = 0;
+
     }
 
     public void fn_SetLeavingBush()
@@ -69,7 +76,7 @@ public class ScottsBackup_PlayerStealthMng : NetworkBehaviour
 
         if (!IsOwner)
         {
-            geometry.SetActive(true);
+            _ChatacterVisuals.SetActive(true);
         }
         else
         {
@@ -86,7 +93,7 @@ public class ScottsBackup_PlayerStealthMng : NetworkBehaviour
         if (!IsOwner)
         {
             force_reveal = 10;
-            geometry.SetActive(true);
+            _ChatacterVisuals.SetActive(true);
         }
 
         // force_reveal_ServerRPC();
