@@ -14,6 +14,9 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
     public UnityEvent OnLocalPlayerReady;
     public UnityEvent OnLocalPlayerNotReady;
 
+    public bool _isLoadingPlaytestingScene = false;
+    [SerializeField] private string _testGameSceneName = "X_Game_Playtesting";
+
     // Network Variable 
     private NetworkVariable<int> numberOfPlayersNV = new NetworkVariable<int>();
     private NetworkVariable<int> numberOfReadyPlayersNV = new NetworkVariable<int>();
@@ -71,6 +74,10 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
     #endregion END: Unity Native Functions
 
     #region Public Functions
+
+    public void fn_UseTestingScene(bool useTestingScene) =>
+        _isLoadingPlaytestingScene = useTestingScene;
+    
     public int fn_GetNumberOfPlayersInLobby()
     {
         return numberOfPlayersNV.Value;
@@ -109,13 +116,20 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
             if (fn_GetNumberOfPlayersInLobby() == fn_GetNumberOfReadyPlayersInLobby())
             {
                 playerNetworkDataManager.fn_SelectMonsterOnStart();
-				NetworkSceneManager.Instance.fn_GoToScene("5_Game");
+
+                if (!_isLoadingPlaytestingScene)
+                {
+                    NetworkSceneManager.Instance.fn_GoToScene("5_Game");
+                }
+                else
+                {
+                    NetworkSceneManager.Instance.fn_GoToScene(_testGameSceneName);
+                }			
             }
             else
             {
                 Debug.Log("Players not all ready!");
             }
-
         }
     }
     #endregion END: Public Functions

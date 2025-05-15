@@ -18,6 +18,11 @@ TagManager:
   - Mutant
   - item_spawn_point
   - hide_trigger
+  - stamina_bar
+  - player_stamina_bar
+  - stealth_prompt
+  - mutant_bite_fill
+  - mutant_radar_fill
   layers:
   - Default
   - TransparentFX
@@ -28,7 +33,7 @@ TagManager:
   - Ground
   - Players
   - Grabbable
-  - 
+  - Vegetation
   - Interactable
   - Mutant
   - 

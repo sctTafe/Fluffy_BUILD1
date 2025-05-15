@@ -65,15 +65,19 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7060542277007696787, guid: d39fe74523d0540499cd3b1c96789768, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 25e2c9cb7506afe458aff9a5fef0a8b0, type: 2}
     - target: {fileID: 919132149155446097, guid: d39fe74523d0540499cd3b1c96789768, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05B
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d39fe74523d0540499cd3b1c96789768, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2893702649578948011, guid: d39fe74523d0540499cd3b1c96789768, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 25e2c9cb7506afe458aff9a5fef0a8b0, type: 2}
     - target: {fileID: 4742473837712756890, guid: d39fe74523d0540499cd3b1c96789768, type: 3}
@@ -97,7 +101,7 @@ PrefabInstance:
       value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 5854479232938362683, guid: d39fe74523d0540499cd3b1c96789768, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 25e2c9cb7506afe458aff9a5fef0a8b0, type: 2}
     m_RemovedComponents: []

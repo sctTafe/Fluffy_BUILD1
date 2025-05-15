@@ -109,7 +109,10 @@ public class PlayerInventory : NetworkBehaviour
 		if(IsServer)
 		{
 			NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(to_destroy, out NetworkObject target_object);
-			target_object.Despawn();
+			if(target_object != null)
+			{
+				target_object.Despawn();
+			}
 		}
 	}
 
