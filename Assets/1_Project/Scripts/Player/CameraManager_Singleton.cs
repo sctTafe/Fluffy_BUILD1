@@ -3,7 +3,6 @@ using Unity.Cinemachine;
 
 public class CameraManager : MonoBehaviour
 {
-    // This script simply turns on the required camera type for players depending on whether they are friendly or mutant, and sets some variables for the cameras
     public static CameraManager Instance { get; private set; }
 
     public GameObject ThirdPersonCamObject;
@@ -22,16 +21,16 @@ public class CameraManager : MonoBehaviour
 
         ThirdPersonCamObject.SetActive(true);
 
-        CinemachineCamera virtualCam = ThirdPersonCamObject.GetComponentInChildren<CinemachineCamera>();
+        CinemachineCamera virtualCam = ThirdPersonCamObject.GetComponent<CinemachineCamera>();
         if (virtualCam != null)
         {
             virtualCam.Follow = target;
-            //virtualCam.LookAt = target;
+            virtualCam.LookAt = target;
         }
         else { Debug.LogWarning($"Camera '{ThirdPersonCamObject.name}' does not have a CinemachineVirtualCamera component!"); }
     }
 
-    public void SetFirstPersonCamera(MutantCharacterOld character, Transform target)
+    public void SetFirstPersonCamera(MutantCharacter character, Transform target)
     {
         if (FirstPersonCamObject == null || target == null) { Debug.LogWarning("Camera or target is null!"); return; }
 

@@ -2717,9 +2717,6 @@ GameObject:
   - component: {fileID: 1911637624041227569}
   - component: {fileID: 2567216198660850614}
   - component: {fileID: 3651755387491466470}
-  - component: {fileID: 3945826943342811740}
-  - component: {fileID: 2690234351273645908}
-  - component: {fileID: 9050011078787946409}
   m_Layer: 7
   m_Name: NetworkPlayerPrefab_Abomination_Evil
   m_TagString: Mutant
@@ -3004,45 +3001,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  colliderBox: {fileID: 0}
+  collider: {fileID: 6402720590088216435}
   targetTag: hide_trigger
---- !u!114 &3945826943342811740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5408246126893154181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89f88079241109c54aae2a602b9c44ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
---- !u!114 &2690234351273645908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5408246126893154181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 343dd248fa3cd29639fab39be884f18a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &9050011078787946409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5408246126893154181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da1ac76bebf593f9fb34689115c66592, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5413671998971313028
 GameObject:
   m_ObjectHideFlags: 0

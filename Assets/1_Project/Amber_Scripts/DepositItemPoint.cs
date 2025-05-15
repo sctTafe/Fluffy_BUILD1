@@ -25,23 +25,13 @@ public class DepositItemPoint : NetworkBehaviour
 
 	public void Start()
 	{
-		var GO = GameObject.FindWithTag(objective_UI_tag);
-		if (GO != null)
+		objective_prompt = GameObject.FindWithTag(objective_UI_tag).GetComponent<TMP_Text>();
+		if(objective_prompt != null)
 		{
-            objective_prompt = GO.GetComponent<TMP_Text>();
-            if (objective_prompt != null)
-            {
-                objective_prompt.text = $"{objective_name} {current_amount.Value} / {amount_needed}";
-            }
-        }
+			objective_prompt.text = $"{objective_name} {current_amount.Value} / {amount_needed}";
+		}
 
-		var GO2 = GameObject.FindWithTag("ObjectiveManager");
-
-        if (GO2 != null)
-		{
-            objective_manager = GO2.GetComponent<ObjectiveManager>();
-        }
-            
+		objective_manager = GameObject.FindWithTag("ObjectiveManager").GetComponent<ObjectiveManager>();
 	}
     private void OnEnable()
     {
