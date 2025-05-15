@@ -45,12 +45,12 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
         if (IsServer)
         {
             //NetworkManager.Singleton.OnClientDisconnectCallback += NetworkManager_OnClientDisconnectCallback; // NOT YET IMPLMENTED IN THIS VERSION - STILL NEEDS TO BE
-            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += SceneManager_OnLoadEventCompleted;
-            NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnect;
+            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += SceneManager_OnLoadEventCompleted;           
             //NetworkManager.Singleton.OnClientConnectedCallback += Server_OnPlayerJoinedEvent; // NOT YET IMPLMENTED IN THIS VERSION - STILL NEEDS TO BE
         }
         if (IsClient)
         {
+            NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnect;
             PlayerNetworkDataManager playerNetworkDataManager = PlayerNetworkDataManager.Instance;
             ulong localClientID = NetworkManager.Singleton.LocalClientId;
 
@@ -61,8 +61,19 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
     }
     public void OnDisable()
     {
-        NetworkManager.Singleton.OnClientDisconnectCallback -= OnClientDisconnect;
-        NetworkManager.Singleton.SceneManager.OnLoadEventCompleted -= SceneManager_OnLoadEventCompleted;
+        if (IsServer)
+        {
+            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted -= SceneManager_OnLoadEventCompleted;
+        }
+
+
+        if (IsClient)
+        {
+            NetworkManager.Singleton.OnClientDisconnectCallback -= OnClientDisconnect;
+        }
+            
+
+
     }
     #endregion END: Unity Native Functions
 
