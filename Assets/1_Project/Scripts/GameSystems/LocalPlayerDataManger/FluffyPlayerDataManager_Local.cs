@@ -6,9 +6,9 @@ using UnityEngine.InputSystem;
 public class FluffyPlayerDataManager_Local : NetworkBehaviour
 {
     [Header("References")]
-    //private ThirdPersonController_Netcode _playerControler;
-    private AnimalCharacter _playerControler;
+    private ThirdPersonController_Netcode _playerControler;
     private InputManager_Singleton _input;
+    private PlayerInput _playerInput;
 
     [Header("Stamina Settings")]
     public float maxStamina = 100f;
@@ -35,19 +35,20 @@ public class FluffyPlayerDataManager_Local : NetworkBehaviour
 
         currentStamina = maxStamina;
         
-        _playerControler = GetComponent<AnimalCharacter>();
+        _playerControler = GetComponent<ThirdPersonController_Netcode>();
         //TODO: clean up this mess of a player input system
         _input = InputManager_Singleton.Instance;
+        _playerInput = _input._playerInput;
 
 
     }
-
 
     void Update()
     {
         // This only runs on the Player Owned Network Prefab
         if (!IsOwner)
             return;
+
         HandleInput();
         HandleStamina();
     }
@@ -61,13 +62,11 @@ public class FluffyPlayerDataManager_Local : NetworkBehaviour
     {
         // Example input: hold Left Shift to sprint
         // isSprinting = Input.GetKey(KeyCode.LeftShift) && !isExhausted;
-        isSprinting = _input.sprintInput && !isExhausted;
-        //_input.sprint
+        isSprinting = _input.sprint && !isExhausted;
     }
 
     private void HandleStamina()
     {
-        
         if (isSprinting)
         {
             // IS Sprinting 
@@ -95,7 +94,7 @@ public class FluffyPlayerDataManager_Local : NetworkBehaviour
             currentStamina += staminaRechargePerSecond * Time.deltaTime;
             currentStamina = Mathf.Min(currentStamina, maxStamina);          
         }
-        
+
         if (isExhausted)
         {
             exhaustionTimer -= Time.deltaTime;

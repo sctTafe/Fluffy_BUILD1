@@ -15,20 +15,18 @@ public class Bite_Receiver : NetworkBehaviour
     public UnityEvent OnBiteStart;
     public UnityEvent OnBiteStop;
 
-    [SerializeField] private AnimalCharacter controler;
+    [SerializeField] private ThirdPersonController_Netcode controler;
     [SerializeField] private Vector3 _positionOffset;
 
     public bool IsGrabbed {  get; private set; }
     private bool isGrabbed;
     public float damage = 0.34f;
 
-    public Transform skeleton;
-    public CapsuleCollider coll;
 
     private void Awake()
     {
         if (controler == null)
-            controler = GetComponent<AnimalCharacter>();
+            controler = GetComponent<ThirdPersonController_Netcode>();
     }
 
     //
@@ -45,15 +43,13 @@ public class Bite_Receiver : NetworkBehaviour
     {
         // Reposition the bite target transform position to that of the bitter
         this.transform.position = pos;
-        skeleton.localEulerAngles = new Vector3(0f, 0f, 90f); //set local child rotation
+        this.transform.localEulerAngles = new Vector3(0f, 0f, 90f); //set local child rotation
         this.transform.position += _positionOffset;
 
 
         gameObject.GetComponent<NetworkTransform>().enabled = false;
         controler.fn_IsMovementInputDisabled(true);
         if (IsOwner) gameObject.GetComponent<PlayerHealth>().ChangePlayerHealth(damage);
-        gameObject.GetComponent<Rigidbody>().isKinematic = true;
-        coll.enabled = false;
         OnBiteStart?.Invoke();
         isGrabbed = true;
     }
@@ -62,10 +58,8 @@ public class Bite_Receiver : NetworkBehaviour
     private void DisableBiteModeRPC()
     {
         gameObject.GetComponent<NetworkTransform>().enabled = true;
-        skeleton.eulerAngles = new Vector3(0f, 0f, 0f);
+        this.transform.eulerAngles = new Vector3(0f, 0f, 0f);
         controler.fn_IsMovementInputDisabled(false);
-        gameObject.GetComponent<Rigidbody>().isKinematic = false;
-        coll.enabled = true;
         isGrabbed = false;
         OnBiteStop?.Invoke();
     }

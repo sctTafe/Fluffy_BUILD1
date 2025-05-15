@@ -29,28 +29,17 @@ public class Bite_Activator : NetworkBehaviour
     // Bite CoolDown
     private bool isBiteOnCooldown = false;
     private float biteCooldown;
-    [SerializeField] private float biteCooldownLength = 2f;
+    [SerializeField] private float biteCooldownLenght = 2f;
 
     // Interaction Delay
     private bool isInteractionDelayed = false;
     private float interactionCooldown;
-    private float interactionCooldownLength = 0.5f;
+    private float interactionCooldownLenght = 0.5f;
 
     //cooldown general
     private bool OnCooldown = false;
     private float Cooldown;
     //private float CooldownLenght = 0.5f;
-
-	// Added by Amber, mutant stamina code	
-	private MutantStamina s;
-	private GameObject mutant_bite_fill;
-
-	void Start()
-	{
-		s = GetComponent<MutantStamina>();
-		mutant_bite_fill = GameObject.FindWithTag("mutant_bite_fill");
-	}
-	// End of portion by Amber
 
     void Update()
     {
@@ -83,15 +72,6 @@ public class Bite_Activator : NetworkBehaviour
 
     private void HandleGrabInput()
     {
-		// Added by Amber, reducing Mutant stamina when they bite
-		if(s.get_stamina() < 40)
-		{
-			return;
-		}
-
-		s.reduce_stamina(40);
-		//End of code added by Amber
-
         //if(IsInteractionOnCooldown()) return;
         if (IsOnCooldown()) return;
         //TriggerInteractionCooldown();
@@ -134,7 +114,7 @@ public class Bite_Activator : NetworkBehaviour
         grabedPlayerGO = biteTarget;
         isGrabbing = true; //Activated Update Loop
         //SetCooldown(biteCooldownLenght);
-        SetCooldown(interactionCooldownLength);
+        SetCooldown(interactionCooldownLenght);
         Debug.Log($"{this.gameObject.name} Trying to Grab {biteTarget.gameObject.name}");
         BiteTargetPlayerServerRpc(biteTarget.GetComponent<NetworkObject>().OwnerClientId, gameObject.GetComponent<NetworkObject>().OwnerClientId);    
     }
@@ -199,7 +179,7 @@ public class Bite_Activator : NetworkBehaviour
         Debug.Log("player released");
         ReleaseTargetPlayerServerRpc(grabedPlayerGO.GetComponent<NetworkObject>().OwnerClientId, gameObject.GetComponent<NetworkObject>().OwnerClientId);
         grabedPlayerGO = null;
-        SetCooldown(biteCooldownLength);
+        SetCooldown(biteCooldownLenght);
     }
 
     /// <summary>
@@ -342,9 +322,9 @@ public class Bite_Activator : NetworkBehaviour
 
 
     private bool IsOnCooldown() => OnCooldown;
-    private void SetCooldown(float CooldownLength)
+    private void SetCooldown(float CooldownLenght)
     {
-        Cooldown = Time.time + CooldownLength;
+        Cooldown = Time.time + CooldownLenght;
         OnCooldown = true;
     }
     private void Update_Cooldown()
@@ -357,11 +337,6 @@ public class Bite_Activator : NetworkBehaviour
         {
             OnCooldown = false;
         }
-
-		// Added by Amber, cooldown UI	
-        if (mutant_bite_fill != null)
-			mutant_bite_fill.transform.localScale = new Vector3(1, Mathf.Clamp(biteCooldownLength - (Cooldown - Time.time), 0, biteCooldownLength) / biteCooldownLength, 1);
-		//End of code added by Amber
     }
     #endregion END: Timers
 }
