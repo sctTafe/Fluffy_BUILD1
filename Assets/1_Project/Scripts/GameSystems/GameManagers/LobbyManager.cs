@@ -59,8 +59,7 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
 
     private void OnDisable()
     {
-        Debug.LogWarning("Music SHould Stop Now! Look out for this Rylan!");
-        Sounds_BackgroundMusic.Instance.fn_StopBackgroundMusicTrack();
+        TurnOffMusic_ServerRPC();
 
         if (IsServer)
         {
@@ -236,6 +235,19 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
         Debug.Log($"PlayerReadyValuesUpdated_ClientRpc Called: fn_GetNumberOfPlayersInLobby = {fn_GetNumberOfPlayersInLobby()} fn_GetNumberOfReadyPlayersInLobby = {fn_GetNumberOfReadyPlayersInLobby()} /n");
 
     }
+
+    [Rpc(SendTo.Server)]
+    private void TurnOffMusic_ServerRPC()
+    {
+        TurnOffMusic_ClientRPC();
+    }
+    [Rpc(SendTo.ClientsAndHost)]
+    private void TurnOffMusic_ClientRPC()
+    {
+        Sounds_BackgroundMusic.Instance.fn_StopBackgroundMusicTrack();
+    }
+
+
     #endregion END: RCP Calls
 
     #region Joining and Load Event Responces
