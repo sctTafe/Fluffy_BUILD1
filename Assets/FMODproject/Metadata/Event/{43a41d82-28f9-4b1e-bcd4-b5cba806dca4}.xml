@@ -59,7 +59,14 @@
 			<destination>{2d925558-11c7-495a-8417-5656f4bec7f5}</destination>
 		</relationship>
 	</object>
-	<object class="EventAutomatableProperties" id="{1836e05f-769c-4d21-b1a0-c8aa2d16d775}" />
+	<object class="EventAutomatableProperties" id="{1836e05f-769c-4d21-b1a0-c8aa2d16d775}">
+		<property name="dopplerEnabled">
+			<value>true</value>
+		</property>
+		<property name="maximumDistance">
+			<value>400</value>
+		</property>
+	</object>
 	<object class="MarkerTrack" id="{a3a0cb18-3575-46b8-87c5-36f155257e67}" />
 	<object class="Timeline" id="{db58bbf8-0bb8-476a-bd0e-fdab4bf2ed62}">
 		<property name="isProxyEnabled">
@@ -134,5 +141,9 @@
 			<value>280</value>
 		</property>
 	</object>
-	<object class="ObjectSpatialiserEffect" id="{1461213f-01c3-4b21-a70f-9ebcf8e0938e}" />
+	<object class="ObjectSpatialiserEffect" id="{1461213f-01c3-4b21-a70f-9ebcf8e0938e}">
+		<property name="maximumDistance">
+			<value>100</value>
+		</property>
+	</object>
 </objects>
