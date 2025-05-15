@@ -15,7 +15,6 @@ public class InteractableController : NetworkBehaviour
     // Core
     private IHolder_Player _playerItemHolder;
     private InputManager_Singleton _input;
-    public InputActionV2 _inputActions;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,8 +24,6 @@ public class InteractableController : NetworkBehaviour
         {
             _input = InputManager_Singleton.Instance;
             _playerItemHolder = GetComponent<IHolder_Player>();
-            this._inputActions = _input._inputActions;
-
 
             BindButton();
         }
@@ -34,10 +31,10 @@ public class InteractableController : NetworkBehaviour
 
     void BindButton()
     {
-        _inputActions.Player.Interact1.performed += Handle_Interact1Performed;
-        _inputActions.Player.Interact2.performed += Handle_Interact2Performed;
-        _inputActions.Player.Interact3.performed += Handle_Interact3Performed;
-        _inputActions.Player.Interact4.performed += Handle_Interact4Performed;
+        _input._playerInput.Player.Interact1.performed += Handle_Interact1Performed;
+        _input._playerInput.Player.Interact2.performed += Handle_Interact2Performed;
+        _input._playerInput.Player.Interact3.performed += Handle_Interact3Performed;
+        _input._playerInput.Player.Interact4.performed += Handle_Interact4Performed;
     }
 
     private void Handle_Interact1Performed(InputAction.CallbackContext context)

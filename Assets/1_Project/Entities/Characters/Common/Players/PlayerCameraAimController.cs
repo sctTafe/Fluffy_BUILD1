@@ -1,184 +1,187 @@
-using System.Collections.Generic;
 using UnityEngine;
 using Unity.Cinemachine;
 
-
 /// <summary>
-/// This is an add-on for SimplePlayerController that controls the player's Aiming Core.
-/// 
-/// This component expects to be in a child object of a player that has a SimplePlayerController 
-/// behaviour.  It works intimately with that component.
-//
-/// The purpose of the aiming core is to decouple the camera rotation from the player rotation.  
-/// Camera rotation is determined by the rotation of the player core GameObject, and this behaviour 
-/// provides input axes for controlling it.  When the player core is used as the target for 
-/// a CinemachineCamera with a ThirdPersonFollow component, the camera will look along the core's 
-/// forward axis, and pivot around the core's origin.
-/// 
-/// The aiming core is also used to define the origin and direction of player shooting, if player 
-/// has that ability.  
-/// 
-/// To implement player shooting, add a SimplePlayerShoot behaviour to this GameObject.
+/// Controls the player's aiming core by reading look/aim input 
+/// from the InputManager_Singleton and converting it into yaw and pitch rotations.
+/// The aiming core decouples camera rotation from player rotation so that the camera 
+/// can orbit independently while still providing a basis for player direction and shooting.
 /// </summary>
-public class PlayerCameraAimController : MonoBehaviour, Unity.Cinemachine.IInputAxisOwner
+public class PlayerCameraAimController : MonoBehaviour
 {
-        public enum CouplingMode { Coupled, CoupledWhenMoving, Decoupled }
+    public enum CouplingMode { Coupled, CoupledWhenMoving, Decoupled }
 
-        [Tooltip("How the player's rotation is coupled to the camera's rotation.  Three modes are available:\n"
-            + "<b>Coupled</b>: The player rotates with the camera.  Sideways movement will result in strafing.\n"
-            + "<b>Coupled When Moving</b>: Camera can rotate freely around the player when the player is stationary, "
-                + "but the player will rotate to face camera forward when it starts moving.\n"
-            + "<b>Decoupled</b>: The player's rotation is independent of the camera's rotation.")]
-        public CouplingMode PlayerRotation;
+    [Tooltip("How the player's rotation is coupled to the camera's rotation.")]
+    public CouplingMode PlayerRotation = CouplingMode.Coupled;
 
-        [Tooltip("How fast the player rotates to face the camera direction when the player starts moving.  "
-            + "Only used when Player Rotation is Coupled When Moving.")]
-        public float RotationDamping = 0.2f;
+    [Tooltip("How fast the player rotates to face the camera direction when the player starts moving. " +
+             "Only used when Player Rotation is Coupled When Moving.")]
+    public float RotationDamping = 0.2f;
 
-        [Tooltip("Horizontal Rotation.  Value is in degrees, with 0 being centered.")]
-        public InputAxis HorizontalLook = new() { Range = new Vector2(-180, 180), Wrap = true, Recentering = InputAxis.RecenteringSettings.Default };
+    [Tooltip("Reference to the player's character/controller.")]
+    public AnimalCharacter m_Controller;
 
-        [Tooltip("Vertical Rotation.  Value is in degrees, with 0 being centered.")]
-        public InputAxis VerticalLook = new() { Range = new Vector2(-70, 70), Recentering = InputAxis.RecenteringSettings.Default };
+    private Transform m_ControllerTransform; // Cached for efficiency.
+    private Quaternion m_DesiredWorldRotation;
 
-        public AnimalCharacter m_Controller;
-        Transform m_ControllerTransform;    // cached for efficiency
-        Quaternion m_DesiredWorldRotation;
+    // Internal yaw (horizontal) and pitch (vertical) angles in degrees.
+    private float yaw;
+    private float pitch;
 
-        /// Report the available input axes to the input axis controller.
-        /// We use the Input Axis Controller because it works with both the Input package
-        /// and the Legacy input system.  This is sample code and we
-        /// want it to work everywhere.
-       void IInputAxisOwner.GetInputAxes(List<IInputAxisOwner.AxisDescriptor> axes)
-       {
-           axes.Add(new() { DrivenAxis = () => ref HorizontalLook, Name = "Horizontal Look", Hint = IInputAxisOwner.AxisDescriptor.Hints.X });
-           axes.Add(new() { DrivenAxis = () => ref VerticalLook, Name = "Vertical Look", Hint = IInputAxisOwner.AxisDescriptor.Hints.Y });
-       }
-
-        void OnValidate()
-        {
-            HorizontalLook.Validate();
-            VerticalLook.Range.x = Mathf.Clamp(VerticalLook.Range.x, -90, 90);
-            VerticalLook.Range.y = Mathf.Clamp(VerticalLook.Range.y, -90, 90);
-            VerticalLook.Validate();
-        }
-
-        void OnEnable()
-        {
-            //m_Controller = GetComponentInParent<AnimalCharacter>();
-            //if (m_Controller == null)
-            //    Debug.LogError("SimplePlayerController not found on parent object");
-            //else
-            {
-                m_Controller.PreUpdate -= UpdatePlayerRotation;
-                m_Controller.PreUpdate += UpdatePlayerRotation;
-                m_Controller.PostUpdate -= PostUpdate;
-                m_Controller.PostUpdate += PostUpdate;
-                m_ControllerTransform = m_Controller.transform;
-            }
-        }
-
-        void OnDisable()
-        {
-            if (m_Controller != null)
-            {
-                m_Controller.PreUpdate -= UpdatePlayerRotation;
-                m_Controller.PostUpdate -= PostUpdate;
-                m_ControllerTransform = null;
-            }
-        }
-
-        /// <summary>Recenters the player to match my rotation</summary>
-        /// <param name="damping">How long the recentering should take</param>
-        public void RecenterPlayer(float damping = 0)
-        {
-            if (m_ControllerTransform == null)
-                return;
-
-            // Get my rotation relative to parent
-            var rot = transform.localRotation.eulerAngles;
-            rot.y = NormalizeAngle(rot.y);
-            var delta = rot.y;
-            delta = Damper.Damp(delta, damping, Time.deltaTime);
-
-            // Rotate the parent towards me
-            m_ControllerTransform.rotation = Quaternion.AngleAxis(
-                delta, m_ControllerTransform.up) * m_ControllerTransform.rotation;
-
-            // Rotate me in the opposite direction
-            HorizontalLook.Value -= delta;
-            rot.y -= delta;
-            transform.localRotation = Quaternion.Euler(rot);
-        }
-
-        /// <summary>
-        /// Set my rotation to look in this direction, without changing player rotation.
-        /// Here we only set the axis values, we let the player controller do the actual rotation.
-        /// </summary>
-        /// <param name="worldspaceDirection">Direction to look in, in worldspace</param>
-        public void SetLookDirection(Vector3 worldspaceDirection)
-        {
-            if (m_ControllerTransform == null)
-                return;
-            var rot = (Quaternion.Inverse(m_ControllerTransform.rotation)
-                * Quaternion.LookRotation(worldspaceDirection, m_ControllerTransform.up)).eulerAngles;
-            HorizontalLook.Value = HorizontalLook.ClampValue(rot.y);
-            VerticalLook.Value = VerticalLook.ClampValue(NormalizeAngle(rot.x));
-        }
-
-        // This is called by the player controller before it updates its own rotation.
-        void UpdatePlayerRotation()
-        {
-            var t = transform;
-            t.localRotation = Quaternion.Euler(VerticalLook.Value, HorizontalLook.Value, 0);
-            m_DesiredWorldRotation = t.rotation;
-            switch (PlayerRotation)
-            {
-                case CouplingMode.Coupled:
-                    {
-                        m_Controller.SetStrafeMode(true);
-                        RecenterPlayer();
-                        break;
-                    }
-                case CouplingMode.CoupledWhenMoving:
-                    {
-                        // If the player is moving, rotate its yaw to match the camera direction,
-                        // otherwise let the camera orbit
-                        m_Controller.SetStrafeMode(true);
-                        if (m_Controller.IsMoving)
-                            RecenterPlayer(RotationDamping);
-                        break;
-                    }
-                case CouplingMode.Decoupled:
-                    {
-                        m_Controller.SetStrafeMode(false);
-                        break;
-                    }
-            }
-            VerticalLook.UpdateRecentering(Time.deltaTime, VerticalLook.TrackValueChange());
-            HorizontalLook.UpdateRecentering(Time.deltaTime, HorizontalLook.TrackValueChange());
-        }
-
-        // Callback for player controller to update our rotation after it has updated its own.
-        void PostUpdate(Vector3 vel, float speed)
-        {
-            if (PlayerRotation == CouplingMode.Decoupled)
-            {
-                // After player has been rotated, we subtract any rotation change 
-                // from our own transform, to maintain our world rotation
-                transform.rotation = m_DesiredWorldRotation;
-                var delta = (Quaternion.Inverse(m_ControllerTransform.rotation) * m_DesiredWorldRotation).eulerAngles;
-                VerticalLook.Value = NormalizeAngle(delta.x);
-                HorizontalLook.Value = NormalizeAngle(delta.y);
-            }
-        }
-
-        float NormalizeAngle(float angle)
-        {
-            while (angle > 180)
-                angle -= 360;
-            while (angle < -180)
-                angle += 360;
-            return angle;
-        }
+    private void Awake()
+    {
+        // Initialize our aim values based on the current local rotation.
+        Vector3 initialEuler = transform.localRotation.eulerAngles;
+        yaw = initialEuler.y;
+        pitch = initialEuler.x;
     }
+
+    private void OnEnable()
+    {
+        // If not already assigned, try to find the character controller on a parent.
+        if (m_Controller == null)
+        {
+            m_Controller = GetComponentInParent<AnimalCharacter>();
+            if (m_Controller == null)
+            {
+                Debug.LogError("AnimalCharacter not found on parent object");
+                return;
+            }
+        }
+        m_ControllerTransform = m_Controller.transform;
+
+        // Subscribe to pre- and post-update events on the character.
+        m_Controller.PreUpdate -= UpdatePlayerRotation;
+        m_Controller.PreUpdate += UpdatePlayerRotation;
+        m_Controller.PostUpdate -= PostUpdate;
+        m_Controller.PostUpdate += PostUpdate;
+    }
+
+    private void OnDisable()
+    {
+        if (m_Controller != null)
+        {
+            m_Controller.PreUpdate -= UpdatePlayerRotation;
+            m_Controller.PostUpdate -= PostUpdate;
+        }
+        m_ControllerTransform = null;
+    }
+
+    /// <summary>
+    /// Recenters the player by rotating the parent (character) towards the camera’s direction.
+    /// Uses a damping value to smooth the adjustment.
+    /// </summary>
+    /// <param name="damping">Time-based damping value (0 for immediate alignment).</param>
+    public void RecenterPlayer(float damping = 0)
+    {
+        if (m_ControllerTransform == null)
+            return;
+
+        // Here we treat our yaw as the horizontal offset.
+        float currentYaw = yaw;
+
+        // Apply damping—assuming Damper.Damp is a utility function you have.
+        float dampedDelta = Damper.Damp(currentYaw, damping, Time.deltaTime);
+
+        // Rotate the player (the parent) towards the camera’s direction.
+        m_ControllerTransform.rotation = Quaternion.AngleAxis(dampedDelta, m_ControllerTransform.up) * m_ControllerTransform.rotation;
+
+        // Adjust our own yaw by subtracting the damped delta.
+        yaw -= dampedDelta;
+
+        // Update our local rotation.
+        transform.localRotation = Quaternion.Euler(pitch, yaw, 0);
+    }
+
+    /// <summary>
+    /// Sets the camera's look direction based on a worldspace direction without altering player rotation.
+    /// </summary>
+    /// <param name="worldspaceDirection">Direction to look at, in worldspace.</param>
+    public void SetLookDirection(Vector3 worldspaceDirection)
+    {
+        if (m_ControllerTransform == null)
+            return;
+
+        Quaternion relativeRot = Quaternion.Inverse(m_ControllerTransform.rotation) *
+                                 Quaternion.LookRotation(worldspaceDirection, m_ControllerTransform.up);
+        Vector3 euler = relativeRot.eulerAngles;
+        yaw = Mathf.Clamp(euler.y, -180f, 180f);
+        pitch = Mathf.Clamp(NormalizeAngle(euler.x), -90f, 90f);
+        transform.localRotation = Quaternion.Euler(pitch, yaw, 0);
+    }
+
+    /// <summary>
+    /// Called by the character controller before updating its own rotation.
+    /// Reads the look input from the InputManager_Singleton and adjusts the aim accordingly.
+    /// </summary>
+    void UpdatePlayerRotation()
+    {
+        // Process input only for the local (owning) player.
+        //if (!m_Controller.NetworkObject.IsOwner)
+        //    return;
+
+        // Retrieve current aim input every frame.
+        Vector2 aim = InputManager_Singleton.Instance?.lookInput ?? Vector2.zero;
+
+        // Update our internal yaw and pitch.
+        yaw += aim.x;
+        pitch -= aim.y;
+        // Clamp the pitch to avoid extreme vertical angles.
+        pitch = Mathf.Clamp(pitch, -70f, 70f);
+
+        // Apply the rotation.
+        transform.localRotation = Quaternion.Euler(pitch, yaw, 0f);
+        m_DesiredWorldRotation = transform.rotation;
+
+        // Handle the coupling between camera and player rotation.
+    //    switch (PlayerRotation)
+    //    {
+    //        case CouplingMode.Coupled:
+    //            //m_Controller.SetStrafeMode(true);
+    //            RecenterPlayer();
+    //            break;
+    //
+    //        case CouplingMode.CoupledWhenMoving:
+    //            //m_Controller.SetStrafeMode(true);
+    //            //if (m_Controller.IsMoving)
+    //                RecenterPlayer(RotationDamping);
+    //            break;
+    //
+    //        case CouplingMode.Decoupled:
+    //            //m_Controller.SetStrafeMode(false);
+    //            break;
+    //    }
+    }
+
+    /// <summary>
+    /// Called by the character controller after it has updated its rotation.
+    /// Adjusts the aim controller to preserve its desired world rotation.
+    /// </summary>
+    /// <param name="vel">Current velocity (unused here).</param>
+    /// <param name="speed">Current speed (unused here).</param>
+    void PostUpdate(Vector3 vel, float speed)
+    {
+        // Maintain the calculated world rotation.
+        transform.rotation = m_DesiredWorldRotation;
+
+        // Calculate the difference between the character's rotation and the desired aim rotation.
+        Quaternion deltaRot = Quaternion.Inverse(m_ControllerTransform.rotation) * m_DesiredWorldRotation;
+        Vector3 deltaEuler = deltaRot.eulerAngles;
+
+        // Normalize angles and update internal variables.
+        pitch = NormalizeAngle(deltaEuler.x);
+        yaw = NormalizeAngle(deltaEuler.y);
+    }
+
+    /// <summary>
+    /// Normalizes an angle to the range -180...180.
+    /// </summary>
+    float NormalizeAngle(float angle)
+    {
+        while (angle > 180f)
+            angle -= 360f;
+        while (angle < -180f)
+            angle += 360f;
+        return angle;
+    }
+}

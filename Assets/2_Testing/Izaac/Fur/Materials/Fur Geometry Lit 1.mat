@@ -25,13 +25,13 @@ Material:
     m_TexEnvs:
     - _BaseMap:
         m_Texture: {fileID: 2800000, guid: c8416b5ec6c3aa04cbf8a01b080c5f27, type: 3}
-        m_Scale: {x: 10, y: 10}
+        m_Scale: {x: 5, y: 5}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _Damper: 1
     - _FurJoint: 2
-    - _FurLength: 0.2
+    - _FurLength: 0.04
     - _Gravity: -0.5
     - _Metallic: 0
     - _MoveScale: 1
