@@ -59,6 +59,8 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
 
     private void OnDisable()
     {
+        Sounds_BackgroundMusic.Instance.fn_StopBackgroundMusicTrack();
+
         if (IsServer)
         {
             if (NetworkManager.Singleton == null)

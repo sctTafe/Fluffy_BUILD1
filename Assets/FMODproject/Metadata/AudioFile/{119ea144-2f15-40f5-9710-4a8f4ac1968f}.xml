@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{119ea144-2f15-40f5-9710-4a8f4ac1968f}">
+		<property name="assetPath">
+			<value>Music/Track1_Original_ 674944__seth_makes_sounds__hype-background-track_FadeInOut.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>112.824</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{1304a584-0065-42cb-bb27-692e2747de7a}</destination>
+		</relationship>
+	</object>
+</objects>
