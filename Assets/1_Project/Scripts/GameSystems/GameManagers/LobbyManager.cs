@@ -59,6 +59,7 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
 
     private void OnDisable()
     {
+        Debug.LogWarning("Music SHould Stop Now! Look out for this Rylan!");
         Sounds_BackgroundMusic.Instance.fn_StopBackgroundMusicTrack();
 
         if (IsServer)
