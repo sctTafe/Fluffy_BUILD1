@@ -990,6 +990,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   maxDistance: 30
+  targetTag: Mutant
   volume: {fileID: 8068724240964591822}
   pulseCurve:
     serializedVersion: 2
@@ -1016,6 +1017,9 @@ MonoBehaviour:
     m_PostInfinity: 0
     m_RotationOrder: 4
   pulseSpeed: 1.34
+  _maxIntensity: 0.5
+  _minVol: 0.3
+  _maxVol: 1
   heartbeatEvent:
     Guid:
       Data1: -1667291156
