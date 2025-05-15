@@ -64,7 +64,7 @@
 			<value>true</value>
 		</property>
 		<property name="maximumDistance">
-			<value>100</value>
+			<value>70</value>
 		</property>
 	</object>
 	<object class="MarkerTrack" id="{a3a0cb18-3575-46b8-87c5-36f155257e67}" />
@@ -113,6 +113,7 @@
 	</object>
 	<object class="MixerBusPanner" id="{5223567d-488c-477f-bb44-399a8ef3ecc3}" />
 	<object class="SingleSound" id="{a8f0099c-d1f3-4e5e-8b49-3272d6bcc207}">
+		<property name="name" />
 		<property name="volume">
 			<value>0.5</value>
 		</property>
