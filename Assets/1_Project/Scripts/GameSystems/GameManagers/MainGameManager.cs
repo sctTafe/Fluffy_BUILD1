@@ -293,7 +293,7 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
     private void OnClientDisconnect(ulong clientId)
     {
 
-
+        Debug.Log("OnClientDisconnect Called.");
 
 
         // Only execute if this is the local client being disconnected
