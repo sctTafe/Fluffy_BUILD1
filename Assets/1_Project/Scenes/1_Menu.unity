@@ -854,10 +854,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661716542}
-  - component: {fileID: 661716541}
   - component: {fileID: 661716543}
   - component: {fileID: 661716544}
   - component: {fileID: 661716545}
+  - component: {fileID: 661716546}
   m_Layer: 0
   m_Name: '[Managers]'
   m_TagString: Untagged
@@ -865,20 +865,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &661716541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 661716539}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cf22dff3ae93fb47a522cb1f65a4fb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _NetworkManagerPrefab: {fileID: 5842393447966420293, guid: 3a6ce151383a3554fa0cc62d1b41ec60, type: 3}
-  _PlayerDate: {fileID: 6422559361284382325, guid: 7f8735c3e10f6694aa6a8d7b19d40b7f, type: 3}
 --- !u!4 &661716542
 Transform:
   m_ObjectHideFlags: 0
@@ -935,6 +921,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   versionText: {fileID: 374341469}
+--- !u!114 &661716546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661716539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34008af6a5698d647a7e66a484077ad6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &893576928
 GameObject:
   m_ObjectHideFlags: 0
@@ -1273,10 +1271,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: NetworkSceneManager, Assembly-CSharp
-        m_MethodName: fn_GoToScene
-        m_Mode: 5
+      - m_Target: {fileID: 661716546}
+        m_TargetAssemblyTypeName: MainMenuUIButtonsManager, Assembly-CSharp
+        m_MethodName: fn_StartClient
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1676,7 +1674,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1162142199}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 661716546}
+        m_TargetAssemblyTypeName: MainMenuUIButtonsManager, Assembly-CSharp
+        m_MethodName: fn_QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1162142199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1842,10 +1852,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: NetworkSceneManager, Assembly-CSharp
-        m_MethodName: fn_GoToScene
-        m_Mode: 5
+      - m_Target: {fileID: 661716546}
+        m_TargetAssemblyTypeName: MainMenuUIButtonsManager, Assembly-CSharp
+        m_MethodName: fn_StartHost
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2559,10 +2569,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1795944986}
-        m_TargetAssemblyTypeName: NetworkSceneManager, Assembly-CSharp
-        m_MethodName: fn_GoToScene
-        m_Mode: 5
+      - m_Target: {fileID: 661716546}
+        m_TargetAssemblyTypeName: MainMenuUIButtonsManager, Assembly-CSharp
+        m_MethodName: fn_Cerdits
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2917,73 +2927,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _buttonTrans: {fileID: 0}
   _scaleMultiplier_Pct: 2
---- !u!1 &1795944984
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1795944987}
-  - component: {fileID: 1795944986}
-  - component: {fileID: 1795944985}
-  m_Layer: 0
-  m_Name: '[SceneManager]'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1795944985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1795944984}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64b445f23702c5e4b8a52ec7a80e5481, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sceneTarget: 0
-  _startHost: {fileID: 1353425520}
-  _startClient: {fileID: 1050355230}
-  _hostScene: 2_Host
-  _clientScene: 3_Join
-  _bootstrap: 1_BootStrap
---- !u!114 &1795944986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1795944984}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e66159e7b49a794d92fcde23908e997, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _mainMenuButton: {fileID: 0}
-  _nextSceneButton: {fileID: 0}
-  _quitButton: {fileID: 1162142198}
-  _shutdownNetworkButton: {fileID: 0}
---- !u!4 &1795944987
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1795944984}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1159.6123, y: 533.82605, z: -0.1384837}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1910077156
 GameObject:
   m_ObjectHideFlags: 0
@@ -3389,4 +3332,3 @@ SceneRoots:
   - {fileID: 1103486814}
   - {fileID: 462052276}
   - {fileID: 184973627}
-  - {fileID: 1795944987}

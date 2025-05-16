@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SceneFowarding : MonoBehaviour
+public class SceneFowarding : Singleton<SceneFowarding>
 {
     public enum SceneStates
     {
@@ -22,12 +22,19 @@ public class SceneFowarding : MonoBehaviour
     // Scene Names
     [SerializeField]
     private string _hostScene;
-    // Scene Names
     [SerializeField]
     private string _clientScene;
     [SerializeField]
     private string _bootstrap;
 
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject); // Destroy any duplicate
+            return;
+        }
+    }
 
     void Start()
     {
@@ -70,10 +77,9 @@ public class SceneFowarding : MonoBehaviour
             NetworkSceneManager.Instance.fn_GoToScene(_clientScene);
         }
 
-        Destroy(this.gameObject);
-    }
-
-
-
-    
+        //if(this.gameObject != null)
+        //{
+        //    Destroy(this.gameObject);
+        //}      
+    }    
 }

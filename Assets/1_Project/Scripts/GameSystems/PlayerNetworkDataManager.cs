@@ -39,11 +39,19 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
     private string playerName_local; // local Player Name
     private const string PLAYER_PREFS_PLAYER_NAME_MULTIPLAYER = "PlayerNameMultiplayer";
 
+
+    private bool _isSetUpComplete;
     #region Unity Native Functions
     private void Awake()
-    {
-        // Make persistent between scenes
+    {     
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject); // Destroy any duplicate
+            return;
+        }
+
         DontDestroyOnLoad(gameObject);
+        
 
         // Initialized network List (must be done here)
         playerDataNetworkList = new NetworkList<PlayerData>();
@@ -51,12 +59,17 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
 
         // Client Updates
         teamMonstersCountNV.OnValueChanged += Handle_teamMonstersCountNVValueChange;
+
+        _isSetUpComplete = true;
     }
 
     override public void OnDestroy()
     {
-        playerDataNetworkList.OnListChanged -= Handle_PlayerDataNetworkList_OnListChanged;
-        teamMonstersCountNV.OnValueChanged -= Handle_teamMonstersCountNVValueChange;
+        if (_isSetUpComplete)
+        {
+            playerDataNetworkList.OnListChanged -= Handle_PlayerDataNetworkList_OnListChanged;
+            teamMonstersCountNV.OnValueChanged -= Handle_teamMonstersCountNVValueChange;
+        }
 
         base.OnDestroy();
     }
@@ -100,6 +113,12 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
     public bool fn_GetClientTeamByClientID(ulong id) => GetClientTeamByClientID(id);
 
     public void fn_SelectMonsterOnStart() => SelectMonsterOnStart();
+
+    public void fn_ClearPlayerDataManager()
+    {
+        Debug.LogWarning("Player Data Manger 'Clear' Called!");
+        playerDataNetworkList.Clear();
+    }
 
 
     #endregion END: Public Functions

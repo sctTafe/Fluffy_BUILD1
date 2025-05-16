@@ -5,6 +5,18 @@ using FMOD.Studio;
 public class Sounds_BackgroundMusic : Singleton<Sounds_BackgroundMusic>
 {
     private EventInstance musicInstance;
+    private bool musicStarted = false;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject); // Destroy any duplicate
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject);
+    }
 
     void Start()
     {
@@ -16,21 +28,27 @@ public class Sounds_BackgroundMusic : Singleton<Sounds_BackgroundMusic>
 
         // Optional: Set it to loop (should already be set in FMOD Studio)
         musicInstance.release(); // Allow instance to be garbage collected when it stops
-
-        DontDestroyOnLoad(gameObject);
+        musicStarted = true;
     }
 
     public void fn_StopBackgroundMusicTrack()
     {
-        musicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        musicInstance.release();
+        if (musicStarted)
+        {
+            musicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            musicInstance.release();
+            musicStarted = false;
+        }
     }
 
 
     void OnDestroy()
     {
-        // Stop and release if the object is destroyed
-        musicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        musicInstance.release();
+        // Only stop if this is the one that started music
+        if (musicStarted)
+        {
+            musicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            musicInstance.release();
+        }
     }
 }

@@ -15,22 +15,23 @@ public class SingeltonCleanUp : MonoBehaviour
     {
         //Debug.LogWarning("SingeltonCleanUp Called!");
 
-        //if (NetworkManager.Singleton != null)           
-        //{
-        //    NetworkManager.Singleton.Shutdown();
-        //    Destroy(NetworkManager.Singleton.gameObject);
-        //    Instantiate(_NetworkManagerPrefab);
-        //}
+        if (NetworkManager.Singleton == null)
+        {
+            //NetworkManager.Singleton.Shutdown();
+            //Destroy(NetworkManager.Singleton.gameObject);
+            Instantiate(_NetworkManagerPrefab);
+        }
 
         //if (NetworkManager.Singleton == null)
         //{
         //    Instantiate(_NetworkManagerPrefab);
         //}
 
-        if (PlayerNetworkDataManager.Instance == null)
-        {
-            Instantiate(_PlayerDate);
-        }
+        //if (PlayerNetworkDataManager.Instance == null)
+        //{
+        //    Instantiate(_PlayerDate);
+        //    NetworkManager.Singleton.SpawnManager.s
+        //}
 
 
     }
