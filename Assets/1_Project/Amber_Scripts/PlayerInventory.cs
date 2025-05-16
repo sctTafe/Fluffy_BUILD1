@@ -113,6 +113,10 @@ public class PlayerInventory : NetworkBehaviour
 			{
 				target_object.Despawn();
 			}
+			else
+			{
+				Debug.Log("Target object to pick up doesn't exist!");
+			}
 		}
 	}
 
