@@ -22,20 +22,24 @@ public class DepositItemPoint : NetworkBehaviour
 	public string objective_UI_tag = "objective_prompt";
 	
 	private ObjectiveManager objective_manager;
-	private TMP_Text objective_prompt;
+	[SerializeField] private TMP_Text objective_prompt;
 
     public void Start()
 	{
         // Disable Self If Not Owner
+		/**
         if (!IsOwner)
         {
             this.enabled = false;
             return;
         }
+		**/
+		UpdateUI();
 	}
 
 	void Update()
 	{
+		/**
 		if(objective_prompt == null && Time.frameCount % 10 == 0)
 		{
 			objective_prompt = GameObject.FindWithTag(objective_UI_tag).GetComponent<TMP_Text>();
@@ -45,6 +49,7 @@ public class DepositItemPoint : NetworkBehaviour
 				UpdateUI();
 			}
 		}
+		**/
 	}
 
     private void OnEnable()
