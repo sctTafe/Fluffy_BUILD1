@@ -66,7 +66,7 @@ public class NetworkSceneManager : Singleton<NetworkSceneManager>
 
     private void Handle_OnClientDisconnected(ulong clientId)
     {
-        Debug.Log("Hnadel_OnClientDisconnected Called!");
+        Debug.Log("Handle_OnClientDisconnected Called!");
         fn_GoToMainMenu();
     }
 
