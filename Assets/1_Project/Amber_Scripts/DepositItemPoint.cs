@@ -39,6 +39,11 @@ public class DepositItemPoint : NetworkBehaviour
 		if(objective_prompt == null && Time.frameCount % 10 == 0)
 		{
 			objective_prompt = GameObject.FindWithTag(objective_UI_tag).GetComponent<TMP_Text>();
+			
+			if(objective_prompt != null)
+			{
+				UpdateUI();
+			}
 		}
 	}
 
