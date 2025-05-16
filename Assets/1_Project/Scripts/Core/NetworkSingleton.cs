@@ -10,16 +10,15 @@ public class NetworkSingleton<T> : NetworkBehaviour
 
     private static T _instance;
 
-    private void Awake()
-    {
-        if (NetworkSingleton<T>.Instance != null && NetworkSingleton<T>.Instance != this)
-        {
-            Debug.LogWarning($"Wanrning the is a duplicate of {NetworkSingleton<T>.Instance.name}");
-            Destroy(gameObject);
-            return;
-        }
-
-    }
+    //private void Awake()
+    //{
+    //    if (NetworkSingleton<T>.Instance != null && NetworkSingleton<T>.Instance != this)
+    //    {
+    //        Debug.LogWarning($"Wanrning the is a duplicate of {NetworkSingleton<T>.Instance.name}");
+    //        Destroy(NetworkSingleton<T>.Instance);
+    //        return;
+    //    }
+    //}
     
     public static T Instance
     {

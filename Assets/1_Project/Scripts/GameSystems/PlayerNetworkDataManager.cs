@@ -9,8 +9,8 @@ using System.Collections.Generic;
 /// </summary>
 public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManager>
 {
-    private const bool isDebuggingOn = true; 
-    
+    private const bool isDebuggingOn = true;
+
     /// <summary>
     /// Event Call for when any PlayerData changes
     /// </summary>
@@ -19,7 +19,7 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
     /// <summary>
     /// Event Call for when teams change
     /// </summary>
-    public event EventHandler OnTeamsChanged; 
+    public event EventHandler OnTeamsChanged;
 
 
 
@@ -29,10 +29,10 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
     // - Network Varaibles -   
     // Local Client NV
     //NetworkVariable<PlayerData> _playerData = new NetworkVariable<PlayerData>(); 
-    
+
     // Server NV
     private NetworkVariable<int> teamMonstersCountNV = new NetworkVariable<int>();
-    public NetworkList<PlayerData> playerDataNetworkList; //Must be initialized later 
+    private NetworkList<PlayerData> playerDataNetworkList; //Must be initialized later 
 
 
     // - Local Variables -
@@ -47,13 +47,16 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
 
         // Initialized network List (must be done here)
         playerDataNetworkList = new NetworkList<PlayerData>();
+        playerDataNetworkList.OnListChanged += Handle_PlayerDataNetworkList_OnListChanged;
+
+        // Client Updates
+        teamMonstersCountNV.OnValueChanged += Handle_teamMonstersCountNVValueChange;
     }
 
     override public void OnDestroy()
     {
         playerDataNetworkList.OnListChanged -= Handle_PlayerDataNetworkList_OnListChanged;
         teamMonstersCountNV.OnValueChanged -= Handle_teamMonstersCountNVValueChange;
-        NetworkManager.Singleton.OnClientConnectedCallback -= Handle_NetworkManagerClientConnectedCallback;
 
         base.OnDestroy();
     }
@@ -63,10 +66,9 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
         base.OnNetworkSpawn();
 
         if (isDebuggingOn) Debug.Log("PlayerNetworkDataManager: OnNetworkSpawn");
-
-        playerDataNetworkList.OnListChanged += Handle_PlayerDataNetworkList_OnListChanged;
-        teamMonstersCountNV.OnValueChanged += Handle_teamMonstersCountNVValueChange;
-        NetworkManager.Singleton.OnClientConnectedCallback += Handle_NetworkManagerClientConnectedCallback;
+        var netMng = NetworkManager.Singleton;
+        // On new clients joining the game
+        netMng.OnClientConnectedCallback += Handle_NetworkManagerClientConnectedCallback;
 
         // TODO: should deal with both of these 
 
@@ -75,11 +77,11 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
         // netMng.OnClientDisconnectCallback +=
 
         if (IsClient)
-        {       
+        {
             // Invoke a local update of team realated values
             OnTeamsChanged?.Invoke(this, new EventArgs());
         }
-        
+
 
     }
     #endregion END: Unity Native Functions
@@ -100,14 +102,14 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
     public void fn_SelectMonsterOnStart() => SelectMonsterOnStart();
 
 
-	#endregion END: Public Functions
+    #endregion END: Public Functions
 
 
-	#region CallBack Functions
-	/// <summary>
-	/// Called
-	/// </summary>
-	private void Handle_PlayerDataNetworkList_OnListChanged(NetworkListEvent<PlayerData> changeEvent)
+    #region CallBack Functions
+    /// <summary>
+    /// Called
+    /// </summary>
+    private void Handle_PlayerDataNetworkList_OnListChanged(NetworkListEvent<PlayerData> changeEvent)
     {
         // NOTE: Called on clients and server
 
@@ -115,7 +117,7 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
         //if (isDebuggingOn) Debug.Log($"PlayerNetworkDataManager: Change Event = {changeEvent} ");
         if ((isDebuggingOn))
         {
-            foreach(var player in playerDataNetworkList)
+            foreach (var player in playerDataNetworkList)
             {
                 Debug.Log($"PNDL Callback Info:  ClientID {player.clientId}, Team {player.goodTeam} ");
             }
@@ -146,10 +148,6 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
     /// </summary>
     private void Handle_NetworkManagerClientConnectedCallback(ulong clientId)
     {
-        if (playerDataNetworkList == null)
-            Debug.LogWarning("Argrghjajkhasjhkl");
-
-
         if (IsServer)
         {
             // Create & Add New Player
@@ -214,21 +212,21 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
     public void SetPlayerTeam(bool isGoodie, ulong? clinetID = null)
     {
         // Note: Called Client Side
-        
+
         if (clinetID == null)
         {
-        // Update local client team
-        UpdatePlayerTeamServerRpc(NetworkManager.Singleton.LocalClientId, isGoodie);
+            // Update local client team
+            UpdatePlayerTeamServerRpc(NetworkManager.Singleton.LocalClientId, isGoodie);
         }
         else
         {
             // Host Or Server, can change the team of any player
             if (IsHost || IsServer)
-            UpdatePlayerTeamServerRpc(clinetID.Value, isGoodie);
+                UpdatePlayerTeamServerRpc(clinetID.Value, isGoodie);
         }
     }
 
-    
+
     // - Server Side Functions -
 
     /// <summary>
@@ -263,7 +261,7 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
         //playerDataNetworkList.Insert(playerDataListIndex, playerdataTemp);
     }
 
-    
+
     /// <summary>
     /// Update the Total Mutant Players Count NV
     /// </summary>
@@ -276,16 +274,16 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
             if (playerData.goodTeam == false)
             {
                 count++;
-            }          
+            }
         }
 
         // If Value is different to currently held value, update it
-        if(teamMonstersCountNV.Value != count)
+        if (teamMonstersCountNV.Value != count)
         {
             teamMonstersCountNV.Value = count;
         }
     }
-    
+
 
 
     #endregion END: Player Team
@@ -391,9 +389,9 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
         }
         return default;
     }
-	#endregion END: Player Data Network List
+    #endregion END: Player Data Network List
 
-	#region Monster Selection
+    #region Monster Selection
 
     /// <summary>
     /// Randomly assigns a single player to the monster team
@@ -406,17 +404,17 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
             if (teamMonstersCountNV.Value == 0)
             {
                 monsterClientID = playerDataNetworkList[UnityEngine.Random.Range(0, playerDataNetworkList.Count)].clientId;
-			}
+            }
             else
             {
                 List<PlayerData> teamMonstersCandidates = new List<PlayerData>();
 
-				foreach (var player in playerDataNetworkList)
-				{
-                    if(player.goodTeam == false) teamMonstersCandidates.Add(player);
-				}
+                foreach (var player in playerDataNetworkList)
+                {
+                    if (player.goodTeam == false) teamMonstersCandidates.Add(player);
+                }
 
-				monsterClientID = teamMonstersCandidates[UnityEngine.Random.Range(0, teamMonstersCandidates.Count)].clientId;
+                monsterClientID = teamMonstersCandidates[UnityEngine.Random.Range(0, teamMonstersCandidates.Count)].clientId;
             }
             AssignTeams(monsterClientID);
         }
@@ -428,7 +426,7 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
     /// <param name="monsterClientID">The clientId of the selected Monster</param>
     private void AssignTeams(ulong monsterClientID)
     {
-        if(IsHost)
+        if (IsHost)
         {
             foreach (var player in playerDataNetworkList)
             {
@@ -438,12 +436,12 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
         }
     }
 
-	#endregion END: Monster Selection
+    #endregion END: Monster Selection
 
 
 
 
-	private void Handle_PlayerDataChange(PlayerData oldValue, PlayerData newValue)
+    private void Handle_PlayerDataChange(PlayerData oldValue, PlayerData newValue)
     {
         OnPlayerDataNVChanged?.Invoke(this, EventArgs.Empty);
     }
