@@ -689,7 +689,8 @@ GameObject:
   - component: {fileID: -1529161446549516224}
   - component: {fileID: 7082114420134920553}
   - component: {fileID: 1340729016870545582}
-  m_Layer: 7
+  - component: {fileID: 2298788696072705426}
+  m_Layer: 8
   m_Name: Prefab_Fluffy
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1103,6 +1104,24 @@ CapsuleCollider:
   m_Height: 1.29
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &2298788696072705426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6103115944230435048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33bad5e9f60f1607b7579a47e1c43e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  arrow_prefab: {fileID: 7507883292530101134, guid: e6e7518c436336353adbf955b1872d94, type: 3}
+  key_locations:
+  - {x: -5, y: 0, z: 27}
+  - {x: -44, y: 0, z: 1}
+  - {x: 0, y: 0, z: 0}
 --- !u!1 &6167483681963466577
 GameObject:
   m_ObjectHideFlags: 0
