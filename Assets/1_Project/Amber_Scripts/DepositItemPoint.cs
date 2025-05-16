@@ -2,6 +2,7 @@ using UnityEngine;
 using Unity.Netcode;
 using TMPro;
 using System;
+using System.Collections;
 
 public class DepositItemPoint : NetworkBehaviour
 {
@@ -23,25 +24,28 @@ public class DepositItemPoint : NetworkBehaviour
 	private ObjectiveManager objective_manager;
 	private TMP_Text objective_prompt;
 
-	public void Start()
+	GameObject GO;
+    public void Start()
 	{
-		var GO = GameObject.FindWithTag(objective_UI_tag);
+        // Disable Self If Not Owner
+        if (!IsOwner)
+        {
+            this.enabled = false;
+            return;
+        }
+
+
+        GO = GameObject.FindWithTag(objective_UI_tag);
 		if (GO != null)
 		{
-            objective_prompt = GO.GetComponent<TMP_Text>();
-            if (objective_prompt != null)
-            {
-                objective_prompt.text = $"{objective_name} {current_amount.Value} / {amount_needed}";
-            }
-        }
-
-		var GO2 = GameObject.FindWithTag("ObjectiveManager");
-
-        if (GO2 != null)
+			// Cannot Find UI On Start (Player may not have finished loading in with the UI Yet)
+			TryFindObjectiveUI();
+		}
+		else
 		{
-            objective_manager = GO2.GetComponent<ObjectiveManager>();
-        }
-            
+			StartCoroutine(DelayedCheck());
+
+        }           
 	}
     private void OnEnable()
     {
@@ -58,6 +62,12 @@ public class DepositItemPoint : NetworkBehaviour
 	/// </summary>
     private void HandleOnValueChange(int previousValue, int newValue)
     {
+		if (GO == null)
+		{
+			Debug.LogWarning("DepositItemPoint, UI Link not established");
+            return;
+        }
+			
         UpdateUI();
     }
 
@@ -68,7 +78,7 @@ public class DepositItemPoint : NetworkBehaviour
 
 	public void DepositItem()
 	{
-		IncreaseAmountServerRPC();
+        IncreaseAmountServerRPC();
 	}
 
 	[ServerRpc(RequireOwnership = false)]
@@ -98,4 +108,28 @@ public class DepositItemPoint : NetworkBehaviour
         	objective_prompt.text = $"{objective_name} {current_amount.Value} / {amount_needed}";
 		}
     }
+
+    IEnumerator DelayedCheck()
+    {
+        yield return new WaitForSeconds(10f);
+		TryFindObjectiveUI();
+    }
+
+
+	private void TryFindObjectiveUI()
+	{
+        objective_prompt = GO.GetComponent<TMP_Text>();
+        if (objective_prompt != null)
+        {
+            objective_prompt.text = $"{objective_name} {current_amount.Value} / {amount_needed}";
+        }
+
+        var GO2 = GameObject.FindWithTag("ObjectiveManager");
+
+        if (GO2 != null)
+        {
+            objective_manager = GO2.GetComponent<ObjectiveManager>();
+        }
+    }
+
 }
