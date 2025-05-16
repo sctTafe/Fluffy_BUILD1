@@ -48,9 +48,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6871623366011589155, guid: 6b423641ea0bf3c45afa068469556b04, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -5999172075941962833, guid: 6b423641ea0bf3c45afa068469556b04, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6b423641ea0bf3c45afa068469556b04, type: 3}
       propertyPath: m_Name
       value: TEM_Stone_Bridge_Module_01A (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6b423641ea0bf3c45afa068469556b04, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3070852073254854699, guid: 6b423641ea0bf3c45afa068469556b04, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
