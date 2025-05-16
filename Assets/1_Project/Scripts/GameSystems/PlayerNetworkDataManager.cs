@@ -117,7 +117,13 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
     public void fn_ClearPlayerDataManager()
     {
         Debug.LogWarning("Player Data Manger 'Clear' Called!");
-        playerDataNetworkList.Clear();
+        if (playerDataNetworkList != null)
+        {
+            if (playerDataNetworkList.Count > 0)
+            {
+                playerDataNetworkList.Clear();
+            }           
+        }
     }
 
 

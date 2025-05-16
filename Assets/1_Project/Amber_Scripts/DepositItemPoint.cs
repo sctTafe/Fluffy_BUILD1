@@ -119,6 +119,7 @@ public class DepositItemPoint : NetworkBehaviour
 	private void TryFindObjectiveUI()
 	{
         objective_prompt = GO.GetComponent<TMP_Text>();
+
         if (objective_prompt != null)
         {
             objective_prompt.text = $"{objective_name} {current_amount.Value} / {amount_needed}";
