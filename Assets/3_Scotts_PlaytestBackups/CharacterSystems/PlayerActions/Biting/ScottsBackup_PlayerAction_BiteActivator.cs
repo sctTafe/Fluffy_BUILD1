@@ -108,20 +108,13 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
     public override bool fn_ReceiveActivationInput(bool b)
     {
         _isInput = b;
+        OnCooldownWithLengthTriggered?.Invoke(0.1f);
         return false;
     }
 
 
     private void HandleGrabInput()
     {
-
-        //// Check For Sufficient Stamina
-        //if (_mutantStaminaSystem.get_stamina() < _minimumUsageStamina)
-        //{
-        //    OnInsufficientStamina?.Invoke();
-        //    return;
-        //}
-
         // Check For Sufficient Stamina
         if (_resourceSystem.fn_GetCurrentValue() < _minimumUsageStamina) 
         {
@@ -130,13 +123,10 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
         }
 
 
-
-
         // Check if general interaction on cooldown (0.2s)
         if(IsInteractionOnCooldown()) 
             return;
         TriggerInteractionCooldown();
-
 
 
         if (!isBiting)

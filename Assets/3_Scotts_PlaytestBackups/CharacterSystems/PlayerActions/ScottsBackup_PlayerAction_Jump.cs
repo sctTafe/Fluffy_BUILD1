@@ -48,6 +48,7 @@ public class ScottsBackup_PlayerAction_Jump : PlayerActionBase, IHudAbilityBinde
     {
         if (ISDEBUGGING) Debug.Log("ScottsBackup_PlayerAction_Jump: ActionInput Recived");
         _inputRecived = b;
+        OnCooldownWithLengthTriggered?.Invoke(0.1f);
         return false;
     }
 

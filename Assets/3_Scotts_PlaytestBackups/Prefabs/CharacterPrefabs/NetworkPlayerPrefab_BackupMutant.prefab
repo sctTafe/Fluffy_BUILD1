@@ -2978,7 +2978,7 @@ MonoBehaviour:
   GroundedRadius: 0.28
   GroundLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 4160
   CinemachineCameraTarget: {fileID: 684008945860334424}
   TopClamp: 70
   BottomClamp: -30
@@ -3156,8 +3156,8 @@ MonoBehaviour:
   _resourceTypeID: 3
   isStartingAtMax: 1
   isAutoRechargeEnabled: 1
-  rechargeDelaySecond: 1.5
-  valueRechargePerSecond: 5
+  rechargeDelaySecond: 2
+  valueRechargePerSecond: 10
   OnExhaustionTriggered_UE:
     m_PersistentCalls:
       m_Calls: []

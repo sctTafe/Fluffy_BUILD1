@@ -57,6 +57,7 @@ public class ScottsBackup_PlayerAction_Sprint : PlayerActionBase, IHudAbilityBin
     {
         if (ISDEBUGGING) Debug.Log("PlayerAction_Sprint: ActionInput Recived");
         _inputRecived = b;
+        OnCooldownWithLengthTriggered?.Invoke(0.1f);
         return false;
     }
 

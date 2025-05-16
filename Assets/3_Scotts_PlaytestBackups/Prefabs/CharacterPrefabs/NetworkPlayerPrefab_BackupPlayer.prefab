@@ -5531,7 +5531,7 @@ MonoBehaviour:
       m_Calls: []
   _playerControler: {fileID: 5928170330904496098}
   _staminaSystem: {fileID: -5489356403304203484}
-  _sprintCostPerSec: 2.5
+  _sprintCostPerSec: 10
 --- !u!114 &8046335248435032946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5702,7 +5702,7 @@ MonoBehaviour:
   _resourceTypeID: 1
   isStartingAtMax: 1
   isAutoRechargeEnabled: 1
-  rechargeDelaySecond: 1
+  rechargeDelaySecond: 1.5
   valueRechargePerSecond: 10
   OnExhaustionTriggered_UE:
     m_PersistentCalls:

@@ -6,7 +6,7 @@ using Unity.Netcode;
 
 public class ScottsBackup_PlayerAction_RevealFluffies : PlayerActionBase, IHudAbilityBinder
 {
-    private const bool ISDEBUGGING = true;
+    private const bool ISDEBUGGING = false;
 
     // IHudAbilityBinder
     public event Action<float> OnCooldownWithLengthTriggered;
@@ -61,7 +61,7 @@ public class ScottsBackup_PlayerAction_RevealFluffies : PlayerActionBase, IHudAb
     {
         if (ISDEBUGGING) Debug.Log("ScottsBackup_PlayerAction_RevealFluffies: ActionInput Recived");
         _inputRecived = b;
-
+        OnCooldownWithLengthTriggered?.Invoke(0.1f);
         Handle_InputRecived();
 
         return false;
