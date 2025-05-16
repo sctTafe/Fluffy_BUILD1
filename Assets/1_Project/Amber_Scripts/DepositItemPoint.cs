@@ -24,7 +24,6 @@ public class DepositItemPoint : NetworkBehaviour
 	private ObjectiveManager objective_manager;
 	private TMP_Text objective_prompt;
 
-	GameObject GO;
     public void Start()
 	{
         // Disable Self If Not Owner
@@ -33,20 +32,16 @@ public class DepositItemPoint : NetworkBehaviour
             this.enabled = false;
             return;
         }
-
-
-        GO = GameObject.FindWithTag(objective_UI_tag);
-		if (GO != null)
-		{
-			// Cannot Find UI On Start (Player may not have finished loading in with the UI Yet)
-			TryFindObjectiveUI();
-		}
-		else
-		{
-			StartCoroutine(DelayedCheck());
-
-        }           
 	}
+
+	void Update()
+	{
+		if(objective_prompt == null && Time.frameCount % 10 == 0)
+		{
+			objective_prompt = GameObject.FindWithTag(objective_UI_tag).GetComponent<TMP_Text>();
+		}
+	}
+
     private void OnEnable()
     {
 		current_amount.OnValueChanged += HandleOnValueChange;
@@ -62,12 +57,6 @@ public class DepositItemPoint : NetworkBehaviour
 	/// </summary>
     private void HandleOnValueChange(int previousValue, int newValue)
     {
-		if (GO == null)
-		{
-			Debug.LogWarning("DepositItemPoint, UI Link not established");
-            return;
-        }
-			
         UpdateUI();
     }
 
@@ -108,29 +97,4 @@ public class DepositItemPoint : NetworkBehaviour
         	objective_prompt.text = $"{objective_name} {current_amount.Value} / {amount_needed}";
 		}
     }
-
-    IEnumerator DelayedCheck()
-    {
-        yield return new WaitForSeconds(10f);
-		TryFindObjectiveUI();
-    }
-
-
-	private void TryFindObjectiveUI()
-	{
-        objective_prompt = GO.GetComponent<TMP_Text>();
-
-        if (objective_prompt != null)
-        {
-            objective_prompt.text = $"{objective_name} {current_amount.Value} / {amount_needed}";
-        }
-
-        var GO2 = GameObject.FindWithTag("ObjectiveManager");
-
-        if (GO2 != null)
-        {
-            objective_manager = GO2.GetComponent<ObjectiveManager>();
-        }
-    }
-
 }
