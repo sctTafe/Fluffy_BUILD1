@@ -13,7 +13,8 @@ using TMPro;
 public class PlayerInventory : NetworkBehaviour
 {
 	public List<string> held_items = new List<string>();
-	public EventReference fmod_event;
+	public EventReference pickup_sound;
+	public EventReference deposit_sound;
 
 	private bool in_item_hitbox = false;
 	private bool in_deposit_hitbox = false;
@@ -60,6 +61,7 @@ public class PlayerInventory : NetworkBehaviour
 					held_items.Remove(deposit_point.GetNeededItem());
 					UpdateUI();
 					deposit_point.DepositItem();
+					RuntimeManager.PlayOneShot(deposit_sound, transform.position);	
 				}
 			}
 			else if (in_item_hitbox)
@@ -182,7 +184,7 @@ public class PlayerInventory : NetworkBehaviour
 
 	void play_sound()
 	{
-		RuntimeManager.PlayOneShot(fmod_event, transform.position);	
+		RuntimeManager.PlayOneShot(pickup_sound, transform.position);	
 	}
 
 }

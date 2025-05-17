@@ -1126,7 +1126,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   held_items: []
-  fmod_event:
+  pickup_sound:
+    Guid:
+      Data1: -2134872236
+      Data2: 1094838869
+      Data3: 931674554
+      Data4: 1405046111
+    Path: event:/SFX/PlayerSounds/BushRustle
+  deposit_sound:
     Guid:
       Data1: -2134872236
       Data2: 1094838869
