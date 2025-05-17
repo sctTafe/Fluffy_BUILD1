@@ -7,7 +7,19 @@ using UnityEngine;
 public class NetworkSingleton<T> : NetworkBehaviour
     where T : Component
 {
+
     private static T _instance;
+
+    //private void Awake()
+    //{
+    //    if (NetworkSingleton<T>.Instance != null && NetworkSingleton<T>.Instance != this)
+    //    {
+    //        Debug.LogWarning($"Wanrning the is a duplicate of {NetworkSingleton<T>.Instance.name}");
+    //        Destroy(NetworkSingleton<T>.Instance);
+    //        return;
+    //    }
+    //}
+    
     public static T Instance
     {
         get
