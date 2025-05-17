@@ -20,6 +20,7 @@ public class PlayerInventory : NetworkBehaviour
 	private PickUpItem target_data;
 	private NetworkObject target_network;
 	private DepositItemPoint deposit_point;
+	private float pickup_cooldown = 0;
 	// private TMP_Text inventory_prompt;
 
 	public RawImage item_slot_1;
@@ -46,6 +47,8 @@ public class PlayerInventory : NetworkBehaviour
 			return;
 		}
 
+		pickup_cooldown -= Time.deltaTime;
+
 		if(Input.GetKeyDown(KeyCode.E))
 		{
 			if(in_deposit_hitbox)
@@ -59,8 +62,9 @@ public class PlayerInventory : NetworkBehaviour
 			}
 			else if (in_item_hitbox)
 			{
-				if(held_items.Count < 3)
+				if(held_items.Count < 3 && pickup_cooldown < 0)
 				{
+					pickup_cooldown = 2;
 					AddToInventory(target_data.GetItem());
 					DestroyObjectServerRPC(target_network.NetworkObjectId);
 				}
@@ -112,6 +116,10 @@ public class PlayerInventory : NetworkBehaviour
 			if(target_object != null)
 			{
 				target_object.Despawn();
+			}
+			else
+			{
+				Debug.Log("Target object to pick up doesn't exist!");
 			}
 		}
 	}
