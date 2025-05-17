@@ -44,25 +44,6 @@ MonoBehaviour:
   p21:
     m_OverrideState: 1
     m_Value: 0
---- !u!114 &-8006910643437128046
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb60a22f311433c4c962b888d1393f88, type: 3}
-  m_Name: PaniniProjection
-  m_EditorClassIdentifier: 
-  active: 1
-  distance:
-    m_OverrideState: 1
-    m_Value: 0
-  cropToFit:
-    m_OverrideState: 1
-    m_Value: 1
 --- !u!114 &-7750755424749557576
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -411,7 +392,6 @@ MonoBehaviour:
   - {fileID: 6200468137541631883}
   - {fileID: 8100518613218426215}
   - {fileID: 7940247895565285974}
-  - {fileID: -8006910643437128046}
   - {fileID: 5591314532820190216}
 --- !u!114 &1883678538341630003
 MonoBehaviour:
@@ -485,7 +465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01700fd266d6914ababb731e09af2eb, type: 3}
   m_Name: DepthOfField
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   mode:
     m_OverrideState: 1
     m_Value: 1
