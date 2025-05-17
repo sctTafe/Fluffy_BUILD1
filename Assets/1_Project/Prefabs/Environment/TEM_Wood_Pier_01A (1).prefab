@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8748179838728955334, guid: fb02e43022b25d5499606f6ca9ec9c8a, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fb02e43022b25d5499606f6ca9ec9c8a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.26
@@ -48,9 +52,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6337677675030286850, guid: fb02e43022b25d5499606f6ca9ec9c8a, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -639103783769372440, guid: fb02e43022b25d5499606f6ca9ec9c8a, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: fb02e43022b25d5499606f6ca9ec9c8a, type: 3}
       propertyPath: m_Name
       value: TEM_Wood_Pier_01A (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fb02e43022b25d5499606f6ca9ec9c8a, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
