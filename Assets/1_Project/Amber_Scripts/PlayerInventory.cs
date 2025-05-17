@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine.UI;
+using FMODUnity;
 using TMPro;
 
 /**
@@ -12,6 +13,7 @@ using TMPro;
 public class PlayerInventory : NetworkBehaviour
 {
 	public List<string> held_items = new List<string>();
+	public EventReference fmod_event;
 
 	private bool in_item_hitbox = false;
 	private bool in_deposit_hitbox = false;
@@ -67,6 +69,7 @@ public class PlayerInventory : NetworkBehaviour
 					pickup_cooldown = 2;
 					AddToInventory(target_data.GetItem());
 					DestroyObjectServerRPC(target_network.NetworkObjectId);
+					play_sound();
 				}
 				else
 				{
@@ -176,4 +179,10 @@ public class PlayerInventory : NetworkBehaviour
 		}
 
 	}
+
+	void play_sound()
+	{
+		RuntimeManager.PlayOneShot(fmod_event, transform.position);	
+	}
+
 }

@@ -678,7 +678,6 @@ GameObject:
   - component: {fileID: 5321180133262573405}
   - component: {fileID: 8607248295975972782}
   - component: {fileID: 4975522482717840287}
-  - component: {fileID: 2738397815988583428}
   - component: {fileID: 3657911424795443171}
   - component: {fileID: -6025897783477553730}
   - component: {fileID: 174214447878495844}
@@ -690,6 +689,7 @@ GameObject:
   - component: {fileID: 7082114420134920553}
   - component: {fileID: 1340729016870545582}
   - component: {fileID: 2298788696072705426}
+  - component: {fileID: 5671882976431527358}
   m_Layer: 8
   m_Name: Prefab_Fluffy
   m_TagString: Player
@@ -827,23 +827,6 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   player_health:
     m_InternalValue: 1
---- !u!114 &2738397815988583428
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6103115944230435048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c6524fb7342c8dc18b1270a4f63be52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  held_items: []
-  item_slot_1: {fileID: 0}
-  item_slot_2: {fileID: 0}
-  item_slot_3: {fileID: 0}
 --- !u!114 &3657911424795443171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -938,6 +921,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  hide_sound:
+    Guid:
+      Data1: -2134872236
+      Data2: 1094838869
+      Data3: 931674554
+      Data4: 1405046111
+    Path: event:/SFX/PlayerSounds/BushRustle
 --- !u!114 &-7910061463714057534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1122,6 +1112,30 @@ MonoBehaviour:
   - {x: -5, y: 0, z: 27}
   - {x: -44, y: 0, z: 1}
   - {x: 0, y: 0, z: 0}
+--- !u!114 &5671882976431527358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6103115944230435048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c6524fb7342c8dc18b1270a4f63be52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  held_items: []
+  fmod_event:
+    Guid:
+      Data1: -2134872236
+      Data2: 1094838869
+      Data3: 931674554
+      Data4: 1405046111
+    Path: event:/SFX/PlayerSounds/BushRustle
+  item_slot_1: {fileID: 0}
+  item_slot_2: {fileID: 0}
+  item_slot_3: {fileID: 0}
 --- !u!1 &6167483681963466577
 GameObject:
   m_ObjectHideFlags: 0
