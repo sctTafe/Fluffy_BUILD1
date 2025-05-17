@@ -120,11 +120,38 @@ MonoBehaviour:
   Path: FMODproject/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638831213981537922
+  lastModified: 638831250436543054
   FileSizes:
   - Name: Desktop
-    Value: 278560
+    Value: 278784
   Exists: 1
+--- !u!114 &-8605391263575357610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/BackgroundMusic
+  m_EditorClassIdentifier: 
+  Path: event:/Music/BackgroundMusic
+  Guid:
+    Data1: -349084283
+    Data2: 1140812769
+    Data3: -565110116
+    Data4: -609487115
+  Banks:
+  - {fileID: 3856880610114166356}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-8514004557529699003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +194,7 @@ MonoBehaviour:
   Path: FMODproject/Build/Desktop/Ambience.bank
   Name: Ambience
   StudioPath: bank:/Ambience
-  lastModified: 638831213981098150
+  lastModified: 638831250420944750
   FileSizes:
   - Name: Desktop
     Value: 3463584
@@ -423,26 +450,6 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &-5717394424202504722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Music.bank
-  m_EditorClassIdentifier: 
-  Path: FMODproject/Build/Desktop/Music.bank
-  Name: Music
-  StudioPath: bank:/Music
-  lastModified: 638831213981398950
-  FileSizes:
-  - Name: Desktop
-    Value: 1621568
-  Exists: 1
 --- !u!114 &-5292306131667010406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -693,7 +700,7 @@ MonoBehaviour:
   Path: FMODproject/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638831213981168392
+  lastModified: 638831250420980900
   FileSizes:
   - Name: Desktop
     Value: 1432
@@ -759,7 +766,7 @@ MonoBehaviour:
   - {fileID: -8217248628406668212}
   - {fileID: 252100799305778492}
   - {fileID: -8726279403185901915}
-  - {fileID: -5717394424202504722}
+  - {fileID: 3856880610114166356}
   EditorEvents:
   - {fileID: 5590972851576283138}
   - {fileID: -3464232252410419126}
@@ -770,13 +777,13 @@ MonoBehaviour:
   - {fileID: 5416424060501124945}
   - {fileID: -5292306131667010406}
   - {fileID: 2044945625118463862}
-  - {fileID: 1073098807485186652}
+  - {fileID: -8605391263575357610}
   EditorParameters: []
   MasterBanks:
   - {fileID: 252100799305778492}
   StringsBanks:
   - {fileID: -1713110214301737782}
-  cacheTime: 638831213981537922
+  cacheTime: 638831250436543054
   cacheVersion: 131624
 --- !u!114 &140665376743659878
 MonoBehaviour:
@@ -845,7 +852,7 @@ MonoBehaviour:
   Path: FMODproject/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638831213981108187
+  lastModified: 638831250420970866
   FileSizes:
   - Name: Desktop
     Value: 670
@@ -890,33 +897,6 @@ MonoBehaviour:
   - Name: Desktop
     Value: 670
   Exists: 1
---- !u!114 &1073098807485186652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Music/BackgroundMusic
-  m_EditorClassIdentifier: 
-  Path: event:/Music/BackgroundMusic
-  Guid:
-    Data1: 98037978
-    Data2: 1103797543
-    Data3: 491351731
-    Data4: -98313780
-  Banks:
-  - {fileID: -5717394424202504722}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &1306915850812802181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1170,6 +1150,26 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 0
   Labels: []
+  Exists: 1
+--- !u!114 &3856880610114166356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Music.bank
+  m_EditorClassIdentifier: 
+  Path: FMODproject/Build/Desktop/Music.bank
+  Name: Music
+  StudioPath: bank:/Music
+  lastModified: 638831250435082989
+  FileSizes:
+  - Name: Desktop
+    Value: 1621568
   Exists: 1
 --- !u!114 &4258820538689138839
 MonoBehaviour:

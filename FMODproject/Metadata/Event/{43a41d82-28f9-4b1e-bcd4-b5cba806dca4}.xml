@@ -60,9 +60,6 @@
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{1836e05f-769c-4d21-b1a0-c8aa2d16d775}">
-		<property name="dopplerEnabled">
-			<value>true</value>
-		</property>
 		<property name="maximumDistance">
 			<value>70</value>
 		</property>
@@ -90,12 +87,9 @@
 		</relationship>
 	</object>
 	<object class="MultiSound" id="{6f8b9494-afa9-43bb-ae23-910c128465d5}">
-		<property name="playbackMode">
-			<value>1</value>
-		</property>
 		<relationship name="sounds">
 			<destination>{a8f0099c-d1f3-4e5e-8b49-3272d6bcc207}</destination>
-			<destination>{eb39470c-d7a7-4df3-8992-7892c1d81d36}</destination>
+			<destination>{88a1af6f-1f1e-411a-9f6e-0f7b6a0cd09e}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{7d5b9ebc-df27-4bab-ac86-def2c3724407}">
@@ -113,17 +107,13 @@
 	</object>
 	<object class="MixerBusPanner" id="{5223567d-488c-477f-bb44-399a8ef3ecc3}" />
 	<object class="SingleSound" id="{a8f0099c-d1f3-4e5e-8b49-3272d6bcc207}">
-		<property name="name" />
-		<property name="volume">
-			<value>0.5</value>
-		</property>
 		<relationship name="audioFile">
 			<destination>{26346caf-4538-4263-89ba-f5d0ea47a135}</destination>
 		</relationship>
 	</object>
-	<object class="SingleSound" id="{eb39470c-d7a7-4df3-8992-7892c1d81d36}">
+	<object class="SingleSound" id="{88a1af6f-1f1e-411a-9f6e-0f7b6a0cd09e}">
 		<relationship name="audioFile">
-			<destination>{f67866df-9b0d-481b-9f79-d08fc82841a1}</destination>
+			<destination>{719d0eb6-87bd-4f83-a2ed-49893189e1a3}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{e647b5b7-97d0-4aa8-808f-2316dc300c57}" />
@@ -142,9 +132,5 @@
 			<value>280</value>
 		</property>
 	</object>
-	<object class="ObjectSpatialiserEffect" id="{1461213f-01c3-4b21-a70f-9ebcf8e0938e}">
-		<property name="maximumDistance">
-			<value>100</value>
-		</property>
-	</object>
+	<object class="ObjectSpatialiserEffect" id="{1461213f-01c3-4b21-a70f-9ebcf8e0938e}" />
 </objects>
