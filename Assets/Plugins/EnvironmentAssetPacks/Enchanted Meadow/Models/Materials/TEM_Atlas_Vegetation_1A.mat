@@ -96,7 +96,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureRamp:
-        m_Texture: {fileID: 2800000, guid: 069955a34770d354e819c2e2180fb61f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8b9d37aef14df7142bdc5457f9d21fbb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample:
@@ -139,7 +139,7 @@ Material:
     - _GlossyReflections: 1
     - _MainNormalMapScale: 1
     - _MainTextureTiling: 1
-    - _MaskClipValue: 0.5
+    - _MaskClipValue: 0.65
     - _Metallic: 0
     - _Mode: 0
     - _NormalMapScale: 1
