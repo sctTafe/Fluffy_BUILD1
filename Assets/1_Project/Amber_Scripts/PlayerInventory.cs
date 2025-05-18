@@ -3,18 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine.UI;
-using FMODUnity;
 using TMPro;
+using System;
 
 /**
 * Script created by Amber to allow the player to pick up items and store them in an inventory
 **/
 
-public class PlayerInventory : NetworkBehaviour
+public class PlayerInventory : PlayerActionBase, IHudAbilityBinder
 {
-	public List<string> held_items = new List<string>();
-	public EventReference pickup_sound;
-	public EventReference deposit_sound;
+    public event Action<float> OnCooldownWithLengthTriggered;
+    public event Action OnCooldownCanceled;
+
+
+    public List<string> held_items = new List<string>();
 
 	private bool in_item_hitbox = false;
 	private bool in_deposit_hitbox = false;
@@ -23,24 +25,21 @@ public class PlayerInventory : NetworkBehaviour
 	private PickUpItem target_data;
 	private NetworkObject target_network;
 	private DepositItemPoint deposit_point;
-	private float pickup_cooldown = 0;
 	// private TMP_Text inventory_prompt;
 
 	public RawImage item_slot_1;
 	public RawImage item_slot_2;
 	public RawImage item_slot_3;
 
-	void Start()
+    void Start()
 	{
 		if(!IsOwner)
 			return;
 
-		item_slot_1 = GameObject.Find("item_slot_1").GetComponent<RawImage>();
-		item_slot_2 = GameObject.Find("item_slot_2").GetComponent<RawImage>();
-		item_slot_3 = GameObject.Find("item_slot_3").GetComponent<RawImage>();
+		TryGetRefs();
 
-		// inventory_prompt = GameObject.FindWithTag("inventory_prompt").GetComponent<TMP_Text>();
-		UpdateUI();
+        // inventory_prompt = GameObject.FindWithTag("inventory_prompt").GetComponent<TMP_Text>();
+        UpdateUI();
 	}
 
     void Update()
@@ -50,28 +49,33 @@ public class PlayerInventory : NetworkBehaviour
 			return;
 		}
 
-		pickup_cooldown -= Time.deltaTime;
+		// Resoruce Load Check
+        if (item_slot_1 == null)
+        {
+			TryGetRefs();
+			Debug.LogWarning("PlayerInventory Unable to find UI Refs!");
+			return;
+        }
 
-		if(Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
 		{
-			if(in_deposit_hitbox)
+            OnCooldownWithLengthTriggered?.Invoke(0.5f);
+
+            if (in_deposit_hitbox)
 			{
 				if(held_items.Contains(deposit_point.GetNeededItem()))
 				{
 					held_items.Remove(deposit_point.GetNeededItem());
 					UpdateUI();
 					deposit_point.DepositItem();
-					RuntimeManager.PlayOneShot(deposit_sound, transform.position);	
 				}
 			}
 			else if (in_item_hitbox)
 			{
-				if(held_items.Count < 3 && pickup_cooldown < 0)
+				if(held_items.Count < 3)
 				{
-					pickup_cooldown = 2;
 					AddToInventory(target_data.GetItem());
 					DestroyObjectServerRPC(target_network.NetworkObjectId);
-					play_sound();
 				}
 				else
 				{
@@ -81,6 +85,29 @@ public class PlayerInventory : NetworkBehaviour
 			}
 		}
     }
+    public override bool fn_ReceiveActivationInput(bool b)
+    {
+        //Not Setup in theis version
+		return false;
+    }
+
+    private void TryGetRefs()
+	{
+        GameObject go;
+
+        go = GameObject.Find("item_slot_1");
+        if (go != null)
+            item_slot_1 = go.GetComponent<RawImage>();
+
+        go = GameObject.Find("item_slot_2");
+        if (go != null)
+            item_slot_2 = go.GetComponent<RawImage>();
+
+        go = GameObject.Find("item_slot_3");
+        if (go != null)
+            item_slot_3 = go.GetComponent<RawImage>();
+    }
+
 
 	void OnTriggerEnter(Collider other)
 	{
@@ -122,10 +149,6 @@ public class PlayerInventory : NetworkBehaviour
 			{
 				target_object.Despawn();
 			}
-			else
-			{
-				Debug.Log("Target object to pick up doesn't exist!");
-			}
 		}
 	}
 
@@ -140,8 +163,17 @@ public class PlayerInventory : NetworkBehaviour
 
 	void UpdateUI()
 	{
-		
-		/**
+        // Resoruce Load Check
+        if (item_slot_1 == null)
+        {
+            TryGetRefs();
+            Debug.LogWarning("PlayerInventory Unable to find UI Refs!");
+            return;
+        }
+
+
+
+        /**
 		string new_text = "Held items:";
 
 		foreach(string item in held_items)
@@ -150,9 +182,9 @@ public class PlayerInventory : NetworkBehaviour
 		}
 
 		inventory_prompt.text = new_text;
-		**/	
+		**/
 
-		if(held_items.Count == 3)
+        if (held_items.Count == 3)
 		{
 			item_slot_3.texture = Resources.Load<Texture2D>("icons/" + held_items[2]);
 		}
@@ -182,9 +214,5 @@ public class PlayerInventory : NetworkBehaviour
 
 	}
 
-	void play_sound()
-	{
-		RuntimeManager.PlayOneShot(pickup_sound, transform.position);	
-	}
 
 }

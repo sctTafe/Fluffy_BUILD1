@@ -34,4 +34,10 @@ public class Singleton<T> : MonoBehaviour
             return _instance;
         }
     }
+
+    public static void fn_CreateNew()
+    {
+        GameObject go = new GameObject("Singelton");
+        go.AddComponent<Singleton<T>>();
+    }
 }
