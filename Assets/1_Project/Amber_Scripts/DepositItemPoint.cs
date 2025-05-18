@@ -3,7 +3,6 @@ using Unity.Netcode;
 using TMPro;
 using System;
 using System.Collections;
-using FMODUnity;
 
 public class DepositItemPoint : NetworkBehaviour
 {
@@ -15,8 +14,6 @@ public class DepositItemPoint : NetworkBehaviour
 	*
 	* Don't forget to tag the deposit point deposit_point !
 	**/
-	
-	public EventReference deposit_sound;
 
 	public int amount_needed = 3;
 	public string item_needed = "yellow_test_item";
