@@ -762,7 +762,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 199675368717400519, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 4215772580
+      value: 1934439886
       objectReference: {fileID: 0}
     - target: {fileID: 1825700545855637256, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -774,11 +774,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 8ff74653a2007d15183b840c596e187c, type: 2}
     - target: {fileID: 2400136684261584493, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 3117987940
+      value: 1300413910
       objectReference: {fileID: 0}
     - target: {fileID: 2521964934663817000, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 1260100709
+      value: 1891315411
       objectReference: {fileID: 0}
     - target: {fileID: 2833950315601009008, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -822,7 +822,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7349204528427925824, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 885242249
+      value: 2426020357
       objectReference: {fileID: 0}
     - target: {fileID: 8013600863374583224, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1355,6 +1355,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e66159e7b49a794d92fcde23908e997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hostScene: 2_Host
+  _clientScene: 3_Join
+  _bootstrap: 0_BootStrap
   _mainMenuButton: {fileID: 0}
   _nextSceneButton: {fileID: 0}
   _quitButton: {fileID: 0}
@@ -3636,8 +3639,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  items: []
-  spawn_points: []
+  objectiveGroups: []
+  spawnPointGroups: []
 --- !u!4 &960463858
 Transform:
   m_ObjectHideFlags: 0
@@ -3965,15 +3968,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 199675368717400519, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 3523315279
+      value: 2513984919
       objectReference: {fileID: 0}
     - target: {fileID: 2400136684261584493, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 1966826313
+      value: 229267037
       objectReference: {fileID: 0}
     - target: {fileID: 2521964934663817000, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 1448495278
+      value: 586986990
       objectReference: {fileID: 0}
     - target: {fileID: 5086396994703095500, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: m_Name
@@ -3985,7 +3988,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7349204528427925824, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 3383617142
+      value: 6638556
       objectReference: {fileID: 0}
     - target: {fileID: 8013600863374583224, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6043,7 +6046,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 199675368717400519, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 3720107791
+      value: 1599833460
       objectReference: {fileID: 0}
     - target: {fileID: 1825700545855637256, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -6055,11 +6058,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 05145f8a01ab5becbb8adfd290caa1d1, type: 2}
     - target: {fileID: 2400136684261584493, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 31692701
+      value: 993498020
       objectReference: {fileID: 0}
     - target: {fileID: 2521964934663817000, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 2673705558
+      value: 911787624
       objectReference: {fileID: 0}
     - target: {fileID: 2833950315601009008, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -6103,7 +6106,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7349204528427925824, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 706856791
+      value: 3957532654
       objectReference: {fileID: 0}
     - target: {fileID: 8013600863374583224, guid: 8863fe3ad69bbb354a8d0a33e0327dd1, type: 3}
       propertyPath: m_LocalPosition.x
