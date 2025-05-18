@@ -11,19 +11,23 @@ public class LobbyTips : MonoBehaviour
 		"The mutant can reveal players hiding in bushes using Q",
 		"Fluffies can sprint by holding left shift, this can help them escape from the mutant!",
 		"Only fluffies are small enough to fit through the holes in chainlink fences.",
+		"Watch out! Red mushrooms are dangerous and will hurt fluffies",
+		"Yellow mushrooms will recover some of a fluffy's stamina!",
+		"The mutant wins by killing all of the fluffies!",
+		"The fluffies win by repairing the boat and escaping the island!"
 	};
 
 	void Start()
 	{
 		txt = GetComponent<TMP_Text>();
-		txt.text = tips[Random.Range(0, tips.Length)];
+		txt.text = "Tip: " + tips[Random.Range(0, tips.Length)];
 	}
 
 	void Update()
 	{
 		if(Input.GetKeyDown(KeyCode.Space))
 		{
-			txt.text = tips[Random.Range(0, tips.Length)];
+			txt.text = "Tip: " + tips[Random.Range(0, tips.Length)];
 		}
 	}
 }
