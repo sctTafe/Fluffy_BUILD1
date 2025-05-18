@@ -59,8 +59,13 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
 
     private void OnDisable()
     {
+        TurnOffMusic_ServerRPC();
+
         if (IsServer)
         {
+            //if (NetworkManager.Singleton == null)
+            //    return;
+
             NetworkManager.Singleton.SceneManager.OnLoadEventCompleted -= SceneManager_OnLoadEventCompleted;
             NetworkManager.Singleton.OnClientConnectedCallback -= Server_OnPlayerJoinedEvent;
         }
@@ -230,6 +235,19 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
         Debug.Log($"PlayerReadyValuesUpdated_ClientRpc Called: fn_GetNumberOfPlayersInLobby = {fn_GetNumberOfPlayersInLobby()} fn_GetNumberOfReadyPlayersInLobby = {fn_GetNumberOfReadyPlayersInLobby()} /n");
 
     }
+
+    [Rpc(SendTo.Server)]
+    private void TurnOffMusic_ServerRPC()
+    {
+        TurnOffMusic_ClientRPC();
+    }
+    [Rpc(SendTo.ClientsAndHost)]
+    private void TurnOffMusic_ClientRPC()
+    {
+        Sounds_BackgroundMusic.Instance.fn_StopBackgroundMusicTrack();
+    }
+
+
     #endregion END: RCP Calls
 
     #region Joining and Load Event Responces

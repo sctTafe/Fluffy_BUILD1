@@ -743,7 +743,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90a516ae295593b43947786d15b25d57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   maxDistance: 30
+  targetTag: Mutant
   volume: {fileID: 4846889508158641923}
   pulseCurve:
     serializedVersion: 2
@@ -770,6 +772,9 @@ MonoBehaviour:
     m_PostInfinity: 0
     m_RotationOrder: 4
   pulseSpeed: 1.34
+  _maxIntensity: 0.5
+  _minVol: 0.3
+  _maxVol: 1
   heartbeatEvent:
     Guid:
       Data1: -1667291156

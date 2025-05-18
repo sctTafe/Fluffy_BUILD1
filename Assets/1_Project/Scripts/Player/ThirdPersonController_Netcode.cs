@@ -530,13 +530,13 @@ namespace StarterAssets
                 ChangefreefallAnimatorVarNWVServerRpc(_animVarLocal_Freefall);
             }
 
-            if (Mathf.Abs(_animationBlend - _animVarLocalSpeed_Prev) > 0.05f)
+            if (Mathf.Abs(_animationBlend - _animVarLocalSpeed_Prev) > 0.1f)
             {
                 _animVarLocalSpeed_Prev = _animationBlend;
                 ChangeSpeedAnimatorVarNWVServerRpc(_animationBlend);
             }
 
-            if (Mathf.Abs(_inputMagnitude - _animVarLocalMotionSpeed_Prev) > 0.05f)
+            if (Mathf.Abs(_inputMagnitude - _animVarLocalMotionSpeed_Prev) > 0.1f)
             {
                 _animVarLocalMotionSpeed_Prev = _inputMagnitude;
                 ChangeMotionSpeedAnimatorVarNWVServerRpc(_inputMagnitude);

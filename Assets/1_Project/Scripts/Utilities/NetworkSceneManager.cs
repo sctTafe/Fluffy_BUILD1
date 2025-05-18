@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -5,6 +6,15 @@ using UnityEngine.UI;
 
 public class NetworkSceneManager : Singleton<NetworkSceneManager>
 {
+    // Scene Names
+    [SerializeField]
+    private string _hostScene = "2_Host";
+    [SerializeField]
+    private string _clientScene = "3_Join";
+    [SerializeField]
+    private string _bootstrap = "0_BootStrap";
+
+
     // Buttons
     [SerializeField]
     private Button _mainMenuButton;
@@ -12,7 +22,17 @@ public class NetworkSceneManager : Singleton<NetworkSceneManager>
     private Button _nextSceneButton;
     [SerializeField]
     private Button _quitButton;
+    [SerializeField]
+    private Button _shutdownNetworkButton;
 
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject); // Destroy any duplicate
+            return;
+        }
+    }
 
     void Start()
     {
@@ -32,10 +52,18 @@ public class NetworkSceneManager : Singleton<NetworkSceneManager>
         if (_quitButton != null)
             _quitButton?.onClick.AddListener(() =>
             {
-                Debug.Log("Menu_UIMng: Quit Btn Called, Quitting Application");
-                Application.Quit();
+                fn_QuitGame();
             });
+
+        if (_shutdownNetworkButton != null)
+            _shutdownNetworkButton?.onClick.AddListener(() =>
+            {
+                fn_Disconnect();
+            });
+
     }
+
+
 
     private void OnDestroy()
     {
@@ -47,6 +75,15 @@ public class NetworkSceneManager : Singleton<NetworkSceneManager>
 
         if (_quitButton != null)
             _quitButton.onClick.RemoveAllListeners();
+
+        if (NetworkManager.Singleton != null)
+            NetworkManager.Singleton.OnClientDisconnectCallback -= Handle_OnClientDisconnected;
+    }
+
+    private void Handle_OnClientDisconnected(ulong clientId)
+    {
+        Debug.Log("Handle_OnClientDisconnected Called!");
+        fn_GoToMainMenu();
     }
 
     string SceneName(int buildIndex)
@@ -54,7 +91,11 @@ public class NetworkSceneManager : Singleton<NetworkSceneManager>
         string nextSceneName = SceneUtility.GetScenePathByBuildIndex(buildIndex);
         return System.IO.Path.GetFileNameWithoutExtension(nextSceneName);
     }
-
+    public void fn_QuitGame()
+    {
+        Debug.Log("Menu_UIMng: Quit Btn Called, Quitting Application");
+        Application.Quit();
+    }
     public void fn_GoToScene(string scene)
     {
         if (NetworkManager.Singleton != null && NetworkManager.Singleton.SceneManager != null)
@@ -75,15 +116,15 @@ public class NetworkSceneManager : Singleton<NetworkSceneManager>
     {
         Debug.Log("Home Scene Btn Called, loading next scene");
         
+
         if (NetworkManager.Singleton != null && NetworkManager.Singleton.SceneManager != null)
         {
-            NetworkManager.Singleton.Shutdown();
-            NetworkManager.Singleton.SceneManager.LoadScene(SceneName(0), LoadSceneMode.Single);
+            NetworkManager.Singleton.SceneManager.LoadScene(SceneName(1), LoadSceneMode.Single);
         }
         else
         {
             Debug.LogWarning("NetworkSceneManager: Network Not Established; Using Basic ScenManagere to switch scene!");
-            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(0);
+            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(1);
         }
     }
 
@@ -100,6 +141,34 @@ public class NetworkSceneManager : Singleton<NetworkSceneManager>
         {
             fn_GoToMainMenu();
         }
-
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public void fn_Disconnect()
+    {
+        Debug.LogWarning("NetworkSceneManager: Disconnect Called!");
+
+        if (PlayerNetworkDataManager.Instance != null)
+            PlayerNetworkDataManager.Instance.fn_ClearPlayerDataManager();
+
+        if (NetworkManager.Singleton != null)
+            NetworkManager.Singleton.Shutdown();
+
+        fn_GoToMainMenu();
+    }
+
+
+    public void fn_StartHost() 
+    { 
+        AsyncOperation asyncOp = SceneManager.LoadSceneAsync(_hostScene);
+    }
+
+    public void fn_StartClient()
+    {
+        AsyncOperation asyncOp = SceneManager.LoadSceneAsync(_clientScene);
+    }
+
+
 }

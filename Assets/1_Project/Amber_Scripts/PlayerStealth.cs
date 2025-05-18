@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Netcode;
 using TMPro;
+using FMODUnity;
 
 public class PlayerStealth : NetworkBehaviour
 {
@@ -9,6 +10,10 @@ public class PlayerStealth : NetworkBehaviour
 	private float time_in_bush = 0;
 	private float force_reveal = 0;
 	private TMP_Text stealth_prompt;
+
+	private bool played_sound = false;
+	
+	public EventReference hide_sound;
 
     void Start()
     {
@@ -36,8 +41,17 @@ public class PlayerStealth : NetworkBehaviour
 				else
 				{
 					stealth_prompt.text = "[ Hidden! ]";
+					if(!played_sound)
+					{
+						play_hide_sound();
+						played_sound = true;
+					}
 				}
 			}
+		}
+		else
+		{
+			played_sound = false;
 		}
 
 		force_reveal -= Time.deltaTime;
@@ -48,6 +62,11 @@ public class PlayerStealth : NetworkBehaviour
 			stealth_prompt.text = "[ Revealed! ]";
 		}
 
+	}
+
+	void play_hide_sound()
+	{
+		RuntimeManager.PlayOneShot(hide_sound, transform.position);
 	}
 
 	void OnTriggerEnter(Collider other)

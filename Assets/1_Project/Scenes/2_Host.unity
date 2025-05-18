@@ -512,9 +512,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e66159e7b49a794d92fcde23908e997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainMenuButton: {fileID: 1648628116}
+  _mainMenuButton: {fileID: 0}
   _nextSceneButton: {fileID: 0}
   _quitButton: {fileID: 0}
+  _shutdownNetworkButton: {fileID: 1648628116}
 --- !u!4 &661716542
 Transform:
   m_ObjectHideFlags: 0
