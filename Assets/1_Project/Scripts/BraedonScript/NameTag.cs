@@ -11,46 +11,28 @@ public class NameTag : NetworkBehaviour
     [SerializeField] private TextMeshPro displayNameText;
 
     private NetworkVariable<FixedString64Bytes> displayName = new NetworkVariable<FixedString64Bytes>();
-
-    //todo 
-    //disable own tag
-    //rotate to face player
-    //get actual name from playernetworkdata manager
-    //in lobby or somewhere make a name input (would need to figure our or make the data manager better i think)
-    //(maybe make them put in usernam4e at join code and host)
-    
-
-    /*
-    //or on spawn each client can load all the name themsleves 
-    //also not aure about on network spawn
-    public override void OnNetworkSpawn()
-    {
-        base.OnNetworkSpawn();
-
-        if (!IsServer) { return; }
-        
-        PlayerData? playerData = PlayerNetworkDataManager.Instance.GetPlayerDataFromClientId(OwnerClientId);
-
-        if (playerData.HasValue)
-        {
-            
-                
-
-        }
-        
-        displayName.Value = "test";
-    }
-
-    */
     
 
     private void Awake()
     {
-        //disable tag if is owner of own tag (so player don't see own name 
-        //if (!IsServer) { return; }
         displayName.OnValueChanged += HandleNameChange;
-        displayName.Value = "test";
-        //player networkdatamanage GetPlayerDataFromClientId (this.OwnerClientId) give playerData) then get the name to update the networkvariable
+        var playerManager = PlayerNetworkDataManager.Instance;
+        PlayerData? playerData = playerManager.GetPlayerDataFromClientId(OwnerClientId);
+
+        if (playerData.HasValue)
+        {
+            var data = playerData.Value;
+            if (data.playerName.ToString() != null && !data.playerName.IsEmpty)
+            {
+                displayName.Value = playerData.Value.playerName;
+            }
+            else 
+            {
+                //player has no name in there playerdata
+                displayName.Value = "no name"; 
+            }
+        }
+        else { displayName.Value = "no player data"; }
     }
 
     private void OnEnable()
@@ -74,7 +56,7 @@ public class NameTag : NetworkBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        //disable own player nametag for them 
         if (IsOwner)
         {
             Debug.Log("this is owner");
@@ -86,10 +68,12 @@ public class NameTag : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        //make other players name tags look at the the local owners camera
+        //reverse's the text rn 
         if (!IsOwner)
         {
-            Debug.Log("Camera.main.gameObject.name");
-            gameObject.transform.LookAt(Camera.main.gameObject.transform);
+            //Debug.Log("Camera.main.gameObject.name");
+            gameObject.transform.LookAt(Camera.main.gameObject.transform, Vector3.up);
         }
     }
 }
