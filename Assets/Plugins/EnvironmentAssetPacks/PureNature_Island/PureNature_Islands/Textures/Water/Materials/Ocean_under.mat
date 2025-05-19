@@ -140,7 +140,7 @@ Material:
     - _ChromaticAberration: 0.1
     - _CousticOffset: 0
     - _Cutoff: 0.5
-    - _Depth: 5.24
+    - _Depth: 100
     - _DetailNormalMapScale: 1
     - _DistanceFade: 10
     - _DistanceFadeOffset: 300
@@ -188,7 +188,7 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RefractionPower: 5
-    - _SmoothnessPower: 1
+    - _SmoothnessPower: 0.598
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -219,7 +219,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color0: {r: 0, g: 0.5987654, b: 1, a: 0}
     - _Color1: {r: 1, g: 0.76618373, b: 0, a: 1}
-    - _DepthColor: {r: 0, g: 0.4658541, b: 0.5660378, a: 1}
+    - _DepthColor: {r: 0.7971698, g: 1, b: 0.9774488, a: 0}
     - _DepthColor1: {r: 0, g: 0.60118407, b: 0.6132076, a: 1}
     - _Direction: {r: 1, g: 0, b: -1, a: 0.2}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
@@ -227,7 +227,7 @@ Material:
     - _MainColor: {r: 0, g: 0.6810271, b: 0.6886792, a: 1}
     - _NormalDirection: {r: -1, g: 2.3, b: 1.7, a: -0.2}
     - _SecondColor: {r: 0.5404058, g: 0.8679245, b: 0.8414827, a: 0}
-    - _ShallowColor: {r: 0, g: 0.86690426, b: 1, a: 1}
+    - _ShallowColor: {r: 0.004227493, g: 0.7772933, b: 0.8962264, a: 1}
     - _WaterDeepColor: {r: 1, g: 1, b: 1, a: 0}
     - _WaterShallowColor: {r: 0, g: 0, b: 0, a: 0}
     - _WavesColor: {r: 0.27874687, g: 0.646538, b: 0.8207547, a: 0}
@@ -237,3 +237,4 @@ Material:
     - _WavesScaleOLD: {r: 1, g: 1, b: 0, a: 0}
     - _WavesScaleXY: {r: 0.1, g: 0.1, b: 0, a: 0}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1
