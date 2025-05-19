@@ -179,6 +179,7 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
             playerDataNetworkList.Add(new PlayerData
             {
                 clientId = clientId,
+                playerName = "",
                 goodTeam = true
             });
 
