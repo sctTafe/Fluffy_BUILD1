@@ -47,15 +47,15 @@ public class NameTag : NetworkBehaviour
     private void Awake()
     {
         //disable tag if is owner of own tag (so player don't see own name 
-        if (!IsServer) { return; }
-        
+        //if (!IsServer) { return; }
+        displayName.OnValueChanged += HandleNameChange;
         displayName.Value = "test";
         //player networkdatamanage GetPlayerDataFromClientId (this.OwnerClientId) give playerData) then get the name to update the networkvariable
     }
 
     private void OnEnable()
     {
-        displayName.OnValueChanged += HandleNameChange;
+        
     }
 
     private void OnDisable()
@@ -67,6 +67,7 @@ public class NameTag : NetworkBehaviour
 
     private void HandleNameChange(FixedString64Bytes oldDisplayName, FixedString64Bytes newDisplayName)
     {
+        Debug.Log("changeName");
         displayNameText.text = newDisplayName.ToString();
     }
 
@@ -74,11 +75,21 @@ public class NameTag : NetworkBehaviour
     void Start()
     {
         
+        if (IsOwner)
+        {
+            Debug.Log("this is owner");
+            gameObject.SetActive(false);
+        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!IsOwner)
+        {
+            Debug.Log("Camera.main.gameObject.name");
+            gameObject.transform.LookAt(Camera.main.gameObject.transform);
+        }
     }
 }
