@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CatTest Green
-  m_Shader: {fileID: 4800000, guid: 1eaa62359540f5d498409d2fa38aaae1, type: 3}
+  m_Shader: {fileID: 4800000, guid: 89c17cb00e94a7f45999d473122ecc0b, type: 3}
   m_Parent: {fileID: 2100000, guid: 73f0d71808612784bade70bcba709a45, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -24,7 +24,11 @@ Material:
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs: []
+    m_TexEnvs:
+    - _TextureRamp:
+        m_Texture: {fileID: 2800000, guid: 8b9d37aef14df7142bdc5457f9d21fbb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _EnvironmentReflections: 0
