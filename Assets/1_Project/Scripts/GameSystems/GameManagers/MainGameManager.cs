@@ -21,8 +21,8 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
     [SerializeField] private float _spawnRadius = 5f;
 
     [Header("UI GameObjects")]
-    [SerializeField] private GameObject _friendlyUI;
-    [SerializeField] private GameObject _mutantUI;
+    //[SerializeField] private GameObject _friendlyUI;
+    //[SerializeField] private GameObject _mutantUI;
     [SerializeField] private GameObject _endScreen;
     [SerializeField] private GameObject _endScreen_FluffyWin;
     [SerializeField] private GameObject _endScreen_MutantWin;
@@ -45,23 +45,36 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
         if (IsServer)
         {
             //NetworkManager.Singleton.OnClientDisconnectCallback += NetworkManager_OnClientDisconnectCallback; // NOT YET IMPLMENTED IN THIS VERSION - STILL NEEDS TO BE
-            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += SceneManager_OnLoadEventCompleted;
+            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += SceneManager_OnLoadEventCompleted;           
             //NetworkManager.Singleton.OnClientConnectedCallback += Server_OnPlayerJoinedEvent; // NOT YET IMPLMENTED IN THIS VERSION - STILL NEEDS TO BE
         }
         if (IsClient)
         {
+            NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnect;
             PlayerNetworkDataManager playerNetworkDataManager = PlayerNetworkDataManager.Instance;
             ulong localClientID = NetworkManager.Singleton.LocalClientId;
-            if (playerNetworkDataManager.fn_GetClientTeamByClientID(localClientID)) _friendlyUI.SetActive(true);
-            else _mutantUI.SetActive(true);
+
+            // --- Old Mutant/Fluffy UI Enabler ---
+            //if (playerNetworkDataManager.fn_GetClientTeamByClientID(localClientID)) _friendlyUI.SetActive(true);
+            //else _mutantUI.SetActive(true);
         }
     }
     public void OnDisable()
     {
-        NetworkManager.Singleton.SceneManager.OnLoadEventCompleted -= SceneManager_OnLoadEventCompleted;
+        if (IsServer)
+        {
+            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted -= SceneManager_OnLoadEventCompleted;
+        }
+
+
+        if (IsClient)
+        {
+            NetworkManager.Singleton.OnClientDisconnectCallback -= OnClientDisconnect;
+        }
+            
+
+
     }
-
-
     #endregion END: Unity Native Functions
 
     #region Joining and Load Event Responces
@@ -114,6 +127,7 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
 
         StartCoroutine(WaitThenChangeScene());
     }
+
 
     IEnumerator WaitThenChangeScene()
     {
@@ -287,7 +301,26 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
     }
     #endregion END: Pause Game
 
+    private void OnClientDisconnect(ulong clientId)
+    {
 
+        Debug.Log("OnClientDisconnect Called.");
+
+
+        // Only execute if this is the local client being disconnected
+        if (clientId == NetworkManager.Singleton.LocalClientId)
+        {
+            Debug.Log("Local client has been disconnected.");
+
+            // Check if the server (host) was the one that disconnected
+            // If so, all clients will also be disconnected
+            if (!NetworkManager.Singleton.IsServer)
+            {
+                Debug.Log("Host disconnected. Returning to main menu.");
+                NetworkSceneManager.Instance.fn_Disconnect();
+            }
+        }
+    }
 }
 
 

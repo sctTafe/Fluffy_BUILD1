@@ -28,7 +28,7 @@ public class Bite_Receiver : NetworkBehaviour
     private void Awake()
     {
         if (controler == null)
-            controler = GetComponent<AnimalCharacter>();
+            controler = GetComponent<AnimalCharacter>();    // The Character Controller
     }
 
     //

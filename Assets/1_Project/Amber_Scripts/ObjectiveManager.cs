@@ -1,10 +1,15 @@
 using UnityEngine;
 using Unity.Netcode;
 
+/// <summary>
+/// 
+/// Keeps Track of the Objectives Competed
+/// 
+/// 
+/// </summary>
 public class ObjectiveManager : NetworkSingleton<ObjectiveManager>
 {
 	public NetworkVariable<int> objectives_completed = new NetworkVariable<int>(0);
-
 	float objectives_completed_offline = 0;
 
 	[ServerRpc(RequireOwnership = false)]
