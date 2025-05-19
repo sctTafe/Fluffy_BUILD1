@@ -8,10 +8,10 @@ public class TestNetworkManager : MonoBehaviour
     public string ConnectAddress = "127.0.0.1";
     private float connectionTimeout = 0.5f;
 
-    public GameObject humanPrefab;
+    public GameObject fluffyPrefab;
     public GameObject mutantPrefab;
 
-    public bool spawnAsMutant = false;
+    [SerializeField] private bool spawnAsMutant = true;
 
     public bool isHost = true;
 
@@ -52,16 +52,16 @@ public class TestNetworkManager : MonoBehaviour
         Debug.Log($"Client {clientId} connected. Deciding their player type...");
 
         // For testing: alternate prefab type between clients
-        bool isMutant = (clientId % 2 == 0); // Example logic: even client IDs are mutants
+        //bool isMutant = (clientId % 2 == 0); // Example logic: even client IDs are mutants
 
         // Select the appropriate prefab
-        GameObject playerPrefab = isMutant ? mutantPrefab : humanPrefab;
+        GameObject playerPrefab = spawnAsMutant ? mutantPrefab : fluffyPrefab;
 
         // Instantiate and spawn the player
         GameObject playerInstance = Instantiate(playerPrefab, GetSpawnPosition(), Quaternion.identity);
         playerInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
 
-        Debug.Log($"Spawned {(isMutant ? "Mutant" : "Human")} for Client {clientId}.");
+        Debug.Log($"Spawned {(spawnAsMutant ? "Mutant" : "Human")} for Client {clientId}.");
     }
 
 

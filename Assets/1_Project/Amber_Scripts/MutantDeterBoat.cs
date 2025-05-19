@@ -8,7 +8,9 @@ public class MutantDeterBoat : MonoBehaviour
 
     void Start()
     {
-    	boat_position = GameObject.FindWithTag("boat_escape_point").transform.position;
+		GameObject boat = GameObject.FindWithTag("boat_escape_point");
+		if (boat != null)
+        boat_position = boat.transform.position;
 		s = GetComponent<MutantStamina>();
     }
 
