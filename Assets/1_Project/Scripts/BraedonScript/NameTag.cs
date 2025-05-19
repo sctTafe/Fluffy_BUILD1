@@ -46,9 +46,11 @@ public class NameTag : NetworkBehaviour
 
     private void Awake()
     {
+        //disable tag if is owner of own tag (so player don't see own name 
         if (!IsServer) { return; }
         
         displayName.Value = "test";
+        //player networkdatamanage GetPlayerDataFromClientId (this.OwnerClientId) give playerData) then get the name to update the networkvariable
     }
 
     private void OnEnable()
