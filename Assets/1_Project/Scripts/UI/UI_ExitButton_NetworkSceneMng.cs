@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonTalkToSceneSwitch : MonoBehaviour
+public class UI_ExitButton_NetworkSceneMng : MonoBehaviour
 {
     public Button _exitButton;
 
