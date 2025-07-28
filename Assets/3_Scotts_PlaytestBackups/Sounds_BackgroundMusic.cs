@@ -25,9 +25,6 @@ public class Sounds_BackgroundMusic : Singleton<Sounds_BackgroundMusic>
 
         // Start playing
         musicInstance.start();
-
-        // Optional: Set it to loop (should already be set in FMOD Studio)
-        musicInstance.release(); // Allow instance to be garbage collected when it stops
         musicStarted = true;
     }
 

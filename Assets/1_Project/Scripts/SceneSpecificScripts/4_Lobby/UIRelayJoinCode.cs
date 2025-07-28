@@ -18,6 +18,11 @@ public class UIRelayJoinCode : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        LobbySharedJoinCode.Instance.OnRelayCodeChanged -= Handle_OnRelayCodeChnage;
+    }
+
     private void Start()
     {
         // use network variable for clients
