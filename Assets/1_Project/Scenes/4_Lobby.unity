@@ -1132,6 +1132,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 754392557}
     m_Modifications:
+    - target: {fileID: 920966580870808143, guid: 2102afc38002b03498f7ec7c1c4cb33c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 920966580870808143, guid: 2102afc38002b03498f7ec7c1c4cb33c, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 920966580870808143, guid: 2102afc38002b03498f7ec7c1c4cb33c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 920966580870808143, guid: 2102afc38002b03498f7ec7c1c4cb33c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5918845578464624200, guid: 2102afc38002b03498f7ec7c1c4cb33c, type: 3}
       propertyPath: m_Name
       value: '[EscBtn_Panel]'
@@ -3437,7 +3453,7 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
   _isLoadingPlaytestingScene: 1
-  _testGameSceneName: X_Game_Playtesting
+  _testGameSceneName: N_IslandReplacement
 --- !u!114 &1464690511
 MonoBehaviour:
   m_ObjectHideFlags: 0
