@@ -37,7 +37,7 @@ public class QTE : MonoBehaviour
 
 	void call_player_win()
 	{
-
+		GetComponentInParent<PlayerInventory>().complete_qte();
 	}
 
 	void call_player_fail()

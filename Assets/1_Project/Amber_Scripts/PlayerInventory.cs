@@ -31,6 +31,10 @@ public class PlayerInventory : PlayerActionBase, IHudAbilityBinder
 	public RawImage item_slot_2;
 	public RawImage item_slot_3;
 
+	public GameObject QTE;
+	string await_item_name;
+	ulong await_item_net_id;
+
     void Start()
 	{
 		if(!IsOwner)
@@ -74,8 +78,9 @@ public class PlayerInventory : PlayerActionBase, IHudAbilityBinder
 			{
 				if(held_items.Count < 3)
 				{
-					AddToInventory(target_data.GetItem());
-					DestroyObjectServerRPC(target_network.NetworkObjectId);
+					await_item_name = target_data.GetItem();
+					await_item_net_id = target_network.NetworkObjectId;
+					Instantiate(QTE, transform);
 				}
 				else
 				{
@@ -85,6 +90,7 @@ public class PlayerInventory : PlayerActionBase, IHudAbilityBinder
 			}
 		}
     }
+
     public override bool fn_ReceiveActivationInput(bool b)
     {
         //Not Setup in theis version
@@ -214,5 +220,10 @@ public class PlayerInventory : PlayerActionBase, IHudAbilityBinder
 
 	}
 
+	public void complete_qte()
+	{
+		AddToInventory(await_item_name);
+		DestroyObjectServerRPC(await_item_net_id);
+	}
 
 }
