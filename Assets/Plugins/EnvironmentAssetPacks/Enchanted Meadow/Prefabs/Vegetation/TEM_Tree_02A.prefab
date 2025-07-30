@@ -64,6 +64,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2430354686319112608, guid: a7f98c63717d90d4c91d5161c679080d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -1223102692852895244, guid: a7f98c63717d90d4c91d5161c679080d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a7f98c63717d90d4c91d5161c679080d, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_02A
@@ -71,6 +79,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a7f98c63717d90d4c91d5161c679080d, type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a7f98c63717d90d4c91d5161c679080d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: a7f98c63717d90d4c91d5161c679080d, type: 3}
       propertyPath: m_FadeMode
@@ -91,6 +103,10 @@ PrefabInstance:
     - target: {fileID: 4742473837712756890, guid: a7f98c63717d90d4c91d5161c679080d, type: 3}
       propertyPath: m_LODs.Array.data[2].screenRelativeHeight
       value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5634323891631925985, guid: a7f98c63717d90d4c91d5161c679080d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
