@@ -52,6 +52,7 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
 
         if (IsClient)
         {
+            NetworkManager.Singleton.OnClientDisconnectCallback += Handle_OnClientDisconnected;
             numberOfPlayersNV.OnValueChanged += Handle_ValuesUpdate;
             numberOfReadyPlayersNV.OnValueChanged += Handle_ValuesUpdate;
         }
@@ -74,6 +75,7 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
         {
             numberOfPlayersNV.OnValueChanged -= Handle_ValuesUpdate;
             numberOfReadyPlayersNV.OnValueChanged -= Handle_ValuesUpdate;
+            NetworkManager.Singleton.OnClientDisconnectCallback -= Handle_OnClientDisconnected;
         }
     }
     #endregion END: Unity Native Functions
@@ -251,6 +253,17 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
     #endregion END: RCP Calls
 
     #region Joining and Load Event Responces
+
+    private void Handle_OnClientDisconnected(ulong clientId)
+    {
+        // If this client got disconnected from the server
+        if (clientId == NetworkManager.Singleton.LocalClientId && !IsHost)
+        {
+            Debug.LogWarning("Disconnected from host. Returning to main menu.");
+
+            NetworkSceneManager.Instance.fn_Disconnect();
+        }
+    }
 
     private void Handle_ValuesUpdate(int previousValue, int newValue)
     {
