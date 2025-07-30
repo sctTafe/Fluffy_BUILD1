@@ -21,7 +21,7 @@ QualitySettings:
     skinWeights: 4
     globalTextureMipmapLimit: 0
     textureMipmapLimitSettings: []
-    anisotropicTextures: 2
+    anisotropicTextures: 1
     antiAliasing: 0
     softParticles: 0
     softVegetation: 1
@@ -29,8 +29,8 @@ QualitySettings:
     billboardsFaceCameraPosition: 1
     useLegacyDetailDistribution: 1
     adaptiveVsync: 0
-    vSyncCount: 0
-    realtimeGICPUUsage: 100
+    vSyncCount: 1
+    realtimeGICPUUsage: 25
     adaptiveVsyncExtraA: 0
     adaptiveVsyncExtraB: 0
     lodBias: 2
@@ -47,11 +47,11 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 11400000, guid: a31e9f9f9c9d4b9429ed0d1234e22103, type: 2}
-    terrainQualityOverrides: 0
-    terrainPixelError: 1
-    terrainDetailDensityScale: 1
-    terrainBasemapDistance: 1000
+    customRenderPipeline: {fileID: 11400000, guid: 98d171c84cf52bf4eba046a2524223fc, type: 2}
+    terrainQualityOverrides: 7
+    terrainPixelError: 10
+    terrainDetailDensityScale: 0.25
+    terrainBasemapDistance: 40
     terrainDetailDistance: 80
     terrainTreeDistance: 5000
     terrainBillboardStart: 50
@@ -75,16 +75,16 @@ QualitySettings:
     skinWeights: 4
     globalTextureMipmapLimit: 0
     textureMipmapLimitSettings: []
-    anisotropicTextures: 2
-    antiAliasing: 0
+    anisotropicTextures: 1
+    antiAliasing: 2
     softParticles: 0
     softVegetation: 1
     realtimeReflectionProbes: 0
     billboardsFaceCameraPosition: 1
     useLegacyDetailDistribution: 1
     adaptiveVsync: 0
-    vSyncCount: 0
-    realtimeGICPUUsage: 100
+    vSyncCount: 1
+    realtimeGICPUUsage: 50
     adaptiveVsyncExtraA: 0
     adaptiveVsyncExtraB: 0
     lodBias: 2
@@ -101,11 +101,11 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 11400000, guid: d847b876476d3d6468f5dfcd34266f96, type: 2}
-    terrainQualityOverrides: 0
-    terrainPixelError: 1
-    terrainDetailDensityScale: 1
-    terrainBasemapDistance: 1000
+    customRenderPipeline: {fileID: 11400000, guid: dacf104e10a28194aa070f1618c87312, type: 2}
+    terrainQualityOverrides: 7
+    terrainPixelError: 5
+    terrainDetailDensityScale: 0.5
+    terrainBasemapDistance: 90
     terrainDetailDistance: 80
     terrainTreeDistance: 5000
     terrainBillboardStart: 50
@@ -129,7 +129,7 @@ QualitySettings:
     skinWeights: 4
     globalTextureMipmapLimit: 0
     textureMipmapLimitSettings: []
-    anisotropicTextures: 2
+    anisotropicTextures: 1
     antiAliasing: 2
     softParticles: 0
     softVegetation: 1
@@ -137,8 +137,8 @@ QualitySettings:
     billboardsFaceCameraPosition: 1
     useLegacyDetailDistribution: 1
     adaptiveVsync: 0
-    vSyncCount: 0
-    realtimeGICPUUsage: 100
+    vSyncCount: 1
+    realtimeGICPUUsage: 75
     adaptiveVsyncExtraA: 0
     adaptiveVsyncExtraB: 0
     lodBias: 2
@@ -155,12 +155,12 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 11400000, guid: 19ba41d7c0026c3459d37c2fe90c55a0, type: 2}
-    terrainQualityOverrides: 0
+    customRenderPipeline: {fileID: 11400000, guid: ad09aec6e384e754bb93c6c8bf13b6fc, type: 2}
+    terrainQualityOverrides: 12
     terrainPixelError: 1
-    terrainDetailDensityScale: 0.392
+    terrainDetailDensityScale: 1
     terrainBasemapDistance: 1000
-    terrainDetailDistance: 80
+    terrainDetailDistance: 130
     terrainTreeDistance: 5000
     terrainBillboardStart: 50
     terrainFadeLength: 5
