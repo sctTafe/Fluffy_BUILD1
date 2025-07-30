@@ -109,7 +109,7 @@ Material:
     m_Floats:
     - _AlphaCutoff: 0.5
     - _BumpScale: 1
-    - _CovOffset: 0
+    - _CovOffset: 0.327
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -125,7 +125,7 @@ Material:
     - _OcclusionStrength: 1
     - _OverlayCoverage: 0
     - _OverlayNormalMapScale: 1
-    - _OverlayTextureScale: 8
+    - _OverlayTextureScale: 4.1
     - _Parallax: 0.02
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -140,3 +140,4 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1

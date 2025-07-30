@@ -52,9 +52,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3943950317816738502, guid: e5b079d9007813b42affb69dc385299b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e5b079d9007813b42affb69dc385299b, type: 3}
       propertyPath: m_Name
       value: TEM_Leaf_01A
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e5b079d9007813b42affb69dc385299b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1202228493668069702, guid: e5b079d9007813b42affb69dc385299b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: e5b079d9007813b42affb69dc385299b, type: 3}
       propertyPath: m_FadeMode

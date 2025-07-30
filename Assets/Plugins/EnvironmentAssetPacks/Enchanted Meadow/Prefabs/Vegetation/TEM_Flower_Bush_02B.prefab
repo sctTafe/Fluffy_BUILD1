@@ -64,16 +64,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7774488524073723451, guid: 26b0f5f4d9e136948abd6617f85c16e8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -3242802938913372354, guid: 26b0f5f4d9e136948abd6617f85c16e8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 495489956842410035, guid: 26b0f5f4d9e136948abd6617f85c16e8, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 25e2c9cb7506afe458aff9a5fef0a8b0, type: 2}
     - target: {fileID: 919132149155446097, guid: 26b0f5f4d9e136948abd6617f85c16e8, type: 3}
       propertyPath: m_Name
       value: TEM_Flower_Bush_02B
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 26b0f5f4d9e136948abd6617f85c16e8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4140912200451787507, guid: 26b0f5f4d9e136948abd6617f85c16e8, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 25e2c9cb7506afe458aff9a5fef0a8b0, type: 2}
     - target: {fileID: 4742473837712756890, guid: 26b0f5f4d9e136948abd6617f85c16e8, type: 3}

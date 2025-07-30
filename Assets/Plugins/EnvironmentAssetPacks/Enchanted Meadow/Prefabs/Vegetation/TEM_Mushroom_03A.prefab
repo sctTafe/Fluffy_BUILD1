@@ -64,9 +64,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3642673703304822421, guid: 6b0bbb8655f99c345ae2820aabc12bdf, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6b0bbb8655f99c345ae2820aabc12bdf, type: 3}
       propertyPath: m_Name
       value: TEM_Mushroom_03A
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6b0bbb8655f99c345ae2820aabc12bdf, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3029821958202220652, guid: 6b0bbb8655f99c345ae2820aabc12bdf, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: 6b0bbb8655f99c345ae2820aabc12bdf, type: 3}
       propertyPath: m_FadeMode
