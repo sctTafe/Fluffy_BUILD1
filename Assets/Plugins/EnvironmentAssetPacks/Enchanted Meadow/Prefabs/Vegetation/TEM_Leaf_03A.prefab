@@ -64,9 +64,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1831898326999412814, guid: 02d6af7a29d70e64fa4fd1642c9352f4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 02d6af7a29d70e64fa4fd1642c9352f4, type: 3}
       propertyPath: m_Name
       value: TEM_Leaf_03A
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 02d6af7a29d70e64fa4fd1642c9352f4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: 02d6af7a29d70e64fa4fd1642c9352f4, type: 3}
       propertyPath: m_FadeMode
@@ -79,6 +87,10 @@ PrefabInstance:
     - target: {fileID: 4742473837712756890, guid: 02d6af7a29d70e64fa4fd1642c9352f4, type: 3}
       propertyPath: m_LODs.Array.data[0].screenRelativeHeight
       value: 0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6802077767885075094, guid: 02d6af7a29d70e64fa4fd1642c9352f4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
