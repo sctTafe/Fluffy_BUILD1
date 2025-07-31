@@ -321,32 +321,28 @@ ModelImporter:
       - time: 0.32671973
         functionName: EmitDust
         data: 
-        objectReferenceParameter: {fileID: 3543857407571293317, guid: 1bb3d2f73c79dbe48846b778d0cdab2e,
-          type: 3}
+        objectReferenceParameter: {fileID: 3543857407571293317, guid: 1bb3d2f73c79dbe48846b778d0cdab2e, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
       - time: 0.38117
         functionName: PlayFootstep
         data: 
-        objectReferenceParameter: {fileID: 3543857407571293317, guid: 1bb3d2f73c79dbe48846b778d0cdab2e,
-          type: 3}
+        objectReferenceParameter: {fileID: 3543857407571293317, guid: 1bb3d2f73c79dbe48846b778d0cdab2e, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
       - time: 0.7818669
         functionName: EmitDust
         data: 
-        objectReferenceParameter: {fileID: 3543857407571293317, guid: 1bb3d2f73c79dbe48846b778d0cdab2e,
-          type: 3}
+        objectReferenceParameter: {fileID: 3543857407571293317, guid: 1bb3d2f73c79dbe48846b778d0cdab2e, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
       - time: 0.83841133
         functionName: PlayFootstep
         data: 
-        objectReferenceParameter: {fileID: 3543857407571293317, guid: 1bb3d2f73c79dbe48846b778d0cdab2e,
-          type: 3}
+        objectReferenceParameter: {fileID: 3543857407571293317, guid: 1bb3d2f73c79dbe48846b778d0cdab2e, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
@@ -847,7 +843,7 @@ ModelImporter:
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
-    isReadable: 0
+    isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 0.5
@@ -1201,8 +1197,7 @@ ModelImporter:
     - name: FluffyRig_Ctrl:RightHand
       parentName: FluffyRig_Ctrl:RightForeArm
       position: {x: 0.3095122, y: -0.00012417177, z: 0.000000015920326}
-      rotation: {x: 0.000000012525264, y: 0.0000000063419967, z: 0.000000022615758,
-        w: 1}
+      rotation: {x: 0.000000012525264, y: 0.0000000063419967, z: 0.000000022615758, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:HipsEffector
       parentName: FluffyRig_Ctrl:Reference
