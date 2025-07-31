@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(ScottsBackup_PlayerStealthMng))]
+[RequireComponent(typeof(Outline))]
 public class Receiver_FluffiesReveal : NetworkBehaviour
 {
 
-    bool _IsRevealed = false;
+    [SerializeField]private bool _IsRevealed = false;
 
     /// <summary>
     /// Triggers the Reveal on this character
@@ -17,7 +18,8 @@ public class Receiver_FluffiesReveal : NetworkBehaviour
         Debug.Log("Receiver_RevealFluffies: revealed");
         TriggerRpc();
         //trigger shader for mutant side 
-
+        Outline shader = GetComponent<Outline>();
+        shader.enabled = true;
 
         //Current Version of PlayerStealth only runs locallly
         var c = GetComponent<ScottsBackup_PlayerStealthMng>();
@@ -33,5 +35,6 @@ public class Receiver_FluffiesReveal : NetworkBehaviour
     {
         Debug.Log("Receiver_RevealFluffies: you are revealed");
         _IsRevealed = true;
+        //give revealed player feedback that they are revealed
     }
 }
