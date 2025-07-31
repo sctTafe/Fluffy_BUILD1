@@ -78,6 +78,7 @@ public class PlayerInventory : PlayerActionBase, IHudAbilityBinder
 			{
 				if(held_items.Count < 3)
 				{
+					Debug.Log("QTE Spawned!");
 					await_item_name = target_data.GetItem();
 					await_item_net_id = target_network.NetworkObjectId;
 					Instantiate(QTE, transform);
@@ -224,6 +225,7 @@ public class PlayerInventory : PlayerActionBase, IHudAbilityBinder
 	{
 		AddToInventory(await_item_name);
 		DestroyObjectServerRPC(await_item_net_id);
+		Debug.Log("QTE completed!");
 	}
 
 }

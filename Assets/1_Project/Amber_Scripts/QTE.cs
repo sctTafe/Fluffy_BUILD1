@@ -23,7 +23,8 @@ public class QTE : MonoBehaviour
 
 		if(Input.GetKeyDown(KeyCode.X))
 		{
-			if(Mathf.Abs(progress - goal) < 10)
+			Debug.Log($"progress {progress} || goal {goal}");
+			if(Mathf.Abs(progress - goal) < 22)
 			{
 				call_player_win();
 			}
@@ -38,6 +39,7 @@ public class QTE : MonoBehaviour
 	void call_player_win()
 	{
 		GetComponentInParent<PlayerInventory>().complete_qte();
+		Destroy(gameObject);
 	}
 
 	void call_player_fail()
