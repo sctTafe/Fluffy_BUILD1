@@ -59,7 +59,7 @@ public class Receiver_FluffiesReveal : NetworkBehaviour
     private void TriggerRpc(bool isrevealed)
     {
         Debug.Log("Receiver_RevealFluffies: you are revealed");
-        _IsRevealed = true;
+        _IsRevealed = isrevealed;
         //give revealed player feedback that they are revealed
     }
 }

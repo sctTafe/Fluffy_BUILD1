@@ -5,7 +5,6 @@ using UnityEngine.Events;
 using Unity.Netcode;
 /// <summary>
 /// the mutants full map player reveal ability (for proper use fluffies must have the Receiver_FluffiesReveal script)
-/// -------needs span prevention (only really need for after its used )
 /// ------- looks at all the feed back things'
 /// --- ---- look at the other reveal function and its rpcs 
 /// </summary>
@@ -23,8 +22,6 @@ public class MutantActions_PlayerReveal : PlayerActionBase, IHudAbilityBinder
     //Cooldown
     [Header("Ability Cooldown")]
     [SerializeField] private float _abilityCooldownLength = 30f;
-
-    public string _targetTag;
 
     private bool _isOnCooldown;
 
@@ -71,7 +68,7 @@ public class MutantActions_PlayerReveal : PlayerActionBase, IHudAbilityBinder
         {
             
             _staminaSystem.fn_TryReduceValue(_enegryCost);
-            Invoke("TryUnrevealPlayers", _RevealDuration);
+            //Invoke("TryUnrevealPlayers", _RevealDuration);
             StartCoroutine(TryUnrevealPlayers());
             //should start after duration ends and 
             //StartCoroutine(StartCooldown(_abilityCooldownLength));
