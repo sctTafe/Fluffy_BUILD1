@@ -1,34 +1,18 @@
 [LOG] System::create                           : Header version = 2.02.28. Current version = 2.02.28.
-[LOG] Manager::init                            : maxchannels = 256 studioflags = 00000006 flags 00000000 extradriverdata (nil).
+[LOG] Manager::init                            : maxchannels = 256 studioflags = 00000006 flags 00000000 extradriverdata 0000000000000000.
 [LOG] SystemI::init                            : Initialize version=20228 (150745), maxchannels=256, flags=0x00020000
-<<<<<<< HEAD
 [LOG] SystemI::setOutputInternal               : Setting output to 'FMOD WASAPI Output'
 [LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEX): wFormatTag=0xFFFE, nChannels=2, nSamplesPerSec=48000, nAvgBytesPerSec=384000, nBlockAlign=8, wBitsPerSample=32, cbSize=22.
 [LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEXTENSIBLE): wValidBitsPerSample=32, dwChannelMask=0x00000003, SubFormat=00000003-0000-0010-8000-00AA00389B71.
 [LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
-=======
-[LOG] SystemI::setOutputInternal               : Setting output to 'FMOD PulseAudio Output'
-[LOG] OutputPulseAudio::registerLib            : Loaded PulseAudio version 17.0.0.
-[LOG] PulseAudio_EnumOutputCallback            : Found output device NAME:alsa_output.pci-0000_06_00.6.HiFi__Speaker__sink DESC:Family 17h/19h/1ah HD Audio Controller Speaker CHANNELS:2 RATE:48000.
-[LOG] PulseAudio_EnumInputCallback             : Found input device NAME:alsa_output.pci-0000_06_00.6.HiFi__Speaker__sink.monitor DESC:Monitor of Family 17h/19h/1ah HD Audio Controller Speaker CHANNELS:2 RATE:48000.
-[LOG] PulseAudio_EnumInputCallback             : Found input device NAME:alsa_input.pci-0000_06_00.6.HiFi__Mic2__source DESC:Family 17h/19h/1ah HD Audio Controller Stereo Microphone CHANNELS:2 RATE:48000.
-[LOG] PulseAudio_EnumInputCallback             : Found input device NAME:alsa_input.pci-0000_06_00.6.HiFi__Mic1__source DESC:Family 17h/19h/1ah HD Audio Controller Digital Microphone CHANNELS:2 RATE:48000.
->>>>>>> main
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
-[LOG] FMOD_OS_Thread_Callback                  : Cannot set real-time thread priorities due to insufficient privileges
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x4000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-<<<<<<< HEAD
-[LOG] AsyncManager::init                       : manager 000001EF06029BB8 isAsync 0 updatePeriod 0.02
-=======
-[LOG] AsyncManager::init                       : manager 000001DB60E21988 isAsync 0 updatePeriod 0.02
->>>>>>> main
+[LOG] AsyncManager::init                       : manager 0000021304CA37C8 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
-[LOG] FMOD_OS_Thread_Callback                  : Cannot set real-time thread priorities due to insufficient privileges
 [LOG] PlaybackSystem::init                     : done
 [LOG] Thread::initThread                       : Init FMOD Studio bank load thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
-[LOG] FMOD_OS_Thread_Callback                  : Cannot set real-time thread priorities due to insufficient privileges
 [LOG] Manager::init                            : done.
 [LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
 [LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
@@ -37,87 +21,3 @@
 [LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
 [LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
 [LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
-<<<<<<< HEAD
-[LOG] SystemI::createSound                     : filename = FMODproject/Build/Desktop/Music.bank : mode 02010082
-[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] Thread::initThread                       : Init FMOD nonblocking thread (0). Affinity: 0x4000000000000003, Priority: 0xFFFF7FFC, Stack Size: 114688, Semaphore: Yes, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncThread::add                         : add sound to async queue : soundi = 000001EF048A04C8, queue head = 000001EDD6AF4718, queue count = 0
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001EF048A04C8
-[LOG] SystemI::createSoundInternal             :     Create name='FMODproject/Build/Desktop/Music.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1619936
-[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 1632
-[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000001EEA4C6DC40
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Track1_Original_ 674944__seth_makes_sounds__hype-background-track_FadeInOut', format=5, channels=2, frequency=48000, lengthbytes=1618848, lengthpcm=5415552, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.981812.
-[LOG] Thread::initThread                       :     Init FMOD file thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFC, Stack Size: 65536, Semaphore: No, Sleep Time: 10, Looping: Yes.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001EF048A04C8
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 268704
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 21312
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000DCB432F268
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FF9638F5B90
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FF9638F5B50
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FF9638F5C70
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FF9638F5D30
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001EF15A180C8
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Button_Hover', format=5, channels=2, frequency=48000, lengthbytes=4384, lengthpcm=27428, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.136566.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 268704
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 21312
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000DCB432F268
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FF9638F5B90
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FF9638F5B50
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FF9638F5C70
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FF9638F5D30
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001EF15A180C8
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Button_Click', format=5, channels=1, frequency=48000, lengthbytes=2240, lengthpcm=10368, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.551300.
-[LOG] AsyncThread::add                         : add sound to async queue : soundi = 000001EF0489F748, queue head = 000001EDD6AF4718, queue count = 0
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001EF0489F748
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001EF0489F748
-[LOG] SoundI::release                          : Track1_Original_ 674944__seth_makes_sounds__hype-background-track_FadeInOut (000001EF048A04C8)
-[LOG] SoundI::release                          :     Track1_Original_ 674944__seth_makes_sounds__hype-background-track_FadeInOut (000001EDD673D1A8)
-[LOG] SoundI::release                          :     Track1_Original_ 674944__seth_makes_sounds__hype-background-track_FadeInOut (000001EF0489F748)
-[LOG] SoundI::release                          :  (000001EDFC2911D8)
-[LOG] SoundI::release                          :     Button_Click (000001EDD673E048)
-[LOG] SoundI::release                          :  (000001EDFC291908)
-[LOG] SoundI::release                          :     Button_Hover (000001EDD673F8A8)
-[LOG] Thread::callback                         : FMOD Studio update thread finished.
-[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
-[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
-[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
-[LOG] LiveUpdate::release                      : 
-[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
-[LOG] Thread::callback                         : FMOD stream thread finished.
-[LOG] Thread::callback                         : FMOD mixer thread finished.
-[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
-[LOG] SystemI::close                           : Closed.
-=======
->>>>>>> main
-[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
-[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
-[LOG] LiveUpdate::release                      : 
-[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
-[LOG] Thread::callback                         : FMOD stream thread finished.
-[LOG] Thread::callback                         : FMOD mixer thread finished.
-[LOG] SystemI::close                           : Closed.
-<<<<<<< HEAD
-[LOG] Thread::callback                         : FMOD nonblocking thread (0) finished.
-[LOG] Thread::callback                         : FMOD file thread finished.
-=======
->>>>>>> main
