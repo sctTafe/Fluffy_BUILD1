@@ -8,7 +8,11 @@ public class UI_ExitButton_NetworkSceneMng : MonoBehaviour
     NetworkSceneManager _currentNSM;
     private void Start()
     {
+        if(_exitButton == null)
+            _exitButton = GetComponent<Button>();
+
         _currentNSM = NetworkSceneManager.Instance;
+
         if (_currentNSM != null)
         {
             if (_exitButton != null)
