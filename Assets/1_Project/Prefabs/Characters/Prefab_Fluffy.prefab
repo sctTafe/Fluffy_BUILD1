@@ -1119,10 +1119,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   held_items: []
+  pickup_sound:
+    Guid:
+      Data1: -2134872236
+      Data2: 1094838869
+      Data3: 931674554
+      Data4: 1405046111
+    Path: event:/SFX/PlayerSounds/BushRustle
+  deposit_sound:
+    Guid:
+      Data1: -2134872236
+      Data2: 1094838869
+      Data3: 931674554
+      Data4: 1405046111
+    Path: event:/SFX/PlayerSounds/BushRustle
   item_slot_1: {fileID: 0}
   item_slot_2: {fileID: 0}
   item_slot_3: {fileID: 0}
-  QTE: {fileID: 1619855651647241263, guid: 7f9d2175463d16abe9b50db115fdc0b6, type: 3}
 --- !u!1 &6167483681963466577
 GameObject:
   m_ObjectHideFlags: 0

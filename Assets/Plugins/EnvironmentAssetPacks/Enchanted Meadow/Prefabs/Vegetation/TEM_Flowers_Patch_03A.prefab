@@ -72,21 +72,9 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -1209316076027975406, guid: b4aa68af892766547a63ae538781852c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b4aa68af892766547a63ae538781852c, type: 3}
       propertyPath: m_Name
       value: TEM_Flowers_Patch_03A
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: b4aa68af892766547a63ae538781852c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 2023520242496586385, guid: b4aa68af892766547a63ae538781852c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: b4aa68af892766547a63ae538781852c, type: 3}
       propertyPath: m_FadeMode
@@ -107,10 +95,6 @@ PrefabInstance:
     - target: {fileID: 8717616019006376796, guid: b4aa68af892766547a63ae538781852c, type: 3}
       propertyPath: m_CastShadows
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8952121250839305600, guid: b4aa68af892766547a63ae538781852c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

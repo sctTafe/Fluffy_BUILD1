@@ -8,10 +8,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -9091435109341809960, guid: 109c85b6f0e14894b8ae54496a7d6092, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 109c85b6f0e14894b8ae54496a7d6092, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -68,17 +64,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -472381281738317214, guid: 109c85b6f0e14894b8ae54496a7d6092, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 109c85b6f0e14894b8ae54496a7d6092, type: 3}
       propertyPath: m_Name
       value: TEM_Plant_02A
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 109c85b6f0e14894b8ae54496a7d6092, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: 109c85b6f0e14894b8ae54496a7d6092, type: 3}
       propertyPath: m_FadeMode
@@ -95,10 +83,6 @@ PrefabInstance:
     - target: {fileID: 4742473837712756890, guid: 109c85b6f0e14894b8ae54496a7d6092, type: 3}
       propertyPath: m_LODs.Array.data[1].screenRelativeHeight
       value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4923856310046944945, guid: 109c85b6f0e14894b8ae54496a7d6092, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

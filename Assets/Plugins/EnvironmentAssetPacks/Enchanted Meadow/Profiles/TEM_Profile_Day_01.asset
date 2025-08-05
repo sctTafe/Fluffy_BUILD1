@@ -52,68 +52,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f335fb1ffd8684294ad653bf1c7564, type: 3}
   m_Name: ColorAdjustments
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   postExposure:
     m_OverrideState: 1
-    m_Value: 0.25
+    m_Value: 0
   contrast:
     m_OverrideState: 0
-    m_Value: 28
+    m_Value: -3
   colorFilter:
     m_OverrideState: 0
     m_Value: {r: 1, g: 1, b: 1, a: 1}
   hueShift:
-    m_OverrideState: 0
-    m_Value: 24
+    m_OverrideState: 1
+    m_Value: 0
   saturation:
     m_OverrideState: 1
-    m_Value: 14
---- !u!114 &-7484157276399347766
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bd486065ce11414fa40e631affc4900, type: 3}
-  m_Name: ProbeVolumesOptions
-  m_EditorClassIdentifier: 
-  active: 1
-  normalBias:
-    m_OverrideState: 0
-    m_Value: 0.05
-  viewBias:
-    m_OverrideState: 0
-    m_Value: 0.1
-  scaleBiasWithMinProbeDistance:
-    m_OverrideState: 0
-    m_Value: 0
-  samplingNoise:
-    m_OverrideState: 0
-    m_Value: 0.1
-  animateSamplingNoise:
-    m_OverrideState: 0
-    m_Value: 1
-  leakReductionMode:
-    m_OverrideState: 0
-    m_Value: 2
-  minValidDotProductValue:
-    m_OverrideState: 0
-    m_Value: 0.1
-  occlusionOnlyReflectionNormalization:
-    m_OverrideState: 0
-    m_Value: 1
-  intensityMultiplier:
-    m_OverrideState: 0
-    m_Value: 1
-  skyOcclusionIntensityMultiplier:
-    m_OverrideState: 0
-    m_Value: 1
-  worldOffset:
-    m_OverrideState: 0
-    m_Value: {x: 0, y: 0, z: 0}
+    m_Value: 9
 --- !u!114 &-6311040989421957022
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -175,7 +129,7 @@ MonoBehaviour:
     m_Value: 0.27
   intensity:
     m_OverrideState: 1
-    m_Value: 0.38
+    m_Value: 0.22
   scatter:
     m_OverrideState: 0
     m_Value: 0.7
@@ -219,30 +173,6 @@ MonoBehaviour:
   - {fileID: -9042776065382635207}
   - {fileID: -9180490661038538182}
   - {fileID: -2243347567165884109}
-  - {fileID: -7484157276399347766}
-  - {fileID: 1419388707491615654}
---- !u!114 &1419388707491615654
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70afe9e12c7a7ed47911bb608a23a8ff, type: 3}
-  m_Name: SplitToning
-  m_EditorClassIdentifier: 
-  active: 1
-  shadows:
-    m_OverrideState: 1
-    m_Value: {r: 0.47233173, g: 0.5817888, b: 0.7132075, a: 1}
-  highlights:
-    m_OverrideState: 1
-    m_Value: {r: 0.6830188, g: 0.6830188, b: 0.6830188, a: 1}
-  balance:
-    m_OverrideState: 1
-    m_Value: 14
 --- !u!114 &1581745688827650450
 MonoBehaviour:
   m_ObjectHideFlags: 3

@@ -64,49 +64,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -7636369548644695102, guid: 2e07548accb40624cbf6ea7c99a086dc, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: -6732501901634126270, guid: 2e07548accb40624cbf6ea7c99a086dc, type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -6732501901634126270, guid: 2e07548accb40624cbf6ea7c99a086dc, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
+      propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d4e38bf557e9bc94f873166b8f11ca37, type: 2}
-    - target: {fileID: -5626591681716463637, guid: 2e07548accb40624cbf6ea7c99a086dc, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: -1775447649437145906, guid: 2e07548accb40624cbf6ea7c99a086dc, type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1775447649437145906, guid: 2e07548accb40624cbf6ea7c99a086dc, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
+      propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d4e38bf557e9bc94f873166b8f11ca37, type: 2}
-    - target: {fileID: -929473693562703612, guid: 2e07548accb40624cbf6ea7c99a086dc, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: -525537778322623252, guid: 2e07548accb40624cbf6ea7c99a086dc, type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -525537778322623252, guid: 2e07548accb40624cbf6ea7c99a086dc, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
+      propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d4e38bf557e9bc94f873166b8f11ca37, type: 2}
     - target: {fileID: 919132149155446097, guid: 2e07548accb40624cbf6ea7c99a086dc, type: 3}
       propertyPath: m_Name
       value: TEM_Flowers_Patch_01B
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 2e07548accb40624cbf6ea7c99a086dc, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: 2e07548accb40624cbf6ea7c99a086dc, type: 3}
       propertyPath: m_FadeMode

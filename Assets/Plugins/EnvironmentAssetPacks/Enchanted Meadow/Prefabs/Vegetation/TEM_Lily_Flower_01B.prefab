@@ -65,32 +65,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -3123694453180620101, guid: 1c8e1689bbe1645489d9ed9cca4bc95c, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
+      propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 25e2c9cb7506afe458aff9a5fef0a8b0, type: 2}
-    - target: {fileID: -3007206476786293577, guid: 1c8e1689bbe1645489d9ed9cca4bc95c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: -1752273541616005266, guid: 1c8e1689bbe1645489d9ed9cca4bc95c, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
+      propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 25e2c9cb7506afe458aff9a5fef0a8b0, type: 2}
     - target: {fileID: 919132149155446097, guid: 1c8e1689bbe1645489d9ed9cca4bc95c, type: 3}
       propertyPath: m_Name
       value: TEM_Lily_Flower_01B
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 1c8e1689bbe1645489d9ed9cca4bc95c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 1833485436870964525, guid: 1c8e1689bbe1645489d9ed9cca4bc95c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 3357695476535049667, guid: 1c8e1689bbe1645489d9ed9cca4bc95c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: 1c8e1689bbe1645489d9ed9cca4bc95c, type: 3}
       propertyPath: m_FadeMode
@@ -113,7 +97,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5230540008550756918, guid: 1c8e1689bbe1645489d9ed9cca4bc95c, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
+      propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 25e2c9cb7506afe458aff9a5fef0a8b0, type: 2}
     m_RemovedComponents: []

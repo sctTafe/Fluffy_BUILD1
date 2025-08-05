@@ -68,18 +68,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Plant_04A
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: a308bc3f4118d774f9230fddbbc12ab6, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 2580620038169755612, guid: a308bc3f4118d774f9230fddbbc12ab6, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 3463297724173238361, guid: a308bc3f4118d774f9230fddbbc12ab6, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: a308bc3f4118d774f9230fddbbc12ab6, type: 3}
       propertyPath: m_FadeMode
       value: 1
@@ -95,10 +83,6 @@ PrefabInstance:
     - target: {fileID: 4742473837712756890, guid: a308bc3f4118d774f9230fddbbc12ab6, type: 3}
       propertyPath: m_LODs.Array.data[1].screenRelativeHeight
       value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 8278790342217854240, guid: a308bc3f4118d774f9230fddbbc12ab6, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
