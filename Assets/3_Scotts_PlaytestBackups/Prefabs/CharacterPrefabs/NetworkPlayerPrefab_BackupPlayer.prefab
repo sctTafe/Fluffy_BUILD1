@@ -5193,7 +5193,6 @@ GameObject:
   - component: {fileID: -8318112631276293116}
   - component: {fileID: 5928170330904496098}
   - component: {fileID: -6137494299052777976}
-  - component: {fileID: -8235747474806435748}
   - component: {fileID: 6377804535425610020}
   - component: {fileID: 8046335248435032946}
   - component: {fileID: -1606878970198915638}
@@ -5205,8 +5204,7 @@ GameObject:
   - component: {fileID: 1794063575882020223}
   - component: {fileID: 7592124875178756546}
   - component: {fileID: 7314291117724805518}
-  - component: {fileID: -2784692766497006988}
-  - component: {fileID: 1237941153762046466}
+  - component: {fileID: 2000194920491530708}
   m_Layer: 8
   m_Name: NetworkPlayerPrefab_BackupPlayer
   m_TagString: Player
@@ -5540,27 +5538,10 @@ MonoBehaviour:
   _Action_Main: {fileID: 0}
   _Action_Sprint: {fileID: 6377804535425610020}
   _Action_Jump: {fileID: 8046335248435032946}
-  _Action_Interaction1: {fileID: -8235747474806435748}
+  _Action_Interaction1: {fileID: 0}
   _Action_Interaction2: {fileID: 0}
   _Action_Interaction3: {fileID: 0}
   _Action_Interaction4: {fileID: 0}
---- !u!114 &-8235747474806435748
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6103115944230435048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74a80a158103379409abbc1a99ef3591, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  held_items: []
-  item_slot_1: {fileID: 0}
-  item_slot_2: {fileID: 0}
-  item_slot_3: {fileID: 0}
 --- !u!114 &6377804535425610020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5870,7 +5851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dustEmitter: {fileID: 4025872807383795774}
---- !u!114 &-2784692766497006988
+--- !u!114 &2000194920491530708
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5879,29 +5860,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6103115944230435048}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f8fdca72c6fbf24bbcc2ef89f826824, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c6524fb7342c8dc18b1270a4f63be52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  _IsRevealed: 0
---- !u!114 &1237941153762046466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6103115944230435048}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 0, b: 0, a: 1}
-  outlineWidth: 3.5
-  precomputeOutline: 1
-  bakeKeys: []
-  bakeValues: []
+  held_items: []
+  item_slot_1: {fileID: 0}
+  item_slot_2: {fileID: 0}
+  item_slot_3: {fileID: 0}
+  QTE: {fileID: 1619855651647241263, guid: 7f9d2175463d16abe9b50db115fdc0b6, type: 3}
 --- !u!1 &6108897867625569928
 GameObject:
   m_ObjectHideFlags: 0

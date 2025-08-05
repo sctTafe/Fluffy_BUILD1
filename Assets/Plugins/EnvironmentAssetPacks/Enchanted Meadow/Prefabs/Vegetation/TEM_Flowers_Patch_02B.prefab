@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8830215772750609414, guid: bf38010e5de16404b96a4b62de61942b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -8729676826400391720, guid: bf38010e5de16404b96a4b62de61942b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bf38010e5de16404b96a4b62de61942b, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -69,12 +77,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -6986764475058878297, guid: bf38010e5de16404b96a4b62de61942b, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: d4e38bf557e9bc94f873166b8f11ca37, type: 2}
+    - target: {fileID: -792554193507101875, guid: bf38010e5de16404b96a4b62de61942b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: bf38010e5de16404b96a4b62de61942b, type: 3}
       propertyPath: m_Name
       value: TEM_Flowers_Patch_02B
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bf38010e5de16404b96a4b62de61942b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: bf38010e5de16404b96a4b62de61942b, type: 3}
       propertyPath: m_FadeMode
@@ -97,7 +113,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5917894056187427964, guid: bf38010e5de16404b96a4b62de61942b, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: d4e38bf557e9bc94f873166b8f11ca37, type: 2}
     - target: {fileID: 7205359590680432543, guid: bf38010e5de16404b96a4b62de61942b, type: 3}
@@ -105,7 +121,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7205359590680432543, guid: bf38010e5de16404b96a4b62de61942b, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: d4e38bf557e9bc94f873166b8f11ca37, type: 2}
     m_RemovedComponents: []
