@@ -33,6 +33,11 @@ public class QTE : MonoBehaviour
 				call_player_fail();
 			}
 		}
+
+		if(progress > 120)
+		{
+			Destroy(gameObject);
+		}
         
     }
 

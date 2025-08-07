@@ -5205,6 +5205,7 @@ GameObject:
   - component: {fileID: 7592124875178756546}
   - component: {fileID: 7314291117724805518}
   - component: {fileID: 2000194920491530708}
+  - component: {fileID: 1525595763154014008}
   m_Layer: 8
   m_Name: NetworkPlayerPrefab_BackupPlayer
   m_TagString: Player
@@ -5869,6 +5870,20 @@ MonoBehaviour:
   item_slot_2: {fileID: 0}
   item_slot_3: {fileID: 0}
   QTE: {fileID: 1619855651647241263, guid: 7f9d2175463d16abe9b50db115fdc0b6, type: 3}
+--- !u!114 &1525595763154014008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6103115944230435048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e22733ea1837981a8fd12b7f29f5343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn_pos: {x: 0, y: 1, z: 0}
+  random_offset: 5
 --- !u!1 &6108897867625569928
 GameObject:
   m_ObjectHideFlags: 0
