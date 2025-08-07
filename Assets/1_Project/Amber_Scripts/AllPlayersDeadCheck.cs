@@ -3,7 +3,7 @@ using UnityEngine;
 public class AllPlayersDeadCheck : MonoBehaviour
 {
 	public float check_peirod = 20;
-	private float check_cooldown = 20;
+	private float check_cooldown = 60;
 
     void Update()
     {
