@@ -17,7 +17,7 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
     [SerializeField] private Transform _ghostPrefab;
 
     [SerializeField] private Vector3 _GoodSpawnArea = Vector3.zero;
-    [SerializeField] private Vector3 _BadSpawnArea = Vector3.forward * 5;
+    [SerializeField] private Vector3 _BadSpawnArea;
     [SerializeField] private float _spawnRadius = 5f;
 
     [Header("UI GameObjects")]
@@ -39,6 +39,12 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
     //void Update()
     //{        
     //}
+
+	void Start()
+	{
+		_BadSpawnArea = new Vector3(-10, 30, -50);
+	}
+
     public override void OnNetworkSpawn()
     {
         //Debug.Log("PreGameLobbyManager: OnNetworkSpawn");
@@ -100,7 +106,7 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
             }
             else 
             {
-                Vector3 spawnPos = GetRandomPointAround(_GoodSpawnArea, _spawnRadius);
+                Vector3 spawnPos = GetRandomPointAround(_BadSpawnArea, _spawnRadius);
                 Transform playerTransform = Instantiate(_enemyPrefab, spawnPos, spawnRot);
                 //Transform playerTransform = Instantiate(_enemyPrefab);
                 playerTransform.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId, true);
