@@ -34,6 +34,7 @@ public class PlayerInventory : PlayerActionBase, IHudAbilityBinder
 	public GameObject QTE;
 	string await_item_name;
 	ulong await_item_net_id;
+	public float trigger_QTE_cooldown = 2;
 
     void Start()
 	{
@@ -52,6 +53,8 @@ public class PlayerInventory : PlayerActionBase, IHudAbilityBinder
 		{
 			return;
 		}
+
+		trigger_QTE_cooldown -= Time.deltaTime;
 
 		// Resoruce Load Check
         if (item_slot_1 == null)
@@ -78,10 +81,14 @@ public class PlayerInventory : PlayerActionBase, IHudAbilityBinder
 			{
 				if(held_items.Count < 3)
 				{
-					Debug.Log("QTE Spawned!");
-					await_item_name = target_data.GetItem();
-					await_item_net_id = target_network.NetworkObjectId;
-					Instantiate(QTE, transform);
+					if(trigger_QTE_cooldown < 0)
+					{
+						Debug.Log("QTE Spawned!");
+						await_item_name = target_data.GetItem();
+						await_item_net_id = target_network.NetworkObjectId;
+						Instantiate(QTE, transform);
+						trigger_QTE_cooldown = 2;
+					}
 				}
 				else
 				{
