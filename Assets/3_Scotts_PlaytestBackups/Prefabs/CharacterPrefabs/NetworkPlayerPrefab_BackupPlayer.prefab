@@ -5205,9 +5205,9 @@ GameObject:
   - component: {fileID: 7592124875178756546}
   - component: {fileID: 7314291117724805518}
   - component: {fileID: 2000194920491530708}
-  - component: {fileID: 1525595763154014008}
   - component: {fileID: 5219221494253304887}
   - component: {fileID: 8957669517295907108}
+  - component: {fileID: 7111800759708940357}
   m_Layer: 8
   m_Name: NetworkPlayerPrefab_BackupPlayer
   m_TagString: Player
@@ -5872,7 +5872,7 @@ MonoBehaviour:
   item_slot_2: {fileID: 0}
   item_slot_3: {fileID: 0}
   QTE: {fileID: 1619855651647241263, guid: 7f9d2175463d16abe9b50db115fdc0b6, type: 3}
---- !u!114 &1525595763154014008
+  trigger_QTE_cooldown: 2
 --- !u!114 &5219221494253304887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5905,6 +5905,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawn_pos: {x: 0, y: 1, z: 0}
   random_offset: 5
+--- !u!114 &7111800759708940357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6103115944230435048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f8fdca72c6fbf24bbcc2ef89f826824, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
