@@ -125,6 +125,10 @@ MonoBehaviour:
   Name: Ambience
   StudioPath: bank:/Ambience
   lastModified: 638894906556091493
+  Path: FMODproject/Build/Desktop/SFX.bank
+  Name: SFX
+  StudioPath: bank:/SFX
+  lastModified: 638898988269793448
   FileSizes:
   - Name: Desktop
     Value: 3463584
@@ -141,10 +145,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/Master.bank
   m_EditorClassIdentifier: 
-  Path: FMODproject/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 638894906556101538
+  Path: FMODproject/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638898988269683066
   FileSizes:
   - Name: Desktop
     Value: 2156
@@ -208,10 +212,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/Master.strings.bank
   m_EditorClassIdentifier: 
-  Path: FMODproject/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 638894906556101538
+  Path: FMODproject/Build/Desktop/Music.bank
+  Name: Music
+  StudioPath: bank:/Music
+  lastModified: 638898988269783414
   FileSizes:
   - Name: Desktop
     Value: 1856
@@ -319,6 +323,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/SFX.bank
   m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: -5479839873869402307}
+  - {fileID: 3731260603317563804}
+  - {fileID: 8166419757164161184}
+  - {fileID: -4068631173550705063}
+  - {fileID: -6251324201781407138}
+  EditorEvents:
+  - {fileID: -89243380610314855}
+  - {fileID: -1477349452728062129}
+  - {fileID: -4637355572474940612}
+  - {fileID: -4665208636215093961}
+  - {fileID: -9063699778402497900}
+  - {fileID: 115433927607542397}
+  - {fileID: -8658052349933723581}
+  - {fileID: 6423772392317202444}
+  - {fileID: -2785336384641984879}
+  - {fileID: 7769517234931406865}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: 8166419757164161184}
+  StringsBanks:
+  - {fileID: -5479839873869402307}
+  cacheTime: 638898988269793448
+  cacheVersion: 131624
+--- !u!114 &115433927607542397
   Path: FMODproject/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
@@ -354,7 +383,27 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &2099341337690145467
+--- !u!114 &3731260603317563804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Ambience.bank
+  m_EditorClassIdentifier: 
+  Path: FMODproject/Build/Desktop/Ambience.bank
+  Name: Ambience
+  StudioPath: bank:/Ambience
+  lastModified: 638898988269673029
+  FileSizes:
+  - Name: Desktop
+    Value: 3463584
+  Exists: 1
+--- !u!114 &6423772392317202444
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -441,6 +490,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
   m_Name: event:/UI/Buttons/ButtonHover
   m_EditorClassIdentifier: 
+  Path: FMODproject/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638898988269673029
+  FileSizes:
+  - Name: Desktop
+    Value: 2156
+  Exists: 1
   Path: event:/UI/Buttons/ButtonHover
   Guid:
     Data1: 1635967537
