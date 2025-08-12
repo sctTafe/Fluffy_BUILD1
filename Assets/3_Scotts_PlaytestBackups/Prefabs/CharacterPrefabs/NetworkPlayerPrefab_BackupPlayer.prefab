@@ -8672,6 +8672,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 5b8e4d6003c345844ba510013ead9315, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 5b8e4d6003c345844ba510013ead9315, type: 3}
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
