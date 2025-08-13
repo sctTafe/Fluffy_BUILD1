@@ -124,11 +124,7 @@ MonoBehaviour:
   Path: FMODproject/Build/Desktop/Ambience.bank
   Name: Ambience
   StudioPath: bank:/Ambience
-  lastModified: 638894906556091493
-  Path: FMODproject/Build/Desktop/SFX.bank
-  Name: SFX
-  StudioPath: bank:/SFX
-  lastModified: 638895571671414720
+  lastModified: 638907242493488640
   FileSizes:
   - Name: Desktop
     Value: 3463584
@@ -152,7 +148,7 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 2156
-  Exists: 1
+  Exists: 0
 --- !u!114 &-3414624458013325849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,7 +168,7 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 1621600
-  Exists: 1
+  Exists: 0
 --- !u!114 &-1809400288702391835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,7 +215,7 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 1856
-  Exists: 1
+  Exists: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,6 +234,7 @@ MonoBehaviour:
   - {fileID: -4276970056269074247}
   - {fileID: -3414624458013325849}
   - {fileID: 964952768208961640}
+  - {fileID: 6755688677177268775}
   EditorEvents:
   - {fileID: 2099341337690145467}
   - {fileID: -7942313737323837480}
@@ -254,8 +251,21 @@ MonoBehaviour:
   - {fileID: -4276970056269074247}
   StringsBanks:
   - {fileID: -636325720372166512}
-  cacheTime: 638894906556196623
+  - {fileID: 6755688677177268775}
+  cacheTime: 638907242494592749
   cacheVersion: 131624
+--- !u!114 &115433927607542397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &135455429701879902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,39 +333,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/SFX.bank
   m_EditorClassIdentifier: 
-  EditorBanks:
-  - {fileID: -5479839873869402307}
-  - {fileID: 3731260603317563804}
-  - {fileID: 8166419757164161184}
-  - {fileID: -4068631173550705063}
-  - {fileID: -6251324201781407138}
-  EditorEvents:
-  - {fileID: -89243380610314855}
-  - {fileID: -1477349452728062129}
-  - {fileID: -4637355572474940612}
-  - {fileID: -4665208636215093961}
-  - {fileID: -9063699778402497900}
-  - {fileID: 115433927607542397}
-  - {fileID: -8658052349933723581}
-  - {fileID: 6423772392317202444}
-  - {fileID: -2785336384641984879}
-  - {fileID: 7769517234931406865}
-  EditorParameters: []
-  MasterBanks:
-  - {fileID: 8166419757164161184}
-  StringsBanks:
-  - {fileID: -5479839873869402307}
-  cacheTime: 638895571671414720
-  cacheVersion: 131624
---- !u!114 &115433927607542397
-  Path: FMODproject/Build/Desktop/SFX.bank
-  Name: SFX
-  StudioPath: bank:/SFX
-  lastModified: 638894906556196623
-  FileSizes:
-  - Name: Desktop
-    Value: 278784
-  Exists: 1
+  Path: 
+  Name: 
+  StudioPath: 
+  lastModified: 0
+  FileSizes: []
+  Exists: 0
 --- !u!114 &985485430824208480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,53 +362,6 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &3731260603317563804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Ambience.bank
-  m_EditorClassIdentifier: 
-  Path: FMODproject/Build/Desktop/Ambience.bank
-  Name: Ambience
-  StudioPath: bank:/Ambience
-  lastModified: 638895571671274718
-  FileSizes:
-  - Name: Desktop
-    Value: 3463584
-  Exists: 1
---- !u!114 &6423772392317202444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Ambience/Ambience
-  m_EditorClassIdentifier: 
-  Path: event:/Ambience/Ambience
-  Guid:
-    Data1: 1098976686
-    Data2: 1254255891
-    Data3: -930063947
-    Data4: 774470015
-  Banks:
-  - {fileID: -5605843666528983728}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
@@ -478,6 +414,73 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &3731260603317563804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Ambience.bank
+  m_EditorClassIdentifier: 
+  Path: FMODproject/Build/Desktop/Ambience.bank
+  Name: Ambience
+  StudioPath: bank:/Ambience
+  lastModified: 638895571671274718
+  FileSizes:
+  - Name: Desktop
+    Value: 3463584
+  Exists: 1
+--- !u!114 &6423772392317202444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambience/Ambience
+  m_EditorClassIdentifier: 
+  Path: event:/Ambience/Ambience
+  Guid:
+    Data1: 1098976686
+    Data2: 1254255891
+    Data3: -930063947
+    Data4: 774470015
+  Banks:
+  - {fileID: -5605843666528983728}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &6755688677177268775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: FMODproject/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638907242494513268
+  FileSizes:
+  - Name: Desktop
+    Value: 1856
+  Exists: 1
 --- !u!114 &8209946561792479482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,14 +494,6 @@ MonoBehaviour:
   m_Name: event:/UI/Buttons/ButtonHover
   m_EditorClassIdentifier: 
   Path: FMODproject/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 638895571671334719
-  FileSizes:
-  - Name: Desktop
-    Value: 2156
-  Exists: 1
-  Path: event:/UI/Buttons/ButtonHover
   Guid:
     Data1: 1635967537
     Data2: 1243086349

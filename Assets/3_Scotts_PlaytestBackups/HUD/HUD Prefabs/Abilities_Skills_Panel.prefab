@@ -114,10 +114,24 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7716227362132362600}
     m_Modifications:
+    - target: {fileID: 1901063140340748135, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
+      propertyPath: m_text
+      value: 'R
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230669763128381071, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 20afb7675b2d79d71a7e526aacc0925a, type: 3}
+    - target: {fileID: 3612583842833997676, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 20afb7675b2d79d71a7e526aacc0925a, type: 3}
     - target: {fileID: 5083590707177660694, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: ddd9e497fc1dcf344a36a40af296aa83, type: 3}
+      objectReference: {fileID: 21300000, guid: 62af69bd8bc5f60798824f747df76c10, type: 3}
     - target: {fileID: 6139412389916321726, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
       propertyPath: m_Name
       value: 'Action2_[AbilityUIElement]'
@@ -202,6 +216,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6803949380938782109, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 20afb7675b2d79d71a7e526aacc0925a, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -322,10 +340,24 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7716227362132362600}
     m_Modifications:
+    - target: {fileID: 1901063140340748135, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
+      propertyPath: m_text
+      value: 'Q
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230669763128381071, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5fd9d7125220f359cb8e528376d46fc5, type: 3}
+    - target: {fileID: 3612583842833997676, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5fd9d7125220f359cb8e528376d46fc5, type: 3}
     - target: {fileID: 5083590707177660694, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 023f8dca63ab5e241a0a4bfe7031e543, type: 3}
+      objectReference: {fileID: 21300000, guid: 62af69bd8bc5f60798824f747df76c10, type: 3}
     - target: {fileID: 6139412389916321726, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
       propertyPath: m_Name
       value: 'Action4_[AbilityUIElement]'
@@ -410,6 +442,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6803949380938782109, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5fd9d7125220f359cb8e528376d46fc5, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -428,10 +464,24 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7716227362132362600}
     m_Modifications:
+    - target: {fileID: 1901063140340748135, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
+      propertyPath: m_text
+      value: 'F
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230669763128381071, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0e4dc8b79b90aab55bbf6bc6f580d4b6, type: 3}
+    - target: {fileID: 3612583842833997676, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0e4dc8b79b90aab55bbf6bc6f580d4b6, type: 3}
     - target: {fileID: 5083590707177660694, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: a5088aaccdaa08a4d88709af0b2f976c, type: 3}
+      objectReference: {fileID: 21300000, guid: 62af69bd8bc5f60798824f747df76c10, type: 3}
     - target: {fileID: 6139412389916321726, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
       propertyPath: m_Name
       value: 'Action3_[AbilityUIElement]'
@@ -516,6 +566,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6803949380938782109, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0e4dc8b79b90aab55bbf6bc6f580d4b6, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
