@@ -5,7 +5,6 @@ using Unity.Netcode;
 /// <summary>
 /// Holder Strut for Player Data: ID, Name etc.
 /// </summary>
-[Serializable]
 public struct PlayerData : IEquatable<PlayerData>, INetworkSerializable
 {
     public ulong clientId;

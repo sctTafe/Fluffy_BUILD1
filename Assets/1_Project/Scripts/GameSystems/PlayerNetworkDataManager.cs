@@ -32,7 +32,7 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
 
     // Server NV
     private NetworkVariable<int> teamMonstersCountNV = new NetworkVariable<int>();
-    [SerializeField]private NetworkList<PlayerData> playerDataNetworkList; //Must be initialized later 
+    private NetworkList<PlayerData> playerDataNetworkList; //Must be initialized later 
 
 
     // - Local Variables -
