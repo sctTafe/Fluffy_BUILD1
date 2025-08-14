@@ -25,6 +25,7 @@ public class NameTag : NetworkBehaviour
             if (data.playerName.ToString() != null && !data.playerName.IsEmpty)
             {
                 displayName.Value = playerData.Value.playerName;
+                Debug.Log("----- changed name to: " + playerData.Value.playerName);
             }
             else 
             {
