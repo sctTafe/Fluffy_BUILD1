@@ -18,7 +18,7 @@ public class NameTag : NetworkBehaviour
         //displayName.OnValueChanged += HandleNameChange;
         //if (!IsOwner) return;
         var playerManager = PlayerNetworkDataManager.Instance;
-        PlayerData? playerData = playerManager.GetPlayerDataFromClientId(OwnerClientId);
+        PlayerData? playerData = playerManager.GetPlayerDataFromClientId(this.OwnerClientId);
         //
         if (playerData.HasValue)
         {
