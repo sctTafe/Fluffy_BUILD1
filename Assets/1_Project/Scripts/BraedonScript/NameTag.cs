@@ -16,6 +16,7 @@ public class NameTag : NetworkBehaviour
     private void Awake()
     {
         displayName.OnValueChanged += HandleNameChange;
+        if (!IsOwner) return;
         var playerManager = PlayerNetworkDataManager.Instance;
         PlayerData? playerData = playerManager.GetPlayerDataFromClientId(NetworkManager.Singleton.LocalClientId);
 
