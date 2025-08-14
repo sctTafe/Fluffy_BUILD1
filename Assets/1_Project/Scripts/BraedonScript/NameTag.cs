@@ -15,26 +15,30 @@ public class NameTag : NetworkBehaviour
 
     private void Awake()
     {
-        displayName.OnValueChanged += HandleNameChange;
-        if (!IsOwner) return;
+        //displayName.OnValueChanged += HandleNameChange;
+        //if (!IsOwner) return;
         var playerManager = PlayerNetworkDataManager.Instance;
-        PlayerData? playerData = playerManager.GetPlayerDataFromClientId(NetworkManager.Singleton.LocalClientId);
-
+        PlayerData? playerData = playerManager.GetPlayerDataFromClientId(OwnerClientId);
+        //
         if (playerData.HasValue)
         {
             var data = playerData.Value;
             if (data.playerName.ToString() != null && !data.playerName.IsEmpty)
             {
-                displayName.Value = playerData.Value.playerName;
+                displayNameText.text = playerData.Value.playerName.ToString();
+                //displayName.Value = playerData.Value.playerName;
                 Debug.Log("----- changed name to: " + playerData.Value.playerName);
             }
             else 
             {
                 //player has no name in there playerdata
-                displayName.Value = "no name"; 
+                //displayName.Value =
+                displayNameText.text = "no name"; 
             }
         }
-        else { displayName.Value = "no player data"; }
+        else { //displayName.Value =
+            displayNameText.text = "no player data"; }
+        
     }
 
     private void OnEnable()
@@ -44,7 +48,7 @@ public class NameTag : NetworkBehaviour
 
     private void OnDisable()
     {
-        displayName.OnValueChanged -= HandleNameChange;
+        //displayName.OnValueChanged -= HandleNameChange;
     }
 
 
