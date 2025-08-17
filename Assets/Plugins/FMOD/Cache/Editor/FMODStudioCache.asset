@@ -124,7 +124,7 @@ MonoBehaviour:
   Path: FMODproject/Build/Desktop/Ambience.bank
   Name: Ambience
   StudioPath: bank:/Ambience
-  lastModified: 638907242493488640
+  lastModified: 638900217770651852
   FileSizes:
   - Name: Desktop
     Value: 3463584
@@ -234,7 +234,7 @@ MonoBehaviour:
   - {fileID: -4276970056269074247}
   - {fileID: -3414624458013325849}
   - {fileID: 964952768208961640}
-  - {fileID: 6755688677177268775}
+  - {fileID: 4305280132738978376}
   EditorEvents:
   - {fileID: 2099341337690145467}
   - {fileID: -7942313737323837480}
@@ -251,8 +251,8 @@ MonoBehaviour:
   - {fileID: -4276970056269074247}
   StringsBanks:
   - {fileID: -636325720372166512}
-  - {fileID: 6755688677177268775}
-  cacheTime: 638907242494592749
+  - {fileID: 4305280132738978376}
+  cacheTime: 638900217770790909
   cacheVersion: 131624
 --- !u!114 &115433927607542397
 MonoBehaviour:
@@ -434,6 +434,26 @@ MonoBehaviour:
   - Name: Desktop
     Value: 3463584
   Exists: 1
+--- !u!114 &4305280132738978376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: FMODproject/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638900217770651852
+  FileSizes:
+  - Name: Desktop
+    Value: 1856
+  Exists: 1
 --- !u!114 &6423772392317202444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -461,26 +481,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &6755688677177268775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: FMODproject/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 638907242494513268
-  FileSizes:
-  - Name: Desktop
-    Value: 1856
-  Exists: 1
 --- !u!114 &8209946561792479482
 MonoBehaviour:
   m_ObjectHideFlags: 0
