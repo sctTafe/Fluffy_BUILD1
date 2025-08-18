@@ -214,11 +214,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   forwardParam: ForwardsSpeed
   sidewaysParam: SidewaysSpeed
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 64
-  footRaycastDistance: 0.5
-  footOffsetY: 0.05
+  jumpStateParam: JumpState
 --- !u!114 &7712116328739667260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -869,7 +865,7 @@ MonoBehaviour:
   OnBiteStop:
     m_PersistentCalls:
       m_Calls: []
-  controller: {fileID: 0}
+  controller: {fileID: -7910061463714057534}
   _positionOffset: {x: 0, y: 0, z: 0}
   damage: -0.34
   skeleton: {fileID: 988882148996521965}
@@ -907,6 +903,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  dissolvePropertyName: _DitherAlpha
+  dissolveSpeed: 1
+  hiddenDissolveValue: 0.1
+  visibleDissolveValue: 1
   hide_sound:
     Guid:
       Data1: -2134872236
@@ -936,20 +936,30 @@ MonoBehaviour:
   strafing: 0
   Gravity: -15
   TerminalVelocity: 53
+  jumpStartDuration: 0.15
+  landDuration: 0.3
+  floatTransitionDelay: 0.1
   GroundMask:
     serializedVersion: 2
     m_Bits: 64
   GroundCheckRadius: 0.26
-  GroundCheckDistance: 0.58
-  groundCheckStartOffset: {x: 0, y: 1.25, z: 0}
+  GroundedOffset: -0.14
   DebugRaycasts: 0
-  maxStableSlopeAngle: 40
+  enableSmoothSlopes: 1
+  maxWalkableAngle: 45
+  maxClimbableAngle: 60
+  slideForce: 15
+  slopeSpeedMultiplier: 0.5
+  momentumDecay: 0.95
+  enableSteepSlopeSliding: 0
   slideAcceleration: 6
   characterAnimator: {fileID: 3367660439844504618}
   _sidewaysSpeed_NWV:
     m_InternalValue: -0.0010236487
   _forwardsSpeed_NWV:
     m_InternalValue: 0.0017037082
+  _jumpState_NWV:
+    m_InternalValue: 0
   CameraOverride: {fileID: 0}
   isGrabbed: 0
 --- !u!114 &6091755371208914198

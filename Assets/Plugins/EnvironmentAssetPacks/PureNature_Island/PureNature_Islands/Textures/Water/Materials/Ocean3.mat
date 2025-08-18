@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Ocean3
-  m_Shader: {fileID: 4800000, guid: 6468bfbdaa889dd40a87fa06b6428b8f, type: 3}
+  m_Shader: {fileID: 4800000, guid: 7195cf34bbfee1645acd4aadfb73ebc3, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -21,16 +21,16 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: _WavesSpeed
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _FoamMask:
-        m_Texture: {fileID: 2800000, guid: e0a749b2a0e4493cab327a109d09e317, type: 3}
+    - _FoamTexture:
+        m_Texture: {fileID: 2800000, guid: 3ebf940de200d0946bcd96c41b54100a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: e7785594101683e4aba727e99ad54e3e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 39b7cc4fa2e7d6f42b58643bdf8aca95, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -48,39 +48,31 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaCutoff: 0.5
-    - _CausticsOffset: 0
-    - _CausticsScale: 0.5
-    - _CausticsSpeed: 2
-    - _Depth: 5.9
-    - _DistanceFade: 1000
-    - _DistanceFadeOffset: 500
-    - _DistanceMax: 100
-    - _DistanceMin: 10
-    - _EdgesFade: 0.1
     - _EnvironmentReflections: 1
-    - _FoamDistance: 4.9
-    - _FoamPower: 0.188
-    - _FoamScale: 2.04
-    - _FoamSpeed: 0.3
-    - _MetallicPower: 0.956
-    - _NormalPower: 0.15
-    - _NormalScale: 2.59
-    - _NormalSpeed: 1
-    - _QueueControl: 0
+    - _Float3: 0
+    - _Float6: 0
+    - _FoamAmount: 1.4
+    - _FoamContrast: 1.5
+    - _FoamOpacity: 1
+    - _FoamScale: 3
+    - _FresnelOpacityStrength: 1
+    - _FresnelPower: 7.9
+    - _FresnelScale: 5.11
+    - _NormalDetailIntensity: 0.13
+    - _NormalDetailScale: 4.43
+    - _NormalIntensity: 0.49
+    - _NormalMapScale: 1.75
+    - _QueueControl: -1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RefractionPower: 1
-    - _SmoothnessPower: 0.735
+    - _RefractionIntensity: 0.01
     - _SpecularHighlights: 1
-    - _TesselationPower: 2
-    - _WavesHeight: 0.61
-    - _WavesScale: 53.31
-    - _WavesSpeed: 0.1
+    - _WaterNormalSpeed: 0.23
+    - _WaterSmoothness: 0.95
+    - _WaterSpecularity: 0.893
     m_Colors:
-    - _CausticsColor: {r: 0.26666668, g: 0.45098037, b: 0.5647059, a: 1}
-    - _DepthColor: {r: 0.28665712, g: 0.4303484, b: 0.6150943, a: 1}
+    - _DeepColor: {r: 0.034496255, g: 0.25880003, b: 0.3584906, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _NormalDirection: {r: 1, g: 0, b: -1, a: 0.2}
-    - _ShallowColor: {r: 0, g: 0.57340914, b: 0.58, a: 1}
+    - _ShallowColor: {r: 0.09618359, g: 0.56901914, b: 0.6452829, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
