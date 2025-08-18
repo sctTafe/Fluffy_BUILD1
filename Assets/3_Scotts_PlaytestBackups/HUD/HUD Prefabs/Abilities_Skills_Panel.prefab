@@ -134,7 +134,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 62af69bd8bc5f60798824f747df76c10, type: 3}
     - target: {fileID: 6139412389916321726, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
       propertyPath: m_Name
-      value: 'Action2_[AbilityUIElement]'
+      value: 'MutantBreath_[AbilityUIElement]'
       objectReference: {fileID: 0}
     - target: {fileID: 6712691240312715565, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
       propertyPath: m_Pivot.x
@@ -238,9 +238,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7716227362132362600}
     m_Modifications:
+    - target: {fileID: 2230669763128381071, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0e4dc8b79b90aab55bbf6bc6f580d4b6, type: 3}
+    - target: {fileID: 3612583842833997676, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0e4dc8b79b90aab55bbf6bc6f580d4b6, type: 3}
     - target: {fileID: 6139412389916321726, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
       propertyPath: m_Name
-      value: 'Action1_[AbilityUIElement]'
+      value: 'DestroyBush_[AbilityUIElement]'
       objectReference: {fileID: 0}
     - target: {fileID: 6712691240312715565, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
       propertyPath: m_Pivot.x
@@ -322,6 +330,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6803949380938782109, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0e4dc8b79b90aab55bbf6bc6f580d4b6, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -349,11 +361,11 @@ PrefabInstance:
     - target: {fileID: 2230669763128381071, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 5fd9d7125220f359cb8e528376d46fc5, type: 3}
+      objectReference: {fileID: 21300000, guid: a098ab7ccf431a92baa8c73de32fd686, type: 3}
     - target: {fileID: 3612583842833997676, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 5fd9d7125220f359cb8e528376d46fc5, type: 3}
+      objectReference: {fileID: 21300000, guid: a098ab7ccf431a92baa8c73de32fd686, type: 3}
     - target: {fileID: 5083590707177660694, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -445,7 +457,7 @@ PrefabInstance:
     - target: {fileID: 6803949380938782109, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 5fd9d7125220f359cb8e528376d46fc5, type: 3}
+      objectReference: {fileID: 21300000, guid: a098ab7ccf431a92baa8c73de32fd686, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -473,18 +485,18 @@ PrefabInstance:
     - target: {fileID: 2230669763128381071, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 0e4dc8b79b90aab55bbf6bc6f580d4b6, type: 3}
+      objectReference: {fileID: 21300000, guid: 5fd9d7125220f359cb8e528376d46fc5, type: 3}
     - target: {fileID: 3612583842833997676, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 0e4dc8b79b90aab55bbf6bc6f580d4b6, type: 3}
+      objectReference: {fileID: 21300000, guid: 5fd9d7125220f359cb8e528376d46fc5, type: 3}
     - target: {fileID: 5083590707177660694, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 62af69bd8bc5f60798824f747df76c10, type: 3}
     - target: {fileID: 6139412389916321726, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
       propertyPath: m_Name
-      value: 'Action3_[AbilityUIElement]'
+      value: 'MutantVision_[AbilityUIElement]'
       objectReference: {fileID: 0}
     - target: {fileID: 6712691240312715565, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
       propertyPath: m_Pivot.x
@@ -569,7 +581,7 @@ PrefabInstance:
     - target: {fileID: 6803949380938782109, guid: 799a3b1bc9d32024eba3659b5e9b8b4e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 0e4dc8b79b90aab55bbf6bc6f580d4b6, type: 3}
+      objectReference: {fileID: 21300000, guid: 5fd9d7125220f359cb8e528376d46fc5, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
