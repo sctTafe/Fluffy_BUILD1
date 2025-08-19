@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class pause_menu : MonoBehaviour
 {
@@ -33,6 +32,7 @@ public class pause_menu : MonoBehaviour
 
 	public void ToMenu()
 	{
-		SceneManager.LoadScene(1);
+		NetworkSceneManager.Instance.fn_Disconnect();
 	}
+
 }
