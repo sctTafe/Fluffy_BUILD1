@@ -109,6 +109,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-6092612843930304353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: FMODproject/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638895571671334719
+  FileSizes:
+  - Name: Desktop
+    Value: 1856
+  Exists: 1
 --- !u!114 &-5605843666528983728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,7 +144,7 @@ MonoBehaviour:
   Path: FMODproject/Build/Desktop/Ambience.bank
   Name: Ambience
   StudioPath: bank:/Ambience
-  lastModified: 638900217770651852
+  lastModified: 638895571671274718
   FileSizes:
   - Name: Desktop
     Value: 3463584
@@ -234,7 +254,7 @@ MonoBehaviour:
   - {fileID: -4276970056269074247}
   - {fileID: -3414624458013325849}
   - {fileID: 964952768208961640}
-  - {fileID: 4305280132738978376}
+  - {fileID: -6092612843930304353}
   EditorEvents:
   - {fileID: 2099341337690145467}
   - {fileID: -7942313737323837480}
@@ -433,26 +453,6 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 3463584
-  Exists: 1
---- !u!114 &4305280132738978376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: FMODproject/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 638900217770651852
-  FileSizes:
-  - Name: Desktop
-    Value: 1856
   Exists: 1
 --- !u!114 &6423772392317202444
 MonoBehaviour:
