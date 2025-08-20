@@ -3,11 +3,83 @@ using UnityEngine;
 public class PlayerDustSteps : MonoBehaviour
 {
     [SerializeField] private ParticleSystem dustEmitter;
+    [Header("Effect Settings")]
+    [SerializeField] private int walkDustCount = 2;
+    [SerializeField] private int jumpSmokeCount = 10;
+    [SerializeField] private int landingSmokeCount = 15;
     
-    public void EmitDust()
+    [Header("Randomness Settings")]
+    [SerializeField] private float positionRandomness = 0.3f;
+    [SerializeField] private float angleRandomness = 15f; // degrees
+    [SerializeField] private float radiusRandomness = 0.2f;
+
+    public void EmitFootstepDust()
     {
         if (dustEmitter == null) return;
-        //dustEmitter.Play(); // Plays burst, if set up in Emission module
-        dustEmitter.Emit(2);
+        dustEmitter.Emit(walkDustCount);
+    }
+    
+    public void EmitJumpCloud()
+    {
+        if (dustEmitter == null) return;
+
+        for (int i = 0; i < jumpSmokeCount; i++)
+        {
+            // Add randomness to the angle
+            float baseAngle = (i / (float)jumpSmokeCount) * 360f;
+            float randomAngle = baseAngle + Random.Range(-angleRandomness, angleRandomness);
+            float angle = randomAngle * Mathf.Deg2Rad;
+            
+            // Add randomness to the radius
+            float baseRadius = 0.5f;
+            float randomRadius = baseRadius + Random.Range(-radiusRandomness, radiusRandomness);
+            
+            Vector3 direction = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
+            
+            // Add random position offset
+            Vector3 randomOffset = new Vector3(
+                Random.Range(-positionRandomness, positionRandomness),
+                Random.Range(-positionRandomness * 0.5f, positionRandomness * 0.5f), // Less Y variation
+                Random.Range(-positionRandomness, positionRandomness)
+            );
+
+            var emitParams = new ParticleSystem.EmitParams();
+            emitParams.position = transform.position + direction * randomRadius + randomOffset;
+            emitParams.velocity = direction * 1.25f; // Outward velocity
+
+            dustEmitter.Emit(emitParams, 1);
+        }
+    }
+
+    public void EmitLandingCloud()
+    {
+        if (dustEmitter == null) return;
+        
+        for (int i = 0; i < landingSmokeCount; i++)
+        {
+            // Add randomness to the angle
+            float baseAngle = (i / (float)landingSmokeCount) * 360f;
+            float randomAngle = baseAngle + Random.Range(-angleRandomness, angleRandomness);
+            float angle = randomAngle * Mathf.Deg2Rad;
+            
+            // Add randomness to the radius
+            float baseRadius = 0.5f;
+            float randomRadius = baseRadius + Random.Range(-radiusRandomness, radiusRandomness);
+            
+            Vector3 direction = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
+            
+            // Add random position offset
+            Vector3 randomOffset = new Vector3(
+                Random.Range(-positionRandomness, positionRandomness),
+                Random.Range(-positionRandomness * 0.3f, positionRandomness * 0.3f), // Minimal Y variation for ground effect
+                Random.Range(-positionRandomness, positionRandomness)
+            );
+
+            var emitParams = new ParticleSystem.EmitParams();
+            emitParams.position = transform.position + direction * randomRadius + randomOffset;
+            emitParams.velocity = direction * 2f; // Outward velocity
+
+            dustEmitter.Emit(emitParams, 1);
+        }
     }
 }
