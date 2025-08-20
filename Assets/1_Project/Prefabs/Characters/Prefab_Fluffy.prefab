@@ -214,11 +214,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   forwardParam: ForwardsSpeed
   sidewaysParam: SidewaysSpeed
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 64
-  footRaycastDistance: 0.5
-  footOffsetY: 0.05
+  jumpStateParam: JumpState
 --- !u!114 &7712116328739667260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -684,12 +680,10 @@ GameObject:
   - component: {fileID: 6956996503622453850}
   - component: {fileID: -7910061463714057534}
   - component: {fileID: 6091755371208914198}
-  - component: {fileID: -1539381838798464947}
-  - component: {fileID: -1529161446549516224}
   - component: {fileID: 7082114420134920553}
-  - component: {fileID: 1340729016870545582}
   - component: {fileID: 2298788696072705426}
   - component: {fileID: 5671882976431527358}
+  - component: {fileID: 7661984904866510355}
   m_Layer: 8
   m_Name: Prefab_Fluffy
   m_TagString: Player
@@ -871,11 +865,10 @@ MonoBehaviour:
   OnBiteStop:
     m_PersistentCalls:
       m_Calls: []
-  controler: {fileID: -7910061463714057534}
+  controller: {fileID: -7910061463714057534}
   _positionOffset: {x: 0, y: 0, z: 0}
   damage: -0.34
   skeleton: {fileID: 988882148996521965}
-  coll: {fileID: 1340729016870545582}
 --- !u!114 &174214447878495844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -910,6 +903,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  dissolvePropertyName: _DitherAlpha
+  dissolveSpeed: 1
+  hiddenDissolveValue: 0.1
+  visibleDissolveValue: 1
   hide_sound:
     Guid:
       Data1: -2134872236
@@ -930,30 +927,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  Speed: 1
-  SprintSpeed: 2
-  JumpSpeed: 6.65
+  Speed: 6
+  SprintSpeed: 12
+  JumpSpeed: 8
   SprintJumpSpeed: 8
-  Acceleration: 9.22
-  RotationSpeed: 10
+  Acceleration: 2
+  RotationSpeed: 5.02
   strafing: 0
+  Gravity: -15
+  TerminalVelocity: 53
+  jumpStartDuration: 0.15
+  landDuration: 0.3
+  floatTransitionDelay: 0.1
   GroundMask:
     serializedVersion: 2
     m_Bits: 64
-  GroundCheckRadius: 0.08
-  GroundCheckDistance: 0.51
-  groundCheckStartOffset: {x: 0, y: 0.51, z: 0}
-  GroundAlignmentForce: 38.38
-  GroundSpringDamping: 2.21
-  DebugRaycasts: 1
-  MaxGroundAlignmentForce: 100
-  maxStableSlopeAngle: 40
+  GroundCheckRadius: 0.26
+  GroundedOffset: -0.14
+  DebugRaycasts: 0
+  enableSmoothSlopes: 1
+  maxWalkableAngle: 45
+  maxClimbableAngle: 60
+  slideForce: 15
+  slopeSpeedMultiplier: 0.5
+  momentumDecay: 0.95
+  enableSteepSlopeSliding: 0
   slideAcceleration: 6
   characterAnimator: {fileID: 3367660439844504618}
   _sidewaysSpeed_NWV:
-    m_InternalValue: -0.010649449
+    m_InternalValue: -0.0010236487
   _forwardsSpeed_NWV:
-    m_InternalValue: 0.18209498
+    m_InternalValue: 0.0017037082
+  _jumpState_NWV:
+    m_InternalValue: 0
   CameraOverride: {fileID: 0}
   isGrabbed: 0
 --- !u!114 &6091755371208914198
@@ -1007,50 +1013,6 @@ MonoBehaviour:
       Data3: 1522590884
       Data4: -1416451359
     Path: event:/SFX/PlayerSounds/HeartBeat
---- !u!54 &-1539381838798464947
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6103115944230435048}
-  serializedVersion: 4
-  m_Mass: 30
-  m_Drag: 1.5
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
---- !u!114 &-1529161446549516224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6103115944230435048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  NetworkRigidbodyBaseExpanded: 0
-  UseRigidBodyForMotion: 0
-  AutoUpdateKinematicState: 1
-  AutoSetKinematicOnDespawn: 1
 --- !u!114 &7082114420134920553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1064,29 +1026,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
---- !u!136 &1340729016870545582
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6103115944230435048}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.34
-  m_Height: 1.29
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &2298788696072705426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1123,6 +1062,32 @@ MonoBehaviour:
   item_slot_2: {fileID: 0}
   item_slot_3: {fileID: 0}
   QTE: {fileID: 1619855651647241263, guid: 7f9d2175463d16abe9b50db115fdc0b6, type: 3}
+  trigger_QTE_cooldown: 2
+--- !u!143 &7661984904866510355
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6103115944230435048}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 1.83
+  m_Radius: 0.4
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.95, z: 0}
 --- !u!1 &6167483681963466577
 GameObject:
   m_ObjectHideFlags: 0
