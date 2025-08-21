@@ -29,6 +29,13 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
 
 
 
+    // Client Side Varaibles
+
+    // Server Side Varaibles
+    List<ulong> _MutantPlayerIDs;
+    List<ulong> _FluffyPlayerIDs;
+
+
     #region Unity Native Functions
     //private void Awake()
     //{
@@ -40,7 +47,7 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
     //{        
     //}
 
-	void Start()
+    void Start()
 	{
 		_BadSpawnArea = new Vector3(-10, 30, -50);
 	}
@@ -50,54 +57,69 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
         //Debug.Log("PreGameLobbyManager: OnNetworkSpawn");
         if (IsServer)
         {
-            //NetworkManager.Singleton.OnClientDisconnectCallback += NetworkManager_OnClientDisconnectCallback; // NOT YET IMPLMENTED IN THIS VERSION - STILL NEEDS TO BE
-            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += SceneManager_OnLoadEventCompleted;           
-            //NetworkManager.Singleton.OnClientConnectedCallback += Server_OnPlayerJoinedEvent; // NOT YET IMPLMENTED IN THIS VERSION - STILL NEEDS TO BE
+            // Create Lists
+            _MutantPlayerIDs = new List<ulong>();
+            _FluffyPlayerIDs = new List<ulong>();
+
+            // Invoked after a scene load finishes across the networl: once all clients have reported back that they’ve completed the
+            //         scene load (successfully or with failure), and the server/host has finished coordinating the scene transition.
+            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += SceneManager_OnLoadEventCompleted_ServerSideReaction;
+
+            //Invoked whenever a client disconnects from the server/host.
+            NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnect_ServerSideReaction;
+            
         }
         if (IsClient)
         {
-            NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnect;
+            //Invoked whenever a client disconnects from the server/host.
+            NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnect_ClientSideReaction;
             PlayerNetworkDataManager playerNetworkDataManager = PlayerNetworkDataManager.Instance;
             ulong localClientID = NetworkManager.Singleton.LocalClientId;
-
-            // --- Old Mutant/Fluffy UI Enabler ---
-            //if (playerNetworkDataManager.fn_GetClientTeamByClientID(localClientID)) _friendlyUI.SetActive(true);
-            //else _mutantUI.SetActive(true);
         }
     }
+
+
+
     public void OnDisable()
     {
         if (IsServer)
         {
-            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted -= SceneManager_OnLoadEventCompleted;
+            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted -= SceneManager_OnLoadEventCompleted_ServerSideReaction;
+            NetworkManager.Singleton.OnClientDisconnectCallback -= OnClientDisconnect_ServerSideReaction;
         }
-
 
         if (IsClient)
         {
-            NetworkManager.Singleton.OnClientDisconnectCallback -= OnClientDisconnect;
-        }
-            
-
-
+            NetworkManager.Singleton.OnClientDisconnectCallback -= OnClientDisconnect_ClientSideReaction;
+        }           
     }
     #endregion END: Unity Native Functions
+
+
+
+
 
     #region Joining and Load Event Responces
     /// <summary>
     /// Called On Scene Load
-    /// DOSE: Instantiate player Prefabs
+    /// DOSE: Instantiate player Prefabs & Stores which playerIs are mutant or fluffy
     /// </summary>
-    private void SceneManager_OnLoadEventCompleted(string sceneName, UnityEngine.SceneManagement.LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
+    private void SceneManager_OnLoadEventCompleted_ServerSideReaction(string sceneName, UnityEngine.SceneManagement.LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
     {
+        // SERVER ONLY
+        Debug.Log("MainGameManger: All Clients Have Loaded the Scene");
+
+
         PlayerNetworkDataManager PDNM = PlayerNetworkDataManager.Instance;
         Quaternion spawnRot = Quaternion.identity;
 
-        Debug.Log("MainGameManger: OnLoadEventComplete Called");
+        
         foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
         {
             if (PDNM.fn_GetClientTeamByClientID(clientId) == true)
             {
+                _FluffyPlayerIDs.Add(clientId);
+
                 Vector3 spawnPos = GetRandomPointAround(_GoodSpawnArea, _spawnRadius);             
                 //Transform playerTransform = Instantiate(_playerPrefab);
                 Transform playerTransform = Instantiate(_playerPrefab, spawnPos, spawnRot);
@@ -106,13 +128,14 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
             }
             else 
             {
+                _MutantPlayerIDs.Add(clientId);
+
                 Vector3 spawnPos = GetRandomPointAround(_BadSpawnArea, _spawnRadius);
                 Transform playerTransform = Instantiate(_enemyPrefab, spawnPos, spawnRot);
                 //Transform playerTransform = Instantiate(_enemyPrefab);
                 playerTransform.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId, true);
                 playerTransform.gameObject.name = $"Player ({clientId}) MainGame Playable Enemy";
             }
-
         }
 
         Vector3 GetRandomPointAround(Vector3 center, float radius)
@@ -307,11 +330,10 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
     }
     #endregion END: Pause Game
 
-    private void OnClientDisconnect(ulong clientId)
+    private void OnClientDisconnect_ClientSideReaction(ulong clientId)
     {
 
         Debug.Log("OnClientDisconnect Called.");
-
 
         // Only execute if this is the local client being disconnected
         if (clientId == NetworkManager.Singleton.LocalClientId)
@@ -324,6 +346,26 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
             {
                 Debug.Log("Host disconnected. Returning to main menu.");
                 NetworkSceneManager.Instance.fn_Disconnect();
+            }
+        }   
+    }
+
+    private void OnClientDisconnect_ServerSideReaction(ulong clientId)
+    {
+        Debug.Log("OnClientDisconnect Called - On Server.");
+
+        // Update Count
+            // TODO
+
+        // If the client playing the Mutant Drops/Quits
+        if (_MutantPlayerIDs.Contains(clientId))
+        {
+            _MutantPlayerIDs.Remove(clientId);
+
+            if(_MutantPlayerIDs.Count < 1)
+            {
+                //Trigger Fluffies Win
+                fn_EndGame(true);
             }
         }
     }
