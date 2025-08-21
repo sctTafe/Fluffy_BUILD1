@@ -165,7 +165,8 @@ public class NetworkSceneManager : Singleton<NetworkSceneManager>
     {
         Debug.LogWarning("NetworkSceneManager: Disconnect Called!");
 
-        fn_GoToMainMenu();
+        //Force Scene
+        SceneManager.LoadSceneAsync(1);
 
         if (PlayerNetworkDataManager.Instance != null)
             PlayerNetworkDataManager.Instance.fn_ClearPlayerDataManager();
@@ -173,8 +174,9 @@ public class NetworkSceneManager : Singleton<NetworkSceneManager>
         if (NetworkManager.Singleton != null)
             NetworkManager.Singleton.Shutdown();
 
-        Debug.Log("fn_Disconnect_ToMainMenu -> RequestReturnToMenuServerRpc Called");
-        RequestReturnToMenuServerRpc();
+        
+        //Debug.Log("fn_Disconnect_ToMainMenu -> RequestReturnToMenuServerRpc Called");
+        //RequestReturnToMenuServerRpc();
     }
 
 
