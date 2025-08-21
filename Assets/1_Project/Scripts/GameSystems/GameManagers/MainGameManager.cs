@@ -18,7 +18,7 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
 
     [SerializeField] private Vector3 _GoodSpawnArea = Vector3.zero;
     [SerializeField] private Vector3 _BadSpawnArea;
-    [SerializeField] private float _spawnRadius = 5f;
+    [SerializeField] private float _spawnRadius = 10f;
 
     [Header("UI GameObjects")]
     //[SerializeField] private GameObject _friendlyUI;
@@ -49,7 +49,7 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
 
     void Start()
 	{
-		_BadSpawnArea = new Vector3(-10, 30, -50);
+		_BadSpawnArea = new Vector3(-10, 30, 50);
 	}
 
     public override void OnNetworkSpawn()

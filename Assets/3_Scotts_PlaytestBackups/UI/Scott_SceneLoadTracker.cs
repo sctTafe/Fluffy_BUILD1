@@ -32,8 +32,6 @@ public class Scott_SceneLoadTracker : NetworkBehaviour
             // Subscribe to the "all players finished loading" event
             NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += OnAllPlayersLoaded; 
         }
-
-
     }
 
     private void UpdateStatusText(int currentLoaded)
