@@ -411,7 +411,7 @@ Shader "Toon/TEM_Water"
 				return SAMPLE_GI( input.lightmapUVOrVertexSH.xy, 0, normalWS );
 			#elif defined( PROBE_VOLUMES_L1 ) || defined( PROBE_VOLUMES_L2 )
 			
-return SampleProbeVolumePixel( SampleSH( normalWS ), positionWS, normalWS, viewDirWS, input.positionCS.xy );
+eturn SampleProbeVolumePixel( SampleSH( normalWS ), positionWS, normalWS, viewDirWS, input.positionCS.xy );
 			#else
 				return SampleSH( normalWS );
 			#endif
