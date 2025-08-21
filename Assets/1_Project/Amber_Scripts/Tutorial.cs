@@ -38,7 +38,7 @@ public class Tutorial : NetworkBehaviour
 	{
 		arrow.transform.LookAt(key_locations[i]);
 		
-		//Debug.Log("Turotial progress: " + i);
+		Debug.Log("Turotial progress: " + i);
        
 	   	if(Time.frameCount % 5 == 0 && Vector3.Distance(transform.position, key_locations[i]) < 3)
 		{
