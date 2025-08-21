@@ -4,17 +4,16 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(ScottsBackup_PlayerStealthMng))]
-//[RequireComponent(typeof(Outline))]
+[RequireComponent(typeof(Outline))]
 public class Receiver_FluffiesReveal : NetworkBehaviour
 {
 
     [SerializeField]private bool _IsRevealed = false;
 
-    [SerializeField] private Outline shader;
+    private Outline shader;
     private void Awake()
     {
-        //shader = GetComponent<Outline>();
-        shader = GetComponentInChildren<Outline>();
+        shader = GetComponent<Outline>();
     }
     /// <summary>
     /// Triggers the Reveal on this character
