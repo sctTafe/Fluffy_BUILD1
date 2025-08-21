@@ -15,16 +15,25 @@ public class Scott_SceneLoadTracker : NetworkBehaviour
 
     private void Start()
     {
-        if (IsServer)
-        {
-            totalPlayersExpected = NetworkManager.Singleton.ConnectedClientsList.Count;
+        // Both Client & Server
+        totalPlayersExpected = NetworkManager.Singleton.ConnectedClientsList.Count;
+        playersLoaded.OnValueChanged += OnPlayersLoadedChanged;
+        
 
-            NetworkManager.Singleton.SceneManager.OnLoadComplete += OnClientLoadedScene;
-          
-            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += OnAllPlayersLoaded; // Subscribe to the "all players finished loading" event
+        // Server Only
+        if (IsServer)
+        {           
+            NetworkManager.Singleton.SceneManager.OnLoadComplete += OnClientLoadedScene;                     
         }
 
-        playersLoaded.OnValueChanged += OnPlayersLoadedChanged;
+        // Client Only
+        if (IsClient) 
+        {
+            // Subscribe to the "all players finished loading" event
+            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += OnAllPlayersLoaded; 
+        }
+
+
     }
 
     private void UpdateStatusText(int currentLoaded)
