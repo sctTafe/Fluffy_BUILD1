@@ -67,7 +67,11 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
 
             //Invoked whenever a client disconnects from the server/host.
             NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnect_ServerSideReaction;
-            
+
+
+            //NetworkManager.Singleton.OnServerStopped 
+
+
         }
         if (IsClient)
         {
@@ -345,7 +349,7 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
             if (!NetworkManager.Singleton.IsServer)
             {
                 Debug.Log("Host disconnected. Returning to main menu.");
-                NetworkSceneManager.Instance.fn_Disconnect();
+                NetworkSceneManager.Instance.fn_Disconnect_ToMainMenu();
             }
         }   
     }

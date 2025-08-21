@@ -160,6 +160,21 @@ public class NetworkSceneManager : Singleton<NetworkSceneManager>
     }
 
 
+    public void fn_Disconnect_ToMainMenu()
+    {
+        Debug.LogWarning("NetworkSceneManager: Disconnect Called!");
+
+        fn_GoToMainMenu();
+
+        if (PlayerNetworkDataManager.Instance != null)
+            PlayerNetworkDataManager.Instance.fn_ClearPlayerDataManager();
+
+        if (NetworkManager.Singleton != null)
+            NetworkManager.Singleton.Shutdown();  
+    }
+
+
+
     public void fn_StartHost() 
     { 
         AsyncOperation asyncOp = SceneManager.LoadSceneAsync(_hostScene);
