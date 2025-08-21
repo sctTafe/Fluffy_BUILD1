@@ -2725,8 +2725,8 @@ GameObject:
   - component: {fileID: -991564175368876500}
   - component: {fileID: 3416581053963996352}
   - component: {fileID: 5270591487531536575}
+  - component: {fileID: -1197552948190776591}
   - component: {fileID: 5515249455401949357}
-  - component: {fileID: 251689034891746606}
   m_Layer: 7
   m_Name: NetworkPlayerPrefab_BackupMutant
   m_TagString: Mutant
@@ -3014,7 +3014,7 @@ MonoBehaviour:
   _Action_Jump: {fileID: 3028756115781371107}
   _Action_Interaction1: {fileID: 5348581995477502417}
   _Action_Interaction2: {fileID: 1312255123307783352}
-  _Action_Interaction3: {fileID: 251689034891746606}
+  _Action_Interaction3: {fileID: 5515249455401949357}
   _Action_Interaction4: {fileID: 0}
 --- !u!114 &1220139334186284262
 MonoBehaviour:
@@ -3198,6 +3198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+--- !u!114 &-1197552948190776591
 --- !u!114 &5515249455401949357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3212,23 +3213,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawn_pos: {x: -10, y: 30, z: 0}
   random_offset: 0
---- !u!114 &251689034891746606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5408246126893154181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82dfa845311c21542bcc4c14fba5fbd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   _staminaSystem: {fileID: -991564175368876500}
-  _enegryCost: 50
-  _abilityCooldownLength: 30
-  _RevealDuration: 5
+  _enegryCost: 10
+  _abilityCooldownLength: 10
+  _targetTag: 
 --- !u!1 &5413671998971313028
 GameObject:
   m_ObjectHideFlags: 0
