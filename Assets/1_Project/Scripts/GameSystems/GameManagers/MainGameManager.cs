@@ -338,7 +338,7 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
         // Only execute if this is the local client being disconnected
         if (clientId == NetworkManager.Singleton.LocalClientId)
         {
-            Debug.Log("Local client has been disconnected.");
+            Debug.LogWarning("Local client has been disconnected.");
 
             // Check if the server (host) was the one that disconnected
             // If so, all clients will also be disconnected
@@ -349,6 +349,8 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
             }
         }   
     }
+
+
 
     private void OnClientDisconnect_ServerSideReaction(ulong clientId)
     {
