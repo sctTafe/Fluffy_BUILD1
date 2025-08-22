@@ -65,7 +65,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NoiseTexture:
-        m_Texture: {fileID: 2800000, guid: 0743b4c0c9f87f04db6d97cf3a093d82, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8132ffd5113818049a1b7ec588afbab3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalSample:
@@ -140,7 +140,7 @@ Material:
     - _Highlights: 1
     - _MainNormalMapScale: 1
     - _MainTextureTiling: 1
-    - _MaskClipValue: 0.735
+    - _MaskClipValue: 0.388
     - _Metallic: 0
     - _Mode: 0
     - _NormalScale: 1
@@ -175,10 +175,10 @@ Material:
     - _WindStrenght: 0.9
     - _WindSwaySpeed: 0.2
     - _WindSwaySpeed1: 3.8
-    - _WindSwayStrength: 1.04
+    - _WindSwayStrength: 3.7
     - _WindSwayStrength1: 0.5
     - _WindWavesScale: 2.16
-    - _WindWavesScale1: 2.16
+    - _WindWavesScale1: 1.3
     - _WorldScale: 1
     - _ZWrite: 1
     - __dirty: 0
@@ -189,8 +189,8 @@ Material:
     - _Color2: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 0.7333528, g: 0.107960045, b: 0.96981126, a: 1}
     - _HighlightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _HighlightsColor: {r: 0.6814272, g: 1, b: 0.28490567, a: 1}
-    - _WindDirection: {r: 0.15, g: 0, b: 0.15, a: 0}
+    - _HighlightsColor: {r: 0.799811, g: 0.8415094, b: 0.5382485, a: 1}
+    - _WindDirection: {r: 0, g: -0.02, b: 0.08, a: 0}
     - _XXXX: {r: 0, g: 1, b: 0.08719444, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
