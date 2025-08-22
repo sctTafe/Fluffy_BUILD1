@@ -79,7 +79,7 @@ Material:
     - _Depth: 0.41
     - _DissolvedAmount: 0
     - _DstBlend: 10
-    - _EdgeHighlightPower: 0.5
+    - _EdgeHighlightPower: 3.24
     - _EdgePower: 1
     - _FresnelPower: 3.33
     - _NoiseScale: 114.5
@@ -94,9 +94,9 @@ Material:
     - _ZWriteControl: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EdgeColor: {r: 0.43526986, g: 0, b: 0.74509805, a: 0.8901961}
+    - _EdgeColor: {r: 0.445505, g: 0, b: 0.8415094, a: 1}
     - _FresnelColor: {r: 1, g: 0.26226404, b: 0.26226404, a: 0.79607844}
-    - _MainColor: {r: 0, g: 0.7511868, b: 0.87169814, a: 0.02745098}
+    - _MainColor: {r: 0, g: 0.7509433, b: 0.6531874, a: 0.03529412}
     - _OutlineColour: {r: 0.24866343, g: 0, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
