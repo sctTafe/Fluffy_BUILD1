@@ -127,8 +127,7 @@ public class NetworkSceneManager : Singleton<NetworkSceneManager>
             UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(1);
         }
     }
-    
-    
+
     public void fn_SceneSwitch_NextScene()
     {
         int nextSceneID = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1;
@@ -161,26 +160,6 @@ public class NetworkSceneManager : Singleton<NetworkSceneManager>
     }
 
 
-    public void fn_Disconnect_ToMainMenu()
-    {
-        Debug.LogWarning("NetworkSceneManager: Disconnect Called!");
-
-        //Force Scene
-        SceneManager.LoadSceneAsync(1);
-
-        if (PlayerNetworkDataManager.Instance != null)
-            PlayerNetworkDataManager.Instance.fn_ClearPlayerDataManager();
-
-        if (NetworkManager.Singleton != null)
-            NetworkManager.Singleton.Shutdown();
-
-        
-        //Debug.Log("fn_Disconnect_ToMainMenu -> RequestReturnToMenuServerRpc Called");
-        //RequestReturnToMenuServerRpc();
-    }
-
-
-
     public void fn_StartHost() 
     { 
         AsyncOperation asyncOp = SceneManager.LoadSceneAsync(_hostScene);
@@ -192,13 +171,4 @@ public class NetworkSceneManager : Singleton<NetworkSceneManager>
     }
 
 
-
-
-    [ServerRpc]
-    private void RequestReturnToMenuServerRpc(ServerRpcParams rpcParams = default)
-    {
-        Debug.Log("RequestReturnToMenuServerRpc Caslled");
-        // Only server/host can load scene
-        NetworkManager.Singleton.SceneManager.LoadScene(SceneName(1), LoadSceneMode.Single);
-    }
 }

@@ -207,17 +207,14 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
     }
     private void OnClientDisconnected(ulong clientId)
     {
-        if (IsOwner || IsServer)
-        {
-            Debug.Log($"Client {clientId} disconnected. Cleaning up player object.");
+        Debug.Log($"Client {clientId} disconnected. Cleaning up player object.");
 
-            // Find and despawn the player's object
-            if (NetworkManager.Singleton.ConnectedClients.TryGetValue(clientId, out var client))
+        // Find and despawn the player's object
+        if (NetworkManager.Singleton.ConnectedClients.TryGetValue(clientId, out var client))
+        {
+            if (client.PlayerObject != null && client.PlayerObject.IsSpawned)
             {
-                if (client.PlayerObject != null && client.PlayerObject.IsSpawned)
-                {
-                    client.PlayerObject.Despawn();
-                }
+                client.PlayerObject.Despawn();
             }
         }
     }

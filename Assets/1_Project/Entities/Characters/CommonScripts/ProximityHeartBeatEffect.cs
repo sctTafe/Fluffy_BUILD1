@@ -108,7 +108,7 @@ public class ProximityHeartbeatEffect : NetworkBehaviour
         }
         else
         {
-            //Debug.LogWarning("Distance Param Invalid");
+            Debug.LogWarning("Distance Param Invalid");
         }
 
         pulseTimer += Time.deltaTime * Mathf.Lerp(0.5f, 2f, proximity) * pulseSpeed;
