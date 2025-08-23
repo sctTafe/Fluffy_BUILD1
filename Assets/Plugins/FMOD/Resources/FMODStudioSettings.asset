@@ -549,12 +549,12 @@ MonoBehaviour:
   RealChannelSettings: []
   Plugins: []
   MasterBanks:
-  - Master
+  - Master.strings
   Banks:
+  - 
   - Ambience
   - Master.strings
   - Music
-  - SFX
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0
