@@ -52,30 +52,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6993469571586661322, guid: 69e3b63b96cf44e0aa2ae7a34e012280, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -2123069485872429567, guid: 69e3b63b96cf44e0aa2ae7a34e012280, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 890e077953ab47c8b7db242fb43d77d9, type: 2}
     - target: {fileID: -1845475152835819459, guid: 69e3b63b96cf44e0aa2ae7a34e012280, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: a6cc06aab65945acb2cb5c979e084935, type: 2}
     - target: {fileID: -1845475152835819459, guid: 69e3b63b96cf44e0aa2ae7a34e012280, type: 3}
-      propertyPath: m_Materials.Array.data[1]
+      propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 7c9368944de24c0cbe67914a00f1a4e9, type: 2}
     - target: {fileID: 919132149155446097, guid: 69e3b63b96cf44e0aa2ae7a34e012280, type: 3}
       propertyPath: m_Name
       value: Coconut4
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 69e3b63b96cf44e0aa2ae7a34e012280, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1529899146623285733, guid: 69e3b63b96cf44e0aa2ae7a34e012280, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 7c9368944de24c0cbe67914a00f1a4e9, type: 2}
     - target: {fileID: 1529899146623285733, guid: 69e3b63b96cf44e0aa2ae7a34e012280, type: 3}
-      propertyPath: m_Materials.Array.data[1]
+      propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: a6cc06aab65945acb2cb5c979e084935, type: 2}
+    - target: {fileID: 2717227354123138354, guid: 69e3b63b96cf44e0aa2ae7a34e012280, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: 69e3b63b96cf44e0aa2ae7a34e012280, type: 3}
       propertyPath: m_FadeMode
       value: 1
@@ -97,13 +109,17 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6281008868381789940, guid: 69e3b63b96cf44e0aa2ae7a34e012280, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 7c9368944de24c0cbe67914a00f1a4e9, type: 2}
     - target: {fileID: 6281008868381789940, guid: 69e3b63b96cf44e0aa2ae7a34e012280, type: 3}
-      propertyPath: m_Materials.Array.data[1]
+      propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: a6cc06aab65945acb2cb5c979e084935, type: 2}
+    - target: {fileID: 9067717031751832528, guid: 69e3b63b96cf44e0aa2ae7a34e012280, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

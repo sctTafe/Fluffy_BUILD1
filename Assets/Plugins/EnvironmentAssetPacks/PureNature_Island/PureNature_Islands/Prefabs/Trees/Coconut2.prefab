@@ -53,20 +53,36 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7475291616164812163, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 8bd247b9aded4041b709528d7260b5d0, type: 2}
     - target: {fileID: -7078101595978113395, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7078101595978113395, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 7c9368944de24c0cbe67914a00f1a4e9, type: 2}
     - target: {fileID: -7078101595978113395, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
-      propertyPath: m_Materials.Array.data[1]
+      propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: a6cc06aab65945acb2cb5c979e084935, type: 2}
+    - target: {fileID: -5570593629270373155, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
       propertyPath: m_Name
       value: Coconut2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2951751567772122773, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
       propertyPath: m_FadeMode
@@ -89,19 +105,31 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6520393232645269203, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6520393232645269203, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 7c9368944de24c0cbe67914a00f1a4e9, type: 2}
     - target: {fileID: 6520393232645269203, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
-      propertyPath: m_Materials.Array.data[1]
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a6cc06aab65945acb2cb5c979e084935, type: 2}
+    - target: {fileID: 6971927459548260991, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927134201135184382, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927134201135184382, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: a6cc06aab65945acb2cb5c979e084935, type: 2}
     - target: {fileID: 8927134201135184382, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: a6cc06aab65945acb2cb5c979e084935, type: 2}
-    - target: {fileID: 8927134201135184382, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
-      propertyPath: m_Materials.Array.data[1]
+      propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 7c9368944de24c0cbe67914a00f1a4e9, type: 2}
     m_RemovedComponents: []

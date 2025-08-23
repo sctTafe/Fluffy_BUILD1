@@ -65,6 +65,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7060542277007696787, guid: d39fe74523d0540499cd3b1c96789768, type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7060542277007696787, guid: d39fe74523d0540499cd3b1c96789768, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 25e2c9cb7506afe458aff9a5fef0a8b0, type: 2}
@@ -89,6 +93,10 @@ PrefabInstance:
       value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 2893702649578948011, guid: d39fe74523d0540499cd3b1c96789768, type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2893702649578948011, guid: d39fe74523d0540499cd3b1c96789768, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 25e2c9cb7506afe458aff9a5fef0a8b0, type: 2}
@@ -102,15 +110,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: d39fe74523d0540499cd3b1c96789768, type: 3}
       propertyPath: m_LODs.Array.data[0].screenRelativeHeight
-      value: 0.45
+      value: 0.55121124
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: d39fe74523d0540499cd3b1c96789768, type: 3}
       propertyPath: m_LODs.Array.data[1].screenRelativeHeight
-      value: 0.28
+      value: 0.30289632
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: d39fe74523d0540499cd3b1c96789768, type: 3}
       propertyPath: m_LODs.Array.data[2].screenRelativeHeight
-      value: 0.04
+      value: 0.11885187
+      objectReference: {fileID: 0}
+    - target: {fileID: 5854479232938362683, guid: d39fe74523d0540499cd3b1c96789768, type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5854479232938362683, guid: d39fe74523d0540499cd3b1c96789768, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
