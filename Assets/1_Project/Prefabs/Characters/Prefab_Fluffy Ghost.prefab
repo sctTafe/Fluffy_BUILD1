@@ -41,7 +41,7 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 207839948091399278}
   m_Enabled: 1
-  m_CastShadows: 0
+  m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -56,8 +56,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 654352d2a7f1e08408c1d5763ec96448, type: 2}
-  - {fileID: 2100000, guid: d92947326e13cf149820733cdcfa7e15, type: 2}
+  - {fileID: 2100000, guid: 9f2d8279a7b0fb64f9da5fab9786acca, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -215,7 +214,11 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   forwardParam: ForwardsSpeed
   sidewaysParam: SidewaysSpeed
-  jumpStateParam: JumpState
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 64
+  footRaycastDistance: 0.5
+  footOffsetY: 0.05
 --- !u!114 &7712116328739667260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,12 +232,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dustEmitter: {fileID: 7639766327623121184}
-  walkDustCount: 2
-  jumpSmokeCount: 10
-  landingSmokeCount: 15
-  positionRandomness: 0.3
-  angleRandomness: 15
-  radiusRandomness: 0.2
 --- !u!114 &4201627923999619646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -846,8 +843,6 @@ MonoBehaviour:
   item_slot_1: {fileID: 0}
   item_slot_2: {fileID: 0}
   item_slot_3: {fileID: 0}
-  QTE: {fileID: 0}
-  trigger_QTE_cooldown: 2
 --- !u!114 &3657911424795443171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -903,10 +898,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  controller: {fileID: 0}
+  controler: {fileID: -7910061463714057534}
   _positionOffset: {x: 0, y: 0, z: 0}
   damage: -0.34
   skeleton: {fileID: 988882148996521965}
+  coll: {fileID: 1340729016870545582}
 --- !u!114 &174214447878495844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -941,17 +937,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  dissolvePropertyName: _DitherAlpha
-  dissolveSpeed: 2
-  hiddenDissolveValue: 0
-  visibleDissolveValue: 1
-  hide_sound:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
 --- !u!114 &-7910061463714057534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -972,32 +957,23 @@ MonoBehaviour:
   Acceleration: 9.22
   RotationSpeed: 10
   strafing: 0
-  Gravity: -15
-  TerminalVelocity: 53
-  jumpStartDuration: 0.15
-  landDuration: 0.3
-  floatTransitionDelay: 0.1
   GroundMask:
     serializedVersion: 2
     m_Bits: 64
   GroundCheckRadius: 0.08
-  GroundedOffset: -0.14
+  GroundCheckDistance: 0.51
+  groundCheckStartOffset: {x: 0, y: 0.51, z: 0}
+  GroundAlignmentForce: 38.38
+  GroundSpringDamping: 2.21
   DebugRaycasts: 1
-  enableSmoothSlopes: 1
-  maxWalkableAngle: 45
-  maxClimbableAngle: 60
-  slideForce: 15
-  slopeSpeedMultiplier: 0.5
-  momentumDecay: 0.95
-  enableSteepSlopeSliding: 0
+  MaxGroundAlignmentForce: 100
+  maxStableSlopeAngle: 40
   slideAcceleration: 6
   characterAnimator: {fileID: 3367660439844504618}
   _sidewaysSpeed_NWV:
     m_InternalValue: -0.010649449
   _forwardsSpeed_NWV:
     m_InternalValue: 0.18209498
-  _jumpState_NWV:
-    m_InternalValue: 0
   CameraOverride: {fileID: 0}
   isGrabbed: 0
 --- !u!114 &6091755371208914198
@@ -1012,9 +988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90a516ae295593b43947786d15b25d57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
   maxDistance: 30
-  targetTag: Mutant
   volume: {fileID: 8068724240964591822}
   pulseCurve:
     serializedVersion: 2
@@ -1041,9 +1015,6 @@ MonoBehaviour:
     m_PostInfinity: 0
     m_RotationOrder: 4
   pulseSpeed: 1.34
-  _maxIntensity: 0.5
-  _minVol: 0.3
-  _maxVol: 1
   heartbeatEvent:
     Guid:
       Data1: -1667291156
@@ -1332,7 +1303,7 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7444541143406915610}
   m_Enabled: 1
-  m_CastShadows: 0
+  m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -1347,8 +1318,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 654352d2a7f1e08408c1d5763ec96448, type: 2}
-  - {fileID: 2100000, guid: d92947326e13cf149820733cdcfa7e15, type: 2}
+  - {fileID: 2100000, guid: 9f2d8279a7b0fb64f9da5fab9786acca, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1521,7 +1491,7 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7860845353438298893}
   m_Enabled: 1
-  m_CastShadows: 0
+  m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -1536,8 +1506,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 654352d2a7f1e08408c1d5763ec96448, type: 2}
-  - {fileID: 2100000, guid: d92947326e13cf149820733cdcfa7e15, type: 2}
+  - {fileID: 2100000, guid: 9f2d8279a7b0fb64f9da5fab9786acca, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1611,7 +1580,7 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7907683626334812700}
   m_Enabled: 1
-  m_CastShadows: 0
+  m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -1626,8 +1595,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 654352d2a7f1e08408c1d5763ec96448, type: 2}
-  - {fileID: 2100000, guid: d92947326e13cf149820733cdcfa7e15, type: 2}
+  - {fileID: 2100000, guid: 9f2d8279a7b0fb64f9da5fab9786acca, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
