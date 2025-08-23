@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5914194555591604704, guid: d6bc8615b6796104eb0dcb6ad2444d7f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -4546293198140281352, guid: d6bc8615b6796104eb0dcb6ad2444d7f, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -56,6 +60,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 83c44be13499a94468d6a885d6f41a45, type: 2}
+    - target: {fileID: 20810231477364074, guid: d6bc8615b6796104eb0dcb6ad2444d7f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 67310380384331402, guid: d6bc8615b6796104eb0dcb6ad2444d7f, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -63,6 +71,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d6bc8615b6796104eb0dcb6ad2444d7f, type: 3}
       propertyPath: m_Name
       value: ChainLinkFenceLongHole
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d6bc8615b6796104eb0dcb6ad2444d7f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3274578344853713124, guid: d6bc8615b6796104eb0dcb6ad2444d7f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

@@ -27,10 +27,11 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
 
 
     // - Network Varaibles -   
+    // Local Client NV
+    //NetworkVariable<PlayerData> _playerData = new NetworkVariable<PlayerData>(); 
 
     // Server NV
-    private NetworkVariable<int> mutantCountNV = new NetworkVariable<int>();
-    
+    private NetworkVariable<int> teamMonstersCountNV = new NetworkVariable<int>();
     private NetworkList<PlayerData> playerDataNetworkList; //Must be initialized later 
 
 
@@ -54,50 +55,52 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
 
         // Initialized network List (must be done here)
         playerDataNetworkList = new NetworkList<PlayerData>();
-        
         playerDataNetworkList.OnListChanged += Handle_PlayerDataNetworkList_OnListChanged;
-       
-        mutantCountNV.OnValueChanged += Handle_teamMonstersCountNVValueChange;
+
+        // Client Updates
+        teamMonstersCountNV.OnValueChanged += Handle_teamMonstersCountNVValueChange;
 
         _isSetUpComplete = true;
     }
 
-    private void OnDisable()
+    override public void OnDestroy()
     {
         if (_isSetUpComplete)
         {
             playerDataNetworkList.OnListChanged -= Handle_PlayerDataNetworkList_OnListChanged;
-            mutantCountNV.OnValueChanged -= Handle_teamMonstersCountNVValueChange;
-            NetworkManager.Singleton.OnClientConnectedCallback += Handle_OnClientConnectedCallback_ServerReaction;
-            NetworkManager.Singleton.OnClientDisconnectCallback -= Handle_OnClientDisconnectCallback_ServerReaction;
+            teamMonstersCountNV.OnValueChanged -= Handle_teamMonstersCountNVValueChange;
         }
-    }
 
+        base.OnDestroy();
+    }
 
     override public void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
 
         if (isDebuggingOn) Debug.Log("PlayerNetworkDataManager: OnNetworkSpawn");
-        
+        var netMng = NetworkManager.Singleton;
         // On new clients joining the game
-        NetworkManager.Singleton.OnClientConnectedCallback += Handle_OnClientConnectedCallback_ServerReaction;
-        // On new clients leaving the game
-        NetworkManager.Singleton.OnClientDisconnectCallback += Handle_OnClientDisconnectCallback_ServerReaction;
+        netMng.OnClientConnectedCallback += Handle_NetworkManagerClientConnectedCallback;
 
-        //NetworkManager.Singleton.ConnectionApprovalCallback += Handle_NetworkManagerConnectionApprovalCallback;
+        // TODO: should deal with both of these 
 
+        // Called On Server & Local Client on connection
+        // netMng.ConnectionApprovalCallback += Handle_NetworkManagerConnectionApprovalCallback;
+        // netMng.OnClientDisconnectCallback +=
 
         if (IsClient)
         {
-            // Invoke a local update of team realated values on joining the network. I.e. Initalisation update of local values
+            // Invoke a local update of team realated values
             OnTeamsChanged?.Invoke(this, new EventArgs());
         }
 
+
     }
-
-
     #endregion END: Unity Native Functions
+
+
+
 
 
     #region Public Functions
@@ -105,21 +108,15 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
 
     public bool fn_GetLocalClinetTeaam() => GetLocalClientTeam();
 
-    public int fn_GetTotalMutantPlayers() => mutantCountNV.Value;
+    public int fn_GetTotalMutantPlayers() => teamMonstersCountNV.Value;
 
     public bool fn_GetClientTeamByClientID(ulong id) => GetClientTeamByClientID(id);
 
     public void fn_SelectMonsterOnStart() => SelectMonsterOnStart();
 
     public void fn_ClearPlayerDataManager()
-    {      
-        if (IsClient) 
-        {
-            Debug.LogWarning("Player Data Manger 'Clear' Called by Client - Disallowed!");
-            return;
-        }
-
-        Debug.Log("Player Data Manger 'Clear' Called!");
+    {
+        Debug.LogWarning("Player Data Manger 'Clear' Called!");
         if (playerDataNetworkList != null)
         {
             if (playerDataNetworkList.Count > 0)
@@ -128,6 +125,7 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
             }           
         }
     }
+
 
     #endregion END: Public Functions
 
@@ -170,8 +168,10 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
 
 
     #region Sub Region: NetworkManager Callbacks
-
-    private void Handle_OnClientConnectedCallback_ServerReaction(ulong clientId)
+    /// <summary>
+    /// Called On Server & Local Client on connection
+    /// </summary>
+    private void Handle_NetworkManagerClientConnectedCallback(ulong clientId)
     {
         if (IsServer)
         {
@@ -185,36 +185,13 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
 
             if (isDebuggingOn) Debug.Log($"PlayerNetworkDataManager: ClientConnection - New Total Number of PlayerData Sets: {playerDataNetworkList.Count}");
         }
-    }
 
-    private void Handle_OnClientDisconnectCallback_ServerReaction(ulong clientId)
-    {
-        if (IsServer)
+        if (IsClient)
         {
-            // Remove Player
-            int indexPos = -1;
 
-            for (var i = 0; i < playerDataNetworkList.Count; i++)
-            {
-
-
-                if (playerDataNetworkList[i].clientId == clientId)
-                {
-                    indexPos = i;
-                    break;
-                }
-            }
-            
-            // Is Match
-            if(indexPos > 0)
-            {
-                playerDataNetworkList.RemoveAt(indexPos);
-            }
-
-            if (isDebuggingOn) Debug.Log($"PlayerNetworkDataManager: ClientDisConnection - New Total Number of PlayerData Sets: {playerDataNetworkList.Count}");
         }
-    }
 
+    }
 
     /// <summary>
     /// Allows client code to decide whether or not to allow incoming client connection
@@ -229,6 +206,7 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
 
     #region Player Team
     // - Client Side Functions -
+
 
     private bool GetLocalClientTeam()
     {
@@ -326,15 +304,16 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
         }
 
         // If Value is different to currently held value, update it
-        if (mutantCountNV.Value != count)
+        if (teamMonstersCountNV.Value != count)
         {
-            mutantCountNV.Value = count;
+            teamMonstersCountNV.Value = count;
         }
     }
 
 
 
     #endregion END: Player Team
+
 
 
     #region Player Name
@@ -448,7 +427,7 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
         if (IsHost)
         {
             ulong monsterClientID;
-            if (mutantCountNV.Value == 0)
+            if (teamMonstersCountNV.Value == 0)
             {
                 monsterClientID = playerDataNetworkList[UnityEngine.Random.Range(0, playerDataNetworkList.Count)].clientId;
             }

@@ -107,10 +107,4 @@ public class DepositItemPoint : NetworkBehaviour
         	objective_prompt.text = $"{objective_name} {current_amount.Value} / {amount_needed}";
 		}
     }
-
-	public float completion_percent()
-	{
-		float ratio = current_amount.Value / amount_needed;
-		return ratio;
-	}
 }

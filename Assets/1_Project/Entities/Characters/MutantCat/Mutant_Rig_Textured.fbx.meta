@@ -81,7 +81,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 1
+  importAnimation: 0
   humanDescription:
     serializedVersion: 3
     human:
@@ -278,33 +278,33 @@ ModelImporter:
       scale: {x: 10, y: 10, z: 10}
     - name: FluffyRig_Hips
       parentName: FluffyRig_Reference
-      position: {x: 0, y: 0.02973398, z: 0.009}
-      rotation: {x: 0.15258762, y: -0, z: -0, w: 0.98829}
+      position: {x: 0, y: 0.0332694, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_LeftUpLeg
       parentName: FluffyRig_Hips
-      position: {x: -0.019464029, y: 0.0006000012, z: 0.000000001207809}
-      rotation: {x: -0.21919033, y: -0, z: -0, w: 0.97568214}
+      position: {x: -0.019464027, y: -0.0027424006, z: 0}
+      rotation: {x: -0.002034446, y: -0.03207151, z: 0.026275396, w: 0.9991382}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_LeftLeg
       parentName: FluffyRig_LeftUpLeg
       position: {x: -0, y: -0.018808952, z: 0}
-      rotation: {x: -0, y: -0.13779968, z: -0, w: 0.99046016}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_LeftFoot
       parentName: FluffyRig_LeftLeg
       position: {x: -0, y: -0.008206089, z: 0}
-      rotation: {x: -0, y: -0.03256911, z: -0, w: 0.9994695}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_RightUpLeg
       parentName: FluffyRig_Hips
-      position: {x: 0.019464029, y: 0.0006000012, z: 0.000000001207809}
-      rotation: {x: -0.036372278, y: -0, z: -0, w: 0.9993383}
+      position: {x: 0.019464027, y: -0.0023, z: -8.881785e-19}
+      rotation: {x: -0.0017797728, y: 0.023722116, z: -0.008370491, w: 0.999682}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_RightLeg
       parentName: FluffyRig_RightUpLeg
       position: {x: -0, y: -0.018808952, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      rotation: {x: 0, y: 0.54960614, z: 0, w: 0.83542395}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_RightFoot
       parentName: FluffyRig_RightLeg
@@ -313,28 +313,28 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Spine
       parentName: FluffyRig_Hips
-      position: {x: 0, y: 0.008703538, z: -6.9849193e-10}
-      rotation: {x: -0.12365418, y: -0, z: -0, w: 0.99232537}
+      position: {x: -0, y: 0.008703535, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Spine1
       parentName: FluffyRig_Spine
-      position: {x: 0, y: 0.015406886, z: -2.3283064e-10}
-      rotation: {x: -0.09604304, y: -0, z: -0, w: 0.9953772}
+      position: {x: -0, y: 0.015406884, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Spine2
       parentName: FluffyRig_Spine1
-      position: {x: 0, y: 0.01198189, z: 0.0000000016298145}
-      rotation: {x: -0.087932006, y: -0, z: -0, w: 0.99612653}
+      position: {x: -0, y: 0.011981884, z: 0}
+      rotation: {x: 0.048401754, y: -0, z: -0, w: 0.998828}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_LeftShoulder
       parentName: FluffyRig_Spine2
       position: {x: -0.006411829, y: 0.012039576, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      rotation: {x: -0, y: -0, z: -0.16651745, w: 0.98603857}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_LeftArm
       parentName: FluffyRig_LeftShoulder
       position: {x: -0.017321413, y: -0.000000007629395, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      rotation: {x: 0.00000003186141, y: 0.00042156392, z: 0.13170299, w: 0.99128914}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_LeftForeArm
       parentName: FluffyRig_LeftArm
@@ -359,12 +359,12 @@ ModelImporter:
     - name: FluffyRig_RightShoulder
       parentName: FluffyRig_Spine2
       position: {x: 0.006411829, y: 0.012039576, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      rotation: {x: -0, y: -0, z: 0.1365543, w: 0.9906326}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_RightArm
       parentName: FluffyRig_RightShoulder
       position: {x: 0.017321413, y: -0.000000007629395, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      rotation: {x: -0.000000027001079, y: 0.00038885348, z: -0.10015968, w: 0.9949714}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_RightForeArm
       parentName: FluffyRig_RightArm
@@ -376,13 +376,13 @@ ModelImporter:
       position: {x: 0.030951215, y: -0.000012428284, z: 3.9443047e-34}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    armTwist: 0.5
-    foreArmTwist: 0.5
-    upperLegTwist: 0.5
-    legTwist: 0.5
-    armStretch: 0.05
-    legStretch: 0.05
-    feetSpacing: 0
+    armTwist: 0
+    foreArmTwist: 0
+    upperLegTwist: 0
+    legTwist: 0
+    armStretch: 0
+    legStretch: 0
+    feetSpacing: 0.43
     globalScale: 0.5
     rootMotionBoneName: root
     hasTranslationDoF: 0

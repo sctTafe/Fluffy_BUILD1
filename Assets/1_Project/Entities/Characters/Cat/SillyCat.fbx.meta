@@ -20,7 +20,7 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     removeConstantScaleCurves: 1
-    motionNodeName: <Root Transform>
+    motionNodeName: FluffyRig_Ctrl:Reference
     animationImportErrors: 
     animationImportWarnings: "\nClip 'Dive' has import animation warnings that might
       lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
@@ -29,14 +29,15 @@ ModelImporter:
       will be discarded.\n\nClip 'Running' has import animation warnings that might
       lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
       retargeting quality.\n\t'FluffyRig_LeftForeArm' has translation animation that
-      will be discarded.\n\t'FluffyRig_RightForeArm' has translation animation that
       will be discarded.\n\nClip 'Creeping' has import animation warnings that might
       lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
       retargeting quality.\n\t'FluffyRig_LeftForeArm' has translation animation that
       will be discarded.\n\t'FluffyRig_RightForeArm' has translation animation that
       will be discarded.\n\nClip 'JumpLand' has import animation warnings that might
       lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
-      retargeting quality.\n\t'FluffyRig_LeftForeArm' has translation animation that
+      retargeting quality.\n\t'FluffyRig_LeftUpLeg' has translation animation that
+      will be discarded.\n\t'FluffyRig_RightUpLeg' has translation animation that
+      will be discarded.\n\t'FluffyRig_LeftForeArm' has translation animation that
       will be discarded.\n\t'FluffyRig_RightForeArm' has translation animation that
       will be discarded.\n\nClip 'Floating' has import animation warnings that might
       lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
@@ -62,12 +63,9 @@ ModelImporter:
       has import animation warnings that might lower retargeting quality:\nNote:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'FluffyRig_LeftForeArm'
       has translation animation that will be discarded.\n\t'FluffyRig_RightForeArm'
-      has translation animation that will be discarded.\n\nClip 'JumpUp' has import
-      animation warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'FluffyRig_LeftForeArm' has
-      translation animation that will be discarded.\n\nClip 'MutantGroundPound' has
-      import animation warnings that might lower retargeting quality:\nNote: Activate
-      translation DOF on avatar to improve retargeting quality.\n\t'FluffyRig_LeftForeArm'
+      has translation animation that will be discarded.\n\nClip 'MutantGroundPound'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'FluffyRig_LeftForeArm'
       has translation animation that will be discarded.\n\t'FluffyRig_RightForeArm'
       has translation animation that will be discarded.\n\nClip 'MutantGrowl' has
       import animation warnings that might lower retargeting quality:\nNote: Activate
@@ -75,8 +73,7 @@ ModelImporter:
       has translation animation that will be discarded.\n\t'FluffyRig_RightForeArm'
       has translation animation that will be discarded.\n\nClip 'LowWalk' has import
       animation warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'FluffyRig_LeftForeArm' has
-      translation animation that will be discarded.\n\t'FluffyRig_RightForeArm' has
+      DOF on avatar to improve retargeting quality.\n\t'FluffyRig_RightForeArm' has
       translation animation that will be discarded.\n\nClip 'MutantSwipe' has import
       animation warnings that might lower retargeting quality:\nNote: Activate translation
       DOF on avatar to improve retargeting quality.\n\t'FluffyRig_LeftForeArm' has
@@ -159,14 +156,14 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.23686345
+      - time: 0.2458522
         functionName: PlayFootstep
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.72033685
+      - time: 0.756292
         functionName: PlayFootstep
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -319,9 +316,9 @@ ModelImporter:
       curves: []
       events:
       - time: 0.32671973
-        functionName: EmitDust
+        functionName: EmitFootstepDust
         data: 
-        objectReferenceParameter: {fileID: 3543857407571293317, guid: 1bb3d2f73c79dbe48846b778d0cdab2e, type: 3}
+        objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
@@ -333,9 +330,9 @@ ModelImporter:
         intParameter: 0
         messageOptions: 0
       - time: 0.7818669
-        functionName: EmitDust
+        functionName: EmitFootstepDust
         data: 
-        objectReferenceParameter: {fileID: 3543857407571293317, guid: 1bb3d2f73c79dbe48846b778d0cdab2e, type: 3}
+        objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
@@ -391,7 +388,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -412,7 +409,7 @@ ModelImporter:
       name: JumpLand
       takeName: JumpLand
       internalID: 2761767080182994558
-      firstFrame: 0
+      firstFrame: 4.7
       lastFrame: 26
       wrapMode: 0
       orientationOffsetY: 0
@@ -425,14 +422,21 @@ ModelImporter:
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.24182473
+        functionName: EmitLandingCloud
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -442,7 +446,7 @@ ModelImporter:
       takeName: JumpUp
       internalID: 8417585811099395123
       firstFrame: 0
-      lastFrame: 14
+      lastFrame: 9.9
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -461,7 +465,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0
+        functionName: EmitJumpCloud
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -1086,183 +1097,183 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:ChestEndEffector
       parentName: FluffyRig_Ctrl:Reference
-      position: {x: 0.013508256, y: 0.75039226, z: -0.073434}
-      rotation: {x: -0.22807395, y: -0.09099647, z: -0.008722462, w: 0.969343}
+      position: {x: -0.0049971533, y: 0.81934357, z: -0.08067661}
+      rotation: {x: -0.05222281, y: 0.04513021, z: 0.00929154, w: 0.99757195}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:ChestOriginEffector
       parentName: FluffyRig_Ctrl:Reference
-      position: {x: 0.0036250502, y: 0.2326929, z: 0.026546923}
-      rotation: {x: -0.0053191218, y: -0.06613051, z: -0.00026692526, w: 0.9977968}
+      position: {x: 0.006304763, y: 0.28752342, z: -0.015004262}
+      rotation: {x: -0.06955269, y: 0.0016603097, z: 0.009277976, w: 0.9975338}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:HeadEffector
       parentName: FluffyRig_Ctrl:Reference
-      position: {x: 0.012491763, y: 0.83574116, z: -0.10713847}
-      rotation: {x: -0.27083606, y: -0.03430081, z: 0.04583393, w: 0.9609217}
+      position: {x: -0.007465998, y: 0.9108169, z: -0.07986187}
+      rotation: {x: 0.033206, y: 0.032797888, z: 0.031662118, w: 0.9984083}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:Hips
       parentName: FluffyRig_Ctrl:Reference
-      position: {x: 0.003848781, y: 0.1529246, z: 0.024911327}
-      rotation: {x: 0.006207268, y: 0.028035944, z: 0.02771762, w: 0.99920326}
+      position: {x: 0.0078011765, y: 0.20778011, z: -0.012889081}
+      rotation: {x: -0.013267231, y: 0.0010521398, z: 0.009365114, w: 0.9998676}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:LeftUpLeg
       parentName: FluffyRig_Ctrl:Hips
-      position: {x: -0.19464038, y: 0.030826028, z: -0.0000000015686417}
-      rotation: {x: -0.14425498, y: -0.09684361, z: -0.057738207, w: 0.98309624}
+      position: {x: -0.19464038, y: 0.030825991, z: -5.1872906e-10}
+      rotation: {x: -0.008153919, y: -0.037845667, z: -0.010718053, w: 0.9991929}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:LeftLeg
       parentName: FluffyRig_Ctrl:LeftUpLeg
-      position: {x: 0.000000004517712, y: -0.11183958, z: 0.000000001868826}
-      rotation: {x: -2.8201153e-10, y: -3.0049202e-10, z: -0.0000000024639788, w: 1}
+      position: {x: -0.000000018308802, y: -0.11183964, z: -0.0000000046721844}
+      rotation: {x: -8.497694e-34, y: -6.938894e-18, z: -6.162976e-33, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:LeftFoot
       parentName: FluffyRig_Ctrl:LeftLeg
-      position: {x: 0.0000000024290352, y: -0.08206091, z: 0.000000006486847}
-      rotation: {x: 0.3370531, y: 0.5528711, z: -0.25686568, w: 0.7174599}
+      position: {x: 0.000000021123615, y: -0.082060866, z: -7.335408e-10}
+      rotation: {x: 0.020960122, y: -0.10263799, z: -0.0021990517, w: 0.9944955}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:RightUpLeg
       parentName: FluffyRig_Ctrl:Hips
-      position: {x: 0.19464047, y: 0.03082601, z: 0.0000000088277865}
-      rotation: {x: 0.16186728, y: -0.06517061, z: -0.28569275, w: 0.94230115}
+      position: {x: 0.19464031, y: 0.03082602, z: 9.60704e-11}
+      rotation: {x: -0.019979654, y: 0.12233551, z: 0.032884784, w: 0.9917427}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:RightLeg
       parentName: FluffyRig_Ctrl:RightUpLeg
-      position: {x: 0.0000000089905905, y: -0.11183953, z: -0.0000000051707616}
-      rotation: {x: -4.1633363e-17, y: 6.938894e-18, z: 7.632783e-17, w: 1}
+      position: {x: 0.000000004991585, y: -0.11183955, z: 0.0000000044367394}
+      rotation: {x: 6.938894e-18, y: -6.355569e-33, z: -2.7755576e-17, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:RightFoot
       parentName: FluffyRig_Ctrl:RightLeg
-      position: {x: 9.060103e-10, y: -0.082061015, z: 0.000000012691142}
-      rotation: {x: 0.029501218, y: -0.017994825, z: 0.26207098, w: 0.96442974}
+      position: {x: -0.000000009622041, y: -0.08206093, z: -0.000000004707931}
+      rotation: {x: -3.469447e-18, y: 6.259272e-33, z: -2.7755576e-17, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:Spine
       parentName: FluffyRig_Ctrl:Hips
-      position: {x: -0.000000027052534, y: 0.079785414, z: 0.000000010912323}
-      rotation: {x: -0.01269384, y: -0.09505127, z: -0.031772576, w: 0.99488425}
+      position: {x: 0.000000014052539, y: 0.07978539, z: 0.000000027877519}
+      rotation: {x: -0.05630318, y: 0.0011388208, z: -0.00011642166, w: 0.9984131}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:Spine1
       parentName: FluffyRig_Ctrl:Spine
-      position: {x: 4.50585e-11, y: 0.1935688, z: 2.0123891e-10}
-      rotation: {x: -0.11352389, y: -0.01507422, z: 0.001227358, w: 0.9934202}
+      position: {x: 0.0000000011020137, y: 0.19356887, z: 0.0000000040831205}
+      rotation: {x: 0.0088793915, y: 0.021594303, z: 0.0017217061, w: 0.99972594}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:Spine2
       parentName: FluffyRig_Ctrl:Spine1
-      position: {x: 9.787687e-10, y: 0.19356886, z: 0.0000000071566006}
-      rotation: {x: -0.11266573, y: -0.01799627, z: 0.0045468896, w: 0.9934596}
+      position: {x: -1.15610355e-10, y: 0.19356887, z: 0.0000000039788897}
+      rotation: {x: 0.008826746, y: 0.02161516, z: 0.0013432085, w: 0.99972653}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:LeftShoulder
       parentName: FluffyRig_Ctrl:Spine2
-      position: {x: -0.0641183, y: 0.14889576, z: -0.000000003025322}
-      rotation: {x: 0.025529295, y: 0.06668544, z: 0.04618089, w: 0.99637777}
+      position: {x: -0.06411827, y: 0.14889571, z: -0.000000003119629}
+      rotation: {x: -0.0033637073, y: -0.06435798, z: -0.0041632, w: 0.9979125}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:LeftArm
       parentName: FluffyRig_Ctrl:LeftShoulder
-      position: {x: -0.17321426, y: -0.00000006426099, z: 0.000000013144448}
-      rotation: {x: 0.37819788, y: -0.29483637, z: 0.3621362, w: 0.79930925}
+      position: {x: -0.1732143, y: -0.000000070446646, z: 0.000000005435398}
+      rotation: {x: 0.1398217, y: 0.08667417, z: 0.5838869, w: 0.7949928}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:LeftForeArm
       parentName: FluffyRig_Ctrl:LeftArm
-      position: {x: -0.27061215, y: 0.000019017782, z: -0.000000018137525}
-      rotation: {x: -0.013647173, y: 0.47336414, z: 0.0683774, w: 0.8781029}
+      position: {x: -0.2706122, y: 0.000018787667, z: 0.00000006014422}
+      rotation: {x: -0.00008457752, y: 0.2507506, z: 0.03260482, w: 0.96750253}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:LeftHand
       parentName: FluffyRig_Ctrl:LeftForeArm
-      position: {x: -0.30951223, y: -0.0001242277, z: 0.00000005727301}
-      rotation: {x: -0.064311795, y: -0.03531939, z: 0.014065076, w: 0.99720544}
+      position: {x: -0.30951235, y: -0.00012418491, z: -0.000000026658169}
+      rotation: {x: 0.058346443, y: -0.13979849, z: 0.089457385, w: 0.98440313}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:Neck
       parentName: FluffyRig_Ctrl:Spine2
-      position: {x: 0.000000016919795, y: 0.19356948, z: -0.00000047987743}
-      rotation: {x: 0.06443247, y: 0.020533353, z: 0.046116363, w: 0.99664444}
+      position: {x: -0.000000025140768, y: 0.1935704, z: -0.0000000607559}
+      rotation: {x: 0.10831594, y: -0.00734164, z: 0.01265979, w: 0.99400884}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:Head
       parentName: FluffyRig_Ctrl:Neck
-      position: {x: -0.000000040109516, y: 0.047384012, z: -0.00000016149228}
-      rotation: {x: -0.10235489, y: 0.027382752, z: 0.01932155, w: 0.99418324}
+      position: {x: -0.000000010128222, y: 0.047384214, z: 0.000000024445578}
+      rotation: {x: -0.024242224, y: -0.0052050017, z: 0.013688946, w: 0.99959886}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:RightShoulder
       parentName: FluffyRig_Ctrl:Spine2
-      position: {x: 0.06411831, y: 0.1488958, z: 0.000000007160879}
-      rotation: {x: 0.013802608, y: -0.03624929, z: -0.04155044, w: 0.9983832}
+      position: {x: 0.06411827, y: 0.14889577, z: 0.000000008754381}
+      rotation: {x: 0.007990814, y: -0.025354784, z: 0.029187826, w: 0.99922043}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:RightArm
       parentName: FluffyRig_Ctrl:RightShoulder
-      position: {x: 0.17321436, y: -0.00000009569342, z: -0.000000032884703}
-      rotation: {x: -0.106768064, y: -0.0009876532, z: -0.39206406, w: 0.9137206}
+      position: {x: 0.17321452, y: -0.00000011840033, z: 0.0000000026640852}
+      rotation: {x: 0.11582996, y: -0.11147742, z: -0.6083726, w: 0.77719945}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:RightForeArm
       parentName: FluffyRig_Ctrl:RightArm
-      position: {x: 0.27061212, y: 0.000019832036, z: 0.0000031320685}
-      rotation: {x: -0.0012200357, y: -0.7065691, z: -0.09330731, w: 0.7014645}
+      position: {x: 0.27061224, y: 0.000018847199, z: -0.000000032124643}
+      rotation: {x: 0.00011542999, y: -0.23229845, z: -0.030335216, w: 0.9721714}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:RightHand
       parentName: FluffyRig_Ctrl:RightForeArm
-      position: {x: 0.3095122, y: -0.00012417177, z: 0.000000015920326}
-      rotation: {x: 0.000000012525264, y: 0.0000000063419967, z: 0.000000022615758, w: 1}
+      position: {x: 0.30951226, y: -0.00012424364, z: -0.00000003950537}
+      rotation: {x: -2.7755576e-17, y: -2.7755576e-17, z: 1.3877788e-17, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:HipsEffector
       parentName: FluffyRig_Ctrl:Reference
-      position: {x: 0.0037625027, y: 0.18374406, z: 0.025543246}
-      rotation: {x: 0.006207268, y: 0.028035944, z: 0.02771762, w: 0.99920326}
+      position: {x: 0.0072229765, y: 0.23858985, z: -0.013706316}
+      rotation: {x: -0.013267231, y: 0.0010521398, z: 0.009365114, w: 0.9998676}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:LeftAnkleEffector
       parentName: FluffyRig_Ctrl:Reference
-      position: {x: -0.19291165, y: -0.0030514908, z: 0.10414546}
-      rotation: {x: 0.26296672, y: 0.5383295, z: -0.17930514, w: 0.78032017}
+      position: {x: -0.18797234, y: 0.041221842, z: -0.005098583}
+      rotation: {x: 0.00000022929447, y: -0.13940872, z: 0.0000029559517, w: 0.9902349}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:LeftElbowEffector
       parentName: FluffyRig_Ctrl:Reference
-      position: {x: -0.36372387, y: 0.56348896, z: -0.236557}
-      rotation: {x: -0.04035731, y: 0.1879133, z: 0.5341619, w: 0.82324415}
+      position: {x: -0.31970954, y: 0.55657643, z: -0.06290841}
+      rotation: {x: -0.06301097, y: 0.298352, z: 0.6156404, w: 0.7266379}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:LeftHipEffector
       parentName: FluffyRig_Ctrl:Reference
-      position: {x: -0.18949082, y: 0.18272693, z: 0.0487183}
-      rotation: {x: -0.11976026, y: -0.027227733, z: -0.017673273, w: 0.992272}
+      position: {x: -0.18738279, y: 0.2349501, z: -0.013248425}
+      rotation: {x: -0.021062087, y: -0.03700568, z: -0.0007414828, w: 0.9990928}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:LeftKneeEffector
       parentName: FluffyRig_Ctrl:Reference
-      position: {x: -0.19146392, y: 0.07557211, z: 0.08068804}
-      rotation: {x: -0.11976026, y: -0.027227735, z: -0.017673273, w: 0.992272}
+      position: {x: -0.18772285, y: 0.12320982, z: -0.008547691}
+      rotation: {x: -0.021062087, y: -0.03700568, z: -0.0007414828, w: 0.9990928}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:LeftShoulderEffector
       parentName: FluffyRig_Ctrl:Reference
-      position: {x: -0.222579, y: 0.738305, z: -0.085730895}
-      rotation: {x: 0.22116517, y: -0.2168259, z: 0.44956043, w: 0.8378353}
+      position: {x: -0.24190156, y: 0.8151017, z: -0.08139043}
+      rotation: {x: 0.08372235, y: 0.104444064, z: 0.5876737, w: 0.79794836}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:LeftWristEffector
       parentName: FluffyRig_Ctrl:Reference
-      position: {x: -0.46774447, y: 0.293257, z: -0.12723081}
-      rotation: {x: -0.06549943, y: 0.11634161, z: 0.5602036, w: 0.81752455}
+      position: {x: -0.33938584, y: 0.29126546, z: 0.09527136}
+      rotation: {x: 0.09312389, y: 0.233673, z: 0.6624425, w: 0.7056166}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:RightAnkleEffector
       parentName: FluffyRig_Ctrl:Reference
-      position: {x: 0.18113895, y: 0.06305347, z: -0.14774047}
-      rotation: {x: 0.1784374, y: 0.08995406, z: -0.020275671, w: 0.979621}
+      position: {x: 0.21905896, y: 0.049422096, z: -0.0029490038}
+      rotation: {x: -0.034245774, y: 0.12361194, z: 0.040566184, w: 0.9909096}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:RightElbowEffector
       parentName: FluffyRig_Ctrl:Reference
-      position: {x: 0.39537397, y: 0.57710975, z: 0.12691689}
-      rotation: {x: 0.44174045, y: 0.7718654, z: 0.20680992, w: -0.407822}
+      position: {x: 0.31618214, y: 0.5780476, z: -0.066761605}
+      rotation: {x: -0.05806426, y: -0.298079, z: -0.5999003, w: 0.7402007}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:RightHipEffector
       parentName: FluffyRig_Ctrl:Reference
-      position: {x: 0.19701584, y: 0.1847612, z: 0.0023681903}
-      rotation: {x: 0.17843722, y: 0.0111810425, z: -0.271003, w: 0.94582903}
+      position: {x: 0.20182875, y: 0.24222961, z: -0.0141642075}
+      rotation: {x: -0.034245774, y: 0.12361194, z: 0.04056618, w: 0.9909096}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:RightKneeEffector
       parentName: FluffyRig_Ctrl:Reference
-      position: {x: 0.18785824, y: 0.11456163, z: -0.08421271}
-      rotation: {x: 0.17843722, y: 0.0111810425, z: -0.271003, w: 0.94582903}
+      position: {x: 0.21176694, y: 0.13102047, z: -0.0076954057}
+      rotation: {x: -0.034245774, y: 0.12361194, z: 0.04056618, w: 0.9909096}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:RightShoulderEffector
       parentName: FluffyRig_Ctrl:Reference
-      position: {x: 0.24366231, y: 0.749127, z: -0.016695747}
-      rotation: {x: -0.23416156, y: -0.19154753, z: -0.43882453, w: 0.84611523}
+      position: {x: 0.23136804, y: 0.8335246, z: -0.09449334}
+      rotation: {x: 0.07382337, y: -0.11602382, z: -0.5743365, w: 0.80698586}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:RightWristEffector
       parentName: FluffyRig_Ctrl:Reference
-      position: {x: 0.32027128, y: 0.7329236, z: 0.38358688}
-      rotation: {x: 0.44577736, y: 0.76839, z: 0.22014987, w: -0.40298074}
+      position: {x: 0.34780398, y: 0.31385174, z: 0.09134744}
+      rotation: {x: -0.05806424, y: -0.29807898, z: -0.5999003, w: 0.7402007}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Reference
       parentName: SillyCat(Clone)
@@ -1271,128 +1282,128 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Hips
       parentName: FluffyRig_Reference
-      position: {x: 0, y: 0.1831022, z: 0.024911355}
-      rotation: {x: 0.010148485, y: 0.059662882, z: 0.0020111871, w: 0.998165}
+      position: {x: -0, y: 0.20778011, z: -0.012889092}
+      rotation: {x: -0.013267231, y: 0.0010521385, z: 0.009365059, w: 0.9998676}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_LeftUpLeg
       parentName: FluffyRig_Hips
-      position: {x: -0.1946406, y: 0.030826077, z: 0.000000001572759}
-      rotation: {x: -0.13113262, y: -0.049880266, z: -0.022869978, w: 0.98984504}
+      position: {x: -0.19464016, y: 0.030826036, z: -9.846577e-10}
+      rotation: {x: -0.008149901, y: -0.03784485, z: -0.010611077, w: 0.9991941}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_LeftLeg
       parentName: FluffyRig_LeftUpLeg
-      position: {x: 0.0000000067567667, y: -0.111839645, z: -0.0000000035342105}
-      rotation: {x: 0.03272562, y: -0.0000000074505797, z: -0.0013907355, w: 0.99946344}
+      position: {x: -0.000000011469104, y: -0.11183984, z: -0.000000004165785}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_LeftFoot
       parentName: FluffyRig_LeftLeg
-      position: {x: -0.0000000044203494, y: -0.082061015, z: 0.00000000671385}
-      rotation: {x: 0.1529823, y: -0.59406555, z: -0.1256027, w: 0.77968365}
+      position: {x: 0.000000014568636, y: -0.08206096, z: -5.0059545e-10}
+      rotation: {x: 0.020959772, y: -0.10263802, z: -0.0022010417, w: 0.9944955}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_RightUpLeg
       parentName: FluffyRig_Hips
-      position: {x: 0.19464105, y: 0.030826101, z: 0.000000014415208}
-      rotation: {x: 0.09501547, y: -0.0039904634, z: 0.018584788, w: 0.99529433}
+      position: {x: 0.19464011, y: 0.03082605, z: 0.000000001236797}
+      rotation: {x: -0.01997957, y: 0.12233545, z: 0.032883905, w: 0.9917427}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_RightLeg
       parentName: FluffyRig_RightUpLeg
-      position: {x: -0.0000000022902662, y: -0.11183954, z: -0.000000025095176}
+      position: {x: 0.000000013096863, y: -0.11183971, z: 0.000000007903639}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_RightFoot
       parentName: FluffyRig_RightLeg
-      position: {x: 0.000000021766613, y: -0.082061, z: 0.00000003171791}
-      rotation: {x: 0.33432263, y: 0.000000041909512, z: -0.0130021, w: 0.94236904}
+      position: {x: -0.000000017906963, y: -0.08206116, z: -0.0000000071782207}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Spine
       parentName: FluffyRig_Hips
-      position: {x: -0.0000000232394, y: 0.07978546, z: -0.0000000062623724}
-      rotation: {x: -0.002292538, y: -0.11319644, z: 0.00090486644, w: 0.9935696}
+      position: {x: 0.000000008381464, y: 0.07978543, z: 0.000000015823701}
+      rotation: {x: -0.056303162, y: 0.0011388174, z: -0.00011634143, w: 0.9984131}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Spine1
       parentName: FluffyRig_Spine
-      position: {x: -9.828069e-11, y: 0.19356884, z: 0.0000000020537314}
-      rotation: {x: -0.1135239, y: -0.015074235, z: 0.0012273579, w: 0.9934202}
+      position: {x: 0.0000000023057944, y: 0.19356884, z: 0.0000000072019746}
+      rotation: {x: 0.008879385, y: 0.021594306, z: 0.0017217069, w: 0.99972594}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Spine2
       parentName: FluffyRig_Spine1
-      position: {x: 0.0000000018724433, y: 0.19356884, z: -5.586274e-10}
-      rotation: {x: -0.11266567, y: -0.017996276, z: 0.0045469436, w: 0.9934596}
+      position: {x: 2.3707436e-10, y: 0.19356887, z: 0.00000001035819}
+      rotation: {x: 0.008826747, y: 0.021615159, z: 0.0013432087, w: 0.99972653}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_LeftShoulder
       parentName: FluffyRig_Spine2
-      position: {x: -0.06411831, y: 0.14889577, z: -0.000000017522602}
-      rotation: {x: 0.025529277, y: 0.066685446, z: 0.04618089, w: 0.99637777}
+      position: {x: -0.06411832, y: 0.1488958, z: -0.0000000012065214}
+      rotation: {x: -0.0033636764, y: -0.06435798, z: -0.0041632, w: 0.9979125}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_LeftArm
       parentName: FluffyRig_LeftShoulder
-      position: {x: -0.17321423, y: -0.000000042933, z: 0.000000024249607}
-      rotation: {x: 0.43767866, y: -0.015245443, z: -0.014782043, w: 0.89888066}
+      position: {x: -0.1732142, y: -0.000000070192655, z: 0.000000008322098}
+      rotation: {x: 0.15378316, y: 0.027245296, z: 0.0008025466, w: 0.98772866}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_LeftForeArm
       parentName: FluffyRig_LeftArm
-      position: {x: -0.27061242, y: 0.00001906915, z: -0.00000006780571}
-      rotation: {x: -0.025046429, y: 0.022357106, z: -0.014804328, w: 0.9993266}
+      position: {x: -0.27061233, y: 0.000018844732, z: 0.000000039930377}
+      rotation: {x: -0.0025196068, y: 0.026910229, z: -0.0063550137, w: 0.99961454}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_LeftHand
       parentName: FluffyRig_LeftForeArm
-      position: {x: -0.30951232, y: -0.0001243328, z: 0.0000001328444}
-      rotation: {x: -0.0643118, y: -0.03531914, z: 0.014064614, w: 0.9972055}
-      scale: {x: 1, y: 1, z: 1}
-    - name: FluffyRig_RightShoulder
-      parentName: FluffyRig_Spine2
-      position: {x: 0.06411835, y: 0.14889586, z: 0.0000000098117505}
-      rotation: {x: 0.013802831, y: -0.036249314, z: -0.04155042, w: 0.9983832}
-      scale: {x: 1, y: 1, z: 1}
-    - name: FluffyRig_RightArm
-      parentName: FluffyRig_RightShoulder
-      position: {x: 0.17321439, y: -0.000000093455355, z: -0.0000000121960575}
-      rotation: {x: -0.070866466, y: 0.10481363, z: 0.047250133, w: 0.9908378}
-      scale: {x: 1, y: 1, z: 1}
-    - name: FluffyRig_RightForeArm
-      parentName: FluffyRig_RightArm
-      position: {x: 0.27061218, y: 0.00001978759, z: 0.0000031513268}
-      rotation: {x: -0.02064325, y: -0.0012822817, z: 0.018998928, w: 0.9996056}
-      scale: {x: 1, y: 1, z: 1}
-    - name: FluffyRig_RightHand
-      parentName: FluffyRig_RightForeArm
-      position: {x: 0.30951232, y: -0.00012407267, z: 0.00000009697775}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      position: {x: -0.30951253, y: -0.00012417574, z: -0.000000022201295}
+      rotation: {x: 0.058346365, y: -0.13979848, z: 0.08945734, w: 0.98440313}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Neck
       parentName: FluffyRig_Spine2
-      position: {x: 0.000000064613054, y: 0.19357067, z: -0.0000004889609}
-      rotation: {x: 0.06445891, y: 0.020527516, z: 0.046148524, w: 0.9966414}
+      position: {x: -0.000000030815297, y: 0.19357048, z: -0.000000065979854}
+      rotation: {x: 0.10831572, y: -0.007341639, z: 0.012659683, w: 0.99400884}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Head
       parentName: FluffyRig_Neck
-      position: {x: -0.000000060962144, y: 0.04738421, z: -0.0000002392972}
-      rotation: {x: -0.10235505, y: 0.027382646, z: 0.01932155, w: 0.99418324}
+      position: {x: -0.00000001736478, y: 0.047384318, z: 0.000000048660997}
+      rotation: {x: -0.02424222, y: -0.0052049886, z: 0.013688947, w: 0.99959886}
+      scale: {x: 1, y: 1, z: 1}
+    - name: FluffyRig_RightShoulder
+      parentName: FluffyRig_Spine2
+      position: {x: 0.0641183, y: 0.14889584, z: 0.0000000070603186}
+      rotation: {x: 0.007990814, y: -0.025354782, z: 0.02918783, w: 0.99922043}
+      scale: {x: 1, y: 1, z: 1}
+    - name: FluffyRig_RightArm
+      parentName: FluffyRig_RightShoulder
+      position: {x: 0.17321464, y: -0.00000011536876, z: -0.000000003802843}
+      rotation: {x: 0.1391049, y: -0.01964066, z: -0.04966173, w: 0.9888366}
+      scale: {x: 1, y: 1, z: 1}
+    - name: FluffyRig_RightForeArm
+      parentName: FluffyRig_RightArm
+      position: {x: 0.2706123, y: 0.000018818153, z: -0.000000057936912}
+      rotation: {x: -0.0022440248, y: -0.027171133, z: 0.006467465, w: 0.9996074}
+      scale: {x: 1, y: 1, z: 1}
+    - name: FluffyRig_RightHand
+      parentName: FluffyRig_RightForeArm
+      position: {x: 0.3095124, y: -0.00012429447, z: 0.000000008780621}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:Hips
       parentName: SillyCat(Clone)
-      position: {x: -0.0011822542, y: 0.19456886, z: 0.009528784}
-      rotation: {x: 0.06882338, y: 0.05132614, z: 0.02958723, w: 0.99586827}
+      position: {x: 0.005294796, y: 0.18024494, z: -0.00934341}
+      rotation: {x: -0.013267379, y: 0.00105236, z: 0.009354858, w: 0.9998677}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:LeftUpLeg
       parentName: mixamorig2:Hips
       position: {x: -0.19167703, y: 0.0061648553, z: -0.0018655851}
-      rotation: {x: -0.038842756, y: 0.38753662, z: 0.91793543, w: 0.07550622}
+      rotation: {x: -0.034728926, y: 0.07231305, z: 0.99651426, w: 0.022892052}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:LeftLeg
       parentName: mixamorig2:LeftUpLeg
       position: {x: 0.0003868065, y: 0.11153845, z: -0.0022436057}
-      rotation: {x: 0.8893142, y: -0.044403132, z: 0.04263735, w: -0.45313436}
+      rotation: {x: -0.20310648, y: 0.07984706, z: -0.014294492, w: 0.9757909}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:LeftFoot
       parentName: mixamorig2:LeftLeg
       position: {x: -0.000736275, y: 0.033726968, z: -0.007552124}
-      rotation: {x: 0.46701685, y: -0.005220584, z: -0.10002382, w: 0.8785575}
+      rotation: {x: 0.56325907, y: 0.031355634, z: -0.027218556, w: 0.82523644}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:LeftToeBase
       parentName: mixamorig2:LeftFoot
       position: {x: 0.000000010152308, y: 0.0809115, z: 0.000000001913332}
-      rotation: {x: 0.29011542, y: 0.056511465, z: -0.01716441, w: 0.9551675}
+      rotation: {x: 0.2939748, y: 0.056791265, z: -0.01721622, w: 0.9539692}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:LeftToe_End
       parentName: mixamorig2:LeftToeBase
@@ -1402,22 +1413,22 @@ ModelImporter:
     - name: mixamorig2:RightUpLeg
       parentName: mixamorig2:Hips
       position: {x: 0.19722614, y: 0.006195165, z: -0.0029865536}
-      rotation: {x: 0.03916137, y: -0.008363152, z: 0.998031, w: 0.04827636}
+      rotation: {x: 0.11824972, y: 0.07269304, z: 0.989253, w: -0.045948416}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:RightLeg
       parentName: mixamorig2:RightUpLeg
       position: {x: -0.0003887942, y: 0.11146564, z: -0.002086074}
-      rotation: {x: -0.29555735, y: 0.07683427, z: 0.010591162, w: 0.9521713}
+      rotation: {x: -0.1654787, y: -0.03643394, z: 0.010960498, w: 0.9854792}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:RightFoot
       parentName: mixamorig2:RightLeg
       position: {x: 0.00072962657, y: 0.033731174, z: -0.0069212704}
-      rotation: {x: 0.6038755, y: 0.08401873, z: 0.08098104, w: 0.78849053}
+      rotation: {x: 0.5231055, y: -0.053613365, z: 0.010745691, w: 0.850512}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:RightToeBase
       parentName: mixamorig2:RightFoot
       position: {x: 0.000000009451148, y: 0.0813025, z: 9.867186e-10}
-      rotation: {x: 0.5349103, y: -0.073842816, z: 0.019957306, w: 0.84143925}
+      rotation: {x: 0.2885275, y: -0.057366148, z: 0.017320812, w: 0.9555946}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:RightToe_End
       parentName: mixamorig2:RightToeBase
@@ -1427,52 +1438,52 @@ ModelImporter:
     - name: mixamorig2:Spine
       parentName: mixamorig2:Hips
       position: {x: -0.00000014747647, y: 0.055778444, z: -0.005900998}
-      rotation: {x: 0.056004535, y: -0.12253112, z: -0.028249191, w: 0.99048054}
+      rotation: {x: -0.051960666, y: 0.0011374173, z: -0.00011113427, w: 0.99864846}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:Spine1
       parentName: mixamorig2:Spine
       position: {x: -1.5692943e-13, y: 0.1907216, z: -0.0011622512}
-      rotation: {x: -0.029622503, y: -0.0143731935, z: -0.013115601, w: 0.99937177}
+      rotation: {x: 0.008879408, y: 0.021608457, z: 0.001533815, w: 0.99972594}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:Spine2
       parentName: mixamorig2:Spine1
       position: {x: -5.061326e-14, y: 0.20801055, z: -0.0012416773}
-      rotation: {x: -0.02925222, y: -0.014503189, z: -0.012025813, w: 0.99939454}
+      rotation: {x: 0.008826744, y: 0.021626018, z: 0.0011551543, w: 0.99972653}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:LeftShoulder
       parentName: mixamorig2:Spine2
       position: {x: -0.030701, y: 0.14859791, z: -0.0018951134}
-      rotation: {x: 0.61721903, y: -0.39821935, z: 0.5401743, w: 0.4106991}
+      rotation: {x: 0.5091793, y: -0.46505898, z: 0.6052441, w: 0.3976634}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:LeftArm
       parentName: mixamorig2:LeftShoulder
       position: {x: 0.0055322335, y: 0.20898248, z: -0.038351245}
-      rotation: {x: 0.29813287, y: -0.38130498, z: 0.38639912, w: 0.7851236}
+      rotation: {x: 0.47234178, y: -0.16542606, z: -0.08708451, w: 0.8613616}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:LeftForeArm
       parentName: mixamorig2:LeftArm
       position: {x: -0.000000005014864, y: 0.27479348, z: 0.0000000073657787}
-      rotation: {x: 0.069941096, y: 0.0022495324, z: -0.58645374, w: 0.80695426}
+      rotation: {x: 0.029945562, y: 0.002697413, z: -0.25109246, w: 0.96749604}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:LeftHand
       parentName: mixamorig2:LeftForeArm
       position: {x: -0.016709583, y: 0.31291586, z: 0.003546846}
-      rotation: {x: 0.029852856, y: 0.037935045, z: 0.075411655, w: 0.99598336}
+      rotation: {x: 0.104832016, y: -0.10404978, z: 0.17686614, w: 0.97308904}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:LeftHandIndex1
       parentName: mixamorig2:LeftHand
       position: {x: 0.017421002, y: 0.058789484, z: 0.0005655258}
-      rotation: {x: 0.03886533, y: -0.0015947451, z: -0.03703394, w: 0.9985567}
+      rotation: {x: 0.1702488, y: -0.0041881576, z: -0.028631829, w: 0.9849762}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:LeftHandIndex2
       parentName: mixamorig2:LeftHandIndex1
       position: {x: -0.000115503266, y: 0.016492058, z: -0.00000002686688}
-      rotation: {x: 0.10599221, y: 0.0001085764, z: 0.0209816, w: 0.9941456}
+      rotation: {x: 0.30270797, y: 0.00058676436, z: 0.05122967, w: 0.95170534}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:LeftHandIndex3
       parentName: mixamorig2:LeftHandIndex2
       position: {x: 0.00003400499, y: 0.015404931, z: 0.000000051976606}
-      rotation: {x: 0.025823565, y: -0.0000029303758, z: 0.0058960025, w: 0.99964917}
+      rotation: {x: 0.1499169, y: -0.0005139129, z: 0.02507367, w: 0.9883805}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:LeftHandIndex4
       parentName: mixamorig2:LeftHandIndex3
@@ -1482,17 +1493,17 @@ ModelImporter:
     - name: mixamorig2:LeftHandMiddle1
       parentName: mixamorig2:LeftHand
       position: {x: 0.0051465044, y: 0.061735492, z: -0.0015789462}
-      rotation: {x: 0.03877345, y: -0.00011116457, z: -0.034938637, w: 0.998637}
+      rotation: {x: 0.22248143, y: -0.005106056, z: -0.014179163, w: 0.9748205}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:LeftHandMiddle2
       parentName: mixamorig2:LeftHandMiddle1
       position: {x: -0.00004950327, y: 0.01716103, z: -0.000000032511323}
-      rotation: {x: 0.10607586, y: -0.0000075847474, z: 0.01977836, w: 0.9941613}
+      rotation: {x: 0.20588319, y: -0.000021554068, z: 0.035510138, w: 0.9779321}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:LeftHandMiddle3
       parentName: mixamorig2:LeftHandMiddle2
       position: {x: 0.00004999604, y: 0.015804516, z: -0.000000026233401}
-      rotation: {x: 0.025810046, y: -0.000084440835, z: 0.0024986612, w: 0.9996638}
+      rotation: {x: 0.128321, y: -0.00024624198, z: 0.018715836, w: 0.99155605}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:LeftHandMiddle4
       parentName: mixamorig2:LeftHandMiddle3
@@ -1502,17 +1513,17 @@ ModelImporter:
     - name: mixamorig2:LeftHandPinky1
       parentName: mixamorig2:LeftHand
       position: {x: -0.016233997, y: 0.05550997, z: -0.0005639497}
-      rotation: {x: 0.033122733, y: 0.005067221, z: 0.0003593303, w: 0.9994384}
+      rotation: {x: 0.38059333, y: -0.014890475, z: 0.042271312, w: 0.92365587}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:LeftHandPinky2
       parentName: mixamorig2:LeftHandPinky1
       position: {x: -0.00004200147, y: 0.013673031, z: -0.000000020814063}
-      rotation: {x: 0.11181027, y: -0.0037604547, z: -0.014642543, w: 0.9936146}
+      rotation: {x: 0.18754442, y: -0.006437381, z: -0.0012956704, w: 0.98223424}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:LeftHandPinky3
       parentName: mixamorig2:LeftHandPinky2
       position: {x: 0.000014502582, y: 0.010969992, z: -0.000000020507656}
-      rotation: {x: 0.08007328, y: -0.00013684103, z: 0.014432885, w: 0.9966845}
+      rotation: {x: 0.06631905, y: -0.00010858301, z: 0.012079788, w: 0.99772537}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:LeftHandPinky4
       parentName: mixamorig2:LeftHandPinky3
@@ -1522,17 +1533,17 @@ ModelImporter:
     - name: mixamorig2:LeftHandRing1
       parentName: mixamorig2:LeftHand
       position: {x: -0.0063334946, y: 0.062529504, z: -0.0013854547}
-      rotation: {x: 0.039122023, y: 0.0058601354, z: -0.032030027, w: 0.9987038}
+      rotation: {x: 0.2751037, y: 0.0017588219, z: -0.012718781, w: 0.9613288}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:LeftHandRing2
       parentName: mixamorig2:LeftHandRing1
       position: {x: 0.00003299882, y: 0.013630483, z: -0.000000022904965}
-      rotation: {x: 0.10572653, y: -0.00008033906, z: 0.016187187, w: 0.9942635}
+      rotation: {x: 0.14889474, y: -0.0001046149, z: 0.023561776, w: 0.9885723}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:LeftHandRing3
       parentName: mixamorig2:LeftHandRing2
       position: {x: -0.000017000626, y: 0.01310149, z: -0.00000002212338}
-      rotation: {x: 0.08008091, y: 0.00011248889, z: 0.013589891, w: 0.99669576}
+      rotation: {x: 0.09518709, y: 0.00013310705, z: 0.016166737, w: 0.9953281}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:LeftHandRing4
       parentName: mixamorig2:LeftHandRing3
@@ -1542,17 +1553,17 @@ ModelImporter:
     - name: mixamorig2:LeftHandThumb1
       parentName: mixamorig2:LeftHand
       position: {x: 0.014338498, y: 0.019679, z: 0.0059414865}
-      rotation: {x: 0.16309968, y: -0.061521783, z: -0.20238012, w: 0.9636679}
+      rotation: {x: 0.15350087, y: 0.046866372, z: -0.14561518, w: 0.9762363}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:LeftHandThumb2
       parentName: mixamorig2:LeftHandThumb1
       position: {x: 0.0020269938, y: 0.019948056, z: 0.00000004137516}
-      rotation: {x: 0.0051377756, y: 0.004580709, z: 0.032695886, w: 0.9994417}
+      rotation: {x: 0.0045331316, y: -0.021339083, z: 0.09601699, w: 0.9951406}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:LeftHandThumb3
       parentName: mixamorig2:LeftHandThumb2
       position: {x: 0.00018649489, y: 0.017999506, z: -0.000000008331105}
-      rotation: {x: -0.022448162, y: -0.0014444334, z: -0.06462507, w: 0.9976561}
+      rotation: {x: -0.023781193, y: -0.0017505938, z: -0.055753108, w: 0.9981598}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:LeftHandThumb4
       parentName: mixamorig2:LeftHandThumb3
@@ -1562,52 +1573,52 @@ ModelImporter:
     - name: mixamorig2:Neck
       parentName: mixamorig2:Spine2
       position: {x: -4.3626662e-14, y: 0.17929977, z: -0.0009209973}
-      rotation: {x: 0.0990566, y: 0.018926207, z: 0.028681636, w: 0.9944883}
+      rotation: {x: 0.036325898, y: -0.008130383, z: 0.012168519, w: 0.9992328}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:Head
       parentName: mixamorig2:Neck
       position: {x: -1.0347875e-14, y: 0.044130374, z: 0.008489096}
-      rotation: {x: 0.004905187, y: 0.020173796, z: 0.008524954, w: 0.9997481}
+      rotation: {x: -0.024242228, y: -0.0070091034, z: 0.012858922, w: 0.99959886}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:HeadTop_End
       parentName: mixamorig2:Head
-      position: {x: 8.089232e-15, y: 0.054902352, z: 0.007774011}
+      position: {x: -0, y: 0.104999, z: 0.030813998}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:RightShoulder
       parentName: mixamorig2:Spine2
       position: {x: 0.030701, y: 0.14856288, z: -0.0016066132}
-      rotation: {x: 0.59677166, y: 0.40524876, z: -0.5590589, w: 0.40876666}
+      rotation: {x: 0.55739015, y: 0.44625857, z: -0.53844494, w: 0.4474893}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:RightArm
       parentName: mixamorig2:RightShoulder
       position: {x: -0.004160408, y: 0.20898242, z: -0.038524393}
-      rotation: {x: 0.3180725, y: -0.04812765, z: 0.09022784, w: 0.94253516}
+      rotation: {x: 0.4989437, y: 0.14376388, z: 0.112473816, w: 0.8471935}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:RightForeArm
       parentName: mixamorig2:RightArm
       position: {x: 0.000000014371271, y: 0.27484497, z: -0.000000031720248}
-      rotation: {x: 0.08265838, y: -0.0019891022, z: 0.7172655, w: 0.69187707}
+      rotation: {x: 0.026818864, y: -0.0027948653, z: 0.23271987, w: 0.97216994}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:RightHand
       parentName: mixamorig2:RightForeArm
       position: {x: 0.0151336985, y: 0.31305298, z: 0.0020785516}
-      rotation: {x: -0.16923548, y: -0.08086143, z: 0.003588887, w: 0.9822464}
+      rotation: {x: 0.008541706, y: 0.029962867, z: -0.16656247, w: 0.98553854}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:RightHandIndex1
       parentName: mixamorig2:RightHand
       position: {x: -0.018072497, y: 0.061732996, z: -0.00003904146}
-      rotation: {x: 0.01856719, y: 0.00048388992, z: 0.035806336, w: 0.99918616}
+      rotation: {x: 0.086321965, y: 0.005880866, z: -0.007204414, w: 0.9962239}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:RightHandIndex2
       parentName: mixamorig2:RightHandIndex1
       position: {x: 0.000059497346, y: 0.015587045, z: 0.00000003148585}
-      rotation: {x: 0.14359932, y: -0.00007700849, z: -0.023257513, w: 0.9893626}
+      rotation: {x: 0.3288257, y: -0.00021762593, z: -0.049204905, w: 0.9431079}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:RightHandIndex3
       parentName: mixamorig2:RightHandIndex2
       position: {x: -0.00003300391, y: 0.014280509, z: 0.000000031898242}
-      rotation: {x: 0.013834737, y: 0.000034042678, z: -0.0018381297, w: 0.9999026}
+      rotation: {x: 0.06982735, y: 0.00015702343, z: -0.009722903, w: 0.99751174}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:RightHandIndex4
       parentName: mixamorig2:RightHandIndex3
@@ -1617,17 +1628,17 @@ ModelImporter:
     - name: mixamorig2:RightHandMiddle1
       parentName: mixamorig2:RightHand
       position: {x: -0.004612004, y: 0.060882043, z: -0.0011110092}
-      rotation: {x: 0.018579276, y: 0.000099647754, z: 0.03621847, w: 0.9991712}
+      rotation: {x: 0.1664664, y: 0.01271011, z: -0.028202908, w: 0.9855618}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:RightHandMiddle2
       parentName: mixamorig2:RightHandMiddle1
       position: {x: 0.00008100471, y: 0.017395975, z: -0.000000038186425}
-      rotation: {x: 0.14358374, y: -0.000015010105, z: -0.02474074, w: 0.9893289}
+      rotation: {x: 0.25113392, y: -0.000037265672, z: -0.03987495, w: 0.96713066}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:RightHandMiddle3
       parentName: mixamorig2:RightHandMiddle2
       position: {x: -0.00006850522, y: 0.016129997, z: 0.000000035237168}
-      rotation: {x: 0.013833149, y: 0.000104868086, z: -0.00026177074, w: 0.99990433}
+      rotation: {x: 0.046572823, y: -0.013690159, z: -0.005553888, w: 0.99880564}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:RightHandMiddle4
       parentName: mixamorig2:RightHandMiddle3
@@ -1637,17 +1648,17 @@ ModelImporter:
     - name: mixamorig2:RightHandPinky1
       parentName: mixamorig2:RightHand
       position: {x: 0.016601501, y: 0.05597302, z: -0.0006900289}
-      rotation: {x: 0.018795839, y: -0.0065888134, z: 0.03529944, w: 0.9991783}
+      rotation: {x: 0.3119149, y: 0.014164277, z: -0.040322475, w: 0.94914836}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:RightHandPinky2
       parentName: mixamorig2:RightHandPinky1
       position: {x: 0.00004049743, y: 0.0132025285, z: 0.000000030989945}
-      rotation: {x: 0.14329794, y: -0.000019368226, z: -0.02506775, w: 0.98936206}
+      rotation: {x: 0.14925034, y: -0.000020647158, z: -0.02598974, w: 0.98845786}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:RightHandPinky3
       parentName: mixamorig2:RightHandPinky2
       position: {x: -0.000028003193, y: 0.010744973, z: 0.000000023327965}
-      rotation: {x: 0.013805707, y: 0.000066476045, z: -0.001502966, w: 0.99990356}
+      rotation: {x: 0.067364655, y: 0.00017152989, z: -0.009821853, w: 0.99768007}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:RightHandPinky4
       parentName: mixamorig2:RightHandPinky3
@@ -1657,17 +1668,17 @@ ModelImporter:
     - name: mixamorig2:RightHandRing1
       parentName: mixamorig2:RightHand
       position: {x: 0.0060829935, y: 0.061410528, z: -0.0007549934}
-      rotation: {x: 0.018730275, y: -0.0044209417, z: 0.034462314, w: 0.9992207}
+      rotation: {x: 0.24423727, y: 0.00764037, z: -0.014537216, w: 0.9695764}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:RightHandRing2
       parentName: mixamorig2:RightHandRing1
       position: {x: 0.000018504415, y: 0.014107959, z: -0.000000044493753}
-      rotation: {x: 0.14339145, y: 0.000079000936, z: -0.023735156, w: 0.9893814}
+      rotation: {x: 0.18997936, y: 0.00011667805, z: -0.030752543, w: 0.9813063}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:RightHandRing3
       parentName: mixamorig2:RightHandRing2
       position: {x: -0.00003900055, y: 0.013438512, z: 0.000000029300438}
-      rotation: {x: 0.013814687, y: 0.000036687383, z: 0.00023042178, w: 0.9999046}
+      rotation: {x: 0.07288203, y: -0.015904596, z: -0.00989058, w: 0.9971647}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:RightHandRing4
       parentName: mixamorig2:RightHandRing3
@@ -1677,17 +1688,17 @@ ModelImporter:
     - name: mixamorig2:RightHandThumb1
       parentName: mixamorig2:RightHand
       position: {x: -0.014425501, y: 0.020271523, z: 0.006060005}
-      rotation: {x: 0.09979204, y: 0.07843201, z: 0.13676973, w: 0.9824378}
+      rotation: {x: 0.16971391, y: 0.09145996, z: 0.022485806, w: 0.9809825}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:RightHandThumb2
       parentName: mixamorig2:RightHandThumb1
       position: {x: -0.0021420105, y: 0.020373978, z: 0.000000011424131}
-      rotation: {x: -0.027260484, y: 0.008450573, z: -0.03898656, w: 0.9988321}
+      rotation: {x: 0.02074845, y: 0.039101098, z: 0.03623105, w: 0.99836266}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:RightHandThumb3
       parentName: mixamorig2:RightHandThumb2
       position: {x: -0.0001824978, y: 0.017651994, z: -0.000000015958555}
-      rotation: {x: -0.040898725, y: 0.005183735, z: 0.08698769, w: 0.995356}
+      rotation: {x: -0.030939853, y: -0.00013580923, z: 0.09615363, w: 0.99488556}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:RightHandThumb4
       parentName: mixamorig2:RightHandThumb3

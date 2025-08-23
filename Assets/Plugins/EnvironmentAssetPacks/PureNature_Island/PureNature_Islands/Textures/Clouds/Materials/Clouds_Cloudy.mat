@@ -11,11 +11,13 @@ Material:
   m_Shader: {fileID: 4800000, guid: 1bc5bad13b791ee43ab71ffca23989fa, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _RECEIVE_SHADOWS_OFF
   m_InvalidKeywords:
   - _GAMMALINEAR_GAMMA
   - _KEYWORD0_KEY0
   - _KEYWORD0_ON
+  - _RECEIVESHADOWS_OFF
   - _USEFOGCOLOR_ON
   - _USEFOG_ON
   - _USESECONDNOISE_ON
@@ -31,7 +33,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Noise01:
-        m_Texture: {fileID: 2800000, guid: 669c2f5dc3824f8f8017294b2ca9373a, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1547a26fc0f346ddad52d856cd9152d0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Noise02:
@@ -65,23 +67,23 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaCutoff: 0.5
-    - _Coverage: 0.628
+    - _Coverage: 0.599
     - _DistortionPower: 0.0031
     - _Float0: 0.01
     - _Noise01Power: 1
     - _Noise02Power: 0.576
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ReceiveShadows: 1
+    - _ReceiveShadows: 0
     - _ScatteringPower: 2
     - _Softness: 1
     - _Tiling01: 0.25
     - _Tiling02: 0.5
     - _UseFog: 1
-    - _ViewDistance: 10000
+    - _ViewDistance: 9800.26
     - __dirty: 0
     - _cloudsHeight: 300
-    - _cloudsPosition: 500
+    - _cloudsPosition: 358.42
     m_Colors:
     - _CloudsColor: {r: 0.37732878, g: 0.6339269, b: 0.745283, a: 1}
     - _DirectionSpeed: {r: -50, g: 15, b: 0, a: 60}
