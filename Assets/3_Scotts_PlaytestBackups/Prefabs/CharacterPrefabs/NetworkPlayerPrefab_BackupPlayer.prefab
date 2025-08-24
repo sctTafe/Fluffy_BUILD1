@@ -5492,8 +5492,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  MoveSpeed: 2.5
-  SprintSpeed: 6
+  MoveSpeed: 3.5
+  SprintSpeed: 6.5
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
   LandingAudioClip: {fileID: 0}
@@ -5757,8 +5757,8 @@ MonoBehaviour:
   _resourceTypeID: 1
   isStartingAtMax: 1
   isAutoRechargeEnabled: 1
-  rechargeDelaySecond: 1.5
-  valueRechargePerSecond: 10
+  rechargeDelaySecond: 2
+  valueRechargePerSecond: 50
   OnExhaustionTriggered_UE:
     m_PersistentCalls:
       m_Calls: []

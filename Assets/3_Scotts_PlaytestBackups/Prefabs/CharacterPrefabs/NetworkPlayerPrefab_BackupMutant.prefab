@@ -2727,6 +2727,7 @@ GameObject:
   - component: {fileID: 5270591487531536575}
   - component: {fileID: 5515249455401949357}
   - component: {fileID: 251689034891746606}
+  - component: {fileID: 1107157359021616998}
   m_Layer: 7
   m_Name: NetworkPlayerPrefab_BackupMutant
   m_TagString: Mutant
@@ -2964,8 +2965,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  MoveSpeed: 4
-  SprintSpeed: 5
+  MoveSpeed: 4.5
+  SprintSpeed: 6.5
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
   LandingAudioClip: {fileID: 0}
@@ -3158,12 +3159,12 @@ MonoBehaviour:
   _resourceTypeID: 3
   isStartingAtMax: 1
   isAutoRechargeEnabled: 1
-  rechargeDelaySecond: 2
-  valueRechargePerSecond: 10
+  rechargeDelaySecond: 2.5
+  valueRechargePerSecond: 20
   OnExhaustionTriggered_UE:
     m_PersistentCalls:
       m_Calls: []
-  exhaustedCooldown: 2
+  exhaustedCooldown: 2.5
 --- !u!114 &3416581053963996352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3229,6 +3230,18 @@ MonoBehaviour:
   _enegryCost: 50
   _abilityCooldownLength: 30
   _RevealDuration: 5
+--- !u!114 &1107157359021616998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5408246126893154181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343dd248fa3cd29639fab39be884f18a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5413671998971313028
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,14 +4,14 @@ public class MutantDeterBoat : MonoBehaviour
 {
 	private Vector3 boat_position;
 	private float distance;
-	MutantStamina s;
+	ScottsBackup_ResourceMng s;
 
     void Start()
     {
 		GameObject boat = GameObject.FindWithTag("boat_escape_point");
 		if (boat != null)
         boat_position = boat.transform.position;
-		s = GetComponent<MutantStamina>();
+		s = GetComponent<ScottsBackup_ResourceMng>();
     }
 
     void Update()
@@ -26,7 +26,7 @@ public class MutantDeterBoat : MonoBehaviour
 
 	public void punish_mutant()
 	{
-		s.reduce_stamina(10 * Time.deltaTime);
+		s.fn_TryReduceValue(10 * Time.deltaTime);
 		// We will also want to have a visual effect here, maybe a vignette?
 	}
 }
