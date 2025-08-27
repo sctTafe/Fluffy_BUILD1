@@ -5920,9 +5920,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1396695c5e08b974fa62616b42ee8cc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   _gameObjectToApplyTo_Body: {fileID: 5474305276988994094}
   _gameObjectToApplyTo_Head: {fileID: 2597895024098045261}
-  materials:
+  _materials:
   - {fileID: 2100000, guid: 9c685a8553cf3c346964b795f448ef27, type: 2}
   - {fileID: 2100000, guid: 5720743e46cd2874c90db0101dd7e658, type: 2}
   - {fileID: 2100000, guid: f0d6982dd2070cd43a83fd0404bf9783, type: 2}

@@ -27,8 +27,8 @@ public class ScottsBackup_PlayerMaterialSwapper : NetworkBehaviour
             return;
         }
 
-        //objRenderer_Body = _gameObjectToApplyTo_Body.GetComponent<Renderer>();
-        //objRenderer_Head = _gameObjectToApplyTo_Head.GetComponent<Renderer>();
+        objRenderer_Body = _gameObjectToApplyTo_Body.GetComponent<Renderer>();
+        objRenderer_Head = _gameObjectToApplyTo_Head.GetComponent<Renderer>();
     }
 
 
@@ -50,17 +50,18 @@ public class ScottsBackup_PlayerMaterialSwapper : NetworkBehaviour
 
         if (index >= 0 && index < _materials.Length)
         {
-            var mat = _materials[index];
-            SwopMatialOnObject(_gameObjectToApplyTo_Body, mat);
-            SwopMatialOnObject(_gameObjectToApplyTo_Head, mat);
+            Debug.Log($"fn_SwapPlayerMaterailTo called on {gameObject.name}, set to material {index}");
+            objRenderer_Head.material = _materials[index];
+            objRenderer_Body.material = _materials[index];
         }
     }
 
 
-    private void SwopMatialOnObject(GameObject gameObject, Material mat)
-    {
-        objRenderer_Body.GetComponent<Renderer>().material = mat;
-    }
+    //private void SwopMatialOnObject(GameObject gameObject, int index)
+    //{
+        
+    //    objRenderer_Body.material = mat;
+    //}
 
 
 
