@@ -118,6 +118,9 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
         Quaternion spawnRot = Quaternion.identity;
 
 
+        List<ulong> fluffyPlayerObject = new List<ulong>();
+
+
         foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
         {
             if (PDNM.fn_GetClientTeamByClientID(clientId) == true)
@@ -127,15 +130,15 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
 
                 Vector3 spawnPos = GetRandomPointAround(_GoodSpawnArea, _spawnRadius);
                 //Transform playerTransform = Instantiate(_playerPrefab);
+                
                 Transform playerTransform = Instantiate(_playerPrefab, spawnPos, spawnRot);
-                playerTransform.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId, true);
+
+                var netObj = playerTransform.GetComponent<NetworkObject>();
+                netObj.SpawnAsPlayerObject(clientId, true);
                 playerTransform.gameObject.name = $"Player ({clientId}) MainGame Playable Character";
 
-                //Set Random Textures
-                if(playerTransform.gameObject.TryGetComponent<ScottsBackup_PlayerMaterialSwapper>(out ScottsBackup_PlayerMaterialSwapper pms))
-                {
-                    pms.fn_SwapMaterial_Master();
-                }
+                fluffyPlayerObject.Add(netObj.NetworkObjectId); // Get the network object IDs
+
             }
             else
             {
@@ -150,12 +153,38 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
             }
         }
 
+        // Suport Function
         Vector3 GetRandomPointAround(Vector3 center, float radius)
         {
             Vector2 randomCircle = UnityEngine.Random.insideUnitCircle * radius;
             return center + new Vector3(randomCircle.x, 0f, randomCircle.y); // assuming Y-up
         }
+
+
+        //
+        foreach (var fpoId in fluffyPlayerObject)
+        {
+            // Look up the NetworkObject by its ID
+            if (NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(fpoId, out var netObj))
+            {
+                if (netObj.TryGetComponent<ScottsBackup_PlayerMaterialSwapper>(out var swapper))
+                {
+                    // This runs on server, tells all clients to update this object’s material
+                    int randomIndex = UnityEngine.Random.Range(0, 8); // Value = 0-7
+                    swapper.SwapPlayerMaterialClientRpc(randomIndex); 
+                }
+            }
+        }
     }
+
+
+
+    [Rpc(SendTo.ClientsAndHost)]
+    private void ChangeFluffyTextureRPC(ulong networkObject, int indexColour)
+    {
+
+    }
+
 
     #endregion END: Joining and Load Events
 

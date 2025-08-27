@@ -1,13 +1,14 @@
+using Unity.Netcode;
 using UnityEngine;
 
-public class ScottsBackup_PlayerMaterialSwapper : MonoBehaviour
+public class ScottsBackup_PlayerMaterialSwapper : NetworkBehaviour
 {
     [Header("Player Texture Matrials")]
     [SerializeField] private GameObject _gameObjectToApplyTo_Body;
     [SerializeField] private GameObject _gameObjectToApplyTo_Head;
 
     [Header("Player Texture Matrials")]
-    [SerializeField] private Material[] materials;
+    [SerializeField] private Material[] _materials;
 
 
     private Renderer objRenderer_Body;
@@ -26,9 +27,44 @@ public class ScottsBackup_PlayerMaterialSwapper : MonoBehaviour
             return;
         }
 
-        objRenderer_Body = _gameObjectToApplyTo_Body.GetComponent<Renderer>();
-        objRenderer_Head = _gameObjectToApplyTo_Head.GetComponent<Renderer>();
+        //objRenderer_Body = _gameObjectToApplyTo_Body.GetComponent<Renderer>();
+        //objRenderer_Head = _gameObjectToApplyTo_Head.GetComponent<Renderer>();
     }
+
+
+
+    [ClientRpc]
+    public void SwapPlayerMaterialClientRpc(int index)
+    {
+        fn_SwapPlayerMaterailTo(index);
+    }
+
+
+    public void fn_SwapPlayerMaterailTo(int index)
+    {
+        if(index >= _materials.Length)
+        {
+            Debug.LogError($"Cannont Find Indexed Material on {name}! ");
+            return;
+        }
+
+        if (index >= 0 && index < _materials.Length)
+        {
+            var mat = _materials[index];
+            SwopMatialOnObject(_gameObjectToApplyTo_Body, mat);
+            SwopMatialOnObject(_gameObjectToApplyTo_Head, mat);
+        }
+    }
+
+
+    private void SwopMatialOnObject(GameObject gameObject, Material mat)
+    {
+        objRenderer_Body.GetComponent<Renderer>().material = mat;
+    }
+
+
+
+
 
 
     /// <summary>
@@ -36,38 +72,38 @@ public class ScottsBackup_PlayerMaterialSwapper : MonoBehaviour
     /// </summary>
     public void fn_SwapMaterial_Master()
     {
-        fn_SwapMaterial_Head();
-        fn_SwapMaterial_Body();
+        SwapMaterial_Head();
+        SwapMaterial_Body();
     }
 
 
-    public void fn_SwapMaterial_Head()
+    public void SwapMaterial_Head()
     {
-        if (materials == null || materials.Length == 0)
+        if (_materials == null || _materials.Length == 0)
         {
             Debug.LogWarning($"ScottsBackup_PlayerMaterialSwapper - No materials assigned on {name}!");
             return;
         }
 
         // Pick a random index
-        int randomIndex = Random.Range(0, materials.Length);
+        int randomIndex = Random.Range(0, _materials.Length);
 
         // Assign the new material
-        objRenderer_Head.material = materials[randomIndex];
+        objRenderer_Head.material = _materials[randomIndex];
     }
 
-    public void fn_SwapMaterial_Body()
+    public void SwapMaterial_Body()
     {
-        if (materials == null || materials.Length == 0)
+        if (_materials == null || _materials.Length == 0)
         {
             Debug.LogWarning($"ScottsBackup_PlayerMaterialSwapper - No materials assigned on {name}!");
             return;
         }
 
         // Pick a random index
-        int randomIndex = Random.Range(0, materials.Length);
+        int randomIndex = Random.Range(0, _materials.Length);
 
         // Assign the new material
-        objRenderer_Body.material = materials[randomIndex];
+        objRenderer_Body.material = _materials[randomIndex];
     }
 }

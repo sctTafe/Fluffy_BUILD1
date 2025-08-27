@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using FMODUnity;
-using Unity.Netcode; // Add this at the top
+using Unity.Netcode; 
 
 public class ProximityHeartbeatEffect : NetworkBehaviour
 {
@@ -10,7 +10,7 @@ public class ProximityHeartbeatEffect : NetworkBehaviour
 
     [Header("Target Settings")]
     [SerializeField] private string targetTag = "Mutant"; // Tag to look for
-    private float targetCheckInterval = 10f;
+    private float targetCheckInterval = 5f;
     private float targetCheckTimer = 0f;
 
     [Header("Vignette Settings")]

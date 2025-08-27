@@ -18,7 +18,12 @@ public class Scott_SceneLoadTracker : NetworkBehaviour
         // Both Client & Server
         totalPlayersExpected = NetworkManager.Singleton.ConnectedClientsList.Count;
         playersLoaded.OnValueChanged += OnPlayersLoadedChanged;
-        
+
+        if (loadingCanvas != null)
+        {
+            loadingCanvas.gameObject.SetActive(true);
+        }
+
 
         // Server Only
         if (IsServer)
