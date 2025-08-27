@@ -1,0 +1,73 @@
+using UnityEngine;
+
+public class ScottsBackup_PlayerMaterialSwapper : MonoBehaviour
+{
+    [Header("Player Texture Matrials")]
+    [SerializeField] private GameObject _gameObjectToApplyTo_Body;
+    [SerializeField] private GameObject _gameObjectToApplyTo_Head;
+
+    [Header("Player Texture Matrials")]
+    [SerializeField] private Material[] materials;
+
+
+    private Renderer objRenderer_Body;
+    private Renderer objRenderer_Head;
+
+    void Awake()
+    {
+        if(_gameObjectToApplyTo_Body == null)
+        {
+            Debug.LogWarning($"ScottsBackup_PlayerMaterialSwapper - No _gameObjectToApplyTo_Body assigned on {name}!");
+            return;
+        }
+        if (_gameObjectToApplyTo_Head == null)
+        {
+            Debug.LogWarning($"ScottsBackup_PlayerMaterialSwapper - No _gameObjectToApplyTo_Head assigned on {name}!");
+            return;
+        }
+
+        objRenderer_Body = _gameObjectToApplyTo_Body.GetComponent<Renderer>();
+        objRenderer_Head = _gameObjectToApplyTo_Head.GetComponent<Renderer>();
+    }
+
+
+    /// <summary>
+    /// Swap to one of the random materials
+    /// </summary>
+    public void fn_SwapMaterial_Master()
+    {
+        fn_SwapMaterial_Head();
+        fn_SwapMaterial_Body();
+    }
+
+
+    public void fn_SwapMaterial_Head()
+    {
+        if (materials == null || materials.Length == 0)
+        {
+            Debug.LogWarning($"ScottsBackup_PlayerMaterialSwapper - No materials assigned on {name}!");
+            return;
+        }
+
+        // Pick a random index
+        int randomIndex = Random.Range(0, materials.Length);
+
+        // Assign the new material
+        objRenderer_Head.material = materials[randomIndex];
+    }
+
+    public void fn_SwapMaterial_Body()
+    {
+        if (materials == null || materials.Length == 0)
+        {
+            Debug.LogWarning($"ScottsBackup_PlayerMaterialSwapper - No materials assigned on {name}!");
+            return;
+        }
+
+        // Pick a random index
+        int randomIndex = Random.Range(0, materials.Length);
+
+        // Assign the new material
+        objRenderer_Body.material = materials[randomIndex];
+    }
+}
