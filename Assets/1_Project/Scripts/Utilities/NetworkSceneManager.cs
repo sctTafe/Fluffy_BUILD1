@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -100,7 +99,7 @@ public class NetworkSceneManager : Singleton<NetworkSceneManager>
     {
         if (NetworkManager.Singleton != null && NetworkManager.Singleton.SceneManager != null)
         {
-            
+
             Debug.Log($"Try Go To Scene: '{scene}'");
             NetworkManager.Singleton.SceneManager.LoadScene(scene, LoadSceneMode.Single);
         }
@@ -109,13 +108,13 @@ public class NetworkSceneManager : Singleton<NetworkSceneManager>
             Debug.LogWarning("NetworkSceneManager: Network Not Established; Using Basic ScenManagere to switch scene!");
             UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(scene);
         }
- 
+
     }
 
     public void fn_GoToMainMenu()
     {
         Debug.Log("Home Scene Btn Called, loading next scene");
-        
+
 
         if (NetworkManager.Singleton != null && NetworkManager.Singleton.SceneManager != null)
         {
@@ -128,6 +127,7 @@ public class NetworkSceneManager : Singleton<NetworkSceneManager>
         }
     }
 
+
     public void fn_SceneSwitch_NextScene()
     {
         int nextSceneID = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1;
@@ -137,7 +137,7 @@ public class NetworkSceneManager : Singleton<NetworkSceneManager>
             Debug.Log("SceneManager_Netcode: 'Next Scene' Called, loading next scene");
             NetworkManager.Singleton.SceneManager.LoadScene(SceneName(nextSceneID), LoadSceneMode.Single);
         }
-        else 
+        else
         {
             fn_GoToMainMenu();
         }
@@ -160,8 +160,28 @@ public class NetworkSceneManager : Singleton<NetworkSceneManager>
     }
 
 
-    public void fn_StartHost() 
-    { 
+    public void fn_Disconnect_ToMainMenu()
+    {
+        Debug.LogWarning("NetworkSceneManager: Disconnect Called!");
+
+        //Force Scene
+        SceneManager.LoadSceneAsync(1);
+
+        if (PlayerNetworkDataManager.Instance != null)
+            PlayerNetworkDataManager.Instance.fn_ClearPlayerDataManager();
+
+        if (NetworkManager.Singleton != null)
+            NetworkManager.Singleton.Shutdown();
+
+
+        //Debug.Log("fn_Disconnect_ToMainMenu -> RequestReturnToMenuServerRpc Called");
+        //RequestReturnToMenuServerRpc();
+    }
+
+
+
+    public void fn_StartHost()
+    {
         AsyncOperation asyncOp = SceneManager.LoadSceneAsync(_hostScene);
     }
 
@@ -171,4 +191,13 @@ public class NetworkSceneManager : Singleton<NetworkSceneManager>
     }
 
 
+
+
+    [ServerRpc]
+    private void RequestReturnToMenuServerRpc(ServerRpcParams rpcParams = default)
+    {
+        Debug.Log("RequestReturnToMenuServerRpc Caslled");
+        // Only server/host can load scene
+        NetworkManager.Singleton.SceneManager.LoadScene(SceneName(1), LoadSceneMode.Single);
+    }
 }

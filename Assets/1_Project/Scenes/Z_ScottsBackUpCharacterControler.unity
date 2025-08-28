@@ -837,6 +837,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dustEmitter: {fileID: 942395350}
+  walkDustCount: 2
+  jumpSmokeCount: 10
+  landingSmokeCount: 15
+  positionRandomness: 0.3
+  angleRandomness: 15
+  radiusRandomness: 0.2
 --- !u!114 &54781420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -852,11 +858,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   forwardParam: ForwardsSpeed
   sidewaysParam: SidewaysSpeed
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 64
-  footRaycastDistance: 0.5
-  footOffsetY: 0.05
+  jumpStateParam: JumpState
 --- !u!95 &54781421
 Animator:
   serializedVersion: 7
@@ -20835,7 +20837,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConnectAddress: 127.0.0.1
-  humanPrefab: {fileID: 6103115944230435048, guid: 206e837495bcb85419c21100ce911ce4, type: 3}
+  fluffyPrefab: {fileID: 6103115944230435048, guid: 206e837495bcb85419c21100ce911ce4, type: 3}
   mutantPrefab: {fileID: 6103115944230435048, guid: 206e837495bcb85419c21100ce911ce4, type: 3}
   spawnAsMutant: 0
   isHost: 1
@@ -28781,7 +28783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConnectAddress: 127.0.0.1
-  humanPrefab: {fileID: 6103115944230435048, guid: cc0471523a56ed342902dcf659539562, type: 3}
+  fluffyPrefab: {fileID: 0}
   mutantPrefab: {fileID: 6103115944230435048, guid: cc0471523a56ed342902dcf659539562, type: 3}
   spawnAsMutant: 0
   isHost: 1
@@ -30111,7 +30113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConnectAddress: 127.0.0.1
-  humanPrefab: {fileID: 5408246126893154181, guid: 424e28b2d96a77144a295e335ec2609d, type: 3}
+  fluffyPrefab: {fileID: 5408246126893154181, guid: 424e28b2d96a77144a295e335ec2609d, type: 3}
   mutantPrefab: {fileID: 5408246126893154181, guid: 424e28b2d96a77144a295e335ec2609d, type: 3}
   spawnAsMutant: 0
   isHost: 1

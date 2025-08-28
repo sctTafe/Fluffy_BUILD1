@@ -207,14 +207,17 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
     }
     private void OnClientDisconnected(ulong clientId)
     {
-        Debug.Log($"Client {clientId} disconnected. Cleaning up player object.");
-
-        // Find and despawn the player's object
-        if (NetworkManager.Singleton.ConnectedClients.TryGetValue(clientId, out var client))
+        if (IsOwner || IsServer)
         {
-            if (client.PlayerObject != null && client.PlayerObject.IsSpawned)
+            Debug.Log($"Client {clientId} disconnected. Cleaning up player object.");
+
+            // Find and despawn the player's object
+            if (NetworkManager.Singleton.ConnectedClients.TryGetValue(clientId, out var client))
             {
-                client.PlayerObject.Despawn();
+                if (client.PlayerObject != null && client.PlayerObject.IsSpawned)
+                {
+                    client.PlayerObject.Despawn();
+                }
             }
         }
     }
@@ -256,7 +259,7 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
     #region Public Functions
 
     public void fn_SetIsSprintingInput(bool isSprinting) => _isSprinting_Input = isSprinting;
-    
+
     /// <summary>
     /// If able to jump, it activates the jump & returns true 
     /// </summary>
@@ -272,7 +275,7 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
     }
 
     public void fn_Despawn() => NetworkObject.Despawn();
-    
+
     public void fn_IsMovementInputDisabled(bool isDisabled) => _isMovementDistabled = isDisabled;
 
     #endregion
@@ -339,7 +342,7 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
         // set target speed based on move speed, sprint speed and if sprint is pressed
         //float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed; //OLD
         float targetSpeed = _isSprinting_Input ? SprintSpeed : MoveSpeed;
-        
+
         // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
         // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
@@ -399,7 +402,7 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
     private void JumpAndGravity()
     {
 
-        
+
 
 
 
