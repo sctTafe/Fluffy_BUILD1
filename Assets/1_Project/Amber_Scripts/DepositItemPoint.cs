@@ -21,7 +21,6 @@ public class DepositItemPoint : NetworkBehaviour
 	public string objective_name = "Deposit petrol containers";
 	public string objective_UI_tag = "objective_prompt";
 	
-	private ObjectiveManager objective_manager;
 	[SerializeField] private TMP_Text objective_prompt;
 
     public void Start()
@@ -35,6 +34,7 @@ public class DepositItemPoint : NetworkBehaviour
         }
 		**/
 		UpdateUI();
+		// objective_manager = GameObject.FindWithTag("ObjectiveManager").GetComponent<ObjectiveManager>();
 	}
 
 	void Update()
@@ -50,7 +50,14 @@ public class DepositItemPoint : NetworkBehaviour
 			}
 		}
 		**/
+
+		// DEV TESTING
+		if(Input.GetKeyDown(KeyCode.O))
+		{
+			DepositItem();
+		}
 	}
+
 
     private void OnEnable()
     {
@@ -95,8 +102,8 @@ public class DepositItemPoint : NetworkBehaviour
 
 	public void BroadcastObjectiveComplete()
 	{
-		objective_manager.CompletedObjectiveServerRPC();
-		objective_manager.CompletedObjective();
+		ObjectiveManager.Instance.CompletedObjectiveServerRPC();
+		ObjectiveManager.Instance.CompletedObjective();
 		Destroy(GameObject.FindWithTag(objective_UI_tag));
 	}
 
