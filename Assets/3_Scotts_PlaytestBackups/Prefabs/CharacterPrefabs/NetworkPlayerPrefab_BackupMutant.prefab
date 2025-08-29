@@ -2966,8 +2966,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  MoveSpeed: 4.5
-  SprintSpeed: 6.5
+  MoveSpeed: 5.5
+  SprintSpeed: 7.5
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
   LandingAudioClip: {fileID: 0}
@@ -3212,7 +3212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e22733ea1837981a8fd12b7f29f5343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawn_pos: {x: -10, y: 30, z: 0}
+  spawn_pos: {x: -50, y: 3, z: 92}
   random_offset: 0
 --- !u!114 &251689034891746606
 MonoBehaviour:

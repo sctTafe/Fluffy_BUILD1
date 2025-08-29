@@ -26,7 +26,7 @@ public class MutantDeterBoat : MonoBehaviour
 
 	public void punish_mutant()
 	{
-		s.fn_TryReduceValue(10 * Time.deltaTime);
+		s.fn_TryReduceValue(2 * Time.deltaTime);
 		// We will also want to have a visual effect here, maybe a vignette?
 	}
 }

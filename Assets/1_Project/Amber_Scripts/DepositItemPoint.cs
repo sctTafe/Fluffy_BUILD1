@@ -95,8 +95,8 @@ public class DepositItemPoint : NetworkBehaviour
 
 	public void BroadcastObjectiveComplete()
 	{
-		objective_manager.CompletedObjectiveServerRPC();
-		objective_manager.CompletedObjective();
+		// objective_manager.CompletedObjectiveServerRPC();
+		// objective_manager.CompletedObjective();
 		Destroy(GameObject.FindWithTag(objective_UI_tag));
 	}
 
