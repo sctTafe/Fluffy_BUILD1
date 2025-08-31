@@ -1791,6 +1791,7 @@ MonoBehaviour:
   _abilityCooldownLength: 30
   _RevealDuration: 5
   _animator: {fileID: 2699195283259488457}
+  _mutantRevealResetDelay: 0.6
 --- !u!114 &1107157359021616998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3465,7 +3466,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3066390639022831831, guid: 09dbcf666b45b4041bc599612a7f3dac, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.427
+      value: 0.09
       objectReference: {fileID: 0}
     - target: {fileID: 3066390639022831831, guid: 09dbcf666b45b4041bc599612a7f3dac, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3507,6 +3508,11 @@ PrefabInstance:
 --- !u!4 &5145386371801300777 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3066390639022831831, guid: 09dbcf666b45b4041bc599612a7f3dac, type: 3}
+  m_PrefabInstance: {fileID: 7919043034741983230}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &5674397270192028037 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2547231914275520123, guid: 09dbcf666b45b4041bc599612a7f3dac, type: 3}
   m_PrefabInstance: {fileID: 7919043034741983230}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8367655564114117976
@@ -3622,7 +3628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9de6e52f615574bbdeb715c48f8651, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dustEmitter: {fileID: 0}
+  dustEmitter: {fileID: 5674397270192028037}
   walkDustCount: 2
   jumpSmokeCount: 10
   landingSmokeCount: 15

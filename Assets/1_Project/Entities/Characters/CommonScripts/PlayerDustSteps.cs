@@ -1,4 +1,5 @@
 using UnityEngine;
+using StarterAssets;
 
 public class PlayerDustSteps : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class PlayerDustSteps : MonoBehaviour
     public void EmitFootstepDust()
     {
         if (dustEmitter == null) return;
+        
+        // Check if character is grounded before emitting dust
+        if (!IsGrounded()) return;
+        
         dustEmitter.Emit(walkDustCount);
     }
     
@@ -81,5 +86,35 @@ public class PlayerDustSteps : MonoBehaviour
 
             dustEmitter.Emit(emitParams, 1);
         }
+    }
+
+    /// <summary>
+    /// Checks if the character is grounded by looking for movement controllers on this GameObject
+    /// </summary>
+    private bool IsGrounded()
+    {
+        // Try to find a ThirdPersonController (Standard Unity Starter Assets)
+        var thirdPersonController = GetComponent<StarterAssets.ThirdPersonController>();
+        if (thirdPersonController != null)
+            return thirdPersonController.Grounded;
+
+        // Try to find the Netcode version
+        var thirdPersonControllerNetcode = GetComponent<StarterAssets.ThirdPersonController_Netcode>();
+        if (thirdPersonControllerNetcode != null)
+            return thirdPersonControllerNetcode.Grounded;
+
+        // Try to find Scott's backup controller
+        var scottsBackupController = GetComponent<ScottsBackup_ThirdPersonController>();
+        if (scottsBackupController != null)
+            return scottsBackupController.Grounded;
+
+        // Try to find AnimalCharacter controller
+        var animalCharacter = GetComponent<AnimalCharacter>();
+        if (animalCharacter != null)
+            return animalCharacter.IsGrounded;
+
+        // If no movement controller found, default to true (fail-safe)
+        Debug.LogWarning($"No movement controller found on {gameObject.name} for grounded check. Defaulting to grounded = true.");
+        return true;
     }
 }

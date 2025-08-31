@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{7f66be49-0ef6-4093-807f-fdd3f014b432}">
+		<property name="name">
+			<value>PlayerType</value>
+		</property>
+		<relationship name="folder">
+			<destination>{77d204f3-46d2-4296-8639-d3d089a74c0a}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{c901500e-1eb2-422d-bdbe-ac0f4c518fdc}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{c901500e-1eb2-422d-bdbe-ac0f4c518fdc}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>Fluffy</value>
+			<value>Mutant</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

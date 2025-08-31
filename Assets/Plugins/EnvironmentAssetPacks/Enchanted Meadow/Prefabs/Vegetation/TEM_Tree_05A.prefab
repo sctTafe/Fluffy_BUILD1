@@ -86,23 +86,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: d39fe74523d0540499cd3b1c96789768, type: 3}
       propertyPath: m_FadeMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4742473837712756890, guid: d39fe74523d0540499cd3b1c96789768, type: 3}
-      propertyPath: m_AnimateCrossFading
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: d39fe74523d0540499cd3b1c96789768, type: 3}
+      propertyPath: m_AnimateCrossFading
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: d39fe74523d0540499cd3b1c96789768, type: 3}
       propertyPath: m_LODs.Array.data[0].screenRelativeHeight
-      value: 0.45
+      value: 0.38537958
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: d39fe74523d0540499cd3b1c96789768, type: 3}
       propertyPath: m_LODs.Array.data[1].screenRelativeHeight
-      value: 0.28
+      value: 0.24148922
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: d39fe74523d0540499cd3b1c96789768, type: 3}
       propertyPath: m_LODs.Array.data[2].screenRelativeHeight
-      value: 0.04
+      value: 0.12516476
       objectReference: {fileID: 0}
     - target: {fileID: 8992306382141529083, guid: d39fe74523d0540499cd3b1c96789768, type: 3}
       propertyPath: m_StaticEditorFlags

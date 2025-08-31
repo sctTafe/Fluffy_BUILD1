@@ -1,5 +1,31 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9117836694376198397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/JumpLand/PlayerType
+  m_EditorClassIdentifier: 
+  Name: PlayerType
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3705558019
+    data2: 1150100274
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Fluffy
+  - Mutant
+  Exists: 1
 --- !u!114 &-8273478551346534348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42,13 +68,41 @@ MonoBehaviour:
   Path: FMODproject/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638922328378040505
+  lastModified: 638922793540573539
   FileSizes:
   - Name: Desktop
-    Value: 2276
+    Value: 2578
   - Name: DesktopBanks
-    Value: 2276
+    Value: 2578
   Exists: 1
+--- !u!114 &-7083421024333245710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/PlayerSounds/PlayerMovement/JumpUp
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/PlayerSounds/PlayerMovement/JumpUp
+  Guid:
+    Data1: -521457271
+    Data2: 1149058890
+    Data3: 1107836835
+    Data4: -883852139
+  Banks:
+  - {fileID: 700061649898922750}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 7543222125448143137}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-6843716446950607276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,6 +208,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-5730946105001228574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/PlayerSounds/PlayerMovement/HitFence
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/PlayerSounds/PlayerMovement/HitFence
+  Guid:
+    Data1: -211675789
+    Data2: 1092338388
+    Data3: -1774080636
+    Data4: 526285405
+  Banks:
+  - {fileID: 700061649898922750}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-5722961568181999567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,6 +257,33 @@ MonoBehaviour:
   - {fileID: 700061649898922750}
   IsStream: 0
   Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-4367992045323647997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambience/ForrestAmbience
+  m_EditorClassIdentifier: 
+  Path: event:/Ambience/ForrestAmbience
+  Guid:
+    Data1: -350479455
+    Data2: 1207220576
+    Data3: 708745133
+    Data4: -147252071
+  Banks:
+  - {fileID: 7586230301884130240}
+  IsStream: 1
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -254,6 +362,34 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 70
+  Length: 0
+--- !u!114 &-1218944322847191242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/PlayerSounds/PlayerMovement/JumpLand
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/PlayerSounds/PlayerMovement/JumpLand
+  Guid:
+    Data1: -1280788768
+    Data2: 1333448084
+    Data3: 36498560
+    Data4: 1132177797
+  Banks:
+  - {fileID: 700061649898922750}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -9117836694376198397}
+  MinDistance: 1
+  MaxDistance: 20
   Length: 0
 --- !u!114 &-902694798360097480
 MonoBehaviour:
@@ -346,12 +482,17 @@ MonoBehaviour:
   - {fileID: 6602024545064640045}
   - {fileID: 3482787808095325147}
   - {fileID: -8273478551346534348}
+  - {fileID: -4367992045323647997}
+  - {fileID: 2843717421907745610}
+  - {fileID: -5730946105001228574}
+  - {fileID: -7083421024333245710}
+  - {fileID: -1218944322847191242}
   EditorParameters: []
   MasterBanks:
   - {fileID: 4275766286283375101}
   StringsBanks:
   - {fileID: -7161622392045957834}
-  cacheTime: 638922712022766614
+  cacheTime: 638922793542545947
   cacheVersion: 131624
 --- !u!114 &700061649898922750
 MonoBehaviour:
@@ -368,10 +509,10 @@ MonoBehaviour:
   Path: FMODproject/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638922712022766614
+  lastModified: 638922793542545947
   FileSizes:
   - Name: Desktop
-    Value: 489920
+    Value: 555392
   Exists: 1
 --- !u!114 &815735813458943483
 MonoBehaviour:
@@ -455,6 +596,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &2843717421907745610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/PlayerSounds/PickupCollectionAchievement/DepositItem
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/PlayerSounds/PickupCollectionAchievement/DepositItem
+  Guid:
+    Data1: 382971692
+    Data2: 1263060811
+    Data3: 1860573105
+    Data4: -1287743010
+  Banks:
+  - {fileID: 700061649898922750}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &3119707096663447208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -525,7 +693,7 @@ MonoBehaviour:
   Path: FMODproject/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638922328378010578
+  lastModified: 638922793540553592
   FileSizes:
   - Name: Desktop
     Value: 2156
@@ -584,6 +752,32 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &7543222125448143137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/JumpUp/PlayerType
+  m_EditorClassIdentifier: 
+  Name: PlayerType
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3705558019
+    data2: 1150100274
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Fluffy
+  - Mutant
+  Exists: 1
 --- !u!114 &7586230301884130240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -599,10 +793,10 @@ MonoBehaviour:
   Path: FMODproject/Build/Desktop/Ambience.bank
   Name: Ambience
   StudioPath: bank:/Ambience
-  lastModified: 638921583094471422
+  lastModified: 638922793540453856
   FileSizes:
   - Name: Desktop
-    Value: 3463584
+    Value: 3920736
   Exists: 1
 --- !u!114 &7731643300153067669
 MonoBehaviour:

@@ -2,6 +2,7 @@ using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
 using Unity.Netcode;
+using StarterAssets;
 
 public class PlayerSounds : MonoBehaviour
 {
@@ -70,7 +71,11 @@ public class PlayerSounds : MonoBehaviour
 
     public void PlayFootstep()
     {
+        if (!ShouldPlay()) return;
         if (footstepEvent.IsNull) return;
+
+        // Check if character is grounded before playing footstep sounds
+        if (!IsGrounded()) return;
 
         // Get terrain type at current position
         int surfaceType = terrainDetector.GetSurfaceType(transform.position);
@@ -78,13 +83,48 @@ public class PlayerSounds : MonoBehaviour
         //Debug.Log(surfaceType);
         // Create the instance
         EventInstance instance = RuntimeManager.CreateInstance(footstepEvent);
-        instance.set3DAttributes(RuntimeUtils.To3DAttributes(transform.position));
+        
+        // Apply 3D positioning consistently with other sounds
+        if (play3D) 
+            instance.set3DAttributes(RuntimeUtils.To3DAttributes(transform.position));
 
         // Set the parameter for surface step type
         instance.setParameterByName("FootstepSurfaceType", surfaceType);
 
+        Debug.Log("Footstep on surface type: " + surfaceType);
+
         instance.start();
         instance.release(); // Release immediately after starting (safe for one-shots)
+    }
+
+    /// <summary>
+    /// Checks if the character is grounded by looking for movement controllers on this GameObject
+    /// </summary>
+    private bool IsGrounded()
+    {
+        // Try to find a ThirdPersonController (Standard Unity Starter Assets)
+        var thirdPersonController = GetComponent<StarterAssets.ThirdPersonController>();
+        if (thirdPersonController != null)
+            return thirdPersonController.Grounded;
+
+        // Try to find the Netcode version
+        var thirdPersonControllerNetcode = GetComponent<StarterAssets.ThirdPersonController_Netcode>();
+        if (thirdPersonControllerNetcode != null)
+            return thirdPersonControllerNetcode.Grounded;
+
+        // Try to find Scott's backup controller
+        var scottsBackupController = GetComponent<ScottsBackup_ThirdPersonController>();
+        if (scottsBackupController != null)
+            return scottsBackupController.Grounded;
+
+        // Try to find AnimalCharacter controller
+        var animalCharacter = GetComponent<AnimalCharacter>();
+        if (animalCharacter != null)
+            return animalCharacter.IsGrounded;
+
+        // If no movement controller found, default to true (fail-safe)
+        Debug.LogWarning($"No movement controller found on {gameObject.name} for grounded check. Defaulting to grounded = true.");
+        return true;
     }
 
     private void OnDisable()
