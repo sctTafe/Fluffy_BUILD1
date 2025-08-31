@@ -10,8 +10,6 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
     public Action OnLandingEvent;   // Landing Sounds
     public Action OnFootStepEvent;  // Footstep Sounds
 
-
-
     [Header("Player")]
     [Tooltip("Move speed of the character in m/s")]
     public float MoveSpeed = 2.0f;
@@ -89,7 +87,7 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
     private float _jumpTimeoutDelta;
     private float _fallTimeoutDelta;
 
-    // animation IDs
+    // animation IDs (kept if you still want raw animator access)
     private int _animIDSpeed;
     private int _animIDGrounded;
     private int _animIDJump;
@@ -120,27 +118,37 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
         }
     }
 
-    #region Network Animations
-    // Network Varaibles
-    [SerializeField] private NetworkVariable<bool> _jump_AnimatorVar_NWV = new NetworkVariable<bool>(false);
-    [SerializeField] private NetworkVariable<bool> _grounded_AnimatorVar_NWV = new NetworkVariable<bool>(false);
-    [SerializeField] private NetworkVariable<bool> _freefall_AnimatorVar_NWV = new NetworkVariable<bool>(false);
-    [SerializeField] private NetworkVariable<float> _speed_AnimatorVar_NWV = new NetworkVariable<float>(0f);
-    [SerializeField] private NetworkVariable<float> _motionSpeed_AnimatorVar_NWV = new NetworkVariable<float>(0f);
+    #region Network Animations (compact)
+    // compact NetworkVariables for the new Animator controller
+    // Owner writes, everyone reads
+    [HideInInspector] public NetworkVariable<float> _forwardsSpeed_NWV =
+        new NetworkVariable<float>(0f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
-    // Local Anim Varaibles
+    [HideInInspector] public NetworkVariable<float> _sidewaysSpeed_NWV =
+        new NetworkVariable<float>(0f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
+    [HideInInspector] public NetworkVariable<int> _jumpState_NWV =
+        new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
+    // Local anim flags (used to compute jumpState)
     bool _animVarLocal_Jump;
     bool _animVarLocal_Freefall;
-    // local change detect var
-    bool _animVarLocalGrounded_Prev;
-    bool _animVarLocalJump_Prev;
-    bool _animVarLocalFreefall_Prev;
+
+    // local change detect var (reintroduced)
     float _animVarLocalSpeed_Prev;
     float _animVarLocalMotionSpeed_Prev;
+
+    // Jump state machine (local) to avoid stuck land state
+    private int _localJumpState = 0; // 0=normal,1=jump start,2=float,3=land
+    private float _localJumpStateTimer = 0f;
+    private bool _wasGroundedLastFrame = true;
+    [SerializeField] private float _jumpStartDuration = 0.15f;
+    [SerializeField] private float _landDuration = 0.3f;
+    [SerializeField] private float _floatTransitionDelay = 0.1f;
     #endregion
 
     #region Control Overrides
-    // External Movment Inputs  (public fn Driven)
+    // External Movement Inputs (public fn Driven)
     private bool _isSprinting_Input;
     private bool _isJumping_Input;
     bool _isMovementDistabled = false;
@@ -148,7 +156,8 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
     float _inputMagnitude; // Used for Animations / Blend Tree
     #endregion
 
-
+    // bridge to the CharacterAnimator that lives on a child
+    private CharacterAnimator _characterAnimator;
 
     private void Awake()
     {
@@ -161,9 +170,24 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
 
     private void Start()
     {
-        _hasAnimator = TryGetComponent(out _animator);
+        // find Animator/CharacterAnimator on this object or any child (including inactive)
+        _hasAnimator = TryGetComponentInChildren(out _animator);
+        _characterAnimator = GetComponentInChildren<CharacterAnimator>(true);
+
         AssignAnimationIDs();
         _controller = GetComponent<CharacterController>();
+
+        // subscribe to NetworkVariable changes to apply on clients immediately
+        if (_characterAnimator != null)
+        {
+            _forwardsSpeed_NWV.OnValueChanged += OnNetworkAnimChangedFloat;
+            _sidewaysSpeed_NWV.OnValueChanged += OnNetworkAnimChangedFloat;
+            _jumpState_NWV.OnValueChanged += OnNetworkAnimChangedInt;
+        }
+        else
+        {
+            Debug.LogWarning($"CharacterAnimator not found on '{name}' or its children.");
+        }
 
         if (IsOwner)
         {
@@ -180,8 +204,15 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
         }
     }
 
-    #region NEW
-    #endregion
+    private void OnDisable()
+    {
+        // unsubscribe to avoid leaks
+        if (_forwardsSpeed_NWV != null) _forwardsSpeed_NWV.OnValueChanged -= OnNetworkAnimChangedFloat;
+        if (_sidewaysSpeed_NWV != null) _sidewaysSpeed_NWV.OnValueChanged -= OnNetworkAnimChangedFloat;
+        if (_jumpState_NWV != null) _jumpState_NWV.OnValueChanged -= OnNetworkAnimChangedInt;
+
+        NetworkManager.Singleton.OnClientDisconnectCallback -= OnClientDisconnected;
+    }
 
     #region NEW
     public override void OnNetworkSpawn()
@@ -192,7 +223,7 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
     }
     public override void OnDestroy()
     {
-        Debug.Log($"PlayerObject {gameObject.name} is being destroyed.");
+        Debug.Log($"PlayerObject {gameObject.name}  is being destroyed.");
         base.OnDestroy();
     }
 
@@ -201,10 +232,11 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
         NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnected;
     }
 
-    private void OnDisable()
+    private void OnDisableNetworkCallback()
     {
         NetworkManager.Singleton.OnClientDisconnectCallback -= OnClientDisconnected;
     }
+
     private void OnClientDisconnected(ulong clientId)
     {
         if (IsOwner || IsServer)
@@ -225,20 +257,26 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
 
     private void Update()
     {
-        _hasAnimator = TryGetComponent(out _animator);
+        // keep animator reference up-to-date (search children)
+        _hasAnimator = TryGetComponentInChildren(out _animator);
 
         if (IsOwner)
         {
             Update_HandleMovementAndPlayerInput();
-            Update_NetworkAnimationVaraibles();
-            Update_UpdateAnimatorWithLocalVariables();
+            Update_NetworkAnimationVaraibles(); // write compact values into NWVs
+
+            // update local jump state machine based on grounded/vertical velocity
+            UpdateLocalJumpState();
+
+            // drive local animator via CharacterAnimator for immediate feedback
+            UpdateOwnerAnimatorLocal();
         }
         else
         {
-            //if (IsClient && Application.isFocused)
             if (IsClient)
             {
-                Update_UpdateAnimatorWithNetworkVariables();
+                // apply networked values to child CharacterAnimator
+                ApplyNetworkAnimValues();
             }
         }
     }
@@ -250,11 +288,6 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
 
         CameraRotation();
     }
-
-
-
-
-
 
     #region Public Functions
 
@@ -282,7 +315,7 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
 
     private void Update_HandleMovementAndPlayerInput()
     {
-        // If movment is disabled return.
+        // If movement is disabled return.
         if (_isMovementDistabled)
             return;
 
@@ -290,7 +323,6 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
         GroundedCheck();
         Move();
     }
-
 
     private void AssignAnimationIDs()
     {
@@ -309,7 +341,7 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
         Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers,
             QueryTriggerInteraction.Ignore);
 
-        // update animator if using character
+        // still update legacy animator if present (kept for compatibility)
         if (_hasAnimator)
         {
             _animator.SetBool(_animIDGrounded, Grounded);
@@ -340,12 +372,8 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
     private void Move()
     {
         // set target speed based on move speed, sprint speed and if sprint is pressed
-        //float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed; //OLD
         float targetSpeed = _isSprinting_Input ? SprintSpeed : MoveSpeed;
 
-        // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
-
-        // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
         // if there is no input, set the target speed to 0
         if (_input.move == Vector2.zero) targetSpeed = 0.0f;
 
@@ -359,8 +387,6 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
         if (currentHorizontalSpeed < targetSpeed - speedOffset ||
             currentHorizontalSpeed > targetSpeed + speedOffset)
         {
-            // creates curved result rather than a linear one giving a more organic speed change
-            // note T in Lerp is clamped, so we don't need to clamp our speed
             _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * _inputMagnitude,
                 Time.deltaTime * SpeedChangeRate);
 
@@ -378,8 +404,6 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
         // normalise input direction
         Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
 
-        // note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
-        // if there is a move input rotate player when the player is moving
         if (_input.move != Vector2.zero)
         {
             _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
@@ -391,7 +415,6 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
             transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
         }
 
-
         Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
         // move the player
@@ -401,11 +424,6 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
 
     private void JumpAndGravity()
     {
-
-
-
-
-
         if (Grounded)
         {
             // reset the fall timeout timer
@@ -413,7 +431,6 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
 
             _animVarLocal_Jump = false;
             _animVarLocal_Freefall = false;
-
 
             // stop our velocity dropping infinitely when grounded
             if (_verticalVelocity < 0.0f)
@@ -454,7 +471,7 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
             }
         }
 
-        // apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
+        // apply gravity over time if under terminal
         if (_verticalVelocity < _terminalVelocity)
         {
             _verticalVelocity += Gravity * Time.deltaTime;
@@ -487,11 +504,6 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
         if (animationEvent.animatorClipInfo.weight > 0.5f)
         {
             OnFootStepEvent?.Invoke();
-            //if (FootstepAudioClips.Length > 0)
-            //{
-            //    var index = Random.Range(0, FootstepAudioClips.Length);
-            //    AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
-            //}
         }
     }
 
@@ -499,81 +511,178 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
     {
         if (animationEvent.animatorClipInfo.weight > 0.5f)
         {
-            //AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             OnLandingEvent?.Invoke();
         }
     }
 
-    #region Update Animator & Related Variables
-    [ServerRpc] void ChangeGroundedAnimatorVarNWVServerRpc(bool state) => _grounded_AnimatorVar_NWV.Value = state;
-    [ServerRpc] void ChangeJumpAnimatorVarNWVServerRpc(bool state) => _jump_AnimatorVar_NWV.Value = state;
-    [ServerRpc] void ChangefreefallAnimatorVarNWVServerRpc(bool state) => _freefall_AnimatorVar_NWV.Value = state;
+    #region Animation -> Network bridge (compact)
 
-    [ServerRpc] void ChangeSpeedAnimatorVarNWVServerRpc(float value) => _speed_AnimatorVar_NWV.Value = value;
-    [ServerRpc] void ChangeMotionSpeedAnimatorVarNWVServerRpc(float value) => _motionSpeed_AnimatorVar_NWV.Value = value;
-
-
-    private void Update_UpdateAnimatorWithNetworkVariables()
+    // Called on clients when network values change (float overload)
+    private void OnNetworkAnimChangedFloat(float oldValue, float newValue)
     {
-        if (_hasAnimator)
-        {
-            // bools
-            _animator.SetBool(_animIDGrounded, _grounded_AnimatorVar_NWV.Value);
-            _animator.SetBool(_animIDJump, _jump_AnimatorVar_NWV.Value);
-            _animator.SetBool(_animIDFreeFall, _freefall_AnimatorVar_NWV.Value);
-            // floats
-            _animator.SetFloat(_animIDSpeed, _speed_AnimatorVar_NWV.Value);
-            _animator.SetFloat(_animIDMotionSpeed, _motionSpeed_AnimatorVar_NWV.Value);
-        }
+        ApplyNetworkAnimValues();
     }
 
-    private void Update_UpdateAnimatorWithLocalVariables()
+    // Called on clients when network values change (int overload)
+    private void OnNetworkAnimChangedInt(int oldValue, int newValue)
     {
-        if (_hasAnimator)
-        {
-            // bools
-            _animator.SetBool(_animIDGrounded, Grounded);
-            _animator.SetBool(_animIDJump, _animVarLocal_Jump);
-            _animator.SetBool(_animIDFreeFall, _animVarLocal_Freefall);
-            // floats
-            _animator.SetFloat(_animIDSpeed, _animationBlend);
-            _animator.SetFloat(_animIDMotionSpeed, _inputMagnitude);
-        }
+        ApplyNetworkAnimValues();
+    }
+
+    private void ApplyNetworkAnimValues()
+    {
+        if (_characterAnimator == null) return;
+
+        // CharacterAnimator expects (velocity, transform, isOwner, networkSideways, networkForward)
+        _characterAnimator.UpdateAnimatorLocomotion(Vector3.zero, transform, false, _sidewaysSpeed_NWV.Value, _forwardsSpeed_NWV.Value);
+        _characterAnimator.UpdateJumpState(_jumpState_NWV.Value);
+    }
+
+    // Owner-side: update local animator immediately and write compact values to NetworkVariables (owner-writable)
+    private void UpdateOwnerAnimatorLocal()
+    {
+        if (_characterAnimator == null) return;
+
+        // owner uses local velocity for accurate blends
+        _characterAnimator.UpdateAnimatorLocomotion(_controller.velocity, transform, true, 0f, 0f);
+
+        // use local jump state machine
+        int jumpState = _localJumpState;
+
+        // compute local velocity in character space for network sync
+        Vector3 localVel = transform.InverseTransformDirection(_controller.velocity);
+        float localForward = localVel.z;
+        float localSideways = localVel.x;
+
+        // apply small deadzone to avoid jitter at very low speeds
+        const float deadzone = 0.05f;
+        if (Mathf.Abs(localForward) < deadzone) localForward = 0f;
+        if (Mathf.Abs(localSideways) < deadzone) localSideways = 0f;
+
+        // write to NetworkVariables only when changed (simple change detection)
+        bool forwardChanged = Mathf.Abs(_forwardsSpeed_NWV.Value - localForward) > 0.01f;
+        bool sidewaysChanged = Mathf.Abs(_sidewaysSpeed_NWV.Value - localSideways) > 0.01f;
+        bool jumpChanged = _jumpState_NWV.Value != jumpState;
+
+        if (forwardChanged) _forwardsSpeed_NWV.Value = localForward;
+        if (sidewaysChanged) _sidewaysSpeed_NWV.Value = localSideways;
+        if (jumpChanged) _jumpState_NWV.Value = jumpState;
+
+        // update previous markers
+        _animVarLocalSpeed_Prev = localForward;
+        _animVarLocalMotionSpeed_Prev = localSideways;
     }
 
     private void Update_NetworkAnimationVaraibles()
     {
-        if (Grounded != _animVarLocalGrounded_Prev)
-        {
-            _animVarLocalGrounded_Prev = Grounded;
-            ChangeGroundedAnimatorVarNWVServerRpc(Grounded);
-        }
-
-        if (_animVarLocal_Jump != _animVarLocalJump_Prev)
-        {
-            _animVarLocalJump_Prev = _animVarLocal_Jump;
-            ChangeJumpAnimatorVarNWVServerRpc(_animVarLocal_Jump);
-        }
-
-        if (_animVarLocal_Freefall != _animVarLocalFreefall_Prev)
-        {
-            _animVarLocalFreefall_Prev = _animVarLocal_Freefall;
-            ChangefreefallAnimatorVarNWVServerRpc(_animVarLocal_Freefall);
-        }
-
-        if (Mathf.Abs(_animationBlend - _animVarLocalSpeed_Prev) > 0.1f)
-        {
-            _animVarLocalSpeed_Prev = _animationBlend;
-            ChangeSpeedAnimatorVarNWVServerRpc(_animationBlend);
-        }
-
-        if (Mathf.Abs(_inputMagnitude - _animVarLocalMotionSpeed_Prev) > 0.1f)
-        {
-            _animVarLocalMotionSpeed_Prev = _inputMagnitude;
-            ChangeMotionSpeedAnimatorVarNWVServerRpc(_inputMagnitude);
-        }
+        // This function kept for backward-compatible change detection of movement -> network variables.
+        // The actual writing is done in UpdateOwnerAnimatorLocal() (owner writes directly to NWVs).
+        // Keep the function to preserve existing call sites and future logic if needed.
     }
+
+    // New: local jump state machine copied/adapted from AnimalCharacter
+    private void UpdateLocalJumpState()
+    {
+        int newState = _localJumpState;
+        _localJumpStateTimer += Time.deltaTime;
+
+        switch (_localJumpState)
+        {
+            case 0: // normal
+                if (!Grounded && _wasGroundedLastFrame && _verticalVelocity > 0)
+                {
+                    newState = 1; // jump start
+                    _localJumpStateTimer = 0f;
+                }
+                else if (!Grounded && !_wasGroundedLastFrame)
+                {
+                    newState = 2; // fall/float
+                    _localJumpStateTimer = 0f;
+                }
+                break;
+
+            case 1: // jump start
+                if (_localJumpStateTimer >= _jumpStartDuration || _localJumpStateTimer >= _floatTransitionDelay)
+                {
+                    newState = 2; // enter float
+                    _localJumpStateTimer = 0f;
+                }
+                else if (Grounded)
+                {
+                    newState = 3; // landed quickly
+                    _localJumpStateTimer = 0f;
+                }
+                break;
+
+            case 2: // float/fall
+                if (Grounded)
+                {
+                    newState = 3; // land
+                    _localJumpStateTimer = 0f;
+                }
+                break;
+
+            case 3: // land
+                if (_localJumpStateTimer >= _landDuration)
+                {
+                    newState = 0; // back to normal
+                    _localJumpStateTimer = 0f;
+                }
+                break;
+        }
+
+        // if changed, write to network var so others see the change
+        if (newState != _localJumpState)
+        {
+            _localJumpState = newState;
+            if (IsOwner)
+            {
+                _jumpState_NWV.Value = _localJumpState;
+            }
+        }
+
+        _wasGroundedLastFrame = Grounded;
+    }
+
     #endregion
+
+    // Helper: try-get component in children (including inactive)
+    private bool TryGetComponentInChildren<T>(out T component) where T : Component
+    {
+        component = GetComponentInChildren<T>(true);
+        return component != null;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

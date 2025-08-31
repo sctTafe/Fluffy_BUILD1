@@ -13,6 +13,9 @@ public class FMODButtonSounds : MonoBehaviour, IPointerEnterHandler, IPointerCli
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (button == null)
+            return;
+
         if (button.interactable)
             UISoundPlayer.PlayHoverSound();
         else
@@ -21,6 +24,9 @@ public class FMODButtonSounds : MonoBehaviour, IPointerEnterHandler, IPointerCli
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (button == null)
+            return;
+
         if (button.interactable)
             UISoundPlayer.PlayClickSound();
         else

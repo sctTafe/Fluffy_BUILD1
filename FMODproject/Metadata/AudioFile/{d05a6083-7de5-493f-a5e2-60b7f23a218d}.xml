@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{d05a6083-7de5-493f-a5e2-60b7f23a218d}">
+		<property name="assetPath">
+			<value>SFX/Player Sounds/Pickups/funnel-filling-jerry-can-17735.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>24</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>181.44</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{1304a584-0065-42cb-bb27-692e2747de7a}</destination>
+		</relationship>
+	</object>
+</objects>

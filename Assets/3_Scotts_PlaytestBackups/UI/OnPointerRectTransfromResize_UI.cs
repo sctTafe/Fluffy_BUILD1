@@ -15,7 +15,7 @@ public class OnPointerRectTransfromResize_UI : MonoBehaviour, IPointerEnterHandl
 {
     [SerializeField] private RectTransform _buttonTrans;
     [SerializeField] private float _scaleMultiplier_Pct = 5f; //5%
-    private Outline outline;
+    [SerializeField] private Outline _outline;
 
     public void Start()
     {
@@ -24,24 +24,25 @@ public class OnPointerRectTransfromResize_UI : MonoBehaviour, IPointerEnterHandl
         if (_buttonTrans == null)
             _buttonTrans = GetComponent<RectTransform>();
 
-        outline = GetComponent<Outline>();
+        if (_outline == null)
+            _outline = GetComponent<Outline>();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         _buttonTrans.DOScale((1f+0.01f*_scaleMultiplier_Pct), 0.2f);
-        if(outline != null)
+        if(_outline != null)
         {
-            outline.enabled = true;
+            _outline.enabled = true;
         }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         _buttonTrans.DOScale(1f, 0.2f);
-        if (outline != null)
+        if (_outline != null)
         {
-            outline.enabled = false;
+            _outline.enabled = false;
         }
     }
 }

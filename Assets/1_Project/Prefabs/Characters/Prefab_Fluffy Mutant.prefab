@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 8702494818499908332}
   - component: {fileID: 6236725046901845318}
   - component: {fileID: 1750362379133934423}
-  - component: {fileID: 1584203056772491741}
+  - component: {fileID: 7740751064140636872}
   m_Layer: 0
   m_Name: Mutant_Rig
   m_TagString: Untagged
@@ -233,7 +233,7 @@ MonoBehaviour:
   positionRandomness: 0.3
   angleRandomness: 15
   radiusRandomness: 0.2
---- !u!114 &1584203056772491741
+--- !u!114 &7740751064140636872
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -252,6 +252,57 @@ MonoBehaviour:
       Data3: -619074664
       Data4: -51366658
     Path: event:/SFX/PlayerSounds/FootSteps
+  hurtEvent:
+    Guid:
+      Data1: -1546530263
+      Data2: 1079793209
+      Data3: 1329881995
+      Data4: -278802723
+    Path: event:/SFX/PlayerSounds/Hurts&Attacks/CatCry
+  biteEvent:
+    Guid:
+      Data1: 1957064735
+      Data2: 1252805309
+      Data3: 1892618121
+      Data4: 593498595
+    Path: event:/SFX/PlayerSounds/Hurts&Attacks/Chomping
+  swipeEvent:
+    Guid:
+      Data1: 1778157660
+      Data2: 1331150423
+      Data3: 1891987360
+      Data4: 692383794
+    Path: event:/SFX/PlayerSounds/Hurts&Attacks/MutantAttack
+  revealEvent:
+    Guid:
+      Data1: 924275317
+      Data2: 1306193323
+      Data3: 1693656749
+      Data4: 936386079
+    Path: event:/SFX/PlayerSounds/Hurts&Attacks/MutantReveal
+  mutantBreathEvent:
+    Guid:
+      Data1: 331090827
+      Data2: 1325295509
+      Data3: -619074664
+      Data4: -51366658
+    Path: event:/SFX/PlayerSounds/FootSteps
+  pickupEvent:
+    Guid:
+      Data1: -837468263
+      Data2: 1210094543
+      Data3: 1316431244
+      Data4: 1463497821
+    Path: event:/SFX/PlayerSounds/PickupCollectionAchievement/PickupCan
+  objectiveCompleteEvent:
+    Guid:
+      Data1: -32406023
+      Data2: 1335351870
+      Data3: 632464823
+      Data4: -842730928
+    Path: event:/SFX/PlayerSounds/PickupCollectionAchievement/Achievement
+  playOnlyForOwner: 0
+  play3D: 0
 --- !u!1 &513138173740609868
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,7 +827,6 @@ GameObject:
   - component: {fileID: 7082114420134920553}
   - component: {fileID: 763600322580558127}
   - component: {fileID: 3944021365335888741}
-  - component: {fileID: 5565194734954725287}
   - component: {fileID: 4946424097648667548}
   - component: {fileID: 7702239740471301341}
   - component: {fileID: -3746132197580736827}
@@ -1001,29 +1051,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da1ac76bebf593f9fb34689115c66592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5565194734954725287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6103115944230435048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d775a1306215d74eadbdb4e73b9f64f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  staminaComponent: {fileID: 7907975427600931893}
-  revealDuration: 8
-  revealRange: 15
-  staminaCost: 40
-  cooldownTime: 10
-  useNewPredatorVision: 1
-  highlightMaterial: {fileID: 2100000, guid: 6855ce3846a43ab43be2fe559d1f2b9d, type: 2}
-  highlightColor: {r: 1, g: 0.2, b: 0.2, a: 0.8}
-  activationSound: {fileID: 0}
-  deactivationSound: {fileID: 0}
-  audioSource: {fileID: 0}
 --- !u!114 &4946424097648667548
 MonoBehaviour:
   m_ObjectHideFlags: 0

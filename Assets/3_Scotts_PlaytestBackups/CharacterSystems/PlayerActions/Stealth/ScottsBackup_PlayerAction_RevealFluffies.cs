@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Unity.Netcode;
 
-public class ScottsBackup_PlayerAction_RevealFluffies : PlayerActionBase, IHudAbilityBinder
+public class PlayerAction_MutantBreath : PlayerActionBase, IHudAbilityBinder
 {
     private const bool ISDEBUGGING = false;
 
@@ -37,14 +37,19 @@ public class ScottsBackup_PlayerAction_RevealFluffies : PlayerActionBase, IHudAb
     private bool _isOnCooldown;
     private bool _inputRecived;
 
+    // Animator for playing local fart/reveal animations
+    [SerializeField] private Animator _animator;
+
     private void Start()
     {
-        // Disable Self If Not Owner
-        //if (!IsOwner)
-        //{
-        //    this.enabled = false;
-        //    return;
-        //}
+        // find animator on this object or children if not assigned in inspector
+        if (_animator == null)
+            _animator = GetComponentInChildren<Animator>(true);
+
+        if (_animator == null && ISDEBUGGING)
+        {
+            Debug.LogWarning($"PlayerAction_MutantBreath: Animator not found on '{name}' or its children.");
+        }
 
         // Need to be enable to play the effect across the netwrok
     }
@@ -53,13 +58,11 @@ public class ScottsBackup_PlayerAction_RevealFluffies : PlayerActionBase, IHudAb
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(this.transform.position, _activationRadius);
-        
     }
-
 
     public override bool fn_ReceiveActivationInput(bool b)
     {
-        if (ISDEBUGGING) Debug.Log("ScottsBackup_PlayerAction_RevealFluffies: ActionInput Recived");
+        if (ISDEBUGGING) Debug.Log("PlayerAction_MutantBreath: ActionInput Recived");
         _inputRecived = b;
         OnCooldownWithLengthTriggered?.Invoke(0.1f);
         Handle_InputRecived();
@@ -71,7 +74,7 @@ public class ScottsBackup_PlayerAction_RevealFluffies : PlayerActionBase, IHudAb
     {
         if (_isOnCooldown)
         {
-            if (ISDEBUGGING) Debug.Log("ScottsBackup_PlayerAction_RevealFluffies: OnActivationFail OnCooldown!");
+            if (ISDEBUGGING) Debug.Log("PlayerAction_MutantBreath: OnActivationFail OnCooldown!");
             OnActivationFail_OnCooldown?.Invoke();
             return;
         }
@@ -79,7 +82,7 @@ public class ScottsBackup_PlayerAction_RevealFluffies : PlayerActionBase, IHudAb
         //check if theres sufficent Stamina 
         if (_staminaSystem.fn_GetCurrentValue() < _enegryCost)
         {
-            if (ISDEBUGGING) Debug.Log("ScottsBackup_PlayerAction_RevealFluffies: OnActivationFail NotEnoughEnergy!");
+            if (ISDEBUGGING) Debug.Log("PlayerAction_MutantBreath: OnActivationFail NotEnoughEnergy!");
             OnActivationFail_NotEnoughEnergy?.Invoke();
             return;
         }
@@ -87,6 +90,9 @@ public class ScottsBackup_PlayerAction_RevealFluffies : PlayerActionBase, IHudAb
         // If sucessfull
         if (TryDoAction())
         {
+            // play mutant fart animation/effect locally and request network broadcast
+            PlayMutantFartLocal();
+            RequestPlayMutantFartServerRpc();
             SendOnActionPerformedRpc();
             StartCoroutine(StartCooldown(_abilityCooldownLength));
             _staminaSystem.fn_TryReduceValue(_enegryCost);
@@ -94,7 +100,7 @@ public class ScottsBackup_PlayerAction_RevealFluffies : PlayerActionBase, IHudAb
         }
         else
         {
-            if (ISDEBUGGING) Debug.Log($"ScottsBackup_PlayerAction_RevealFluffies: ");
+            if (ISDEBUGGING) Debug.Log($"PlayerAction_MutantBreath: ");
         }
     }
 
@@ -102,16 +108,16 @@ public class ScottsBackup_PlayerAction_RevealFluffies : PlayerActionBase, IHudAb
     /// Trys to trigger DestructibleObject_Reciver
     /// </summary>
     private bool TryDoAction()
-    {      
+    {
         var hitColliders = Physics.OverlapSphere(this.transform.position, _activationRadius, _targetLayer);
         foreach (Collider col in hitColliders)
-        {          
+        {
             if(col.CompareTag(_targetTag))
             {
-                if (ISDEBUGGING) Debug.Log($"ScottsBackup_PlayerAction_RevealFluffies: Found Player");
+                if (ISDEBUGGING) Debug.Log($"PlayerAction_MutantBreath: Found Player");
 
                 col.gameObject.TryGetComponent<ScottsBackup_Receiver_RevealFluffies>(out ScottsBackup_Receiver_RevealFluffies dr);
-                if (ISDEBUGGING) Debug.Log($"ScottsBackup_PlayerAction_RevealFluffies: Hit {col.name}");
+                if (ISDEBUGGING) Debug.Log($"PlayerAction_MutantBreath: Hit {col.name}");
 
                 dr.fn_Trigger();
             }
@@ -121,9 +127,6 @@ public class ScottsBackup_PlayerAction_RevealFluffies : PlayerActionBase, IHudAb
         return true;
     }
 
-
-
-
     IEnumerator StartCooldown(float delay)
     {
         _isOnCooldown = true;
@@ -131,9 +134,8 @@ public class ScottsBackup_PlayerAction_RevealFluffies : PlayerActionBase, IHudAb
 
         _isOnCooldown = false;
 
-        if (ISDEBUGGING) Debug.Log("ScottsBackup_PlayerAction_RevealFluffies: Cooldown Ended");
+        if (ISDEBUGGING) Debug.Log("PlayerAction_MutantBreath: Cooldown Ended");
     }
-
 
 
     // --- _onDestructibleGettingAttacked ---
@@ -152,6 +154,52 @@ public class ScottsBackup_PlayerAction_RevealFluffies : PlayerActionBase, IHudAb
         OnActivationSuccess?.Invoke();
         OnActivationSuccess_UE?.Invoke();
 
-        if (ISDEBUGGING) Debug.Log("ScottsBackup_PlayerAction_RevealFluffies: ClientRPC SendOnActionPerformedClientRpc Called!");
+        if (ISDEBUGGING) Debug.Log("PlayerAction_MutantBreath: ClientRPC SendOnActionPerformedClientRpc Called!");
     }
+
+    // helper: check if animator has a parameter
+    private bool AnimatorHasParameter(string paramName)
+    {
+        if (_animator == null) return false;
+        foreach (var p in _animator.parameters)
+        {
+            if (p.name == paramName) return true;
+        }
+        return false;
+    }
+
+    // Play local fart animation/effect
+    private void PlayMutantFartLocal()
+    {
+        if (_animator == null)
+        {
+            Debug.LogWarning("PlayMutantFartLocal: animator is null");
+            return;
+        }
+
+        // rebind to ensure parameters are available (safe call)
+        try { _animator.Rebind(); } catch { }
+
+        _animator.SetTrigger("MutantFart");
+    }
+
+    // ServerRpc to request network broadcast
+    [ServerRpc]
+    private void RequestPlayMutantFartServerRpc()
+    {
+        PlayMutantFartClientRpc();
+    }
+
+    // ClientRpc to play on all clients
+    [ClientRpc]
+    private void PlayMutantFartClientRpc()
+    {
+        if (!_animator.enabled)
+            _animator.enabled = true;
+
+        try { _animator.Rebind(); } catch { }
+
+        _animator.SetTrigger("MutantFart");
+    }
+
 }
