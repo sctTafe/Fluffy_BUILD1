@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using Unity.Netcode;
+
 /// <summary>
 /// the mutants full map player reveal ability (for proper use fluffies must have the Receiver_FluffiesReveal script)
 /// ------- looks at all the feed back things'
@@ -30,6 +31,29 @@ public class MutantActions_PlayerReveal : PlayerActionBase, IHudAbilityBinder
     private bool _isRevealedOn;
     [SerializeField] private float _RevealDuration = 5f;
 
+    // Animator for playing local reveal animation and network playback
+    [SerializeField] private Animator _animator;
+
+    [Header("Animator Safety")]
+    [Tooltip("Seconds to wait before resetting the MutantReveal trigger if the Animator doesn't consume it.")]
+    [SerializeField] private float _mutantRevealResetDelay = 0.6f;
+
+    private void Start()
+    {
+        // find animator on this object or children if not assigned in inspector
+        if (_animator == null)
+            _animator = GetComponentInChildren<Animator>(true);
+
+        if (_animator == null)
+        {
+            Debug.LogWarning($"MutantActions_PlayerReveal: Animator not found on '{name}' or its children.");
+        }
+        else
+        {
+            bool hasParam = AnimatorHasParameter("MutantReveal");
+            Debug.Log($"MutantActions_PlayerReveal: animator found on '{name}'. HasParam MutantReveal={hasParam}, enabled={_animator.enabled}, controllerAssigned={( _animator.runtimeAnimatorController != null )}");
+        }
+    }
 
     public override bool fn_ReceiveActivationInput(bool b)
     {
@@ -39,9 +63,7 @@ public class MutantActions_PlayerReveal : PlayerActionBase, IHudAbilityBinder
         Handle_InputRecived();
 
         return false;
-        
     }
-
 
     //need the feedback for lacking cooldown or stamina 
     // calls a function to disable the reveal after a bit
@@ -66,7 +88,10 @@ public class MutantActions_PlayerReveal : PlayerActionBase, IHudAbilityBinder
         //check if action is done succesfully 
         if (TryRevealPlayers())
         {
-            
+            // play reveal animation locally and request network broadcast
+            PlayRevealLocal();
+            RequestPlayRevealServerRpc();
+
             _staminaSystem.fn_TryReduceValue(_enegryCost);
             //Invoke("TryUnrevealPlayers", _RevealDuration);
             StartCoroutine(TryUnrevealPlayers());
@@ -79,8 +104,6 @@ public class MutantActions_PlayerReveal : PlayerActionBase, IHudAbilityBinder
         {
             Debug.Log("MutantActions_Player: error");
         }
-
-
     }
 
     /// <summary>
@@ -101,7 +124,6 @@ public class MutantActions_PlayerReveal : PlayerActionBase, IHudAbilityBinder
                     Debug.Log($"MutantActions_Player: found player {player}");
                     receiver.fn_Trigger();
                 }
-                
             }
         }
         //NetworkManager.Singleton.ConnectedClientsIds;
@@ -129,7 +151,6 @@ public class MutantActions_PlayerReveal : PlayerActionBase, IHudAbilityBinder
         }
         _isRevealedOn = false;
 
-
         //cooldown 
         OnCooldownWithLengthTriggered?.Invoke(_abilityCooldownLength);
         _isOnCooldown = true;
@@ -147,8 +168,78 @@ public class MutantActions_PlayerReveal : PlayerActionBase, IHudAbilityBinder
 
         _isOnCooldown = false;
 
-        //if (ISDEBUGGING) Debug.Log("ScottsBackup_PlayerAction_RevealFluffies: Cooldown Ended");
+        //if (ISDEBUGGING) Debug.Log("ScottsBackup_PlayerAction_RevealFluffies  : Cooldown Ended");
     }
 
+    // Play reveal locally — implemented to match the claw implementation (local play + server->clients broadcast)
+    private void PlayRevealLocal()
+    {
+        if (_animator == null)
+        {
+            Debug.LogWarning("PlayRevealLocal: animator is null");
+            return;
+        }
 
+        try { _animator.Rebind(); } catch { }
+        if (!_animator.enabled) _animator.enabled = true;
+
+        bool has = AnimatorHasParameter("MutantReveal");
+        Debug.Log($"PlayRevealLocal: Setting MutantReveal trigger. hasParam={has}, enabled={_animator.enabled}, controllerAssigned={( _animator.runtimeAnimatorController != null )}");
+        _animator.SetTrigger("MutantReveal");
+
+        if (_mutantRevealResetDelay > 0f)
+            StartCoroutine(ResetTriggerCoroutine("MutantReveal", _mutantRevealResetDelay));
+    }
+
+    [ServerRpc]
+    private void RequestPlayRevealServerRpc()
+    {
+        PlayRevealClientRpc();
+    }
+
+    [ClientRpc]
+    private void PlayRevealClientRpc()
+    {
+        if (_animator == null)
+        {
+            _animator = GetComponentInChildren<Animator>(true);
+            if (_animator == null)
+            {
+                Debug.LogWarning("PlayRevealClientRpc: animator is null on this client instance");
+                return;
+            }
+        }
+
+        if (!_animator.enabled) _animator.enabled = true;
+        try { _animator.Rebind(); } catch { }
+
+        bool has = AnimatorHasParameter("MutantReveal");
+        Debug.Log($"PlayRevealClientRpc: Setting MutantReveal trigger on client. hasParam={has}, enabled={_animator.enabled}, controllerAssigned={( _animator.runtimeAnimatorController != null )}");
+        _animator.SetTrigger("MutantReveal");
+
+        if (_mutantRevealResetDelay > 0f)
+            StartCoroutine(ResetTriggerCoroutine("MutantReveal", _mutantRevealResetDelay));
+    }
+
+    // helper: check if animator has a parameter
+    private bool AnimatorHasParameter(string paramName)
+    {
+        if (_animator == null) return false;
+        foreach (var p in _animator.parameters)
+        {
+            if (p.name == paramName) return true;
+        }
+        return false;
+    }
+
+    // Safety coroutine to clear triggers that weren't consumed by the Animator transitions
+    private IEnumerator ResetTriggerCoroutine(string paramName, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (_animator != null)
+        {
+            _animator.ResetTrigger(paramName);
+            Debug.Log($"ResetTriggerCoroutine: Reset {paramName} on {name}");
+        }
+    }
 }

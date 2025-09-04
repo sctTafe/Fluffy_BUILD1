@@ -495,6 +495,11 @@ public class AnimalCharacter : NetworkBehaviour
     #region Public Interface
     public virtual void SetstrafingMode(bool b) { strafing = b; }
     public virtual bool IsMoving => m_Velocity.magnitude > 0.1f;
+    
+    /// <summary>
+    /// Public property to access grounded state
+    /// </summary>
+    public bool IsGrounded => isGrounded;
 
     public void MoveTo(Vector3 pos)
     {
@@ -552,7 +557,6 @@ public class AnimalCharacter : NetworkBehaviour
 
     #region Deprecated/Unused Methods
     // These methods exist for compatibility but are unused
-    private bool IsGrounded() => isGrounded;
     private Quaternion GetInputFrame() => Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
     #endregion
 }

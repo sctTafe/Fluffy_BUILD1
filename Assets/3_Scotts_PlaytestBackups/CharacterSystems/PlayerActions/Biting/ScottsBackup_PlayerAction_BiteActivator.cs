@@ -1,6 +1,7 @@
 using System;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.VFX;
 
 /// <summary>
 /// Bite Class for the Mutant
@@ -26,6 +27,11 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
     [SerializeField] private float _biteActivationCost = 5;
     [SerializeField] private float _bitePerSecCost = 2;
 
+    // VFX / Animator for claw attack (moved here from MutantAttackEffects)
+    [Header("Attack Effects")]
+    [SerializeField] private VisualEffect _clawVFX; // use UnityEngine.VFX.VisualEffect
+    [SerializeField] private Animator _clawAnimator;
+
     //private MutantStamina _mutantStaminaSystem;
 
     [Header("Bite Setting")]
@@ -50,6 +56,7 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
     // Bite CoolDown
     public bool PostBiteCooldownActive { get { return isBiteOnCooldown; } } // Used for animation post Bite (Panting) 
     private bool isBiteOnCooldown = false;
+    private float is_biteCooldown;
     private float biteCooldown;
     [SerializeField] private float biteCooldownLenght = 5f;
 
@@ -144,8 +151,20 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
 
     private void TryGrab()
     {
+
         if (!IsOwner)
             return;
+
+        if (IsBiteOnCooldown())
+        {
+            Debug.Log("Bite is on cooldown!");
+            return;
+        }
+
+        // Play local claw attack effects/animation immediately for responsiveness
+        PlayClawLocal();
+        // Request server to broadcast the claw attack to all clients
+        RequestPlayClawServerRpc();
 
         if (!IsATargetInsideBiteCollider(out GameObject biteTarget))
         {
@@ -153,11 +172,6 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
             return;
         }
 
-        if (IsBiteOnCooldown())
-        {
-            Debug.Log("Bite is on cooldown!");
-            return;
-        }
 
         //NOTE: - Bite Is Sucessfull! -
 
@@ -166,11 +180,11 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
         //_mutantStaminaSystem.reduce_stamina(40);
         _resourceSystem.fn_TryReduceValue(_biteActivationCost); // Bite Start Cost
 
-        
         TriggerBiteReleaseCooldown();
 
         grabedPlayerGO = biteTarget;
         isBiting = true; //Activated Update Loop
+
 
         // RPC Call To Target Player to Notify them they have been Bitten 
         Debug.Log($"{this.gameObject.name} Trying to Grab {biteTarget.gameObject.name}");
@@ -397,5 +411,33 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
         }
     }
     #endregion END: Timers
+
+    // --- Networked VFX / Animation RPCs ---
+    // Play local claw effect and animation
+    private void PlayClawLocal()
+    {
+        if (_clawVFX != null)
+            _clawVFX.SendEvent("Attack");
+        if (_clawAnimator != null)
+            _clawAnimator.SetTrigger("ClawAttack");
+    }
+
+    [ServerRpc]
+    private void RequestPlayClawServerRpc()
+    {
+        // Server triggers the client RPC to play on all clients
+        PlayClawClientRpc();
+    }
+
+    [ClientRpc]
+    private void PlayClawClientRpc()
+    {
+        // Clients (and server) run the effect
+        if (_clawVFX != null)
+            _clawVFX.SendEvent("Attack");
+        if (_clawAnimator != null)
+            _clawAnimator.SetTrigger("ClawAttack");
+    }
+
 }
 

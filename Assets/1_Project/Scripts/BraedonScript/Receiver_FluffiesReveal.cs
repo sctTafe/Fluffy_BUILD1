@@ -10,11 +10,11 @@ public class Receiver_FluffiesReveal : NetworkBehaviour
 
     [SerializeField]private bool _IsRevealed = false;
 
-    [SerializeField] private Outline shader;
+    [SerializeField] private ModelOutline shader;
     private void Awake()
     {
         //shader = GetComponent<Outline>();
-        shader = GetComponentInChildren<Outline>();
+        shader = GetComponentInChildren<ModelOutline>();
     }
     /// <summary>
     /// Triggers the Reveal on this character

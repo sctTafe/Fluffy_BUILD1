@@ -4969,6 +4969,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4946062772662153645}
   - component: {fileID: 1316138741935533015}
+  - component: {fileID: 7470746538546986237}
+  - component: {fileID: 2703111135410507731}
+  - component: {fileID: 2129756126372613726}
   m_Layer: 0
   m_Name: SillyCat_HumanIk
   m_TagString: Untagged
@@ -5005,7 +5008,7 @@ Animator:
   m_GameObject: {fileID: 5757888744430496535}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 26192259fc71d074a98b296946b78114, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ac7e84d19f6d1e2478487824738c6b0f, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5017,6 +5020,112 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7470746538546986237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5757888744430496535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fe09355fa924e84ca99deed2ab2b7fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  forwardParam: ForwardsSpeed
+  sidewaysParam: SidewaysSpeed
+  jumpStateParam: JumpState
+  smoothing: 10
+--- !u!114 &2703111135410507731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5757888744430496535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9de6e52f615574bbdeb715c48f8651, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dustEmitter: {fileID: 4025872807383795774}
+  walkDustCount: 2
+  jumpSmokeCount: 10
+  landingSmokeCount: 15
+  positionRandomness: 0.3
+  angleRandomness: 15
+  radiusRandomness: 0.2
+--- !u!114 &2129756126372613726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5757888744430496535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db7a34c66f62b3347b067c140de57e4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstepEvent:
+    Guid:
+      Data1: 331090827
+      Data2: 1325295509
+      Data3: -619074664
+      Data4: -51366658
+    Path: event:/SFX/PlayerSounds/FootSteps
+  hurtEvent:
+    Guid:
+      Data1: -1546530263
+      Data2: 1079793209
+      Data3: 1329881995
+      Data4: -278802723
+    Path: event:/SFX/PlayerSounds/Hurts&Attacks/CatCry
+  biteEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  swipeEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  revealEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  mutantBreathEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  pickupEvent:
+    Guid:
+      Data1: -837468263
+      Data2: 1210094543
+      Data3: 1316431244
+      Data4: 1463497821
+    Path: event:/SFX/PlayerSounds/PickupCollectionAchievement/PickupCan
+  objectiveCompleteEvent:
+    Guid:
+      Data1: -32406023
+      Data2: 1335351870
+      Data3: 632464823
+      Data4: -842730928
+    Path: event:/SFX/PlayerSounds/PickupCollectionAchievement/Achievement
+  playOnlyForOwner: 0
+  play3D: 1
 --- !u!1 &5766455507077471554
 GameObject:
   m_ObjectHideFlags: 0
@@ -5326,7 +5435,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6103115944230435048}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: 26192259fc71d074a98b296946b78114, type: 3}
   m_Controller: {fileID: 22100000, guid: 15c6274e4f928f8478d6081f1bf7b6c2, type: 2}
   m_CullingMode: 1
@@ -5515,16 +5624,15 @@ MonoBehaviour:
   BottomClamp: -30
   CameraAngleOverride: 0
   LockCameraPosition: 0
-  _jump_AnimatorVar_NWV:
+  _forwardsSpeed_NWV:
     m_InternalValue: 0
-  _grounded_AnimatorVar_NWV:
+  _sidewaysSpeed_NWV:
     m_InternalValue: 0
-  _freefall_AnimatorVar_NWV:
+  _jumpState_NWV:
     m_InternalValue: 0
-  _speed_AnimatorVar_NWV:
-    m_InternalValue: 0
-  _motionSpeed_AnimatorVar_NWV:
-    m_InternalValue: 0
+  _jumpStartDuration: 0.15
+  _landDuration: 0.3
+  _floatTransitionDelay: 0.1
 --- !u!114 &-6137494299052777976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5841,6 +5949,57 @@ MonoBehaviour:
       Data3: -619074664
       Data4: -51366658
     Path: event:/SFX/PlayerSounds/FootSteps
+  hurtEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  biteEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  swipeEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  revealEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  mutantBreathEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  pickupEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  objectiveCompleteEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  playOnlyForOwner: 1
+  play3D: 1
 --- !u!114 &7314291117724805518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6713,7 +6872,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4581602375942766530
 Transform:
   m_ObjectHideFlags: 0

@@ -20,7 +20,7 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     removeConstantScaleCurves: 1
-    motionNodeName: FluffyRig_Ctrl:Reference
+    motionNodeName: FluffyRig_Reference
     animationImportErrors: 
     animationImportWarnings: "\nClip 'Dive' has import animation warnings that might
       lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
@@ -39,41 +39,14 @@ ModelImporter:
       will be discarded.\n\t'FluffyRig_RightUpLeg' has translation animation that
       will be discarded.\n\t'FluffyRig_LeftForeArm' has translation animation that
       will be discarded.\n\t'FluffyRig_RightForeArm' has translation animation that
-      will be discarded.\n\nClip 'Floating' has import animation warnings that might
-      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
-      retargeting quality.\n\t'FluffyRig_LeftForeArm' has translation animation that
-      will be discarded.\n\t'FluffyRig_RightForeArm' has translation animation that
-      will be discarded.\n\nClip 'MutantBigJumpAttack' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      will be discarded.\n\nClip 'OutOfBreath' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
       to improve retargeting quality.\n\t'FluffyRig_LeftForeArm' has translation
       animation that will be discarded.\n\t'FluffyRig_RightForeArm' has translation
-      animation that will be discarded.\n\nClip 'Crawl' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'FluffyRig_LeftForeArm' has translation
-      animation that will be discarded.\n\t'FluffyRig_RightForeArm' has translation
-      animation that will be discarded.\n\nClip 'MutantIdle' has import animation
+      animation that will be discarded.\n\nClip 'MutantGrowl' has import animation
       warnings that might lower retargeting quality:\nNote: Activate translation
       DOF on avatar to improve retargeting quality.\n\t'FluffyRig_LeftForeArm' has
       translation animation that will be discarded.\n\t'FluffyRig_RightForeArm' has
-      translation animation that will be discarded.\n\nClip 'MutantLungeGrab' has
-      import animation warnings that might lower retargeting quality:\nNote: Activate
-      translation DOF on avatar to improve retargeting quality.\n\t'FluffyRig_LeftForeArm'
-      has translation animation that will be discarded.\n\t'FluffyRig_RightForeArm'
-      has translation animation that will be discarded.\n\nClip 'MutantIdleFlex'
-      has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'FluffyRig_LeftForeArm'
-      has translation animation that will be discarded.\n\t'FluffyRig_RightForeArm'
-      has translation animation that will be discarded.\n\nClip 'MutantGroundPound'
-      has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'FluffyRig_LeftForeArm'
-      has translation animation that will be discarded.\n\t'FluffyRig_RightForeArm'
-      has translation animation that will be discarded.\n\nClip 'MutantGrowl' has
-      import animation warnings that might lower retargeting quality:\nNote: Activate
-      translation DOF on avatar to improve retargeting quality.\n\t'FluffyRig_LeftForeArm'
-      has translation animation that will be discarded.\n\t'FluffyRig_RightForeArm'
-      has translation animation that will be discarded.\n\nClip 'LowWalk' has import
-      animation warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'FluffyRig_RightForeArm' has
       translation animation that will be discarded.\n\nClip 'MutantSwipe' has import
       animation warnings that might lower retargeting quality:\nNote: Activate translation
       DOF on avatar to improve retargeting quality.\n\t'FluffyRig_LeftForeArm' has
@@ -89,7 +62,11 @@ ModelImporter:
       warnings that might lower retargeting quality:\nNote: Activate translation
       DOF on avatar to improve retargeting quality.\n\t'FluffyRig_LeftForeArm' has
       translation animation that will be discarded.\n\t'FluffyRig_RightForeArm' has
-      translation animation that will be discarded.\n"
+      translation animation that will be discarded.\n\nClip 'MutantGrowlBreath' has
+      import animation warnings that might lower retargeting quality:\nNote: Activate
+      translation DOF on avatar to improve retargeting quality.\n\t'FluffyRig_LeftForeArm'
+      has translation animation that will be discarded.\n\t'FluffyRig_RightForeArm'
+      has translation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -124,7 +101,7 @@ ModelImporter:
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000000000000000000
       curves: []
       events: []
       transformMask: []
@@ -312,7 +289,7 @@ ModelImporter:
       keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000000000000000000
       curves: []
       events:
       - time: 0.32671973
@@ -343,35 +320,6 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Creeping
-      takeName: Creeping
-      internalID: 3992604892709401141
-      firstFrame: 0
-      lastFrame: 110
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -478,66 +426,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: MutantBigJumpAttack
-      takeName: MutantBigJumpAttack
-      internalID: 3344189489364830145
-      firstFrame: 0
-      lastFrame: 91
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Crawl
-      takeName: Crawl
-      internalID: 4333047050028657853
-      firstFrame: 0
-      lastFrame: 56
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: MutantIdle
-      takeName: MutantIdle
+      name: OutOfBreath
+      takeName: OutOfBreath
       internalID: -5927259735703178017
       firstFrame: 0
       lastFrame: 96
@@ -547,8 +437,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -565,94 +455,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: MutantLungeGrab
-      takeName: MutantLungeGrab
-      internalID: -8721321886072636447
-      firstFrame: 0
-      lastFrame: 112
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: MutantIdleFlex
-      takeName: MutantIdleFlex
-      internalID: 2668929882096926276
-      firstFrame: 0
-      lastFrame: 341
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: MutantGroundPound
-      takeName: MutantGroundPound
-      internalID: 3829648078855735584
-      firstFrame: 0
-      lastFrame: 76
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: MutantGrowl
+      name: MutantReveal
       takeName: MutantGrowl
       internalID: -9081954550386481060
       firstFrame: 0
@@ -675,36 +478,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: LowWalk
-      takeName: LowWalk
-      internalID: -6778196153364361646
-      firstFrame: 0
-      lastFrame: 21
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
+      events:
+      - time: 0.2785425
+        functionName: OnReveal
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -731,9 +512,16 @@ ModelImporter:
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000000000000000000000000000000000000
       curves: []
-      events: []
+      events:
+      - time: 0.45915157
+        functionName: OnSwipe
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -750,37 +538,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: PainInTheBack
-      takeName: PainInTheBack
-      internalID: 9067507233050706251
-      firstFrame: 0
-      lastFrame: 42
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -820,17 +579,112 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.36682466
+        functionName: OnPickup
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Floating
-      takeName: Floating
-      internalID: -7539634305500233773
+      name: MutantGrowlBreath
+      takeName: MutantGrowlBreath
+      internalID: 7326626267148552569
       firstFrame: 0
-      lastFrame: 86
+      lastFrame: 81
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 00000000010000000100000000000000000000000100000001000000010000000100000000000000000000000000000000000000
+      curves: []
+      events:
+      - time: 0.24425963
+        functionName: OnMutantBreath
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Body
+        weight: 0
+      - path: Body/Fur
+        weight: 1
+      - path: Body/Head
+        weight: 1
+      - path: Body/Head/Ears
+        weight: 1
+      - path: FluffyRig_Reference
+        weight: 1
+      - path: FluffyRig_Reference/FluffyRig_Hips
+        weight: 1
+      - path: FluffyRig_Reference/FluffyRig_Hips/FluffyRig_LeftUpLeg
+        weight: 1
+      - path: FluffyRig_Reference/FluffyRig_Hips/FluffyRig_LeftUpLeg/FluffyRig_LeftLeg
+        weight: 1
+      - path: FluffyRig_Reference/FluffyRig_Hips/FluffyRig_LeftUpLeg/FluffyRig_LeftLeg/FluffyRig_LeftFoot
+        weight: 1
+      - path: FluffyRig_Reference/FluffyRig_Hips/FluffyRig_RightUpLeg
+        weight: 1
+      - path: FluffyRig_Reference/FluffyRig_Hips/FluffyRig_RightUpLeg/FluffyRig_RightLeg
+        weight: 1
+      - path: FluffyRig_Reference/FluffyRig_Hips/FluffyRig_RightUpLeg/FluffyRig_RightLeg/FluffyRig_RightFoot
+        weight: 1
+      - path: FluffyRig_Reference/FluffyRig_Hips/FluffyRig_Spine
+        weight: 1
+      - path: FluffyRig_Reference/FluffyRig_Hips/FluffyRig_Spine/FluffyRig_Spine1
+        weight: 1
+      - path: FluffyRig_Reference/FluffyRig_Hips/FluffyRig_Spine/FluffyRig_Spine1/FluffyRig_Spine2
+        weight: 1
+      - path: FluffyRig_Reference/FluffyRig_Hips/FluffyRig_Spine/FluffyRig_Spine1/FluffyRig_Spine2/FluffyRig_LeftShoulder
+        weight: 1
+      - path: FluffyRig_Reference/FluffyRig_Hips/FluffyRig_Spine/FluffyRig_Spine1/FluffyRig_Spine2/FluffyRig_LeftShoulder/FluffyRig_LeftArm
+        weight: 1
+      - path: FluffyRig_Reference/FluffyRig_Hips/FluffyRig_Spine/FluffyRig_Spine1/FluffyRig_Spine2/FluffyRig_LeftShoulder/FluffyRig_LeftArm/FluffyRig_LeftForeArm
+        weight: 1
+      - path: FluffyRig_Reference/FluffyRig_Hips/FluffyRig_Spine/FluffyRig_Spine1/FluffyRig_Spine2/FluffyRig_LeftShoulder/FluffyRig_LeftArm/FluffyRig_LeftForeArm/FluffyRig_LeftHand
+        weight: 1
+      - path: FluffyRig_Reference/FluffyRig_Hips/FluffyRig_Spine/FluffyRig_Spine1/FluffyRig_Spine2/FluffyRig_Neck
+        weight: 1
+      - path: FluffyRig_Reference/FluffyRig_Hips/FluffyRig_Spine/FluffyRig_Spine1/FluffyRig_Spine2/FluffyRig_Neck/FluffyRig_Head
+        weight: 1
+      - path: FluffyRig_Reference/FluffyRig_Hips/FluffyRig_Spine/FluffyRig_Spine1/FluffyRig_Spine2/FluffyRig_RightShoulder
+        weight: 1
+      - path: FluffyRig_Reference/FluffyRig_Hips/FluffyRig_Spine/FluffyRig_Spine1/FluffyRig_Spine2/FluffyRig_RightShoulder/FluffyRig_RightArm
+        weight: 1
+      - path: FluffyRig_Reference/FluffyRig_Hips/FluffyRig_Spine/FluffyRig_Spine1/FluffyRig_Spine2/FluffyRig_RightShoulder/FluffyRig_RightArm/FluffyRig_RightForeArm
+        weight: 1
+      - path: FluffyRig_Reference/FluffyRig_Hips/FluffyRig_Spine/FluffyRig_Spine1/FluffyRig_Spine2/FluffyRig_RightShoulder/FluffyRig_RightArm/FluffyRig_RightForeArm/FluffyRig_RightHand
+        weight: 1
+      maskType: 1
+      maskSource: {fileID: 31900000, guid: e493ba0aef8f88948a0155b90bce7d09, type: 2}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: MutantEating
+      takeName: MutantEating
+      internalID: -3848049666277014819
+      firstFrame: 0
+      lastFrame: 64
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

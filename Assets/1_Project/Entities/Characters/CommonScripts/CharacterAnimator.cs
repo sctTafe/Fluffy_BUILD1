@@ -12,6 +12,14 @@ public class CharacterAnimator : NetworkBehaviour
     [SerializeField] private string sidewaysParam = "SidewaysSpeed";
     [SerializeField] private string jumpStateParam = "JumpState";
 
+    [Header("Smoothing")]
+    [Tooltip("Higher values snap faster; lower values smooth more")] [SerializeField]
+    private float smoothing = 10f;
+
+    // smoothed values used to drive animator to avoid jitter at low speeds
+    private float _smoothedForward;
+    private float _smoothedSideways;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -37,8 +45,12 @@ public class CharacterAnimator : NetworkBehaviour
             sidewaysSpeed = networkSideways;
         }
 
-        animator.SetFloat(forwardParam, forwardSpeed);
-        animator.SetFloat(sidewaysParam, sidewaysSpeed);
+        // smooth small fluctuations to avoid animator stutter at low speeds
+        _smoothedForward = Mathf.Lerp(_smoothedForward, forwardSpeed, Time.deltaTime * smoothing);
+        _smoothedSideways = Mathf.Lerp(_smoothedSideways, sidewaysSpeed, Time.deltaTime * smoothing);
+
+        animator.SetFloat(forwardParam, _smoothedForward);
+        animator.SetFloat(sidewaysParam, _smoothedSideways);
     }
 
     /// <summary>
