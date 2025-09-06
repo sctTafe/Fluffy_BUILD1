@@ -85,4 +85,5 @@ public class ScottsBackup_Receiver_Bite : NetworkBehaviour
         isGrabbed = false;
         OnBiteStop?.Invoke();
     }
+
 }

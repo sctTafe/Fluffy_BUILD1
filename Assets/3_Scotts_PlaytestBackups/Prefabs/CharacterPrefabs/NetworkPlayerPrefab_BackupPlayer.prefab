@@ -3390,7 +3390,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ed1f02952432f74c82acd65c2a5ac6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fmodEventPath: event:/SFX/PlayerSounds/FluffyScream
+  fmodEventReference:
+    Guid:
+      Data1: -1546530263
+      Data2: 1079793209
+      Data3: 1329881995
+      Data4: -278802723
+    Path: event:/SFX/PlayerSounds/Hurts&Attacks/CatCry
 --- !u!1 &3886827255294809966
 GameObject:
   m_ObjectHideFlags: 0
@@ -5036,7 +5042,13 @@ MonoBehaviour:
   forwardParam: ForwardsSpeed
   sidewaysParam: SidewaysSpeed
   jumpStateParam: JumpState
+  beingBittenParam: BeingBitten
+  isBittingParam: IsBitting
   smoothing: 10
+  isBeingBitten:
+    m_InternalValue: 0
+  isBitting:
+    m_InternalValue: 0
 --- !u!114 &2703111135410507731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5293,8 +5305,6 @@ GameObject:
   - component: {fileID: 7907975427600931893}
   - component: {fileID: 1055526808055788238}
   - component: {fileID: 475803115296152315}
-  - component: {fileID: -9134813166992334759}
-  - component: {fileID: 4009507232335487725}
   - component: {fileID: 8564689662803245180}
   - component: {fileID: 3242255665682694393}
   - component: {fileID: 3657911424795443171}
@@ -5311,8 +5321,6 @@ GameObject:
   - component: {fileID: 1747774431182646062}
   - component: {fileID: 7099943417741874242}
   - component: {fileID: 1794063575882020223}
-  - component: {fileID: 7592124875178756546}
-  - component: {fileID: 7314291117724805518}
   - component: {fileID: 2000194920491530708}
   - component: {fileID: 8957669517295907108}
   - component: {fileID: 7111800759708940357}
@@ -5412,43 +5420,6 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
---- !u!114 &-9134813166992334759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6103115944230435048}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  TransitionStateInfoList: []
-  m_Animator: {fileID: 4009507232335487725}
---- !u!95 &4009507232335487725
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6103115944230435048}
-  m_Enabled: 0
-  m_Avatar: {fileID: 9000000, guid: 26192259fc71d074a98b296946b78114, type: 3}
-  m_Controller: {fileID: 22100000, guid: 15c6274e4f928f8478d6081f1bf7b6c2, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!143 &8564689662803245180
 CharacterController:
   m_ObjectHideFlags: 0
@@ -5806,9 +5777,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8403716883220068317}
-        m_TargetAssemblyTypeName: Sounds_FluffyBiteScream, Assembly-CSharp
-        m_MethodName: fn_StartLoopingSound
+      - m_Target: {fileID: 2129756126372613726}
+        m_TargetAssemblyTypeName: PlayerSounds, Assembly-CSharp
+        m_MethodName: OnBite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7470746538546986237}
+        m_TargetAssemblyTypeName: CharacterAnimator, Assembly-CSharp
+        m_MethodName: TriggerBeingBittenAnimation
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5833,9 +5816,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8403716883220068317}
-        m_TargetAssemblyTypeName: Sounds_FluffyBiteScream, Assembly-CSharp
-        m_MethodName: fn_StopLoopingSound
+      - m_Target: {fileID: 7470746538546986237}
+        m_TargetAssemblyTypeName: CharacterAnimator, Assembly-CSharp
+        m_MethodName: TriggerStopBeingBittenAnimation
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5930,95 +5913,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
---- !u!114 &7592124875178756546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6103115944230435048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db7a34c66f62b3347b067c140de57e4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  footstepEvent:
-    Guid:
-      Data1: 331090827
-      Data2: 1325295509
-      Data3: -619074664
-      Data4: -51366658
-    Path: event:/SFX/PlayerSounds/FootSteps
-  hurtEvent:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  biteEvent:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  swipeEvent:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  revealEvent:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  mutantBreathEvent:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  pickupEvent:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  objectiveCompleteEvent:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  playOnlyForOwner: 1
-  play3D: 1
---- !u!114 &7314291117724805518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6103115944230435048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e9de6e52f615574bbdeb715c48f8651, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dustEmitter: {fileID: 4025872807383795774}
-  walkDustCount: 2
-  jumpSmokeCount: 10
-  landingSmokeCount: 15
-  positionRandomness: 0.3
-  angleRandomness: 15
-  radiusRandomness: 0.2
 --- !u!114 &2000194920491530708
 MonoBehaviour:
   m_ObjectHideFlags: 0

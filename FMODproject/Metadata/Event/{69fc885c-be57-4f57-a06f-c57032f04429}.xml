@@ -5,7 +5,7 @@
 			<value>MutantAttack</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{229b9281-cabe-49a8-a893-ec5645a740f6}</destination>
@@ -100,6 +100,7 @@
 	<object class="MixerBusEffectChain" id="{4e750d0c-1fc7-4a78-b097-54f753569545}">
 		<relationship name="effects">
 			<destination>{a778d394-a86c-4068-8abc-8e69aab15dab}</destination>
+			<destination>{c58aa6e1-8db2-45c9-beae-4afd36a36ce8}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{fc8cf87a-edbb-478e-a26d-a3fd4bfb0676}" />
@@ -121,6 +122,9 @@
 		</relationship>
 	</object>
 	<object class="SingleSound" id="{0efd2473-6e80-428b-ae7f-222090cbfd20}">
+		<property name="volume">
+			<value>-6</value>
+		</property>
 		<relationship name="modulators">
 			<destination>{4596f0c0-8b9a-48b9-9516-0826ed2c361e}</destination>
 		</relationship>
@@ -130,6 +134,7 @@
 	</object>
 	<object class="MixerBusFader" id="{1ed42f33-5b54-4e66-a622-461585f608e1}" />
 	<object class="MixerBusFader" id="{a778d394-a86c-4068-8abc-8e69aab15dab}" />
+	<object class="SpatialiserEffect" id="{c58aa6e1-8db2-45c9-beae-4afd36a36ce8}" />
 	<object class="RandomizerModulator" id="{16f05eba-ed35-4f2d-baeb-b96c22b8f664}">
 		<property name="nameOfPropertyBeingModulated">
 			<value>pitch</value>
