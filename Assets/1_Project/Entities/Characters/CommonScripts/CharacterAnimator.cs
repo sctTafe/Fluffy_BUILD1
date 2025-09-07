@@ -11,6 +11,9 @@ public class CharacterAnimator : NetworkBehaviour
     [SerializeField] private string forwardParam = "ForwardsSpeed";
     [SerializeField] private string sidewaysParam = "SidewaysSpeed";
     [SerializeField] private string jumpStateParam = "JumpState";
+    [SerializeField] private string beingBittenParam = "BeingBitten";
+    [SerializeField] private string isBittingParam = "IsBitting";
+
 
     [Header("Smoothing")]
     [Tooltip("Higher values snap faster; lower values smooth more")] [SerializeField]
@@ -19,10 +22,65 @@ public class CharacterAnimator : NetworkBehaviour
     // smoothed values used to drive animator to avoid jitter at low speeds
     private float _smoothedForward;
     private float _smoothedSideways;
+    
+    // Network variable to sync bite state - make it public to ensure proper registration
+    public NetworkVariable<bool> isBeingBitten = new NetworkVariable<bool>(false, 
+        NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public NetworkVariable<bool> isBitting = new NetworkVariable<bool>(false,
+        NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
-    private void Start()
+
+    private void Awake()
     {
         animator = GetComponent<Animator>();
+    }
+
+    // Use LateUpdate to ensure the animator is updated after all possible changes
+    private void LateUpdate()
+    {
+        if (animator != null && IsSpawned)
+        {
+            animator.SetBool(beingBittenParam, isBeingBitten.Value);
+            animator.SetBool(isBittingParam, isBitting.Value);
+        }
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        base.OnNetworkSpawn();
+
+        isBeingBitten.OnValueChanged += OnBeingBittenStateChanged;
+        isBitting.OnValueChanged += OnBittingStateChanged;
+
+        if (animator != null)
+        {
+            animator.SetBool(beingBittenParam, isBeingBitten.Value);
+            animator.SetBool(isBittingParam, isBitting.Value);
+        }
+    }
+
+    public override void OnNetworkDespawn()
+    {
+        isBeingBitten.OnValueChanged -= OnBeingBittenStateChanged;
+        isBitting.OnValueChanged -= OnBittingStateChanged;
+        base.OnNetworkDespawn();
+    }
+
+
+    private void OnBeingBittenStateChanged(bool previous, bool current)
+    {
+        if (animator != null)
+        {
+            animator.SetBool(beingBittenParam, current);
+        }
+    }
+
+    private void OnBittingStateChanged(bool previous, bool current)
+    {
+        if (animator != null)
+        {
+            animator.SetBool(isBittingParam, current);
+        }
     }
 
     /// <summary>
@@ -62,4 +120,69 @@ public class CharacterAnimator : NetworkBehaviour
         if (!animator) return;
         animator.SetInteger(jumpStateParam, jumpState);
     }
+
+    // ---------------------------------------------------------------
+    /// Fluffy being bitten animations
+    public void TriggerBeingBittenAnimation()
+    {
+        if (IsServer)
+        {
+            isBeingBitten.Value = true;
+        }
+        else
+        {
+            SetBittenStateServerRpc(true);
+        }
+    }
+
+    public void TriggerStopBeingBittenAnimation()
+    {
+        if (IsServer)
+        {
+            isBeingBitten.Value = false;
+        }
+        else
+        {
+            SetBittenStateServerRpc(false);
+        }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void SetBittenStateServerRpc(bool state)
+    {
+        isBeingBitten.Value = state;
+    }
+
+    //---------------------------------------------------------------
+    /// Mutant bitting animations
+    public void TriggerBittingAnimation()
+    {
+        if (IsServer)
+        {
+            isBitting.Value = true;
+        }
+        else
+        {
+            SetBiteStateServerRpc(true);
+        }
+    }
+
+    public void TriggerStopBittingAnimation()
+    {
+        if (IsServer)
+        {
+            isBitting.Value = false;
+        }
+        else
+        {
+            SetBiteStateServerRpc(false);
+        }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void SetBiteStateServerRpc(bool state)
+    {
+        isBitting.Value = state;
+    }
+    //---------------------------------------------------------------
 }

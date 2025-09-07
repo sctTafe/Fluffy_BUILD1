@@ -2,6 +2,7 @@ using System;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.VFX;
+using UnityEngine.Events;
 
 /// <summary>
 /// Bite Class for the Mutant
@@ -20,6 +21,8 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
     public Action OnInsufficientStamina;
     public Action OnAttemptToBite;
     public Action OnBiteSuccessful;
+    public UnityEvent OnBiteStart;
+    public UnityEvent OnBiteStop;
 
     [Header("Resource Use")]
     [SerializeField] private ScottsBackup_ResourceMng _resourceSystem;
@@ -29,6 +32,7 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
 
     // VFX / Animator for claw attack (moved here from MutantAttackEffects)
     [Header("Attack Effects")]
+    [SerializeField] private VisualEffect _biteVFX; // use UnityEngine.VFX.VisualEffect
     [SerializeField] private VisualEffect _clawVFX; // use UnityEngine.VFX.VisualEffect
     [SerializeField] private Animator _clawAnimator;
 
@@ -189,6 +193,11 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
         // RPC Call To Target Player to Notify them they have been Bitten 
         Debug.Log($"{this.gameObject.name} Trying to Grab {biteTarget.gameObject.name}");
         BiteTargetPlayerServerRpc(biteTarget.GetComponent<NetworkObject>().OwnerClientId, gameObject.GetComponent<NetworkObject>().OwnerClientId);
+
+        // Play local claw attack effects/animation immediately for responsiveness
+        PlayBiteLocal();
+        // Request server to broadcast the claw attack to all clients
+        RequestPlayBiteServerRpc();
     }
 
     
@@ -294,6 +303,9 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
         Transform targetTrans = NetworkManager.Singleton.ConnectedClients[targetPlayerId].PlayerObject.gameObject.transform;
         targetTrans.parent = bitterTrans;
 
+        OnBiteStart?.Invoke();
+
+
         // Server Authorative - On the server, tell it to set the grabbed player's Bite_Receiver to call Is Bitten.
         NetworkManager.Singleton.ConnectedClients[targetPlayerId].PlayerObject.gameObject.GetComponent<ScottsBackup_Receiver_Bite>().fn_SetBiteMode(true, _holdingPoint.position);
     }
@@ -303,6 +315,8 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
     {
         GameObject p = NetworkManager.Singleton.ConnectedClients[PlayerId].PlayerObject.gameObject;
         p.transform.parent = null;
+
+        OnBiteStop?.Invoke();
 
         //find and runs a function on the grabbed players animal chaaracter script that disables the players network transformer and movement in the script
         p.GetComponent<ScottsBackup_Receiver_Bite>().fn_SetBiteMode(false, Vector3.zero);
@@ -414,6 +428,7 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
 
     // --- Networked VFX / Animation RPCs ---
     // Play local claw effect and animation
+
     private void PlayClawLocal()
     {
         if (_clawVFX != null)
@@ -437,6 +452,27 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
             _clawVFX.SendEvent("Attack");
         if (_clawAnimator != null)
             _clawAnimator.SetTrigger("ClawAttack");
+    }
+
+    private void PlayBiteLocal()
+    {
+        if (_clawVFX != null)
+            _clawVFX.SendEvent("Bitten");
+    }
+
+    [ServerRpc]
+    private void RequestPlayBiteServerRpc()
+    {
+        // Server triggers the client RPC to play on all clients
+        PlayBiteClientRpc();
+    }
+
+    [ClientRpc]
+    private void PlayBiteClientRpc()
+    {
+        // Clients (and server) run the effect
+        if (_biteVFX != null)
+            _biteVFX.SendEvent("Bitten");
     }
 
 }

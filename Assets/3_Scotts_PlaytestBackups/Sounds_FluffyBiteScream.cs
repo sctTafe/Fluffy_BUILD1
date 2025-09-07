@@ -4,8 +4,8 @@ using FMOD.Studio;
 
 public class Sounds_FluffyBiteScream : MonoBehaviour
 {
- 
-    public string fmodEventPath = "event:/SFX/PlayerSounds/FluffyScream";
+    [SerializeField]
+    public EventReference fmodEventReference;
 
     private EventInstance eventInstance;
     private bool isPlaying = false;
@@ -15,7 +15,7 @@ public class Sounds_FluffyBiteScream : MonoBehaviour
     {
         if (isPlaying) return;
 
-        eventInstance = RuntimeManager.CreateInstance(fmodEventPath);
+        eventInstance = RuntimeManager.CreateInstance(fmodEventReference);
         eventInstance.setParameterByName("Loop", 1f); // Optional: if you have a loop param
         eventInstance.start();
         isPlaying = true;

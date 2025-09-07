@@ -1351,6 +1351,7 @@ Transform:
   - {fileID: 6261014708376441954}
   - {fileID: 2767597376507695044}
   - {fileID: 915534665023845776}
+  - {fileID: 4689932910545395515}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5697457868752471246
@@ -1587,10 +1588,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  OnBiteStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2178290381059815837}
+        m_TargetAssemblyTypeName: CharacterAnimator, Assembly-CSharp
+        m_MethodName: TriggerBittingAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3409845286819419439}
+        m_TargetAssemblyTypeName: PlayerSounds, Assembly-CSharp
+        m_MethodName: OnBite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnBiteStop:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2178290381059815837}
+        m_TargetAssemblyTypeName: CharacterAnimator, Assembly-CSharp
+        m_MethodName: TriggerStopBittingAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _resourceSystem: {fileID: -991564175368876500}
   _minimumUsageStamina: 10
   _biteActivationCost: 5
   _bitePerSecCost: 2
+  _biteVFX: {fileID: 406685717027784594}
   _clawVFX: {fileID: 7948886896105723017}
   _clawAnimator: {fileID: 2699195283259488457}
   _holdingPoint: {fileID: 8250388547353492899}
@@ -3290,6 +3334,81 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 24f8d64f65d9b54468e7765026bcc498, type: 3}
   m_PrefabInstance: {fileID: 3851284460115213327}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4084349994965319761
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 9005902844290762139}
+    m_Modifications:
+    - target: {fileID: 4398416151003809731, guid: 3c458586dd5e2bf4f910bf22fa79c01e, type: 3}
+      propertyPath: m_InitialEventName
+      value: Bitten
+      objectReference: {fileID: 0}
+    - target: {fileID: 4398416151003809731, guid: 3c458586dd5e2bf4f910bf22fa79c01e, type: 3}
+      propertyPath: m_InitialEventNameOverriden
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8130690947631441256, guid: 3c458586dd5e2bf4f910bf22fa79c01e, type: 3}
+      propertyPath: m_Name
+      value: BiteVFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771740542561034090, guid: 3c458586dd5e2bf4f910bf22fa79c01e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771740542561034090, guid: 3c458586dd5e2bf4f910bf22fa79c01e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.3043478
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771740542561034090, guid: 3c458586dd5e2bf4f910bf22fa79c01e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.78260875
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771740542561034090, guid: 3c458586dd5e2bf4f910bf22fa79c01e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771740542561034090, guid: 3c458586dd5e2bf4f910bf22fa79c01e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771740542561034090, guid: 3c458586dd5e2bf4f910bf22fa79c01e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771740542561034090, guid: 3c458586dd5e2bf4f910bf22fa79c01e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771740542561034090, guid: 3c458586dd5e2bf4f910bf22fa79c01e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771740542561034090, guid: 3c458586dd5e2bf4f910bf22fa79c01e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771740542561034090, guid: 3c458586dd5e2bf4f910bf22fa79c01e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3c458586dd5e2bf4f910bf22fa79c01e, type: 3}
+--- !u!2083052967 &406685717027784594 stripped
+VisualEffect:
+  m_CorrespondingSourceObject: {fileID: 4398416151003809731, guid: 3c458586dd5e2bf4f910bf22fa79c01e, type: 3}
+  m_PrefabInstance: {fileID: 4084349994965319761}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4689932910545395515 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8771740542561034090, guid: 3c458586dd5e2bf4f910bf22fa79c01e, type: 3}
+  m_PrefabInstance: {fileID: 4084349994965319761}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7501070339043489539
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3721,7 +3840,13 @@ MonoBehaviour:
   forwardParam: ForwardsSpeed
   sidewaysParam: SidewaysSpeed
   jumpStateParam: JumpState
+  beingBittenParam: BeingBitten
+  isBittingParam: IsBitting
   smoothing: 10
+  isBeingBitten:
+    m_InternalValue: 0
+  isBitting:
+    m_InternalValue: 0
 --- !u!1001 &8941367106147542928
 PrefabInstance:
   m_ObjectHideFlags: 0

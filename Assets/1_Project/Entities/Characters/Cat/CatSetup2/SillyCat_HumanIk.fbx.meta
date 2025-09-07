@@ -1054,13 +1054,13 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: SillyCat(Clone)
+    - name: SillyCat_HumanIk(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Body
-      parentName: SillyCat(Clone)
+      parentName: SillyCat_HumanIk(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
@@ -1080,7 +1080,7 @@ ModelImporter:
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:Reference
-      parentName: SillyCat(Clone)
+      parentName: SillyCat_HumanIk(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
@@ -1217,12 +1217,12 @@ ModelImporter:
     - name: FluffyRig_Ctrl:LeftHipEffector
       parentName: FluffyRig_Ctrl:Reference
       position: {x: -0.18949082, y: 0.18272693, z: 0.0487183}
-      rotation: {x: -0.11976026, y: -0.027227733, z: -0.017673273, w: 0.992272}
+      rotation: {x: -0.11976027, y: -0.027227733, z: -0.017673275, w: 0.992272}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:LeftKneeEffector
       parentName: FluffyRig_Ctrl:Reference
       position: {x: -0.19146392, y: 0.07557211, z: 0.08068804}
-      rotation: {x: -0.11976026, y: -0.027227735, z: -0.017673273, w: 0.992272}
+      rotation: {x: -0.11976027, y: -0.027227735, z: -0.017673275, w: 0.992272}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:LeftShoulderEffector
       parentName: FluffyRig_Ctrl:Reference
@@ -1265,7 +1265,7 @@ ModelImporter:
       rotation: {x: 0.44577736, y: 0.76839, z: 0.22014987, w: -0.40298074}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Reference
-      parentName: SillyCat(Clone)
+      parentName: SillyCat_HumanIk(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
@@ -1312,12 +1312,12 @@ ModelImporter:
     - name: FluffyRig_Spine1
       parentName: FluffyRig_Spine
       position: {x: -9.828069e-11, y: 0.19356884, z: 0.0000000020537314}
-      rotation: {x: -0.1135239, y: -0.015074235, z: 0.0012273579, w: 0.9934202}
+      rotation: {x: -0.055263866, y: -0.019572824, z: 0.024587974, w: 0.99797714}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Spine2
       parentName: FluffyRig_Spine1
       position: {x: 0.0000000018724433, y: 0.19356884, z: -5.586274e-10}
-      rotation: {x: -0.11266567, y: -0.017996276, z: 0.0045469436, w: 0.9934596}
+      rotation: {x: 0.07605032, y: -0.011795915, z: -0.0240969, w: 0.996743}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_LeftShoulder
       parentName: FluffyRig_Spine2
@@ -1327,17 +1327,27 @@ ModelImporter:
     - name: FluffyRig_LeftArm
       parentName: FluffyRig_LeftShoulder
       position: {x: -0.17321423, y: -0.000000042933, z: 0.000000024249607}
-      rotation: {x: 0.43767866, y: -0.015245443, z: -0.014782043, w: 0.89888066}
+      rotation: {x: 0.43767866, y: -0.015245444, z: -0.014782043, w: 0.8988807}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_LeftForeArm
       parentName: FluffyRig_LeftArm
       position: {x: -0.27061242, y: 0.00001906915, z: -0.00000006780571}
-      rotation: {x: -0.025046429, y: 0.022357106, z: -0.014804328, w: 0.9993266}
+      rotation: {x: -0.025147045, y: 0.018651623, z: -0.016867364, w: 0.9993675}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_LeftHand
       parentName: FluffyRig_LeftForeArm
       position: {x: -0.30951232, y: -0.0001243328, z: 0.0000001328444}
       rotation: {x: -0.0643118, y: -0.03531914, z: 0.014064614, w: 0.9972055}
+      scale: {x: 1, y: 1, z: 1}
+    - name: FluffyRig_Neck
+      parentName: FluffyRig_Spine2
+      position: {x: 0.000000064613054, y: 0.19357067, z: -0.0000004889609}
+      rotation: {x: -0.0017626205, y: 0.025309173, z: 0.05583204, w: 0.9981178}
+      scale: {x: 1, y: 1, z: 1}
+    - name: FluffyRig_Head
+      parentName: FluffyRig_Neck
+      position: {x: -0.000000060962144, y: 0.04738421, z: -0.0000002392972}
+      rotation: {x: 0.069980145, y: 0.0040195393, z: 0.0010473924, w: 0.99753976}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_RightShoulder
       parentName: FluffyRig_Spine2
@@ -1359,18 +1369,8 @@ ModelImporter:
       position: {x: 0.30951232, y: -0.00012407267, z: 0.00000009697775}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: FluffyRig_Neck
-      parentName: FluffyRig_Spine2
-      position: {x: 0.000000064613054, y: 0.19357067, z: -0.0000004889609}
-      rotation: {x: 0.06445891, y: 0.020527516, z: 0.046148524, w: 0.9966414}
-      scale: {x: 1, y: 1, z: 1}
-    - name: FluffyRig_Head
-      parentName: FluffyRig_Neck
-      position: {x: -0.000000060962144, y: 0.04738421, z: -0.0000002392972}
-      rotation: {x: -0.10235505, y: 0.027382646, z: 0.01932155, w: 0.99418324}
-      scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:Hips
-      parentName: SillyCat(Clone)
+      parentName: SillyCat_HumanIk(Clone)
       position: {x: -0.0011822542, y: 0.19456886, z: 0.009528784}
       rotation: {x: 0.06882338, y: 0.05132614, z: 0.02958723, w: 0.99586827}
       scale: {x: 1, y: 1, z: 1}
@@ -1637,7 +1637,7 @@ ModelImporter:
     - name: mixamorig2:RightHandPinky1
       parentName: mixamorig2:RightHand
       position: {x: 0.016601501, y: 0.05597302, z: -0.0006900289}
-      rotation: {x: 0.018795839, y: -0.0065888134, z: 0.03529944, w: 0.9991783}
+      rotation: {x: 0.01879584, y: -0.0065888134, z: 0.035299443, w: 0.9991783}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:RightHandPinky2
       parentName: mixamorig2:RightHandPinky1
@@ -1697,8 +1697,8 @@ ModelImporter:
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
-    legTwist: 0.5
-    armStretch: 0.05
+    legTwist: 0.506
+    armStretch: 0.081
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 0.5

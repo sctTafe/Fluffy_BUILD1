@@ -5,7 +5,7 @@
 			<value>Chomping</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{229b9281-cabe-49a8-a893-ec5645a740f6}</destination>
@@ -97,6 +97,7 @@
 		<relationship name="effects">
 			<destination>{9e48842e-d6f9-4847-9ad5-ba383332ef7e}</destination>
 			<destination>{45b774f1-f63e-452a-8af2-e2be96b470f7}</destination>
+			<destination>{83253a02-93b2-4b6b-b8b8-7cd61a726948}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{5fa93502-7eb4-4c6a-8cce-91d53f33de9c}" />
@@ -115,4 +116,5 @@
 			<value>0.36499998</value>
 		</property>
 	</object>
+	<object class="SpatialiserEffect" id="{83253a02-93b2-4b6b-b8b8-7cd61a726948}" />
 </objects>
