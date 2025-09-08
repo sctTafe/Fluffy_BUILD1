@@ -5,7 +5,7 @@
 			<value>HitFence</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{94dddc56-3c4e-4b2f-8541-c39f238bb5ae}</destination>
@@ -72,6 +72,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{dcd907cd-255c-489a-aa4f-639e102f3a75}">
+		<relationship name="modulators">
+			<destination>{b69631a0-ff48-4dfc-a7c6-bad266c31dc6}</destination>
+		</relationship>
 		<relationship name="effectChain">
 			<destination>{f2132da5-1ad2-414f-abc0-5200e478b7b9}</destination>
 		</relationship>
@@ -93,9 +96,24 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{e6a9396a-2f9f-4f12-8a55-ca9c9271095a}" />
+	<object class="ADSRModulator" id="{b69631a0-ff48-4dfc-a7c6-bad266c31dc6}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>volume</value>
+		</property>
+		<property name="initialValue">
+			<value>-80</value>
+		</property>
+		<property name="attackTime">
+			<value>380</value>
+		</property>
+		<property name="finalValue">
+			<value>-80</value>
+		</property>
+	</object>
 	<object class="MixerBusEffectChain" id="{f2132da5-1ad2-414f-abc0-5200e478b7b9}">
 		<relationship name="effects">
 			<destination>{4eefc4a3-880b-4652-8892-8d98ed67129a}</destination>
+			<destination>{ae14ee82-6c17-4d54-a0f9-4654a922d622}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{164dc07f-a926-490e-a956-1072c665af2b}" />
@@ -112,6 +130,7 @@
 	</object>
 	<object class="MixerBusFader" id="{59be0c7a-7c6a-46ea-94f8-b09e3d6a18b6}" />
 	<object class="MixerBusFader" id="{4eefc4a3-880b-4652-8892-8d98ed67129a}" />
+	<object class="SpatialiserEffect" id="{ae14ee82-6c17-4d54-a0f9-4654a922d622}" />
 	<object class="RandomizerModulator" id="{1a4e844e-bfd3-4c23-856a-7794b20c58b7}">
 		<property name="nameOfPropertyBeingModulated">
 			<value>pitch</value>

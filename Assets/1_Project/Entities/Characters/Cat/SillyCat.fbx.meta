@@ -84,14 +84,14 @@ ModelImporter:
       takeName: Tpose
       internalID: -2135642349588095571
       firstFrame: 0
-      lastFrame: 1
+      lastFrame: 0
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -103,7 +103,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000000000000000000
       curves: []
-      events: []
+      events:
+      - time: 0
+        functionName: OnJump
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -378,8 +385,15 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.24182473
+      - time: 0.045442324
         functionName: EmitLandingCloud
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.058829695
+        functionName: OnLand
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -393,8 +407,8 @@ ModelImporter:
       name: JumpUp
       takeName: JumpUp
       internalID: 8417585811099395123
-      firstFrame: 0
-      lastFrame: 9.9
+      firstFrame: 1
+      lastFrame: 10
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -415,6 +429,13 @@ ModelImporter:
       curves: []
       events:
       - time: 0
+        functionName: OnJump
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.006201553
         functionName: EmitJumpCloud
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -494,8 +515,8 @@ ModelImporter:
       name: MutantSwipe
       takeName: MutantSwipe
       internalID: 7433575908917433931
-      firstFrame: 27
-      lastFrame: 64
+      firstFrame: 24
+      lastFrame: 54
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -515,8 +536,15 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000000000000000000000000000000000000
       curves: []
       events:
-      - time: 0.45915157
+      - time: 0.082432
         functionName: OnSwipe
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.12998907
+        functionName: OnClawAttackVFX
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

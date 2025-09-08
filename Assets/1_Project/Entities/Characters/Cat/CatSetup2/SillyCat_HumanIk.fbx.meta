@@ -1217,12 +1217,12 @@ ModelImporter:
     - name: FluffyRig_Ctrl:LeftHipEffector
       parentName: FluffyRig_Ctrl:Reference
       position: {x: -0.18949082, y: 0.18272693, z: 0.0487183}
-      rotation: {x: -0.11976027, y: -0.027227733, z: -0.017673275, w: 0.992272}
+      rotation: {x: -0.119760275, y: -0.027227733, z: -0.017673276, w: 0.992272}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:LeftKneeEffector
       parentName: FluffyRig_Ctrl:Reference
       position: {x: -0.19146392, y: 0.07557211, z: 0.08068804}
-      rotation: {x: -0.11976027, y: -0.027227735, z: -0.017673275, w: 0.992272}
+      rotation: {x: -0.119760275, y: -0.027227735, z: -0.017673276, w: 0.992272}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:LeftShoulderEffector
       parentName: FluffyRig_Ctrl:Reference
@@ -1307,12 +1307,12 @@ ModelImporter:
     - name: FluffyRig_Spine
       parentName: FluffyRig_Hips
       position: {x: -0.0000000232394, y: 0.07978546, z: -0.0000000062623724}
-      rotation: {x: -0.002292538, y: -0.11319644, z: 0.00090486644, w: 0.9935696}
+      rotation: {x: 0.043602202, y: -0.11325876, z: 0.0011786047, w: 0.99260765}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Spine1
       parentName: FluffyRig_Spine
       position: {x: -9.828069e-11, y: 0.19356884, z: 0.0000000020537314}
-      rotation: {x: -0.055263866, y: -0.019572824, z: 0.024587974, w: 0.99797714}
+      rotation: {x: 0.07954018, y: -0.022532182, z: 0.0071661905, w: 0.9965512}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Spine2
       parentName: FluffyRig_Spine1
@@ -1637,7 +1637,7 @@ ModelImporter:
     - name: mixamorig2:RightHandPinky1
       parentName: mixamorig2:RightHand
       position: {x: 0.016601501, y: 0.05597302, z: -0.0006900289}
-      rotation: {x: 0.01879584, y: -0.0065888134, z: 0.035299443, w: 0.9991783}
+      rotation: {x: 0.018795842, y: -0.0065888134, z: 0.035299446, w: 0.9991783}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:RightHandPinky2
       parentName: mixamorig2:RightHandPinky1

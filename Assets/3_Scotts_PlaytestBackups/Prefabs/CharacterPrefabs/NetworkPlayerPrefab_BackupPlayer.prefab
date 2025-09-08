@@ -5136,8 +5136,24 @@ MonoBehaviour:
       Data3: 632464823
       Data4: -842730928
     Path: event:/SFX/PlayerSounds/PickupCollectionAchievement/Achievement
+  jumpEvent:
+    Guid:
+      Data1: -521457271
+      Data2: 1149058890
+      Data3: 1107836835
+      Data4: -883852139
+    Path: event:/SFX/PlayerSounds/PlayerMovement/JumpUp
+  landEvent:
+    Guid:
+      Data1: -1280788768
+      Data2: 1333448084
+      Data3: 36498560
+      Data4: 1132177797
+    Path: event:/SFX/PlayerSounds/PlayerMovement/JumpLand
   playOnlyForOwner: 0
   play3D: 1
+  clawGraph: {fileID: 0}
+  playerType: 0
 --- !u!1 &5766455507077471554
 GameObject:
   m_ObjectHideFlags: 0
@@ -5501,7 +5517,16 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.3
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.99
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -5510,9 +5535,33 @@ MonoBehaviour:
       outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 0.6
+      value: 0
       inSlope: 0
       outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  pulseSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 2.5
+      inSlope: 1.5
+      outSlope: 1.5
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -5523,7 +5572,7 @@ MonoBehaviour:
   pulseSpeed: 1
   _maxIntensity: 0.6
   _minVol: 0.1
-  _maxVol: 0.5
+  _maxVol: 25
   heartbeatEvent:
     Guid:
       Data1: -1667291156

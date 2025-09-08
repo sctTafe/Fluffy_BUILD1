@@ -5,7 +5,7 @@
 			<value>MutantFart</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{229b9281-cabe-49a8-a893-ec5645a740f6}</destination>
@@ -59,7 +59,11 @@
 			<destination>{2d925558-11c7-495a-8417-5656f4bec7f5}</destination>
 		</relationship>
 	</object>
-	<object class="EventAutomatableProperties" id="{363c2433-e661-4eb1-9559-60fa775cd16f}" />
+	<object class="EventAutomatableProperties" id="{363c2433-e661-4eb1-9559-60fa775cd16f}">
+		<property name="maximumDistance">
+			<value>80</value>
+		</property>
+	</object>
 	<object class="MarkerTrack" id="{e7c4af0f-93cf-4aef-b54f-8367e27e0237}" />
 	<object class="Timeline" id="{254eb16e-fd6d-4f5c-969e-7326ab7ca27a}">
 		<property name="isProxyEnabled">
@@ -118,6 +122,7 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{204764df-6af2-4055-8974-19c6774994db}">
 		<relationship name="effects">
+			<destination>{9c6a3643-3ba5-4166-8748-f2519f0962bf}</destination>
 			<destination>{d1de8b22-3b7d-4b26-a729-534a283bc133}</destination>
 			<destination>{a11915fb-af72-4094-a089-3241fcf82f20}</destination>
 		</relationship>
@@ -135,6 +140,7 @@
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{e261ace0-a55c-46b2-a52e-6b2d6b116e5c}" />
+	<object class="SpatialiserEffect" id="{9c6a3643-3ba5-4166-8748-f2519f0962bf}" />
 	<object class="MixerBusFader" id="{d1de8b22-3b7d-4b26-a729-534a283bc133}" />
 	<object class="MultibandEqEffect" id="{a11915fb-af72-4094-a089-3241fcf82f20}">
 		<property name="filterTypeA">
