@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2621729209
+  GlobalObjectIdHash: 3061793150
   InScenePlacedSourceGlobalObjectIdHash: 550262891
   DeferredDespawnTick: 0
   Ownership: 1
@@ -351,11 +351,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b6350909e3e734a48af018b347ff7902, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b6350909e3e734a48af018b347ff7902, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b6350909e3e734a48af018b347ff7902, type: 3}
       propertyPath: m_LocalRotation.y
@@ -377,26 +377,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 19800000, guid: b6350909e3e734a48af018b347ff7902, type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800000, guid: b6350909e3e734a48af018b347ff7902, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.35566998
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800000, guid: b6350909e3e734a48af018b347ff7902, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800000, guid: b6350909e3e734a48af018b347ff7902, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 19900000, guid: b6350909e3e734a48af018b347ff7902, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -417,11 +397,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 762397520967425535, guid: ac14cb2a0e8f7cb44be0b09f7f4991e4, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 1402730313
+      value: 3674310289
       objectReference: {fileID: 0}
     - target: {fileID: 1127558249641882653, guid: ac14cb2a0e8f7cb44be0b09f7f4991e4, type: 3}
       propertyPath: m_Name
       value: PlayerPickup_Petrol (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127558249641882653, guid: ac14cb2a0e8f7cb44be0b09f7f4991e4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6873018312982978313, guid: ac14cb2a0e8f7cb44be0b09f7f4991e4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -545,11 +529,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 762397520967425535, guid: ac14cb2a0e8f7cb44be0b09f7f4991e4, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 3205756822
+      value: 3389842616
       objectReference: {fileID: 0}
     - target: {fileID: 1127558249641882653, guid: ac14cb2a0e8f7cb44be0b09f7f4991e4, type: 3}
       propertyPath: m_Name
       value: PlayerPickup_Petrol (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127558249641882653, guid: ac14cb2a0e8f7cb44be0b09f7f4991e4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6873018312982978313, guid: ac14cb2a0e8f7cb44be0b09f7f4991e4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -611,11 +599,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 762397520967425535, guid: ac14cb2a0e8f7cb44be0b09f7f4991e4, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 3872807503
+      value: 3276474437
       objectReference: {fileID: 0}
     - target: {fileID: 1127558249641882653, guid: ac14cb2a0e8f7cb44be0b09f7f4991e4, type: 3}
       propertyPath: m_Name
       value: PlayerPickup_Petrol
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127558249641882653, guid: ac14cb2a0e8f7cb44be0b09f7f4991e4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6873018312982978313, guid: ac14cb2a0e8f7cb44be0b09f7f4991e4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -677,11 +669,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 762397520967425535, guid: ac14cb2a0e8f7cb44be0b09f7f4991e4, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 1913312065
+      value: 2228076145
       objectReference: {fileID: 0}
     - target: {fileID: 1127558249641882653, guid: ac14cb2a0e8f7cb44be0b09f7f4991e4, type: 3}
       propertyPath: m_Name
       value: PlayerPickup_Petrol (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127558249641882653, guid: ac14cb2a0e8f7cb44be0b09f7f4991e4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6873018312982978313, guid: ac14cb2a0e8f7cb44be0b09f7f4991e4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -743,11 +739,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 762397520967425535, guid: ac14cb2a0e8f7cb44be0b09f7f4991e4, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 794646729
+      value: 2533574728
       objectReference: {fileID: 0}
     - target: {fileID: 1127558249641882653, guid: ac14cb2a0e8f7cb44be0b09f7f4991e4, type: 3}
       propertyPath: m_Name
       value: PlayerPickup_Petrol (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127558249641882653, guid: ac14cb2a0e8f7cb44be0b09f7f4991e4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6873018312982978313, guid: ac14cb2a0e8f7cb44be0b09f7f4991e4, type: 3}
       propertyPath: m_LocalPosition.x

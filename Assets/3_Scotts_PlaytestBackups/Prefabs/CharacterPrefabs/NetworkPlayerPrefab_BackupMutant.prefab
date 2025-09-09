@@ -1342,7 +1342,6 @@ Transform:
   m_LocalScale: {x: 1.15, y: 1.15, z: 1.15}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 3152407817976692501}
   - {fileID: 5145386371801300777}
   - {fileID: 509613623770532218}
   - {fileID: 5488487355112605645}
@@ -1352,6 +1351,7 @@ Transform:
   - {fileID: 2767597376507695044}
   - {fileID: 915534665023845776}
   - {fileID: 4689932910545395515}
+  - {fileID: 3152407817976692501}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5697457868752471246
@@ -1635,7 +1635,6 @@ MonoBehaviour:
   _biteActivationCost: 5
   _bitePerSecCost: 2
   _biteVFX: {fileID: 406685717027784594}
-  _clawVFX: {fileID: 7948886896105723017}
   _clawAnimator: {fileID: 2699195283259488457}
   _holdingPoint: {fileID: 8250388547353492899}
   triggerBox: {fileID: 6402720590088216435}
@@ -3822,8 +3821,24 @@ MonoBehaviour:
       Data3: 632464823
       Data4: -842730928
     Path: event:/SFX/PlayerSounds/PickupCollectionAchievement/Achievement
+  jumpEvent:
+    Guid:
+      Data1: -521457271
+      Data2: 1149058890
+      Data3: 1107836835
+      Data4: -883852139
+    Path: event:/SFX/PlayerSounds/PlayerMovement/JumpUp
+  landEvent:
+    Guid:
+      Data1: -1280788768
+      Data2: 1333448084
+      Data3: 36498560
+      Data4: 1132177797
+    Path: event:/SFX/PlayerSounds/PlayerMovement/JumpLand
   playOnlyForOwner: 0
   play3D: 1
+  clawGraph: {fileID: 7948886896105723017}
+  playerType: 1
 --- !u!114 &2178290381059815837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3869,7 +3884,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3639229541713788218, guid: cdf6e2b1de85cfe4ca2e4c4620f8ef06, type: 3}
       propertyPath: m_Name
-      value: PS_ClawAttack
+      value: ClawAttackVFX
       objectReference: {fileID: 0}
     - target: {fileID: 3639229541713788218, guid: cdf6e2b1de85cfe4ca2e4c4620f8ef06, type: 3}
       propertyPath: m_IsActive

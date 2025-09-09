@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{c039a4c2-53b9-4334-a744-4149399dd13b}">
+		<property name="assetPath">
+			<value>SFX/Player Sounds/Movement/JumpLand-02.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>24</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>1.5066666666666666</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{1304a584-0065-42cb-bb27-692e2747de7a}</destination>
+		</relationship>
+	</object>
+</objects>

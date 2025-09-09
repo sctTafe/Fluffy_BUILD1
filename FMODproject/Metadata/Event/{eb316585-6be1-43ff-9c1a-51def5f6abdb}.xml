@@ -76,6 +76,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{7aa7b605-1990-44c8-9283-b4fa60522013}">
+		<relationship name="modulators">
+			<destination>{edf5217d-291e-42e8-8b37-4ad9e9793136}</destination>
+		</relationship>
 		<relationship name="effectChain">
 			<destination>{295520a4-bed5-48b5-8dd9-e908e8534c4b}</destination>
 		</relationship>
@@ -97,6 +100,20 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{c6d935a2-b762-4bf8-b66c-de0f4adf1850}" />
+	<object class="ADSRModulator" id="{edf5217d-291e-42e8-8b37-4ad9e9793136}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>volume</value>
+		</property>
+		<property name="initialValue">
+			<value>-80</value>
+		</property>
+		<property name="attackShape">
+			<value>-0.379229963</value>
+		</property>
+		<property name="finalValue">
+			<value>-80</value>
+		</property>
+	</object>
 	<object class="MixerBusEffectChain" id="{295520a4-bed5-48b5-8dd9-e908e8534c4b}">
 		<relationship name="effects">
 			<destination>{f41ee9fa-55ad-456b-ae3a-3a2d0cd9c1a3}</destination>
@@ -104,6 +121,9 @@
 	</object>
 	<object class="MixerBusPanner" id="{62542494-fc79-4a4d-9793-696c4b874dff}" />
 	<object class="SingleSound" id="{02229220-c18b-4e84-ae60-e2f492592c73}">
+		<property name="looping">
+			<value>true</value>
+		</property>
 		<relationship name="audioFile">
 			<destination>{365af93d-553f-4ae2-b54e-b1048438373e}</destination>
 		</relationship>

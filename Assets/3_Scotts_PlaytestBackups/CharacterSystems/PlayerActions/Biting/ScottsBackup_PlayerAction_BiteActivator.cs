@@ -33,7 +33,7 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
     // VFX / Animator for claw attack (moved here from MutantAttackEffects)
     [Header("Attack Effects")]
     [SerializeField] private VisualEffect _biteVFX; // use UnityEngine.VFX.VisualEffect
-    [SerializeField] private VisualEffect _clawVFX; // use UnityEngine.VFX.VisualEffect
+    //[SerializeField] private VisualEffect _clawVFX; // use UnityEngine.VFX.VisualEffect
     [SerializeField] private Animator _clawAnimator;
 
     //private MutantStamina _mutantStaminaSystem;
@@ -431,8 +431,8 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
 
     private void PlayClawLocal()
     {
-        if (_clawVFX != null)
-            _clawVFX.SendEvent("Attack");
+       // if (_clawVFX != null)
+       //     _clawVFX.SendEvent("Attack");
         if (_clawAnimator != null)
             _clawAnimator.SetTrigger("ClawAttack");
     }
@@ -448,16 +448,16 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
     private void PlayClawClientRpc()
     {
         // Clients (and server) run the effect
-        if (_clawVFX != null)
-            _clawVFX.SendEvent("Attack");
+       // if (_clawVFX != null)
+       //     _clawVFX.SendEvent("Attack");
         if (_clawAnimator != null)
             _clawAnimator.SetTrigger("ClawAttack");
     }
 
     private void PlayBiteLocal()
     {
-        if (_clawVFX != null)
-            _clawVFX.SendEvent("Bitten");
+       // if (_clawVFX != null)
+       //     _clawVFX.SendEvent("Bitten");
     }
 
     [ServerRpc]

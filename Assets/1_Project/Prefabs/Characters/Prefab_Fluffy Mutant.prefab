@@ -214,6 +214,13 @@ MonoBehaviour:
   forwardParam: ForwardsSpeed
   sidewaysParam: SidewaysSpeed
   jumpStateParam: JumpState
+  beingBittenParam: BeingBitten
+  isBittingParam: IsBitting
+  smoothing: 10
+  isBeingBitten:
+    m_InternalValue: 0
+  isBitting:
+    m_InternalValue: 0
 --- !u!114 &1750362379133934423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,7 +309,7 @@ MonoBehaviour:
       Data4: -842730928
     Path: event:/SFX/PlayerSounds/PickupCollectionAchievement/Achievement
   playOnlyForOwner: 0
-  play3D: 0
+  play3D: 1
 --- !u!1 &513138173740609868
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@
 			<value>MutantReveal</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{229b9281-cabe-49a8-a893-ec5645a740f6}</destination>
@@ -59,7 +59,11 @@
 			<destination>{2d925558-11c7-495a-8417-5656f4bec7f5}</destination>
 		</relationship>
 	</object>
-	<object class="EventAutomatableProperties" id="{5a94f568-0f1c-4a15-b708-0b56e5e21cb3}" />
+	<object class="EventAutomatableProperties" id="{5a94f568-0f1c-4a15-b708-0b56e5e21cb3}">
+		<property name="maximumDistance">
+			<value>50</value>
+		</property>
+	</object>
 	<object class="MarkerTrack" id="{ce96aa01-83bb-4787-aae6-b935cbff9315}" />
 	<object class="Timeline" id="{97125e3d-afad-4d7d-aa73-d705f4c55eed}">
 		<property name="isProxyEnabled">
@@ -99,6 +103,7 @@
 	<object class="MixerBusEffectChain" id="{8c168ce8-ea07-4667-b3f7-2fe1e3c19401}">
 		<relationship name="effects">
 			<destination>{1c301e09-288f-49be-9fae-1089b0b3d62a}</destination>
+			<destination>{3918d7c4-2fe8-4b0a-b9d9-e674bdaa5040}</destination>
 			<destination>{248ecd9f-ddef-4a0c-ba1f-34bda11910b6}</destination>
 		</relationship>
 	</object>
@@ -116,6 +121,7 @@
 	</object>
 	<object class="MixerBusFader" id="{d46a4671-5327-4cdd-8307-89098294a559}" />
 	<object class="MixerBusFader" id="{1c301e09-288f-49be-9fae-1089b0b3d62a}" />
+	<object class="SpatialiserEffect" id="{3918d7c4-2fe8-4b0a-b9d9-e674bdaa5040}" />
 	<object class="TremoloEffect" id="{248ecd9f-ddef-4a0c-ba1f-34bda11910b6}">
 		<property name="frequency">
 			<value>17.5</value>
