@@ -25,6 +25,7 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - _ENABLECAUSTICS
   - _ENABLENORMAL
   - _ENABLEREFRACTION
   - _ENABLEWAVE
@@ -41,7 +42,7 @@ Material:
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
-  m_LockedProperties: 
+  m_LockedProperties: _SL_Dissolve
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -191,7 +192,7 @@ Material:
     - _1st_Wave_Length: 3
     - _1st_Wave_Sharpness: 0.1
     - _1st_Wave_Speed: 0.1
-    - _2nd_Wave_Height: 0.0015
+    - _2nd_Wave_Height: 0.001
     - _2nd_Wave_Length: 5
     - _2nd_Wave_Sharpness: 0
     - _2nd_Wave_Speed: 0.2
@@ -218,14 +219,14 @@ Material:
     - _CausticsStart: 5.84
     - _CausticsStartDistance: 5
     - _CausticsStrength: 0.7
-    - _Caustics_Depth: -4
-    - _Caustics_Distortion_Scale: 2
-    - _Caustics_Distortion_Strength: 3
-    - _Caustics_Fade: 5
+    - _Caustics_Depth: -6.17
+    - _Caustics_Distortion_Scale: 1
+    - _Caustics_Distortion_Strength: 2
+    - _Caustics_Fade: 4
     - _Caustics_Pan: 2
-    - _Caustics_Scale: 1.33
-    - _Caustics_Start: 5
-    - _Caustics_Strength: 0.55
+    - _Caustics_Scale: 4.44
+    - _Caustics_Start: 0.25
+    - _Caustics_Strength: 0.25
     - _ConformToGeometry: 1
     - _Cull: 2
     - _Depth_Distance: 1.26
@@ -237,7 +238,7 @@ Material:
     - _DistanceNormalTile: 5.54
     - _DistortionScale: 2
     - _DstBlend: 10
-    - _ENABLECAUSTICS: 0
+    - _ENABLECAUSTICS: 1
     - _ENABLEINTERSECTION: 1
     - _ENABLENORMAL: 1
     - _ENABLEPLANERREFLECTION: 0
@@ -308,10 +309,10 @@ Material:
     - _ReflectionDistortion: 0.09
     - _ReflectionFresnel: 7.09
     - _ReflectionFresnelStrength: 1
-    - _Reflection_Distortion: 2
+    - _Reflection_Distortion: 0.5
     - _Reflection_Fresnel: 5
     - _Reflection_Fresnel_Strength: 1
-    - _Reflection_Strength: 0.992
+    - _Reflection_Strength: 0.752
     - _RefractionFadeDistance: 5
     - _RefractionStrength: 0.15
     - _Refraction_Distace_Mask: 10
