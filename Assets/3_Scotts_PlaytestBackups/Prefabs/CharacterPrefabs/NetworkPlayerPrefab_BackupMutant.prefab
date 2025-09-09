@@ -1814,8 +1814,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e22733ea1837981a8fd12b7f29f5343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawn_pos: {x: -50, y: 3, z: 92}
-  random_offset: 0
+  spawn_pos: {x: 32, y: 1, z: -96}
+  random_offset: 0.5
 --- !u!114 &251689034891746606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1842,7 +1842,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5408246126893154181}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 343dd248fa3cd29639fab39be884f18a, type: 3}
   m_Name: 
