@@ -7,7 +7,7 @@ public class HUD_PopUpMessages_Test : MonoBehaviour
 
     private void Update()
     {
-
+        //Test
         if (Input.GetKeyDown(KeyCode.Alpha1))
             popup.fn_PopupMessage("Bounce Message", HUD_PopUpMessages_Singelton.PopupStyle.Bounce, 2f);
 

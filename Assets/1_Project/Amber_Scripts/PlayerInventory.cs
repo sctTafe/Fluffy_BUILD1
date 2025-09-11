@@ -77,7 +77,7 @@ public class PlayerInventory : PlayerActionBase, IHudAbilityBinder
 					deposit_point.DepositItem();
 				}
 			}
-			else if (in_item_hitbox)
+			else if (in_item_hitbox && target != null)
 			{
 				if(held_items.Count < 3)
 				{

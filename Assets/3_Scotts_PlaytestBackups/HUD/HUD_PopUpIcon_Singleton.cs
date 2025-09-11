@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using DG.Tweening;
 
-public class HUD_PopUpMessages_Singelton : Singleton<HUD_PopUpMessages_Singelton>
+public class HUD_PopUpIcon_Singleton : Singleton<HUD_PopUpIcon_Singleton>
 {
     public enum PopupStyle
     {
@@ -33,11 +33,19 @@ public class HUD_PopUpMessages_Singelton : Singleton<HUD_PopUpMessages_Singelton
         canvas = GetComponentInChildren<Canvas>();
         canvasGroup = GetComponentInChildren<CanvasGroup>();
         rectTransform = GetComponentInChildren<RectTransform>();
-        messageText = GetComponentInChildren<TMP_Text>();
+        //messageText = GetComponentInChildren<TMP_Text>();
         canvas.enabled = false;
     }
 
-    public void fn_PopupMessage(string message, PopupStyle style, float visibleDuration = 2f)
+    public void fn_CancelPopup()
+    {
+        currentSequence?.Kill();
+        nextAvailableTime = Time.time + 0.5f;
+        canvas.enabled = false;
+    }
+
+
+    public void fn_PopupIcon(PopupStyle style, float visibleDuration = 2f)
     {
         // Check cooldown
         if (Time.time < nextAvailableTime)
@@ -46,7 +54,7 @@ public class HUD_PopUpMessages_Singelton : Singleton<HUD_PopUpMessages_Singelton
         // Set next available time (visibleDuration + 2f buffer)
         nextAvailableTime = Time.time + visibleDuration + 2f;
 
-        messageText.text = message;
+        //messageText.text = message;
         //gameObject.SetActive(true);
         canvas.enabled = true;
 
@@ -93,3 +101,6 @@ public class HUD_PopUpMessages_Singelton : Singleton<HUD_PopUpMessages_Singelton
         });
     }
 }
+
+
+

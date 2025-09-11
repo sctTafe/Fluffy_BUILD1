@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 9134099460124472842}
   - component: {fileID: 1895407423077776328}
   - component: {fileID: 4817670231382467990}
+  - component: {fileID: 1470940637393827016}
+  - component: {fileID: -2968376139430254778}
   m_Layer: 0
   m_Name: PlayerPickup_Petrol
   m_TagString: pick_up_item
@@ -50,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3427185496
+  GlobalObjectIdHash: 3291907463
   InScenePlacedSourceGlobalObjectIdHash: 3291907463
   DeferredDespawnTick: 0
   Ownership: 1
@@ -118,6 +120,61 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: petrol
+--- !u!114 &1470940637393827016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127558249641882653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8a0d023ffb3614d800195ce136d187, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-2968376139430254778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127558249641882653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19177bbbc9f0b8645ae93a628eb372ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onTagTypeEnterCollider:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1470940637393827016}
+        m_TargetAssemblyTypeName: HUD_PopUpIcon_Caller, Assembly-CSharp
+        m_MethodName: fn_CallPopupIcon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onTagTypeExitCollider:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1470940637393827016}
+        m_TargetAssemblyTypeName: HUD_PopUpIcon_Caller, Assembly-CSharp
+        m_MethodName: fn_CancelPopupIcon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  tagToDetect: Player
 --- !u!1001 &1199048051513170237
 PrefabInstance:
   m_ObjectHideFlags: 0
