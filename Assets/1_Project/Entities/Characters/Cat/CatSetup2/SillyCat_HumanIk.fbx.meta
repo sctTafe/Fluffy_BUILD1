@@ -1217,12 +1217,12 @@ ModelImporter:
     - name: FluffyRig_Ctrl:LeftHipEffector
       parentName: FluffyRig_Ctrl:Reference
       position: {x: -0.18949082, y: 0.18272693, z: 0.0487183}
-      rotation: {x: -0.119760275, y: -0.027227733, z: -0.017673276, w: 0.992272}
+      rotation: {x: -0.11976028, y: -0.027227733, z: -0.017673278, w: 0.992272}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:LeftKneeEffector
       parentName: FluffyRig_Ctrl:Reference
       position: {x: -0.19146392, y: 0.07557211, z: 0.08068804}
-      rotation: {x: -0.119760275, y: -0.027227735, z: -0.017673276, w: 0.992272}
+      rotation: {x: -0.11976028, y: -0.027227735, z: -0.017673278, w: 0.992272}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Ctrl:LeftShoulderEffector
       parentName: FluffyRig_Ctrl:Reference
@@ -1306,18 +1306,18 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Spine
       parentName: FluffyRig_Hips
-      position: {x: -0.0000000232394, y: 0.07978546, z: -0.0000000062623724}
-      rotation: {x: 0.043602202, y: -0.11325876, z: 0.0011786047, w: 0.99260765}
+      position: {x: -0.000000023079338, y: 0.07978545, z: -0.0000000059371814}
+      rotation: {x: 0.003991357, y: -0.11321905, z: 0.00094246125, w: 0.9935616}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Spine1
       parentName: FluffyRig_Spine
-      position: {x: -9.828069e-11, y: 0.19356884, z: 0.0000000020537314}
-      rotation: {x: 0.07954018, y: -0.022532182, z: 0.0071661905, w: 0.9965512}
+      position: {x: 0.0000000027939677, y: 0.19356884, z: 0.0000000018626451}
+      rotation: {x: 0.046357803, y: -0.021839565, z: 0.01148467, w: 0.99862015}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_Spine2
       parentName: FluffyRig_Spine1
-      position: {x: 0.0000000018724433, y: 0.19356884, z: -5.586274e-10}
-      rotation: {x: 0.07605032, y: -0.011795915, z: -0.0240969, w: 0.996743}
+      position: {x: -2.3283064e-10, y: 0.19356886, z: -0.000000013038516}
+      rotation: {x: 0.029583395, y: -0.010525563, z: -0.016682101, w: 0.99936765}
       scale: {x: 1, y: 1, z: 1}
     - name: FluffyRig_LeftShoulder
       parentName: FluffyRig_Spine2
@@ -1637,7 +1637,7 @@ ModelImporter:
     - name: mixamorig2:RightHandPinky1
       parentName: mixamorig2:RightHand
       position: {x: 0.016601501, y: 0.05597302, z: -0.0006900289}
-      rotation: {x: 0.018795842, y: -0.0065888134, z: 0.035299446, w: 0.9991783}
+      rotation: {x: 0.018795844, y: -0.0065888134, z: 0.03529945, w: 0.9991783}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig2:RightHandPinky2
       parentName: mixamorig2:RightHandPinky1

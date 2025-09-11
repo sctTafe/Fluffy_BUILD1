@@ -228,6 +228,14 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
     {
         if (IsGrabbed()) //grabedPlayerGO != null
         {
+            // Check if the grabbed player still exists (in case they were killed/despawned)
+            if (grabedPlayerGO == null)
+            {
+                Debug.Log("Grabbed player no longer exists - cleaning up bite state");
+                CleanupBiteState();
+                return;
+            }
+
             grabbedTime += Time.deltaTime;
 
             //DOSE: releases player that was grabbed after a certain amount of time
@@ -236,6 +244,23 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
                 ReleasePlayer();
             }
         }
+    }
+
+    /// <summary>
+    /// Cleans up bite state when the bitten player is no longer available (killed/disconnected)
+    /// </summary>
+    private void CleanupBiteState()
+    {
+        Debug.Log("Cleaning up bite state - player no longer exists");
+
+        // Trigger the OnBiteStop event that was missing
+        OnBiteStop?.Invoke();
+
+        TriggerBiteCooldown();
+
+        isBiting = false;
+        grabedPlayerGO = null;
+        grabbedTime = 0;
     }
 
     // Release if out of energy 
@@ -282,6 +307,13 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
             return true;
 
         // NOTE: Isn't a grabbed Player, reset variables
+        if (isBiting)
+        {
+            // If we were biting but the player is now null, trigger cleanup
+            Debug.Log("Player was being bitten but no longer exists - triggering cleanup");
+            OnBiteStop?.Invoke();
+        }
+
         isBiting = false;
         grabbedTime = 0;
         return false;
