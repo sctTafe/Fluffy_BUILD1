@@ -5341,6 +5341,7 @@ GameObject:
   - component: {fileID: 8957669517295907108}
   - component: {fileID: 7111800759708940357}
   - component: {fileID: 4657177646537164675}
+  - component: {fileID: 845744917942734914}
   m_Layer: 8
   m_Name: NetworkPlayerPrefab_BackupPlayer
   m_TagString: Player
@@ -6037,6 +6038,19 @@ MonoBehaviour:
   - {fileID: 2100000, guid: c8331f4c49eb63f4faf484cdfa7f30b1, type: 2}
   - {fileID: 2100000, guid: 6f4a743461bfdcb44b46cf47dd94993e, type: 2}
   - {fileID: 2100000, guid: bb46ff7be266a7345a84c5e82957fbbb, type: 2}
+--- !u!114 &845744917942734914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6103115944230435048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14183f0ff1030c34e9b5a35eed08b235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
 --- !u!1 &6108897867625569928
 GameObject:
   m_ObjectHideFlags: 0

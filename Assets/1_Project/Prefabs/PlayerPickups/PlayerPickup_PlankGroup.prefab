@@ -1641,8 +1641,7 @@ GameObject:
   - component: {fileID: 4325992054775601094}
   - component: {fileID: 9203764527857380971}
   - component: {fileID: 4117802020069667806}
-  - component: {fileID: 3225731544018553467}
-  - component: {fileID: -3564377729279367262}
+  - component: {fileID: 7852429245825111613}
   m_Layer: 0
   m_Name: PlayerPickup_PlankGroup
   m_TagString: pick_up_item
@@ -1748,7 +1747,7 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
---- !u!114 &3225731544018553467
+--- !u!114 &7852429245825111613
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1757,52 +1756,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 9078904261597912052}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19177bbbc9f0b8645ae93a628eb372ac, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f06bfb576c22434a9acf3d1860391a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onTagTypeEnterCollider:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -3564377729279367262}
-        m_TargetAssemblyTypeName: HUD_PopUpIcon_Caller, Assembly-CSharp
-        m_MethodName: fn_CallPopupIcon
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onTagTypeExitCollider:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -3564377729279367262}
-        m_TargetAssemblyTypeName: HUD_PopUpIcon_Caller, Assembly-CSharp
-        m_MethodName: fn_CancelPopupIcon
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   tagToDetect: Player
---- !u!114 &-3564377729279367262
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9078904261597912052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da8a0d023ffb3614d800195ce136d187, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &9205229019878592461
 GameObject:
   m_ObjectHideFlags: 0
