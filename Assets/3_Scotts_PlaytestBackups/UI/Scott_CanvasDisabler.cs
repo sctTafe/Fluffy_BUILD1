@@ -32,14 +32,7 @@ public class Scott_CanvasDisabler : MonoBehaviour
         // Check for key input
         if (Input.GetKeyDown(toggleKey))
         {
-            if (toggleMode)
-            {
                 ToggleCanvases();
-            }
-            else
-            {
-                TurnOffAllCanvases();
-            }
         }
     }
 
@@ -49,7 +42,14 @@ public class Scott_CanvasDisabler : MonoBehaviour
     public void ToggleCanvases()
     {
         canvasesAreActive = !canvasesAreActive;
-        SetCanvasesActive(canvasesAreActive);
+        if (canvasesAreActive)
+        {
+            TurnOnAllCanvases();
+        }
+        else
+        {
+            TurnOnAllCanvases();
+        }
 
         Debug.Log($"Canvases toggled: {(canvasesAreActive ? "ON" : "OFF")}");
     }
@@ -77,7 +77,7 @@ public class Scott_CanvasDisabler : MonoBehaviour
     }
 
     /// <summary>
-    /// Auto-populate the canvas list with all canvases in the scene (Editor only)
+    /// Auto-populate the canvas list with all canvases in the scene (Editor only) - Only finds active ones
     /// </summary>
     [ContextMenu("Find All Canvases in Scene")]
     public void FindAllCanvasesInScene()

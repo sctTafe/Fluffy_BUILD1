@@ -46,7 +46,7 @@ public class ScottsBackup_PlayerStealthMng : NetworkBehaviour
                 else
                 {
                     _OnPlayerEnterBush_Local?.Invoke();
-                    _ref_hUDPopUpMessagesSingelton.fn_PopupMessage("[ Hidden! ]", HUD_PopUpMessages_Singelton.PopupStyle.PopAndFade);
+                    //_ref_hUDPopUpMessagesSingelton.fn_PopupMessage("[ Hidden! ]", HUD_PopUpMessages_Singelton.PopupStyle.PopAndFade);
                 }
             }
         }
@@ -56,7 +56,7 @@ public class ScottsBackup_PlayerStealthMng : NetworkBehaviour
         // Doesn't show revealed text, probably needs to be an RPC
         if (IsOwner && force_reveal > 0)
         {
-            _ref_hUDPopUpMessagesSingelton.fn_PopupMessage("[ Revealed! ]", HUD_PopUpMessages_Singelton.PopupStyle.PopAndFade);
+            //_ref_hUDPopUpMessagesSingelton.fn_PopupMessage("[ Revealed! ]", HUD_PopUpMessages_Singelton.PopupStyle.PopAndFade);
         }
 
     }
@@ -80,7 +80,7 @@ public class ScottsBackup_PlayerStealthMng : NetworkBehaviour
         }
         else
         {
-            _ref_hUDPopUpMessagesSingelton.fn_PopupMessage("[ - - - ]", HUD_PopUpMessages_Singelton.PopupStyle.PopAndFade);
+            //_ref_hUDPopUpMessagesSingelton.fn_PopupMessage("[ - - - ]", HUD_PopUpMessages_Singelton.PopupStyle.PopAndFade);
         }
     }
 
@@ -114,7 +114,7 @@ public class ScottsBackup_PlayerStealthMng : NetworkBehaviour
         {
             Debug.Log("Server RPC to reveal player was called");
             force_reveal = 10;
-            _ref_hUDPopUpMessagesSingelton.fn_PopupMessage("[ Revealed! ]", HUD_PopUpMessages_Singelton.PopupStyle.PopAndFade);
+            //_ref_hUDPopUpMessagesSingelton.fn_PopupMessage("[ Revealed! ]", HUD_PopUpMessages_Singelton.PopupStyle.PopAndFade);
         }
     }
 }

@@ -6261,7 +6261,7 @@ MonoBehaviour:
   - {fileID: 1342421006}
   - {fileID: 1342421005}
   toggleKey: 48
-  toggleMode: 0
+  toggleMode: 1
 --- !u!1001 &139392842
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -84422,6 +84422,10 @@ PrefabInstance:
       value: '[HUD_PopupMng]'
       objectReference: {fileID: 0}
     - target: {fileID: 8730935019444024881, guid: bb63074b51bff4747a338ec37b13acf5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771773422343435297, guid: bb63074b51bff4747a338ec37b13acf5, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
