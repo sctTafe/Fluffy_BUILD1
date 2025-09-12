@@ -45,6 +45,8 @@ public class CharacterAnimator : NetworkBehaviour
         }
     }
 
+
+
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
