@@ -6,6 +6,8 @@ using System.Collections;
 
 public class DepositItemPoint : NetworkBehaviour
 {
+	public Action _OnDepositItem;
+
 	/**
 	* Code for the deposit item point.
 	* Allows the players to deposit items to increase an objective's completion.
@@ -63,7 +65,9 @@ public class DepositItemPoint : NetworkBehaviour
 	public void DepositItem()
 	{
         IncreaseAmountServerRPC();
-	}
+		_OnDepositItem?.Invoke();
+
+    }
 
 	[ServerRpc(RequireOwnership = false)]
 	private void IncreaseAmountServerRPC()

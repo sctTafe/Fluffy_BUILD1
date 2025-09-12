@@ -47670,6 +47670,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[HUD_PopupMng]'
       objectReference: {fileID: 0}
+    - target: {fileID: 6260155182240902064, guid: bb63074b51bff4747a338ec37b13acf5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
