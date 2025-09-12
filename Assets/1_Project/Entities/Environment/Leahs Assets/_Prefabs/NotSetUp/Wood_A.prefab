@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6030716221610900241}
-  m_Layer: 0
+  - component: {fileID: 1867903232010746309}
+  m_Layer: 6
   m_Name: wood_stand_pile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32,6 +33,27 @@ Transform:
   - {fileID: 229310343980255949}
   m_Father: {fileID: 7509192498281870432}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1867903232010746309
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806202221057874818}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.133791, y: 1, z: 1.712779}
+  m_Center: {x: -15.892859, y: 0.56999993, z: -3.3949347}
 --- !u!1 &1752525852928943481
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,7 +65,7 @@ GameObject:
   - component: {fileID: 229310343980255949}
   - component: {fileID: 8455623023453119720}
   - component: {fileID: 9058168145452952822}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +157,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7509192498281870432}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wood_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
