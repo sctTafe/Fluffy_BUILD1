@@ -1555,6 +1555,7 @@ MonoBehaviour:
   _jumpStartDuration: 0.15
   _landDuration: 0.3
   _floatTransitionDelay: 0.1
+  tickRate: 1
 --- !u!114 &6498338235879297589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1588,12 +1589,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  OnBiteAttempt:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2178290381059815837}
+        m_TargetAssemblyTypeName: CharacterAnimator, Assembly-CSharp
+        m_MethodName: TriggerAttackActionOneShot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnBiteStart:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2178290381059815837}
         m_TargetAssemblyTypeName: CharacterAnimator, Assembly-CSharp
-        m_MethodName: TriggerBittingAnimation
+        m_MethodName: TriggerBiteAction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1620,7 +1636,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2178290381059815837}
         m_TargetAssemblyTypeName: CharacterAnimator, Assembly-CSharp
-        m_MethodName: TriggerStopBittingAnimation
+        m_MethodName: TriggerStopAction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1634,8 +1650,6 @@ MonoBehaviour:
   _minimumUsageStamina: 10
   _biteActivationCost: 5
   _bitePerSecCost: 2
-  _biteVFX: {fileID: 406685717027784594}
-  _clawAnimator: {fileID: 2699195283259488457}
   _holdingPoint: {fileID: 8250388547353492899}
   triggerBox: {fileID: 6402720590088216435}
   targetTag: Player
@@ -1681,7 +1695,19 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   _OnAvilityActivation:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2178290381059815837}
+        m_TargetAssemblyTypeName: CharacterAnimator, Assembly-CSharp
+        m_MethodName: TriggerJumpingState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _playerControler: {fileID: 7566589443499182477}
   _staminaSystem: {fileID: -991564175368876500}
   _abilityUseCost: 2
@@ -1701,7 +1727,19 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   OnActivationSuccess_UE:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2178290381059815837}
+        m_TargetAssemblyTypeName: CharacterAnimator, Assembly-CSharp
+        m_MethodName: TriggerAttackAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   colliderBox: {fileID: 6402720590088216435}
   _staminaSystem: {fileID: -991564175368876500}
   _enegryCost: 10
@@ -1735,6 +1773,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2178290381059815837}
+        m_TargetAssemblyTypeName: CharacterAnimator, Assembly-CSharp
+        m_MethodName: TriggerBreathActionOneShot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _activationRadius: 5
   _targetLayer:
     serializedVersion: 2
@@ -1744,7 +1794,6 @@ MonoBehaviour:
   _enegryCost: 15
   _abilityCooldownLength: 10
   _targetTag: Player
-  _animator: {fileID: 2699195283259488457}
 --- !u!114 &-991564175368876500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1829,11 +1878,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  OnActivationSuccess_UE:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2178290381059815837}
+        m_TargetAssemblyTypeName: CharacterAnimator, Assembly-CSharp
+        m_MethodName: TriggerRevealingActionOneShot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _staminaSystem: {fileID: -991564175368876500}
   _enegryCost: 50
   _abilityCooldownLength: 30
   _RevealDuration: 5
-  _animator: {fileID: 2699195283259488457}
   _mutantRevealResetDelay: 0.6
 --- !u!114 &1107157359021616998
 MonoBehaviour:
@@ -3398,11 +3461,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c458586dd5e2bf4f910bf22fa79c01e, type: 3}
---- !u!2083052967 &406685717027784594 stripped
-VisualEffect:
-  m_CorrespondingSourceObject: {fileID: 4398416151003809731, guid: 3c458586dd5e2bf4f910bf22fa79c01e, type: 3}
-  m_PrefabInstance: {fileID: 4084349994965319761}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4689932910545395515 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8771740542561034090, guid: 3c458586dd5e2bf4f910bf22fa79c01e, type: 3}
@@ -3719,11 +3777,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2178290381059815837}
   m_SourcePrefab: {fileID: 100100000, guid: bcafae047914a024aae52acbb8f2bb15, type: 3}
---- !u!95 &2699195283259488457 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: bcafae047914a024aae52acbb8f2bb15, type: 3}
-  m_PrefabInstance: {fileID: 8367655564114117976}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8328663260155519667 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bcafae047914a024aae52acbb8f2bb15, type: 3}
@@ -3852,16 +3905,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  forwardParam: ForwardsSpeed
-  sidewaysParam: SidewaysSpeed
-  jumpStateParam: JumpState
-  beingBittenParam: BeingBitten
-  isBittingParam: IsBitting
-  smoothing: 10
-  isBeingBitten:
+  movementStateParam: MovementState
+  actionStateParam: ActionState
+  stateChangeThreshold: 0.2
+  updateCooldown: 0.1
+  networkMovementState:
     m_InternalValue: 0
-  isBitting:
+  networkActionState:
     m_InternalValue: 0
+  autoActionStateClear: 0
+  actionStateTimeout: 0.2
 --- !u!1001 &8941367106147542928
 PrefabInstance:
   m_ObjectHideFlags: 0

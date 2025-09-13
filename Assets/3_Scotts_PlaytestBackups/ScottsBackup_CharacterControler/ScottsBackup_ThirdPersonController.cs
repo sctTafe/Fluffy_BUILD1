@@ -106,6 +106,8 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
 
     private bool _hasAnimator;
 
+    private const bool ISDEBUGGING = true; // Temporarily enable debugging
+
     private bool IsCurrentDeviceMouse
     {
         get
@@ -118,9 +120,9 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
         }
     }
 
-    #region Network Animations (compact)
-    // compact NetworkVariables for the new Animator controller
-    // Owner writes, everyone reads
+    #region Network Animations (State-Based System)
+    // State-based NetworkVariables are now handled by CharacterAnimator
+    // These old variables are kept for backward compatibility but are no longer used
     [HideInInspector] public NetworkVariable<float> _forwardsSpeed_NWV =
         new NetworkVariable<float>(0f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
@@ -133,10 +135,6 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
     // Local anim flags (used to compute jumpState)
     bool _animVarLocal_Jump;
     bool _animVarLocal_Freefall;
-
-    // local change detect var (reintroduced)
-    float _animVarLocalSpeed_Prev;
-    float _animVarLocalMotionSpeed_Prev;
 
     // Jump state machine (local) to avoid stuck land state
     private int _localJumpState = 0; // 0=normal,1=jump start,2=float,3=land
@@ -177,9 +175,11 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
         AssignAnimationIDs();
         _controller = GetComponent<CharacterController>();
 
-        // subscribe to NetworkVariable changes to apply on clients immediately
+        // subscribe to NetworkVariable changes (kept for backward compatibility)
         if (_characterAnimator != null)
         {
+            // The CharacterAnimator now handles its own state-based NetworkVariables
+            // These subscriptions are kept for backward compatibility with legacy systems
             _forwardsSpeed_NWV.OnValueChanged += OnNetworkAnimChangedFloat;
             _sidewaysSpeed_NWV.OnValueChanged += OnNetworkAnimChangedFloat;
             _jumpState_NWV.OnValueChanged += OnNetworkAnimChangedInt;
@@ -535,10 +535,32 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
     private void ApplyNetworkAnimValues()
     {
         if (_characterAnimator == null) return;
-
-        // CharacterAnimator expects (velocity, transform, isOwner, networkSideways, networkForward)
-        _characterAnimator.UpdateAnimatorLocomotion(Vector3.zero, transform, false, _sidewaysSpeed_NWV.Value, _forwardsSpeed_NWV.Value);
-        _characterAnimator.UpdateJumpState(_jumpState_NWV.Value);
+        
+        // For non-owners, use the networked jump state to trigger the correct movement states
+        if (!IsOwner)
+        {
+            // Apply the networked jump state from the owner
+            switch (_jumpState_NWV.Value)
+            {
+                case 0: // Normal - let the movement state system handle this
+                    break;
+                case 1: // Jump start
+                    if (ISDEBUGGING) Debug.Log($"Non-owner applying jump state 1 (Jumping) for {gameObject.name}");
+                    _characterAnimator.TriggerJumpingState();
+                    break;
+                case 2: // Floating
+                    if (ISDEBUGGING) Debug.Log($"Non-owner applying jump state 2 (Floating) for {gameObject.name}");
+                    _characterAnimator.TriggerFloatingState();
+                    break;
+                case 3: // Landing
+                    if (ISDEBUGGING) Debug.Log($"Non-owner applying jump state 3 (Landing) for {gameObject.name}");
+                    _characterAnimator.TriggerFallingState();
+                    break;
+            }
+        }
+        
+        // Also update with movement data (use zero velocity for non-owners since they don't control movement)
+        _characterAnimator.UpdateAnimatorState(Vector3.zero, transform, false, false);
     }
 
 
@@ -550,51 +572,23 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
     {
         if (_characterAnimator == null) return;
 
-        // owner uses local velocity for accurate blends
-        _characterAnimator.UpdateAnimatorLocomotion(_controller.velocity, transform, true, 0f, 0f);
-
-        // use local jump state machine
-        int jumpState = _localJumpState;
-
-        // compute local velocity in character space for network sync
-        Vector3 localVel = transform.InverseTransformDirection(_controller.velocity);
-        float localForward = localVel.z;
-        float localSideways = localVel.x;
-
-        // apply small deadzone to avoid jitter at very low speeds
-        const float deadzone = 0.05f;
-        if (Mathf.Abs(localForward) < deadzone) localForward = 0f;
-        if (Mathf.Abs(localSideways) < deadzone) localSideways = 0f;
-
-        // write to NetworkVariables only when changed (simple change detection)
-        bool forwardChanged = Mathf.Abs(_forwardsSpeed_NWV.Value - localForward) > 0.01f;
-        bool sidewaysChanged = Mathf.Abs(_sidewaysSpeed_NWV.Value - localSideways) > 0.01f;
-
-        bool jumpChanged = _jumpState_NWV.Value != jumpState;
-
-        UpdateAnimationsNWV_Ticker();
-
-        // update previous markers
-        _animVarLocalSpeed_Prev = localForward;
-        _animVarLocalMotionSpeed_Prev = localSideways;
-
-
-        void UpdateAnimationsNWV_Ticker()
+        // Use the new state-based system
+        _characterAnimator.UpdateAnimatorState(_controller.velocity, transform, true, _isSprinting_Input);
+        
+        // Handle jump state separately - trigger movement states directly
+        if (_localJumpState == 1) // Jump start
         {
-            tickTimer -= Time.deltaTime;
-
-            if (tickTimer <= 0f)
-            {
-                // Reset timer based on tickRate
-                tickTimer = 1f / tickRate;
-
-                if (forwardChanged) _forwardsSpeed_NWV.Value = localForward;
-                if (sidewaysChanged) _sidewaysSpeed_NWV.Value = localSideways;
-                if (jumpChanged) _jumpState_NWV.Value = jumpState;
-
-            }
+            _characterAnimator.TriggerJumpingState();
         }
-
+        else if (_localJumpState == 2) // Floating
+        {
+            _characterAnimator.TriggerFloatingState();
+        }
+        else if (_localJumpState == 3) // Landing/Falling
+        {
+            _characterAnimator.TriggerFallingState();
+        }
+        // Note: Don't clear action state here as it might interfere with other actions
     }
 
 
@@ -605,9 +599,9 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
 
     private void Update_NetworkAnimationVaraibles()
     {
-        // This function kept for backward-compatible change detection of movement -> network variables.
-        // The actual writing is done in UpdateOwnerAnimatorLocal() (owner writes directly to NWVs).
-        // Keep the function to preserve existing call sites and future logic if needed.
+        // Legacy function kept for backward compatibility
+        // The new state-based animation system is handled directly in UpdateOwnerAnimatorLocal()
+        // through CharacterAnimator.UpdateAnimatorState()
     }
 
     // New: local jump state machine copied/adapted from AnimalCharacter
@@ -683,36 +677,3 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
         return component != null;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

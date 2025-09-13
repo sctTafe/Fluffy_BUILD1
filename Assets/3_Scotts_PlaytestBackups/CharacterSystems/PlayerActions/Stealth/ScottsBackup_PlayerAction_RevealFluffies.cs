@@ -6,7 +6,7 @@ using Unity.Netcode;
 
 public class PlayerAction_MutantBreath : PlayerActionBase, IHudAbilityBinder
 {
-    private const bool ISDEBUGGING = false;
+    private const bool ISDEBUGGING = true; // Temporarily enable debugging
 
     // IHudAbilityBinder
     public event Action<float> OnCooldownWithLengthTriggered;
@@ -37,21 +37,10 @@ public class PlayerAction_MutantBreath : PlayerActionBase, IHudAbilityBinder
     private bool _isOnCooldown;
     private bool _inputRecived;
 
-    // Animator for playing local fart/reveal animations
-    [SerializeField] private Animator _animator;
-
     private void Start()
     {
-        // find animator on this object or children if not assigned in inspector
-        if (_animator == null)
-            _animator = GetComponentInChildren<Animator>(true);
-
-        if (_animator == null && ISDEBUGGING)
-        {
-            Debug.LogWarning($"PlayerAction_MutantBreath: Animator not found on '{name}' or its children.");
-        }
-
-        // Need to be enable to play the effect across the netwrok
+        // Enable for all clients to receive the networked effects
+        // The input handling is still owner-only due to the action system
     }
 
     void OnDrawGizmosSelected()
@@ -90,9 +79,6 @@ public class PlayerAction_MutantBreath : PlayerActionBase, IHudAbilityBinder
         // If sucessfull
         if (TryDoAction())
         {
-            // play mutant fart animation/effect locally and request network broadcast
-            PlayMutantFartLocal();
-            RequestPlayMutantFartServerRpc();
             SendOnActionPerformedRpc();
             StartCoroutine(StartCooldown(_abilityCooldownLength));
             _staminaSystem.fn_TryReduceValue(_enegryCost);
@@ -150,56 +136,17 @@ public class PlayerAction_MutantBreath : PlayerActionBase, IHudAbilityBinder
     [Rpc(SendTo.ClientsAndHost)]
     private void SendOnActionPerformedClientRpc()
     {
-
         OnActivationSuccess?.Invoke();
         OnActivationSuccess_UE?.Invoke();
 
+        // Trigger the CharacterAnimator revealing state as a one-shot
+        var characterAnimator = GetComponentInChildren<CharacterAnimator>();
+        if (characterAnimator != null)
+        {
+            characterAnimator.TriggerRevealingActionOneShot();
+        }
+
         if (ISDEBUGGING) Debug.Log("PlayerAction_MutantBreath: ClientRPC SendOnActionPerformedClientRpc Called!");
-    }
-
-    // helper: check if animator has a parameter
-    private bool AnimatorHasParameter(string paramName)
-    {
-        if (_animator == null) return false;
-        foreach (var p in _animator.parameters)
-        {
-            if (p.name == paramName) return true;
-        }
-        return false;
-    }
-
-    // Play local fart animation/effect
-    private void PlayMutantFartLocal()
-    {
-        if (_animator == null)
-        {
-            Debug.LogWarning("PlayMutantFartLocal: animator is null");
-            return;
-        }
-
-        // rebind to ensure parameters are available (safe call)
-        try { _animator.Rebind(); } catch { }
-
-        _animator.SetTrigger("MutantFart");
-    }
-
-    // ServerRpc to request network broadcast
-    [ServerRpc]
-    private void RequestPlayMutantFartServerRpc()
-    {
-        PlayMutantFartClientRpc();
-    }
-
-    // ClientRpc to play on all clients
-    [ClientRpc]
-    private void PlayMutantFartClientRpc()
-    {
-        if (!_animator.enabled)
-            _animator.enabled = true;
-
-        try { _animator.Rebind(); } catch { }
-
-        _animator.SetTrigger("MutantFart");
     }
 
 }

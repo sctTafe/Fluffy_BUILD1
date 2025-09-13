@@ -5039,15 +5039,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  forwardParam: ForwardsSpeed
-  sidewaysParam: SidewaysSpeed
-  jumpStateParam: JumpState
-  beingBittenParam: BeingBitten
-  isBittingParam: IsBitting
-  smoothing: 10
-  isBeingBitten:
+  movementStateParam: MovementState
+  actionStateParam: ActionState
+  stateChangeThreshold: 0.2
+  updateCooldown: 0.1
+  networkMovementState:
     m_InternalValue: 0
-  isBitting:
+  networkActionState:
     m_InternalValue: 0
 --- !u!114 &2703111135410507731
 MonoBehaviour:
@@ -5668,6 +5666,7 @@ MonoBehaviour:
   _jumpStartDuration: 0.15
   _landDuration: 0.3
   _floatTransitionDelay: 0.1
+  tickRate: 1
 --- !u!114 &-6137494299052777976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5722,7 +5721,19 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   _OnAvilityActivation:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7470746538546986237}
+        m_TargetAssemblyTypeName: CharacterAnimator, Assembly-CSharp
+        m_MethodName: TriggerJumpingState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _playerControler: {fileID: 5928170330904496098}
   _staminaSystem: {fileID: -5489356403304203484}
   _abilityUseCost: 2
@@ -5855,7 +5866,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 7470746538546986237}
         m_TargetAssemblyTypeName: CharacterAnimator, Assembly-CSharp
-        m_MethodName: TriggerBeingBittenAnimation
+        m_MethodName: TriggerBeingBittenAction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5882,7 +5893,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 7470746538546986237}
         m_TargetAssemblyTypeName: CharacterAnimator, Assembly-CSharp
-        m_MethodName: TriggerStopBeingBittenAnimation
+        m_MethodName: TriggerStopAction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6024,7 +6035,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   _IsRevealed: 0
-  shader: {fileID: 0}
+  shader: {fileID: 8065647590501423311}
 --- !u!114 &4657177646537164675
 MonoBehaviour:
   m_ObjectHideFlags: 0

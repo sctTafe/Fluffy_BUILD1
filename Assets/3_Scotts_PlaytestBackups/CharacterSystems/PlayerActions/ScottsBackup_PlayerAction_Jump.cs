@@ -1,10 +1,11 @@
 using System;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class ScottsBackup_PlayerAction_Jump : PlayerActionBase, IHudAbilityBinder
 {
-    private const bool ISDEBUGGING = false;
+    private const bool ISDEBUGGING = true; // Temporarily enable debugging
 
     public event Action<float> OnCooldownWithLengthTriggered;
     public event Action OnCooldownCanceled;
@@ -66,6 +67,9 @@ public class ScottsBackup_PlayerAction_Jump : PlayerActionBase, IHudAbilityBinde
                 _staminaSystem.fn_TryReduceValue(_abilityUseCost); //Deduct Stamina 
                 OnCooldownWithLengthTriggered?.Invoke(_abilityCoolDown);
                 _OnAvilityActivation?.Invoke();
+                
+                // Send jump animation to all clients
+                SendJumpAnimationRpc();
             }
             else
             {
@@ -76,5 +80,24 @@ public class ScottsBackup_PlayerAction_Jump : PlayerActionBase, IHudAbilityBinde
         {
             if (ISDEBUGGING) Debug.Log("ScottsBackup_PlayerAction_Jump: Cannot Afford");
         }
+    }
+
+    // ServerRpc - called from client, runs on server
+    [Rpc(SendTo.Server)]
+    private void SendJumpAnimationRpc()
+    {
+        SendJumpAnimationClientRpc();
+    }
+
+    // ClientRpc - called from server, runs on all clients
+    [Rpc(SendTo.ClientsAndHost)]
+    private void SendJumpAnimationClientRpc()
+    {
+        _OnAvilityActivation?.Invoke();
+        
+        // Note: Jump movement state is handled by ThirdPersonController's UpdateLocalJumpState()
+        // Don't trigger it here to avoid conflicts
+        
+        if (ISDEBUGGING) Debug.Log("ScottsBackup_PlayerAction_Jump: ClientRPC Jump Animation Called!");
     }
 }

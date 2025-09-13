@@ -231,6 +231,62 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1220139334186284262, guid: 424e28b2d96a77144a295e335ec2609d, type: 3}
+      propertyPath: OnBiteAttempt.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1220139334186284262, guid: 424e28b2d96a77144a295e335ec2609d, type: 3}
+      propertyPath: OnBiteAttempt.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1220139334186284262, guid: 424e28b2d96a77144a295e335ec2609d, type: 3}
+      propertyPath: OnBiteAttempt.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6000472137939272652}
+    - target: {fileID: 1220139334186284262, guid: 424e28b2d96a77144a295e335ec2609d, type: 3}
+      propertyPath: OnBiteAttempt.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1220139334186284262, guid: 424e28b2d96a77144a295e335ec2609d, type: 3}
+      propertyPath: OnBiteAttempt.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TriggerBiteAction
+      objectReference: {fileID: 0}
+    - target: {fileID: 1220139334186284262, guid: 424e28b2d96a77144a295e335ec2609d, type: 3}
+      propertyPath: OnBiteAttempt.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CharacterAnimator, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1220139334186284262, guid: 424e28b2d96a77144a295e335ec2609d, type: 3}
+      propertyPath: OnBiteAttempt.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3028756115781371107, guid: 424e28b2d96a77144a295e335ec2609d, type: 3}
+      propertyPath: _OnAvilityActivation.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3028756115781371107, guid: 424e28b2d96a77144a295e335ec2609d, type: 3}
+      propertyPath: _OnAvilityActivation.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3028756115781371107, guid: 424e28b2d96a77144a295e335ec2609d, type: 3}
+      propertyPath: _OnAvilityActivation.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6000472137939272652}
+    - target: {fileID: 3028756115781371107, guid: 424e28b2d96a77144a295e335ec2609d, type: 3}
+      propertyPath: _OnAvilityActivation.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3028756115781371107, guid: 424e28b2d96a77144a295e335ec2609d, type: 3}
+      propertyPath: _OnAvilityActivation.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TriggerJumpingState
+      objectReference: {fileID: 0}
+    - target: {fileID: 3028756115781371107, guid: 424e28b2d96a77144a295e335ec2609d, type: 3}
+      propertyPath: _OnAvilityActivation.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CharacterAnimator, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3028756115781371107, guid: 424e28b2d96a77144a295e335ec2609d, type: 3}
+      propertyPath: _OnAvilityActivation.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5408246126893154181, guid: 424e28b2d96a77144a295e335ec2609d, type: 3}
       propertyPath: m_Name
       value: NetworkPlayerPrefab_BackupMutant Variant
@@ -292,3 +348,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9005902844290762139, guid: 424e28b2d96a77144a295e335ec2609d, type: 3}
   m_PrefabInstance: {fileID: 5584219521096858193}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6000472137939272652 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2178290381059815837, guid: 424e28b2d96a77144a295e335ec2609d, type: 3}
+  m_PrefabInstance: {fileID: 5584219521096858193}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fe09355fa924e84ca99deed2ab2b7fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

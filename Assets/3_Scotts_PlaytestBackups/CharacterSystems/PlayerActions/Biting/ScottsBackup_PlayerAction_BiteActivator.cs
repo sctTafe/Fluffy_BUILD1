@@ -15,12 +15,15 @@ using UnityEngine.Events;
 /// </summary>
 public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbilityBinder
 {
+    private const bool ISDEBUGGING = true; // Temporarily enable debugging
+
     public event Action<float> OnCooldownWithLengthTriggered;
     public event Action OnCooldownCanceled;
 
     public Action OnInsufficientStamina;
     public Action OnAttemptToBite;
     public Action OnBiteSuccessful;
+    public UnityEvent OnBiteAttempt;
     public UnityEvent OnBiteStart;
     public UnityEvent OnBiteStop;
 
@@ -29,12 +32,6 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
     [SerializeField] private float _minimumUsageStamina = 10;
     [SerializeField] private float _biteActivationCost = 5;
     [SerializeField] private float _bitePerSecCost = 2;
-
-    // VFX / Animator for claw attack (moved here from MutantAttackEffects)
-    [Header("Attack Effects")]
-    [SerializeField] private VisualEffect _biteVFX; // use UnityEngine.VFX.VisualEffect
-    //[SerializeField] private VisualEffect _clawVFX; // use UnityEngine.VFX.VisualEffect
-    [SerializeField] private Animator _clawAnimator;
 
     //private MutantStamina _mutantStaminaSystem;
 
@@ -165,10 +162,7 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
             return;
         }
 
-        // Play local claw attack effects/animation immediately for responsiveness
-        PlayClawLocal();
-        // Request server to broadcast the claw attack to all clients
-        RequestPlayClawServerRpc();
+        OnBiteAttempt?.Invoke();
 
         if (!IsATargetInsideBiteCollider(out GameObject biteTarget))
         {
@@ -179,8 +173,6 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
 
         //NOTE: - Bite Is Sucessfull! -
 
-        OnBiteSuccessful?.Invoke();
-
         //_mutantStaminaSystem.reduce_stamina(40);
         _resourceSystem.fn_TryReduceValue(_biteActivationCost); // Bite Start Cost
 
@@ -189,15 +181,12 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
         grabedPlayerGO = biteTarget;
         isBiting = true; //Activated Update Loop
 
-
         // RPC Call To Target Player to Notify them they have been Bitten 
         Debug.Log($"{this.gameObject.name} Trying to Grab {biteTarget.gameObject.name}");
         BiteTargetPlayerServerRpc(biteTarget.GetComponent<NetworkObject>().OwnerClientId, gameObject.GetComponent<NetworkObject>().OwnerClientId);
 
-        // Play local claw attack effects/animation immediately for responsiveness
-        PlayBiteLocal();
-        // Request server to broadcast the claw attack to all clients
-        RequestPlayBiteServerRpc();
+        // Send bite successful event to all clients
+        SendBiteSuccessfulRpc();
     }
 
     
@@ -253,14 +242,21 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
     {
         Debug.Log("Cleaning up bite state - player no longer exists");
 
-        // Trigger the OnBiteStop event that was missing
-        OnBiteStop?.Invoke();
+        // Send cleanup animation to all clients via RPC
+        SendBiteStopAnimationRpc();
 
         TriggerBiteCooldown();
 
         isBiting = false;
         grabedPlayerGO = null;
         grabbedTime = 0;
+    }
+
+    // ServerRpc - called from client, runs on server
+    [Rpc(SendTo.Server)]
+    private void SendBiteStopAnimationRpc()
+    {
+        SendBiteStopAnimationClientRpc();
     }
 
     // Release if out of energy 
@@ -311,7 +307,7 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
         {
             // If we were biting but the player is now null, trigger cleanup
             Debug.Log("Player was being bitten but no longer exists - triggering cleanup");
-            OnBiteStop?.Invoke();
+            // Don't trigger Unity Event here - it will be handled by CleanupBiteState or ReleasePlayer
         }
 
         isBiting = false;
@@ -335,11 +331,11 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
         Transform targetTrans = NetworkManager.Singleton.ConnectedClients[targetPlayerId].PlayerObject.gameObject.transform;
         targetTrans.parent = bitterTrans;
 
-        OnBiteStart?.Invoke();
-
-
         // Server Authorative - On the server, tell it to set the grabbed player's Bite_Receiver to call Is Bitten.
         NetworkManager.Singleton.ConnectedClients[targetPlayerId].PlayerObject.gameObject.GetComponent<ScottsBackup_Receiver_Bite>().fn_SetBiteMode(true, _holdingPoint.position);
+        
+        // Send bite start animation to all clients
+        SendBiteStartAnimationClientRpc();
     }
 
     [ServerRpc]
@@ -348,12 +344,56 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
         GameObject p = NetworkManager.Singleton.ConnectedClients[PlayerId].PlayerObject.gameObject;
         p.transform.parent = null;
 
-        OnBiteStop?.Invoke();
-
         //find and runs a function on the grabbed players animal chaaracter script that disables the players network transformer and movement in the script
         p.GetComponent<ScottsBackup_Receiver_Bite>().fn_SetBiteMode(false, Vector3.zero);
+        
+        // Send bite stop animation to all clients
+        SendBiteStopAnimationClientRpc();
     }
 
+    // ClientRpc - called from server, runs on all clients
+    [ClientRpc]
+    private void SendBiteStartAnimationClientRpc()
+    {
+        OnBiteStart?.Invoke();
+        
+        if (ISDEBUGGING) Debug.Log("ScottsBackup_PlayerAction_BiteActivator: ClientRPC Bite Start Animation Called!");
+    }
+
+    // ClientRpc - called from server, runs on all clients  
+    [ClientRpc]
+    private void SendBiteStopAnimationClientRpc()
+    {
+        OnBiteStop?.Invoke();
+        
+        // Clear the CharacterAnimator action state when biting stops
+        var characterAnimator = GetComponentInChildren<CharacterAnimator>();
+        if (characterAnimator != null)
+        {
+            characterAnimator.ClearActionState();
+        }
+        
+        if (ISDEBUGGING) Debug.Log("ScottsBackup_PlayerAction_BiteActivator: ClientRPC Bite Stop Animation Called!");
+    }
+
+    // ServerRpc - called from client, runs on server
+    [Rpc(SendTo.Server)]
+    private void SendBiteSuccessfulRpc()
+    {
+        SendBiteSuccessfulClientRpc();
+    }
+
+    // ClientRpc - called from server, runs on all clients
+    [ClientRpc]
+    private void SendBiteSuccessfulClientRpc()
+    {
+        OnBiteSuccessful?.Invoke();
+        
+        // Note: Biting animation is now triggered in SendBiteStartAnimationClientRpc instead
+        // to avoid duplicate triggers
+        
+        if (ISDEBUGGING) Debug.Log("ScottsBackup_PlayerAction_BiteActivator: ClientRPC Bite Successful Called!");
+    }
 
 
 
@@ -457,55 +497,6 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
         }
     }
     #endregion END: Timers
-
-    // --- Networked VFX / Animation RPCs ---
-    // Play local claw effect and animation
-
-    private void PlayClawLocal()
-    {
-       // if (_clawVFX != null)
-       //     _clawVFX.SendEvent("Attack");
-        if (_clawAnimator != null)
-            _clawAnimator.SetTrigger("ClawAttack");
-    }
-
-    [ServerRpc]
-    private void RequestPlayClawServerRpc()
-    {
-        // Server triggers the client RPC to play on all clients
-        PlayClawClientRpc();
-    }
-
-    [ClientRpc]
-    private void PlayClawClientRpc()
-    {
-        // Clients (and server) run the effect
-       // if (_clawVFX != null)
-       //     _clawVFX.SendEvent("Attack");
-        if (_clawAnimator != null)
-            _clawAnimator.SetTrigger("ClawAttack");
-    }
-
-    private void PlayBiteLocal()
-    {
-       // if (_clawVFX != null)
-       //     _clawVFX.SendEvent("Bitten");
-    }
-
-    [ServerRpc]
-    private void RequestPlayBiteServerRpc()
-    {
-        // Server triggers the client RPC to play on all clients
-        PlayBiteClientRpc();
-    }
-
-    [ClientRpc]
-    private void PlayBiteClientRpc()
-    {
-        // Clients (and server) run the effect
-        if (_biteVFX != null)
-            _biteVFX.SendEvent("Bitten");
-    }
 
 }
 
