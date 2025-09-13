@@ -60,7 +60,6 @@ public class DestructibleObject_Reciver : NetworkBehaviour
 
 
     // --- Destory This Object ---
-
     [ServerRpc(RequireOwnership = false)]
     private void DestroyObjectServerRPC(ulong to_destroy)
     {
