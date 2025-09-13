@@ -5,9 +5,10 @@ using UnityEngine.Events;
 
 public class DestructibleObject_Reciver : NetworkBehaviour
 {
-    private const bool ISDEBUGGING = true;
+    private const bool ISDEBUGGING = false;
 
     public UnityEvent _onDestructibleGettingAttacked;
+    private GameObject _bushToDisableRoot;
 
     internal void fn_TriggerDestruction(float delay = 0f)
     {
@@ -19,16 +20,24 @@ public class DestructibleObject_Reciver : NetworkBehaviour
 
     void Start()
     {
-        
+        _bushToDisableRoot = this.transform.parent.gameObject;
+    }
+
+    public void fn_DisbaleRootBush()
+    {
+        //disbale the root object locally
+        _bushToDisableRoot?.SetActive(false);
     }
 
     IEnumerator DelayedDestoryFunctionCall(float delay)
     {
-        // Wait for 1.5 seconds
+        // Wait seconds
         yield return new WaitForSeconds(delay);
 
         // Call the function after the delay
         if (ISDEBUGGING) Debug.Log("DestructibleObject_Reciver: DestroyObjectServerRPC Called!");
+        
+        //Send intructions to server to destory the network object
         DestroyObjectServerRPC(this.NetworkObjectId);
     }
 
@@ -46,7 +55,6 @@ public class DestructibleObject_Reciver : NetworkBehaviour
     private void SendOnAttackedClientRpc(float delay = 0f)
     {
         _onDestructibleGettingAttacked?.Invoke();
-
         if (ISDEBUGGING) Debug.Log("DestructibleObject_Reciver: ClientRPC _onDestructibleGettingAttacked Called!");
     }
 
@@ -56,12 +64,23 @@ public class DestructibleObject_Reciver : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     private void DestroyObjectServerRPC(ulong to_destroy)
     {
+        //Tell all to disbale to bush
+        DisableBushClientRpc();
+
         if (IsServer)
         {
             NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(to_destroy, out NetworkObject target_object);
             target_object.Despawn();
         }
     }
+
+    // ClientRpc - called from server, runs on all clients
+    [Rpc(SendTo.ClientsAndHost)]
+    private void DisableBushClientRpc()
+    {
+        fn_DisbaleRootBush();
+    }
+
 
     #endregion
 
