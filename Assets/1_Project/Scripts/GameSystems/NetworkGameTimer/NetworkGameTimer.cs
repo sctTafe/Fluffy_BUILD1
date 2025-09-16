@@ -3,12 +3,9 @@ using UnityEngine;
 
 public class NetworkGameTimer : INetworkGameTimer
 {
-    private float serverStartTime; // When the timer started (in seconds since game start)
-    private NetworkVariable<float> networkElapsedTime = new NetworkVariable<float>(default,
+    // Single write-once start time replicated to late joiners. No per-second updates.
+    private NetworkVariable<float> startTimeSeconds = new NetworkVariable<float>(-1f,
         NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
-
-    public float ElapsedTime => Time.time - serverStartTime;
-    private float lastSyncTime; // var for time to sync to the network variable
 
     private bool isActive;
 
@@ -16,23 +13,23 @@ public class NetworkGameTimer : INetworkGameTimer
     {
         if (IsServer)
         {
-            serverStartTime = Time.time;
+            // Use server time for proper synchronization (double -> float acceptable precision for timers)
+            startTimeSeconds.Value = (float)NetworkManager.ServerTime.Time;
             isActive = true;
         }
     }
 
+    // No Update needed for syncing; kept in case future logic required
     private void Update()
     {
-        if (IsServer && isActive)
-        {
-            // Update elapsed time periodically for syncing
-            if (Time.time - lastSyncTime >= 1f) // Sync every second
-            {
-                networkElapsedTime.Value = ElapsedTime;
-                lastSyncTime = Time.time;
-            }
-        }
+        // Could add server authoritative stop logic here if needed
+    }
 
+    private float GetElapsed()
+    {
+        if (startTimeSeconds.Value < 0f) return 0f;
+        // All peers reference ServerTime for a consistent clock
+        return (float)(NetworkManager.ServerTime.Time - startTimeSeconds.Value);
     }
 
     public override string GetFormattedTime(float time)
@@ -46,8 +43,6 @@ public class NetworkGameTimer : INetworkGameTimer
 
     public override string GetCurrentTimeFormatted()
     {
-        float displayTime = IsServer ? ElapsedTime : networkElapsedTime.Value;
-        return GetFormattedTime(displayTime);
+        return GetFormattedTime(GetElapsed());
     }
-
 }
