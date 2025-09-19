@@ -7,18 +7,11 @@ using UnityEngine.InputSystem;
 
 public class ScottsBackup_ThirdPersonController : NetworkBehaviour
 {
-    public Action OnLandingEvent;   // Landing Sounds
-    public Action OnFootStepEvent;  // Footstep Sounds
-
     [Header("Player")]
     [Tooltip("Move speed of the character in m/s")] public float MoveSpeed = 2.0f;
     [Tooltip("Sprint speed of the character in m/s")] public float SprintSpeed = 5.335f;
     [Tooltip("How fast the character turns to face movement direction")][Range(0.0f, 0.3f)] public float RotationSmoothTime = 0.12f;
     [Tooltip("Acceleration and deceleration")] public float SpeedChangeRate = 10.0f;
-
-    public AudioClip LandingAudioClip;
-    public AudioClip[] FootstepAudioClips;
-    [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
 
     [Space(10)]
     [Tooltip("The height the player can jump")] public float JumpHeight = 1.2f;
@@ -107,6 +100,7 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
     #endregion
 
     private CharacterAnimator _characterAnimator; // new state-based network animator
+    private MovementSnapshotSync _snapshotSync; // new snapshot sync component (added at runtime if missing)
 
     private void Awake()
     {
@@ -120,6 +114,13 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
     {
         _hasAnimator = TryGetComponentInChildren(out _animator);
         _characterAnimator = GetComponentInChildren<CharacterAnimator>(true);
+
+        // Ensure snapshot sync exists (can also be manually added in prefab)
+        _snapshotSync = GetComponent<MovementSnapshotSync>();
+        if (_snapshotSync == null)
+        {
+            _snapshotSync = gameObject.AddComponent<MovementSnapshotSync>();
+        }
 
         AssignAnimationIDs();
         _controller = GetComponent<CharacterController>();
@@ -175,7 +176,7 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
     {
         _hasAnimator = TryGetComponentInChildren(out _animator);
 
-        if (!IsOwner) return; // Non-owners rely entirely on CharacterAnimator's network state callbacks
+        if (!IsOwner) return; // Non-owners rely entirely on CharacterAnimator's network state callbacks + MovementSnapshotSync interpolation
 
         Update_HandleMovementAndPlayerInput();
         UpdateLocalJumpState();
@@ -319,16 +320,6 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
         Color transparentRed = new Color(1.0f, 0.0f, 0.0f, 0.35f);
         Gizmos.color = Grounded ? transparentGreen : transparentRed;
         Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
-    }
-
-    private void OnFootstep(AnimationEvent animationEvent)
-    {
-        if (animationEvent.animatorClipInfo.weight > 0.5f) OnFootStepEvent?.Invoke();
-    }
-
-    private void OnLand(AnimationEvent animationEvent)
-    {
-        if (animationEvent.animatorClipInfo.weight > 0.5f) OnLandingEvent?.Invoke();
     }
 
     private void UpdateAnimatorOwner()
