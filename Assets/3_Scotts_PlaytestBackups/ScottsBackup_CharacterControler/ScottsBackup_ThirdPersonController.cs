@@ -281,6 +281,9 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
         }
     }
 
+
+
+
     private void LateUpdate()
     {
         if (!IsOwner)
@@ -538,6 +541,10 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
         _characterAnimator.UpdateJumpState(_jumpState_NWV.Value);
     }
 
+
+    [SerializeField] private float tickRate = 1f; // times per second
+    private float tickTimer;
+
     // Owner-side: update local animator immediately and write compact values to NetworkVariables (owner-writable)
     private void UpdateOwnerAnimatorLocal()
     {
@@ -562,16 +569,39 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
         // write to NetworkVariables only when changed (simple change detection)
         bool forwardChanged = Mathf.Abs(_forwardsSpeed_NWV.Value - localForward) > 0.01f;
         bool sidewaysChanged = Mathf.Abs(_sidewaysSpeed_NWV.Value - localSideways) > 0.01f;
+
         bool jumpChanged = _jumpState_NWV.Value != jumpState;
 
-        if (forwardChanged) _forwardsSpeed_NWV.Value = localForward;
-        if (sidewaysChanged) _sidewaysSpeed_NWV.Value = localSideways;
-        if (jumpChanged) _jumpState_NWV.Value = jumpState;
+        UpdateAnimationsNWV_Ticker();
 
         // update previous markers
         _animVarLocalSpeed_Prev = localForward;
         _animVarLocalMotionSpeed_Prev = localSideways;
+
+
+        void UpdateAnimationsNWV_Ticker()
+        {
+            tickTimer -= Time.deltaTime;
+
+            if (tickTimer <= 0f)
+            {
+                // Reset timer based on tickRate
+                tickTimer = 1f / tickRate;
+
+                if (forwardChanged) _forwardsSpeed_NWV.Value = localForward;
+                if (sidewaysChanged) _sidewaysSpeed_NWV.Value = localSideways;
+                if (jumpChanged) _jumpState_NWV.Value = jumpState;
+
+            }
+        }
+
     }
+
+
+
+
+
+
 
     private void Update_NetworkAnimationVaraibles()
     {

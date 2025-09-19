@@ -6,6 +6,8 @@ using System.Collections;
 
 public class DepositItemPoint : NetworkBehaviour
 {
+	public Action _OnDepositItem;
+
 	/**
 	* Code for the deposit item point.
 	* Allows the players to deposit items to increase an objective's completion.
@@ -37,28 +39,6 @@ public class DepositItemPoint : NetworkBehaviour
 		// objective_manager = GameObject.FindWithTag("ObjectiveManager").GetComponent<ObjectiveManager>();
 	}
 
-	void Update()
-	{
-		/**
-		if(objective_prompt == null && Time.frameCount % 10 == 0)
-		{
-			objective_prompt = GameObject.FindWithTag(objective_UI_tag).GetComponent<TMP_Text>();
-			
-			if(objective_prompt != null)
-			{
-				UpdateUI();
-			}
-		}
-		**/
-
-		// DEV TESTING
-		if(Input.GetKeyDown(KeyCode.O))
-		{
-			DepositItem();
-		}
-	}
-
-
     private void OnEnable()
     {
 		current_amount.OnValueChanged += HandleOnValueChange;
@@ -85,7 +65,9 @@ public class DepositItemPoint : NetworkBehaviour
 	public void DepositItem()
 	{
         IncreaseAmountServerRPC();
-	}
+		_OnDepositItem?.Invoke();
+
+    }
 
 	[ServerRpc(RequireOwnership = false)]
 	private void IncreaseAmountServerRPC()

@@ -88,13 +88,20 @@ public class HUD : MonoBehaviour
     protected void TryBindActionButtons()
     {
         if (ISDEBUGGING) Debug.Log("HUD: fn_Bind TryBindActionButtons!");
-        TryBindButton(_bound_hUDPublisher.InputMain, _ActionUIElement_Main, _hUDAbilityMng_Main);
-        TryBindButton(_bound_hUDPublisher.InputSprint, _ActionUIElement_Sprint, _hUDAbilityMng_Sprint);
-        TryBindButton(_bound_hUDPublisher.InputJump, _ActionUIElement_Jump, _hUDAbilityMng_Jump);
-        TryBindButton(_bound_hUDPublisher.ActionInteraction1, _ActionUIElement_1, _hUDAbilityMng_1);
-        TryBindButton(_bound_hUDPublisher.ActionInteraction2, _ActionUIElement_2, _hUDAbilityMng_2);
-        TryBindButton(_bound_hUDPublisher.ActionInteraction3, _ActionUIElement_3, _hUDAbilityMng_3);
-        TryBindButton(_bound_hUDPublisher.ActionInteraction4, _ActionUIElement_4, _hUDAbilityMng_4);
+        if (_ActionUIElement_Main != null)
+            TryBindButton(_bound_hUDPublisher.InputMain, _ActionUIElement_Main, _hUDAbilityMng_Main);
+        if (_ActionUIElement_Sprint != null)
+            TryBindButton(_bound_hUDPublisher.InputSprint, _ActionUIElement_Sprint, _hUDAbilityMng_Sprint);
+        if (_ActionUIElement_Jump != null)
+            TryBindButton(_bound_hUDPublisher.InputJump, _ActionUIElement_Jump, _hUDAbilityMng_Jump);
+        if (_ActionUIElement_1 != null)
+            TryBindButton(_bound_hUDPublisher.ActionInteraction1, _ActionUIElement_1, _hUDAbilityMng_1);
+        if (_ActionUIElement_2 != null)
+            TryBindButton(_bound_hUDPublisher.ActionInteraction2, _ActionUIElement_2, _hUDAbilityMng_2);
+        if (_ActionUIElement_3 != null)
+            TryBindButton(_bound_hUDPublisher.ActionInteraction3, _ActionUIElement_3, _hUDAbilityMng_3);
+        if (_ActionUIElement_4 != null)
+            TryBindButton(_bound_hUDPublisher.ActionInteraction4, _ActionUIElement_4, _hUDAbilityMng_4);
 
         void TryBindButton(PlayerActionBase action, GameObject uiElement, HUDAbilityMng abilityMng)
         {

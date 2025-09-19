@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.2, y: 0.11566168, z: 10.04}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1505933778251894250}
@@ -223,6 +223,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7779139479875497458, guid: 1e9171570b7eb0b45834b438867a572b, type: 3}
+      propertyPath: m_Radius
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7931559862932332286, guid: 1e9171570b7eb0b45834b438867a572b, type: 3}
       propertyPath: targetTag
       value: Mutant
@@ -256,6 +260,10 @@ PrefabInstance:
     - target: {fileID: 3545162685736455917, guid: 1a0c2b44f9dd6774bad847f0af895bb9, type: 3}
       propertyPath: m_Name
       value: ResourceInteractor_Player_HealthDown_OneShot
+      objectReference: {fileID: 0}
+    - target: {fileID: 4839856097516106103, guid: 1a0c2b44f9dd6774bad847f0af895bb9, type: 3}
+      propertyPath: m_Radius
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5101767979164844667, guid: 1a0c2b44f9dd6774bad847f0af895bb9, type: 3}
       propertyPath: _rootGOToDisable
