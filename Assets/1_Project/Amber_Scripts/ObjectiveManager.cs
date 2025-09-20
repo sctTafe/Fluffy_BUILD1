@@ -1,5 +1,6 @@
 using UnityEngine;
 using Unity.Netcode;
+using System;
 
 /// <summary>
 /// 
@@ -9,10 +10,14 @@ using Unity.Netcode;
 /// </summary>
 public class ObjectiveManager : NetworkSingleton<ObjectiveManager>
 {
+	public Action _OnObjectivesComplete;
+	
 	public NetworkVariable<int> objectives_completed = new NetworkVariable<int>(0);
 	float objectives_completed_offline = 0;
 
-	[ServerRpc(RequireOwnership = false)]
+
+
+    [ServerRpc(RequireOwnership = false)]
 	public void CompletedObjectiveServerRPC()
 	{
 		objectives_completed.Value += 1;
@@ -41,7 +46,9 @@ public class ObjectiveManager : NetworkSingleton<ObjectiveManager>
 	{
 		// Function that runs when all objectives have been completed, telling the boat that it's ready
 		Debug.Log("All 3 objectives are complete!");
-	}
+        _OnObjectivesComplete?.Invoke();
+
+    }
 
 	public bool CanPlayersEscape()
 	{
@@ -49,4 +56,6 @@ public class ObjectiveManager : NetworkSingleton<ObjectiveManager>
 		Debug.Log($"Players have completed {objectives_completed_offline}");
 		return (objectives_completed_offline >= 3);
 	}
+
+
 }
