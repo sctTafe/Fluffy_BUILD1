@@ -590,11 +590,11 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
         {
 			delta_pos = transform.position - previous_pos;
 			
-			if(delta_pos.y >= 0.3f * Time.deltaTime)
+			if(delta_pos.y >= 0.1f * Time.deltaTime)
 			{
 				jumping = 1;
 			}
-			else if(delta_pos.y <= -0.3f * Time.deltaTime)
+			else if(delta_pos.y <= -0.1f * Time.deltaTime)
 			{
 				jumping = 2;
 			}
