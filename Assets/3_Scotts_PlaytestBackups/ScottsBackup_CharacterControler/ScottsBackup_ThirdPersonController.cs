@@ -283,9 +283,11 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
             if (IsClient)
             {
                 // apply networked values to child CharacterAnimator
-                ApplyNetworkAnimValues();
-            }
-        }
+				UpdateAnimationsNWV_Ticker();
+				_characterAnimator.UpdateAnimatorLocomotion(delta_pos * 100, transform, true, 0f, 0f);
+                // ApplyNetworkAnimValues();
+			}
+		}
     }
 
 
@@ -585,27 +587,26 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
         _animVarLocalSpeed_Prev = localForward;
         _animVarLocalMotionSpeed_Prev = localSideways;
 
-
-        void UpdateAnimationsNWV_Ticker()
-        {
-			delta_pos = transform.position - previous_pos;
-			
-			if(delta_pos.y >= 0.1f * Time.deltaTime)
-			{
-				jumping = 1;
-			}
-			else if(delta_pos.y <= -0.1f * Time.deltaTime)
-			{
-				jumping = 2;
-			}
-			else
-			{
-				jumping = 0;
-			}
-        }
-
     }
 
+	void UpdateAnimationsNWV_Ticker()
+	{
+		delta_pos = transform.position - previous_pos;
+		previous_pos = transform.position;
+		
+		if(delta_pos.y >= 0.1f * Time.deltaTime)
+		{
+			jumping = 1;
+		}
+		else if(delta_pos.y <= -0.1f * Time.deltaTime)
+		{
+			jumping = 2;
+		}
+		else
+		{
+			jumping = 0;
+		}
+	}
 
     // New: local jump state machine copied/adapted from AnimalCharacter
 	/**
