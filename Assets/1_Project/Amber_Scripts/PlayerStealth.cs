@@ -2,270 +2,371 @@ using UnityEngine;
 using Unity.Netcode;
 using TMPro;
 using FMODUnity;
+using UnityEngine.Events;
 
 public class PlayerStealth : NetworkBehaviour
 {
-	GameObject geometry;
-	private Renderer[] renderers;
-	private Material[][] materialInstances; // Store material instances
-	private bool in_bush = false;
-	private float time_in_bush = 0;
-	private float force_reveal = 0;
-	private TMP_Text stealth_prompt;
+    [SerializeField] private GameObject geometry;
+    private Renderer[] renderers;
+    private Material[][] materialInstances; // Store material instances
 
-	private bool played_sound = false;
-	
-	// Dissolve shader control
-	[Header("Dissolve Settings")]
-	[SerializeField] private string dissolvePropertyName = "_DitherAlpha";
-	[SerializeField] private float dissolveSpeed = 2f;
-	[SerializeField] private float hiddenDissolveValue = 0.0f;
-	[SerializeField] private float visibleDissolveValue = 1.0f;
-	
-	private float targetDissolveValue = 1.0f;
-	private float currentDissolveValue = 1.0f;
-	
-	public EventReference hide_sound;
+    // Local owner-only bush tracking
+    private bool in_bush = false;
+    private float time_in_bush = 0f;
+    private float force_reveal = 0f; // countdown while force revealed (owner only)
+
+    private TMP_Text stealth_prompt;
+    private bool played_sound = false;
+
+    // Unity Event & HUD popup integration (migrated from backup script)
+    [Header("Stealth Events")] public UnityEvent OnPlayerEnterBush_Local; // invoked when local player transitions to hiding
+    private HUD_PopUpMessages_Singelton hudPopup; // owner-only reference
+
+    // Dissolve shader control
+    [Header("Dissolve Settings")] 
+    [SerializeField] private string dissolvePropertyName = "_DitherAlpha";
+    [SerializeField] private float dissolveSpeed = 2f; // Units (0-1) per second
+    [SerializeField] private float hiddenDissolveValue = 0.0f;
+    [SerializeField] private float visibleDissolveValue = 1.0f;
+    [Tooltip("Clamp the per-frame dt so a single large frame hitch can't instantly jump the dissolve value")] [SerializeField]
+    private float maxDissolveDeltaTime = 0.05f; // 50 ms cap
+    [Tooltip("Enable verbose logging for dissolve debugging")] [SerializeField]
+    private bool debugDissolve = false;
+
+    private float targetDissolveValue = 1.0f;
+    private float currentDissolveValue = 1.0f;
+
+    public EventReference hide_sound;
+
+    // Networked stealth state (minimal bandwidth)
+    private enum StealthNetState : byte { Visible, Hiding, Hidden, Revealing }
+
+    private NetworkVariable<StealthNetState> netState = new NetworkVariable<StealthNetState>(
+        StealthNetState.Visible,
+        NetworkVariableReadPermission.Everyone,
+        NetworkVariableWritePermission.Owner);
+
+    private StealthNetState lastAppliedState = StealthNetState.Visible; // for local change detection (non-owner)
+
+    public override void OnNetworkSpawn()
+    {
+        if (!IsOwner)
+        {
+            // Subscribe to state updates for non-owners
+            netState.OnValueChanged += OnNetStateChanged;
+        }
+        else
+        {
+            // Ensure initial push
+            netState.Value = StealthNetState.Visible;
+        }
+    }
 
     void Start()
     {
-    	geometry = transform.GetChild(3).gameObject;
-		
-		// Get all renderers in the geometry object and its children
-		renderers = geometry.GetComponentsInChildren<Renderer>();
-		Debug.Log($"Found {renderers.Length} renderers in geometry");
-		
-		// Create material instances for runtime modification
-		InitializeMaterialInstances();
-		
-		if(IsOwner)
-		{
-			GameObject stealthObject = GameObject.FindWithTag("stealth_prompt");
+        renderers = geometry.GetComponentsInChildren<Renderer>();
+        if (debugDissolve) Debug.Log($"[Stealth] Found {renderers.Length} renderers");
+        InitializeMaterialInstances();
+        UpdateDissolveShader(currentDissolveValue);
+
+        if (IsOwner)
+        {
+            GameObject stealthObject = GameObject.FindWithTag("stealth_prompt");
             if (stealthObject)
-				stealth_prompt = stealthObject.GetComponent<TMP_Text>();
-		}
+                stealth_prompt = stealthObject.GetComponent<TMP_Text>();
+            hudPopup = HUD_PopUpMessages_Singelton.Instance; // may be null if not yet loaded
+        }
     }
 
-	void InitializeMaterialInstances()
-	{
-		materialInstances = new Material[renderers.Length][];
-		
-		for(int i = 0; i < renderers.Length; i++)
-		{
-			if(renderers[i] != null)
-			{
-				// Create instances of materials for runtime modification
-				Material[] originalMaterials = renderers[i].materials;
-				Material[] instanceMaterials = new Material[originalMaterials.Length];
-				
-				Debug.Log($"Renderer {i} ({renderers[i].name}) has {originalMaterials.Length} materials");
-				
-				for(int j = 0; j < originalMaterials.Length; j++)
-				{
-					if(originalMaterials[j] != null)
-					{
-						instanceMaterials[j] = new Material(originalMaterials[j]);
-						Debug.Log($"Created material instance for {originalMaterials[j].name} using shader {originalMaterials[j].shader.name}");
-						
-						// Check if the material has the property we need
-						if(instanceMaterials[j].HasProperty(dissolvePropertyName))
-						{
-							Debug.Log($"Material {originalMaterials[j].name} HAS {dissolvePropertyName} property");
-							// Also enable ALPHATEST if it's not enabled
-							if(instanceMaterials[j].HasProperty("_ALPHATEST_ON"))
-							{
-								instanceMaterials[j].EnableKeyword("_ALPHATEST_ON");
-								Debug.Log("Enabled _ALPHATEST_ON keyword");
-							}
-						}
-						else
-						{
-							Debug.LogError($"Material {originalMaterials[j].name} DOES NOT HAVE {dissolvePropertyName} property!");
-						}
-					}
-				}
-				
-				// Assign the instanced materials back to the renderer
-				renderers[i].materials = instanceMaterials;
-				materialInstances[i] = instanceMaterials;
-			}
-		}
-	}
+    void InitializeMaterialInstances()
+    {
+        materialInstances = new Material[renderers.Length][];
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            if (renderers[i] == null) continue;
+            Material[] originalMaterials = renderers[i].materials; // creates instances already
+            Material[] instanceMaterials = new Material[originalMaterials.Length];
+            for (int j = 0; j < originalMaterials.Length; j++)
+            {
+                if (originalMaterials[j] == null) continue;
+                instanceMaterials[j] = new Material(originalMaterials[j]);
+                if (debugDissolve && instanceMaterials[j].HasProperty(dissolvePropertyName))
+                {
+                    Debug.Log($"[Stealth] Mat {originalMaterials[j].name} has {dissolvePropertyName}");
+                }
+            }
+            renderers[i].materials = instanceMaterials; // assign instanced copies
+            materialInstances[i] = instanceMaterials;
+        }
+    }
 
-	void Update()
-	{
-		if(in_bush)
-		{
-			time_in_bush += Time.deltaTime;
+    void Update()
+    {
+        if (IsOwner)
+        {
+            OwnerDriveStateMachine();
+        }
+        else
+        {
+            // Non-owner: ensure target matches network state
+            ApplyNetState(netState.Value);
+        }
 
-			if(time_in_bush > 0.8f && force_reveal <= 0)
-			{
-				// Set dissolve for all players (visual effect)
-				targetDissolveValue = hiddenDissolveValue;
-				
-				// Handle UI only for the owner
-				if(IsOwner)
-				{
-					stealth_prompt.text = "[ Hidden! ]";
-					if(!played_sound)
-					{
-						play_hide_sound();
-						played_sound = true;
-					}
-				}
-			}
-		}
-		else
-		{
-			played_sound = false;
-		}
+        // Smooth dissolve towards target
+        if (!Mathf.Approximately(currentDissolveValue, targetDissolveValue))
+        {
+            float dt = Time.deltaTime;
+            if (dt > maxDissolveDeltaTime) dt = maxDissolveDeltaTime;
+            currentDissolveValue = Mathf.MoveTowards(currentDissolveValue, targetDissolveValue, dissolveSpeed * dt);
+            UpdateDissolveShader(currentDissolveValue);
+        }
 
-		force_reveal -= Time.deltaTime;
+        // Owner updates terminal states when fades complete
+        if (IsOwner)
+        {
+            if (netState.Value == StealthNetState.Hiding && Mathf.Approximately(currentDissolveValue, hiddenDissolveValue))
+                netState.Value = StealthNetState.Hidden;
+            else if (netState.Value == StealthNetState.Revealing && Mathf.Approximately(currentDissolveValue, visibleDissolveValue))
+                netState.Value = StealthNetState.Visible;
+        }
+    }
 
-		// Handle forced reveal
-		if(force_reveal > 0)
-		{
-			targetDissolveValue = visibleDissolveValue;
-			
-			if(IsOwner)
-			{
-				stealth_prompt.text = "[ Revealed! ]";
-			}
-		}
+    private void OwnerDriveStateMachine()
+    {
+        // Forced reveal countdown
+        force_reveal -= Time.deltaTime;
 
-		// Smoothly transition dissolve value
-		if(!Mathf.Approximately(currentDissolveValue, targetDissolveValue))
-		{
-			currentDissolveValue = Mathf.MoveTowards(currentDissolveValue, targetDissolveValue, dissolveSpeed * Time.deltaTime);
-			UpdateDissolveShader(currentDissolveValue);
-		}
-	}
+        // Bush timer only if not force revealed
+        if (in_bush && force_reveal <= 0f)
+        {
+            time_in_bush += Time.deltaTime;
+            if (time_in_bush > 0.8f && netState.Value == StealthNetState.Visible)
+            {
+                // Start hiding
+                netState.Value = StealthNetState.Hiding;
+                SetTargetHidden();
+                ShowOwnerPrompt("[ Hidden! ]");
+                InvokeOwnerEnterBushEvent();
+                if (!played_sound)
+                {
+                    play_hide_sound();
+                    played_sound = true;
+                }
+            }
+        }
+        else
+        {
+            played_sound = false;
+        }
 
-	void UpdateDissolveShader(float dissolveValue)
-	{
-		Debug.Log($"Updating dissolve shader to {dissolveValue} on {materialInstances.Length} renderers");
+        // Force reveal takes priority
+        if (force_reveal > 0f)
+        {
+            if (netState.Value != StealthNetState.Revealing && netState.Value != StealthNetState.Visible)
+            {
+                netState.Value = StealthNetState.Revealing;
+                SetTargetVisible();
+                ShowOwnerPrompt("[ Revealed! ]");
+            }
+        }
+
+        // If exited bush and currently hidden or hiding, begin reveal (unless force reveal already doing it)
+        if (!in_bush && force_reveal <= 0f)
+        {
+            if (netState.Value == StealthNetState.Hidden || netState.Value == StealthNetState.Hiding)
+            {
+                netState.Value = StealthNetState.Revealing;
+                SetTargetVisible();
+                ClearOwnerPrompt();
+                ShowOwnerPopupNeutral();
+            }
+        }
+
+        // Ensure local target matches current state (handles immediate transitions)
+        ApplyNetState(netState.Value);
+    }
+
+    private void OnNetStateChanged(StealthNetState previous, StealthNetState current)
+    {
+        ApplyNetState(current);
+    }
+
+    private void ApplyNetState(StealthNetState state)
+    {
+        if (state == lastAppliedState) return;
+        switch (state)
+        {
+            case StealthNetState.Visible:
+                SetTargetVisible();
+                break;
+            case StealthNetState.Hiding:
+            case StealthNetState.Hidden: // Hidden keeps target at hidden value
+                SetTargetHidden();
+                break;
+            case StealthNetState.Revealing:
+                SetTargetVisible();
+                break;
+        }
+        lastAppliedState = state;
+    }
+
+    private void SetTargetHidden() => targetDissolveValue = hiddenDissolveValue;
+    private void SetTargetVisible() => targetDissolveValue = visibleDissolveValue;
+
+    private void ShowOwnerPrompt(string txt)
+    {
+        if (IsOwner && stealth_prompt) stealth_prompt.text = txt;
+        if (IsOwner && hudPopup != null)
+        {
+            hudPopup.fn_PopupMessage(txt, HUD_PopUpMessages_Singelton.PopupStyle.PopAndFade);
+        }
+    }
+    private void ClearOwnerPrompt()
+    {
+        if (IsOwner && stealth_prompt) stealth_prompt.text = string.Empty;
+    }
+
+    private void ShowOwnerPopupNeutral()
+    {
+        if (IsOwner && hudPopup != null)
+        {
+            hudPopup.fn_PopupMessage("[ - - - ]", HUD_PopUpMessages_Singelton.PopupStyle.PopAndFade);
+        }
+    }
+
+    private void InvokeOwnerEnterBushEvent()
+    {
+        if (IsOwner && OnPlayerEnterBush_Local != null)
+        {
+            OnPlayerEnterBush_Local.Invoke();
+        }
+    }
+
+    void UpdateDissolveShader(float dissolveValue)
+    {
         for (int i = 0; i < materialInstances.Length; i++)
-		{
-			if(materialInstances[i] != null)
-			{
-				for(int j = 0; j < materialInstances[i].Length; j++)
-				{
-					Material mat = materialInstances[i][j];
-					if(mat != null && mat.HasProperty(dissolvePropertyName))
-					{
-						mat.SetFloat(dissolvePropertyName, dissolveValue);
-						Debug.Log($"Setting {dissolvePropertyName} to {dissolveValue} on material {mat.name} (Shader: {mat.shader.name})");
-					}
-					else if(mat != null)
-					{
-						Debug.LogWarning($"Material {mat.name} (Shader: {mat.shader.name}) does not have property {dissolvePropertyName}");
-					}
-				}
-			}
-		}
-	}
+        {
+            if (materialInstances[i] == null) continue;
+            for (int j = 0; j < materialInstances[i].Length; j++)
+            {
+                Material mat = materialInstances[i][j];
+                if (mat != null && mat.HasProperty(dissolvePropertyName))
+                {
+                    mat.SetFloat(dissolvePropertyName, dissolveValue);
+                }
+            }
+        }
+    }
 
-	void play_hide_sound()
-	{
-		RuntimeManager.PlayOneShot(hide_sound, transform.position);
-	}
+    void play_hide_sound()
+    {
+        if (hide_sound.IsNull) return;
+        RuntimeManager.PlayOneShot(hide_sound, transform.position);
+    }
 
-	void OnTriggerEnter(Collider other)
-	{
-		if(other.CompareTag("hide_trigger"))
-		{
-			in_bush = true;
-			time_in_bush = 0;
-			Debug.Log("Entered bush - starting stealth timer");
-		}
-	}
+    void OnTriggerEnter(Collider other)
+    {
+        if (!IsOwner) return; // only owner drives state
+        if (other.CompareTag("hide_trigger"))
+        {
+            in_bush = true;
+            time_in_bush = 0f;
+        }
+    }
 
-	void OnTriggerExit(Collider other)
-	{
-		if(other.CompareTag("hide_trigger"))
-		{
-			in_bush = false;
-			Debug.Log("Exited bush - becoming visible");
+    void OnTriggerExit(Collider other)
+    {
+        if (!IsOwner) return;
+        if (other.CompareTag("hide_trigger"))
+        {
+            in_bush = false;
+            time_in_bush = 0f;
+            // If currently hiding or hidden, start reveal next Update()
+        }
+    }
 
-			// Start becoming visible again for all players
-			targetDissolveValue = visibleDissolveValue;
-			
-			// Handle UI only for owner
-			if(IsOwner)
-			{
-				stealth_prompt.text = "";
-			}
-		}
-	}
+    // Forces the player to reveal for 10 seconds (scan attack)
+    public void force_unhide()
+    {
+        if (IsOwner)
+        {
+            force_reveal = 10f;
+            netState.Value = StealthNetState.Revealing;
+            SetTargetVisible();
+            ShowOwnerPrompt("[ Revealed! ]");
+        }
+        else
+        {
+            // Request owner to reveal via server
+            ForceUnhideServerRpc();
+        }
+    }
 
-	// Forces the player to reveal for 10 seconds
-	// Called with mutant scan attack
-	public void force_unhide()
-	{
-		force_reveal = 10;
-		targetDissolveValue = visibleDissolveValue;
-		
-		// Only send RPC if not owner (owner already handles it locally above)
-		if(!IsOwner)
-		{
-			force_reveal_ServerRPC();
-		}
-	}
+    [ServerRpc(RequireOwnership = false)]
+    private void ForceUnhideServerRpc(ServerRpcParams rpcParams = default)
+    {
+        // Route to owner only (owner will set netState)
+        ForceUnhideClientRpc(OwnerClientId);
+    }
 
-	[ServerRpc(RequireOwnership = false)]
-	private void force_reveal_ServerRPC()
-	{
-		client_reveal_ClientRPC();
-	}
+    [ClientRpc]
+    private void ForceUnhideClientRpc(ulong ownerId, ClientRpcParams clientRpcParams = default)
+    {
+        if (IsOwner && NetworkManager.LocalClientId == ownerId)
+        {
+            force_reveal = 10f;
+            netState.Value = StealthNetState.Revealing;
+            SetTargetVisible();
+            ShowOwnerPrompt("[ Revealed! ]");
+        }
+    }
 
-	[Rpc(SendTo.ClientsAndHost)]
-	private void client_reveal_ClientRPC()
-	{
-		if(IsOwner)
-		{
-			Debug.Log("Server RPC to reveal player was called");
-			force_reveal = 10;
-			stealth_prompt.text = "[ Revealed! ]";
-		}
-	}
+    [ContextMenu("Test Dissolve (Hide)")]
+    public void TestDissolve()
+    {
+        if (IsOwner)
+        {
+            netState.Value = StealthNetState.Hiding;
+            SetTargetHidden();
+            currentDissolveValue = hiddenDissolveValue;
+            UpdateDissolveShader(currentDissolveValue);
+            ShowOwnerPrompt("[ Hidden! ]");
+            InvokeOwnerEnterBushEvent();
+        }
+    }
 
-	// Add a public method to test the dissolve effect manually
-	[ContextMenu("Test Dissolve")]
-	public void TestDissolve()
-	{
-		targetDissolveValue = hiddenDissolveValue;
-		currentDissolveValue = hiddenDissolveValue;
-		UpdateDissolveShader(currentDissolveValue);
-		Debug.Log("Manual dissolve test triggered");
-	}
+    [ContextMenu("Test Reveal")]
+    public void TestReveal()
+    {
+        if (IsOwner)
+        {
+            netState.Value = StealthNetState.Revealing;
+            SetTargetVisible();
+            currentDissolveValue = visibleDissolveValue;
+            UpdateDissolveShader(currentDissolveValue);
+            ShowOwnerPrompt("[ Revealed! ]");
+        }
+    }
 
-	[ContextMenu("Test Reveal")]
-	public void TestReveal()
-	{
-		targetDissolveValue = visibleDissolveValue;
-		currentDissolveValue = visibleDissolveValue;
-		UpdateDissolveShader(currentDissolveValue);
-		Debug.Log("Manual reveal test triggered");
-	}
-
-	void OnDestroy()
-	{
-		// Clean up material instances to prevent memory leaks
-		if(materialInstances != null)
-		{
-			for(int i = 0; i < materialInstances.Length; i++)
-			{
-				if(materialInstances[i] != null)
-				{
-					for(int j = 0; j < materialInstances[i].Length; j++)
-					{
-						if(materialInstances[i][j] != null)
-						{
-							Destroy(materialInstances[i][j]);
-						}
-					}
-				}
-			}
-		}
-	}
+    void OnDestroy()
+    {
+        if (netState != null)
+        {
+            netState.OnValueChanged -= OnNetStateChanged;
+        }
+        if (materialInstances != null)
+        {
+            for (int i = 0; i < materialInstances.Length; i++)
+            {
+                if (materialInstances[i] == null) continue;
+                for (int j = 0; j < materialInstances[i].Length; j++)
+                {
+                    if (materialInstances[i][j] != null)
+                    {
+                        Destroy(materialInstances[i][j]);
+                    }
+                }
+            }
+        }
+    }
 }
