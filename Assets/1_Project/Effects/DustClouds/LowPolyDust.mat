@@ -21,19 +21,20 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: LowPolyDust
-  m_Shader: {fileID: 4800000, guid: 89c17cb00e94a7f45999d473122ecc0b, type: 3}
-  m_Parent: {fileID: 2100000, guid: c3174ef494a6943489a17c28e0d8aa79, type: 2}
+  m_Shader: {fileID: 4800000, guid: d0fceeac2a6cebc4d8aa3da3715896f1, type: 3}
+  m_Parent: {fileID: 2100000, guid: 8a744ca633b9b1d47a9e5a7edba95bc6, type: 2}
   m_ModifiedSerializedProperties: 20
-  m_ValidKeywords:
-  - _RECEIVE_SHADOWS_OFF
+  m_ValidKeywords: []
   m_InvalidKeywords:
   - _RECEIVESHADOWS_OFF
+  - _RECEIVE_SHADOWS_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2000
   stringTagMap: {}
-  disabledShaderPasses: []
+  disabledShaderPasses:
+  - MOTIONVECTORS
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -57,6 +58,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Blend: 0
+    - _DitherScale: 4
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _QueueControl: 0
