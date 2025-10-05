@@ -121,14 +121,18 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
     #region Network Animations (compact)
     // compact NetworkVariables for the new Animator controller
     // Owner writes, everyone reads
-    [HideInInspector] public NetworkVariable<float> _forwardsSpeed_NWV =
-        new NetworkVariable<float>(0f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    // [HideInInspector] public NetworkVariable<float> _forwardsSpeed_NWV =
+        // new NetworkVariable<float>(0f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
-    [HideInInspector] public NetworkVariable<float> _sidewaysSpeed_NWV =
-        new NetworkVariable<float>(0f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    // [HideInInspector] public NetworkVariable<float> _sidewaysSpeed_NWV =
+       // new NetworkVariable<float>(0f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
-    [HideInInspector] public NetworkVariable<int> _jumpState_NWV =
-        new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    // [HideInInspector] public NetworkVariable<int> _jumpState_NWV =
+       // new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
+	public Vector3 previous_pos;
+	public Vector3 delta_pos;
+	int jumping;
 
     // Local anim flags (used to compute jumpState)
     bool _animVarLocal_Jump;
@@ -180,9 +184,11 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
         // subscribe to NetworkVariable changes to apply on clients immediately
         if (_characterAnimator != null)
         {
+			/**
             _forwardsSpeed_NWV.OnValueChanged += OnNetworkAnimChangedFloat;
             _sidewaysSpeed_NWV.OnValueChanged += OnNetworkAnimChangedFloat;
             _jumpState_NWV.OnValueChanged += OnNetworkAnimChangedInt;
+			**/
         }
         else
         {
@@ -207,9 +213,11 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
     private void OnDisable()
     {
         // unsubscribe to avoid leaks
+		/**
         if (_forwardsSpeed_NWV != null) _forwardsSpeed_NWV.OnValueChanged -= OnNetworkAnimChangedFloat;
         if (_sidewaysSpeed_NWV != null) _sidewaysSpeed_NWV.OnValueChanged -= OnNetworkAnimChangedFloat;
         if (_jumpState_NWV != null) _jumpState_NWV.OnValueChanged -= OnNetworkAnimChangedInt;
+		**/
 
         NetworkManager.Singleton.OnClientDisconnectCallback -= OnClientDisconnected;
     }
@@ -263,10 +271,9 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
         if (IsOwner)
         {
             Update_HandleMovementAndPlayerInput();
-            Update_NetworkAnimationVaraibles(); // write compact values into NWVs
 
             // update local jump state machine based on grounded/vertical velocity
-            UpdateLocalJumpState();
+            // UpdateLocalJumpState();
 
             // drive local animator via CharacterAnimator for immediate feedback
             UpdateOwnerAnimatorLocal();
@@ -276,9 +283,11 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
             if (IsClient)
             {
                 // apply networked values to child CharacterAnimator
-                ApplyNetworkAnimValues();
-            }
-        }
+				UpdateAnimationsNWV_Ticker();
+				_characterAnimator.UpdateAnimatorLocomotion(delta_pos * 100, transform, true, 0f, 0f);
+                // ApplyNetworkAnimValues();
+			}
+		}
     }
 
 
@@ -537,8 +546,8 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
         if (_characterAnimator == null) return;
 
         // CharacterAnimator expects (velocity, transform, isOwner, networkSideways, networkForward)
-        _characterAnimator.UpdateAnimatorLocomotion(Vector3.zero, transform, false, _sidewaysSpeed_NWV.Value, _forwardsSpeed_NWV.Value);
-        _characterAnimator.UpdateJumpState(_jumpState_NWV.Value);
+        _characterAnimator.UpdateAnimatorLocomotion(Vector3.zero, transform, false, Vector3.Scale(delta_pos, Vector3.right).x, Vector3.Scale(delta_pos, Vector3.forward).z);
+        _characterAnimator.UpdateJumpState(jumping);
     }
 
 
@@ -567,10 +576,10 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
         if (Mathf.Abs(localSideways) < deadzone) localSideways = 0f;
 
         // write to NetworkVariables only when changed (simple change detection)
-        bool forwardChanged = Mathf.Abs(_forwardsSpeed_NWV.Value - localForward) > 0.01f;
-        bool sidewaysChanged = Mathf.Abs(_sidewaysSpeed_NWV.Value - localSideways) > 0.01f;
+        // bool forwardChanged = Mathf.Abs(_forwardsSpeed_NWV.Value - localForward) > 0.01f;
+        // bool sidewaysChanged = Mathf.Abs(_sidewaysSpeed_NWV.Value - localSideways) > 0.01f;
 
-        bool jumpChanged = _jumpState_NWV.Value != jumpState;
+        // bool jumpChanged = _jumpState_NWV.Value != jumpState;
 
         UpdateAnimationsNWV_Ticker();
 
@@ -578,39 +587,29 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
         _animVarLocalSpeed_Prev = localForward;
         _animVarLocalMotionSpeed_Prev = localSideways;
 
-
-        void UpdateAnimationsNWV_Ticker()
-        {
-            tickTimer -= Time.deltaTime;
-
-            if (tickTimer <= 0f)
-            {
-                // Reset timer based on tickRate
-                tickTimer = 1f / tickRate;
-
-                if (forwardChanged) _forwardsSpeed_NWV.Value = localForward;
-                if (sidewaysChanged) _sidewaysSpeed_NWV.Value = localSideways;
-                if (jumpChanged) _jumpState_NWV.Value = jumpState;
-
-            }
-        }
-
     }
 
-
-
-
-
-
-
-    private void Update_NetworkAnimationVaraibles()
-    {
-        // This function kept for backward-compatible change detection of movement -> network variables.
-        // The actual writing is done in UpdateOwnerAnimatorLocal() (owner writes directly to NWVs).
-        // Keep the function to preserve existing call sites and future logic if needed.
-    }
+	void UpdateAnimationsNWV_Ticker()
+	{
+		delta_pos = transform.position - previous_pos;
+		previous_pos = transform.position;
+		
+		if(delta_pos.y >= 0.1f * Time.deltaTime)
+		{
+			jumping = 1;
+		}
+		else if(delta_pos.y <= -0.1f * Time.deltaTime)
+		{
+			jumping = 2;
+		}
+		else
+		{
+			jumping = 0;
+		}
+	}
 
     // New: local jump state machine copied/adapted from AnimalCharacter
+	/**
     private void UpdateLocalJumpState()
     {
         int newState = _localJumpState;
@@ -673,6 +672,7 @@ public class ScottsBackup_ThirdPersonController : NetworkBehaviour
 
         _wasGroundedLastFrame = Grounded;
     }
+	**/
 
     #endregion
 
