@@ -56,7 +56,7 @@ public class ScenePreloader : MonoBehaviour
         //preloadOp.allowSceneActivation = true;
         yield return SceneManager.UnloadSceneAsync(sceneName);
 
-        preGameLobbyManager.fn_PlayerLoaded();
+        //preGameLobbyManager.fn_PlayerLoaded();
         yield return null;
     }
 

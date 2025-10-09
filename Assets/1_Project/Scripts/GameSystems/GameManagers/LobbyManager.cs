@@ -105,10 +105,10 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
         UpdateLocalClientUIEvents();
     }
 
-    public void fn_PlayerLoaded()
-    {
-        TogglePlayerLoadedServerRpc();
-    }
+    //public void fn_PlayerLoaded()
+    //{
+    //    TogglePlayerLoadedServerRpc();
+    //}
 
     private void UpdateLocalClientUIEvents()
     {
@@ -252,6 +252,7 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
                 loadCount++;
             }
         }
+        Debug.Log(loadCount);
         numberOfLoadedPlayers = loadCount;
     }
 
@@ -364,17 +365,17 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
             yield return null;
         }
 
-        foreach (var go in loadedScene.GetRootGameObjects())
-            go.SetActive(false);
+        //foreach (var go in loadedScene.GetRootGameObjects())
+        //    go.SetActive(false);
 
         // Unload without ever activating
         Debug.Log("[ScenePreloader] Scene preloaded, Unloading");
         //preloadOp.allowSceneActivation = true;
         yield return SceneManager.UnloadSceneAsync(sceneName);
 
-        fn_PlayerLoaded();
+        TogglePlayerLoadedServerRpc();
         yield return null;
     }
 
-    #endregion Preload Functions
+    #endregion END: Preload Functions
 }
