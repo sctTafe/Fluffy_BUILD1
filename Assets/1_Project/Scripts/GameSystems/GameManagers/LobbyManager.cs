@@ -56,7 +56,10 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
             NetworkManager.Singleton.OnClientConnectedCallback += Server_OnPlayerJoinedEvent;
             Server_UpdatePlayerValues();
         }
-
+        if (IsHost)
+        {
+            StartCoroutine(PreloadScene(_preloadGameSceneName));
+        }
         if (IsClient)
         {
             numberOfPlayersNV.OnValueChanged += Handle_ValuesUpdate;
