@@ -2268,6 +2268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _buttonTrans: {fileID: 0}
   _scaleMultiplier_Pct: 5
+  _outline: {fileID: 0}
 --- !u!114 &878027652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2518,6 +2519,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _buttonTrans: {fileID: 0}
   _scaleMultiplier_Pct: 5
+  _outline: {fileID: 0}
 --- !u!114 &1008549747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3317,6 +3319,7 @@ GameObject:
   - component: {fileID: 1464690512}
   - component: {fileID: 1464690511}
   - component: {fileID: 1464690514}
+  - component: {fileID: 1464690515}
   m_Layer: 0
   m_Name: '[Managers]'
   m_TagString: Untagged
@@ -3514,6 +3517,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerName_txt: {fileID: 20929630}
   Name_btn: {fileID: 878027653}
+--- !u!114 &1464690515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464690502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2193305374f764c4686b5390674dbbd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetSceneName: N_IslandReplacement_Preload
 --- !u!1 &1516064933
 GameObject:
   m_ObjectHideFlags: 0
@@ -5813,6 +5829,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _buttonTrans: {fileID: 0}
   _scaleMultiplier_Pct: 5
+  _outline: {fileID: 0}
 --- !u!114 &8189216477534686447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5906,6 +5923,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _buttonTrans: {fileID: 0}
   _scaleMultiplier_Pct: 5
+  _outline: {fileID: 0}
 --- !u!114 &8613818279121816090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6011,6 +6029,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _buttonTrans: {fileID: 0}
   _scaleMultiplier_Pct: 5
+  _outline: {fileID: 0}
 --- !u!114 &8771584934747986533
 MonoBehaviour:
   m_ObjectHideFlags: 0

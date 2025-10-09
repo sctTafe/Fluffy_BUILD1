@@ -25,6 +25,10 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
     private Dictionary<ulong, bool> playerReadyDictionary;
     private bool isLocalPlayerReady = false;
 
+    // Loaded list
+    private List<ulong> playerLoadedList = new List<ulong>();
+    private int numberOfLoadedPlayers;
+
 	PlayerNetworkDataManager playerNetworkDataManager;
 
 	#region Unity Native Functions
@@ -98,6 +102,11 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
         UpdateLocalClientUIEvents();
     }
 
+    public void fn_PlayerLoaded()
+    {
+        TogglePlayerLoadedServerRpc();
+    }
+
     private void UpdateLocalClientUIEvents()
     {
         isLocalPlayerReady = !isLocalPlayerReady;
@@ -118,7 +127,7 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
             Debug.Log("Host Trying to Start Game");
 
             // If all players ready, can switch to next scene
-            if (fn_GetNumberOfPlayersInLobby() == fn_GetNumberOfReadyPlayersInLobby())
+            if (fn_GetNumberOfPlayersInLobby() == fn_GetNumberOfReadyPlayersInLobby() && fn_GetNumberOfPlayersInLobby() == numberOfLoadedPlayers)
             {
                 playerNetworkDataManager.fn_SelectMonsterOnStart();
 
@@ -168,6 +177,17 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
     private void UpdateClientPLayerReadyDictionaries_ClientRpc(ulong clientId, bool state)
     {
         playerReadyDictionary[clientId] = state;
+    }    // Runs only on the server
+    
+    [ServerRpc(RequireOwnership = false)]
+    private void TogglePlayerLoadedServerRpc(ServerRpcParams serverRpcParams = default)
+    {
+        ulong senderClientID = serverRpcParams.Receive.SenderClientId;
+
+        playerLoadedList.Add(senderClientID);
+
+        //UpdateClientPLayerReadyDictionaries_ClientRpc(senderClientID, playerReadyDictionary[senderClientID]);
+        Server_UpdatePlayerValues();
     }
 
     private void CheckIfAllPlayersReady()
@@ -217,14 +237,31 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
         }
         numberOfReadyPlayersNV.Value = rdyCount;
     }
+
+    [ServerRpc]
+    private void UpdatePlayerLoadedValues_ServerRPC()
+    {
+        int loadCount = 0;
+        foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
+        {
+            if (playerLoadedList.Contains(clientId))
+            {
+                loadCount++;
+            }
+        }
+        numberOfLoadedPlayers = loadCount;
+    }
+
     /// <summary>
     /// Server Only
     /// </summary>
     private void Server_UpdatePlayerValues()
     {
+        Debug.Log("Error point test 1");
         UpdateTotalPlayersValue_ServerRPC();
         UpdatePlayerReadyValues_ServerRPC();
         PlayerReadyValuesUpdated_ClientRpc();
+        UpdatePlayerLoadedValues_ServerRPC();
     }
 
     // Called on All clients
