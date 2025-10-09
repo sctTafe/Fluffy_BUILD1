@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class LobbyManager : NetworkSingleton<LobbyManager>
 {
@@ -16,6 +18,7 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
 
     public bool _isLoadingPlaytestingScene = false;
     [SerializeField] private string _testGameSceneName = "X_Game_Playtesting";
+    [SerializeField] private string _preloadGameSceneName = "N_IslandReplacement_Preload";
 
     // Network Variable 
     private NetworkVariable<int> numberOfPlayersNV = new NetworkVariable<int>();
@@ -308,7 +311,70 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
     private void Server_OnPlayerJoinedEvent(ulong clientId)
     {
         Server_UpdatePlayerValues();
+
+        // Tell just this specific client to begin preloading
+        var targetClient = new ClientRpcParams
+        {
+            Send = new ClientRpcSendParams
+            {
+                TargetClientIds = new[] { clientId }
+            }
+        };
+
+        BeginPreload_ClientRpc(targetClient);
+
     }
     #endregion END: Joining and Load Events
 
+    #region Preload Functions
+
+    [ClientRpc]
+    private void BeginPreload_ClientRpc(ClientRpcParams clientRpcParams = default)
+    {
+        Debug.Log("Client received preload instruction from server.");
+        StartCoroutine(PreloadScene(_preloadGameSceneName));
+    }
+
+    private IEnumerator PreloadScene(string sceneName)
+    {
+        Debug.Log($"[ScenePreloader] Preloading scene '{sceneName}'");
+
+        // Preload additively but don't activate
+        var preloadOp = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+        preloadOp.allowSceneActivation = false;
+
+        while (preloadOp.progress < 0.9f)
+        {
+            Debug.Log(preloadOp.progress);
+            yield return null;
+        }
+
+
+
+        Debug.Log("[ScenePreloader] Activating preloaded scene (will not be visible)...");
+        preloadOp.allowSceneActivation = true;
+
+        // Wait one frame for the activation to finish
+        yield return null;
+
+        Scene loadedScene = SceneManager.GetSceneByName(sceneName);
+        if (!loadedScene.isLoaded)
+        {
+            Debug.LogWarning("[ScenePreloader] Scene did not load properly before unload attempt.");
+            yield return null;
+        }
+
+        foreach (var go in loadedScene.GetRootGameObjects())
+            go.SetActive(false);
+
+        // Unload without ever activating
+        Debug.Log("[ScenePreloader] Scene preloaded, Unloading");
+        //preloadOp.allowSceneActivation = true;
+        yield return SceneManager.UnloadSceneAsync(sceneName);
+
+        fn_PlayerLoaded();
+        yield return null;
+    }
+
+    #endregion Preload Functions
 }

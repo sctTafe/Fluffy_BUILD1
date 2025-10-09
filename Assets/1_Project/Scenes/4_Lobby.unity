@@ -3457,6 +3457,7 @@ MonoBehaviour:
         m_CallState: 2
   _isLoadingPlaytestingScene: 1
   _testGameSceneName: N_IslandReplacement
+  _preloadGameSceneName: N_IslandReplacement_Preload
 --- !u!114 &1464690511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3524,7 +3525,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1464690502}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2193305374f764c4686b5390674dbbd7, type: 3}
   m_Name: 
