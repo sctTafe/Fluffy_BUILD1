@@ -8,13 +8,16 @@ public class SocialLinkOpener : MonoBehaviour
     public string steamStoreUrl = "https://store.steampowered.com/app/3715890";
     public string discordUrl = "https://discord.gg/Ss9wKNbm";
     public string youtubeUrl = "https://youtube.com/YourChannel";
-    
+    public string itchURL = "https://friendsandfangs.itch.io/friends-and-fangs";
+
     [Header("Email Contact")]
     public string gmailAddress = "friendsandfangsgame@gmail.com";
 
 
     //public void fn_OpenTwitter() => Application.OpenURL(twitterUrl);
     //public void fn_OpenInstagram() => Application.OpenURL(instagramUrl);
+
+    public void fn_OpenItchPage() => Application.OpenURL(itchURL);
     public void fn_OpenSteamStore() => Application.OpenURL(steamStoreUrl);
     public void fn_OpenDiscord() => Application.OpenURL(discordUrl);
     public void fn_OpenYouTube() => Application.OpenURL(youtubeUrl);

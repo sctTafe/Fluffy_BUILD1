@@ -2205,9 +2205,9 @@ MonoBehaviour:
   SyncPositionX: 1
   SyncPositionY: 1
   SyncPositionZ: 1
-  SyncRotAngleX: 1
+  SyncRotAngleX: 0
   SyncRotAngleY: 1
-  SyncRotAngleZ: 1
+  SyncRotAngleZ: 0
   SyncScaleX: 0
   SyncScaleY: 0
   SyncScaleZ: 0
@@ -2216,7 +2216,7 @@ MonoBehaviour:
   ScaleThreshold: 0.01
   UseQuaternionSynchronization: 0
   UseQuaternionCompression: 0
-  UseHalfFloatPrecision: 0
+  UseHalfFloatPrecision: 1
   InLocalSpace: 0
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
@@ -2350,16 +2350,16 @@ MonoBehaviour:
   BottomClamp: -30
   CameraAngleOverride: 0
   LockCameraPosition: 0
-  _jump_AnimatorVar_NWV:
+  _forwardsSpeed_NWV:
     m_InternalValue: 0
-  _grounded_AnimatorVar_NWV:
+  _sidewaysSpeed_NWV:
     m_InternalValue: 0
-  _freefall_AnimatorVar_NWV:
+  _jumpState_NWV:
     m_InternalValue: 0
-  _speed_AnimatorVar_NWV:
-    m_InternalValue: 0
-  _motionSpeed_AnimatorVar_NWV:
-    m_InternalValue: 0
+  _jumpStartDuration: 0.15
+  _landDuration: 0.3
+  _floatTransitionDelay: 0.1
+  tickRate: 1
 --- !u!114 &7229105595755631234
 MonoBehaviour:
   m_ObjectHideFlags: 0

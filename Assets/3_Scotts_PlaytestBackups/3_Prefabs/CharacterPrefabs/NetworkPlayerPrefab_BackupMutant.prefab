@@ -1322,6 +1322,7 @@ GameObject:
   - component: {fileID: 5515249455401949357}
   - component: {fileID: 251689034891746606}
   - component: {fileID: 1107157359021616998}
+  - component: {fileID: 1667388226665379843}
   m_Layer: 7
   m_Name: NetworkPlayerPrefab_BackupMutant
   m_TagString: Mutant
@@ -1399,9 +1400,9 @@ MonoBehaviour:
   SyncPositionX: 1
   SyncPositionY: 1
   SyncPositionZ: 1
-  SyncRotAngleX: 1
+  SyncRotAngleX: 0
   SyncRotAngleY: 1
-  SyncRotAngleZ: 1
+  SyncRotAngleZ: 0
   SyncScaleX: 0
   SyncScaleY: 0
   SyncScaleZ: 0
@@ -1410,7 +1411,7 @@ MonoBehaviour:
   ScaleThreshold: 0.01
   UseQuaternionSynchronization: 0
   UseQuaternionCompression: 0
-  UseHalfFloatPrecision: 0
+  UseHalfFloatPrecision: 1
   InLocalSpace: 0
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
@@ -1555,6 +1556,7 @@ MonoBehaviour:
   _jumpStartDuration: 0.15
   _landDuration: 0.3
   _floatTransitionDelay: 0.1
+  tickRate: 1
 --- !u!114 &6498338235879297589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1847,6 +1849,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343dd248fa3cd29639fab39be884f18a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1667388226665379843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5408246126893154181}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31b7615a3fa13e79896057cdb1e3ef8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  geometry: {fileID: 3121757882438758475}
+  dissolvePropertyName: _DitherAlpha
+  dissolveSpeed: 2
+  hiddenDissolveValue: 0
+  visibleDissolveValue: 1
+  hide_sound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1 &5530233005965666608
 GameObject:
   m_ObjectHideFlags: 0

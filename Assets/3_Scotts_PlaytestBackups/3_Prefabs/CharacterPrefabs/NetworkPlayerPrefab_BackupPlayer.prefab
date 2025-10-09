@@ -5326,6 +5326,7 @@ GameObject:
   - component: {fileID: 3242255665682694393}
   - component: {fileID: 3657911424795443171}
   - component: {fileID: 6639843731572211527}
+  - component: {fileID: 1118570890565328508}
   - component: {fileID: -8318112631276293116}
   - component: {fileID: 5928170330904496098}
   - component: {fileID: -6137494299052777976}
@@ -5423,9 +5424,9 @@ MonoBehaviour:
   SyncPositionX: 1
   SyncPositionY: 1
   SyncPositionZ: 1
-  SyncRotAngleX: 1
+  SyncRotAngleX: 0
   SyncRotAngleY: 1
-  SyncRotAngleZ: 1
+  SyncRotAngleZ: 0
   SyncScaleX: 0
   SyncScaleY: 0
   SyncScaleZ: 0
@@ -5434,7 +5435,7 @@ MonoBehaviour:
   ScaleThreshold: 0.01
   UseQuaternionSynchronization: 0
   UseQuaternionCompression: 0
-  UseHalfFloatPrecision: 0
+  UseHalfFloatPrecision: 1
   InLocalSpace: 0
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
@@ -5596,7 +5597,7 @@ MonoBehaviour:
       Data3: 1522590884
       Data4: -1416451359
     Path: event:/SFX/PlayerSounds/HeartBeat
---- !u!114 &-8318112631276293116
+--- !u!114 &1118570890565328508
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5604,6 +5605,48 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6103115944230435048}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31b7615a3fa13e79896057cdb1e3ef8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  geometry: {fileID: 7056940565616199861}
+  OnPlayerEnterBush_Local:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8088826694301261103}
+        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  dissolvePropertyName: _DitherAlpha
+  dissolveSpeed: 1
+  hiddenDissolveValue: 0
+  visibleDissolveValue: 1
+  maxDissolveDeltaTime: 0.05
+  debugDissolve: 0
+  hide_sound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &-8318112631276293116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6103115944230435048}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac1f698d97943304fbf5cb6d7709d28f, type: 3}
   m_Name: 
