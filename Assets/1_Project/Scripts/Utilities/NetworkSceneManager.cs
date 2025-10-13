@@ -127,15 +127,25 @@ public class NetworkSceneManager : Singleton<NetworkSceneManager>
         }
     }
 
-
+    /// <summary>
+    /// Switch to the next scene in the Scene index list
+    /// </summary>
     public void fn_SceneSwitch_NextScene()
     {
         int nextSceneID = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1;
 
+        //Check if scene exists
         if (nextSceneID < UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings)
         {
-            Debug.Log("SceneManager_Netcode: 'Next Scene' Called, loading next scene");
-            NetworkManager.Singleton.SceneManager.LoadScene(SceneName(nextSceneID), LoadSceneMode.Single);
+            //check if network manager is loaded
+            if (NetworkManager.Singleton.SceneManager != null)
+            {
+                NetworkManager.Singleton.SceneManager.LoadScene(SceneName(nextSceneID), LoadSceneMode.Single);
+            }
+            else
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene(SceneName(nextSceneID), LoadSceneMode.Single);
+            }
         }
         else
         {

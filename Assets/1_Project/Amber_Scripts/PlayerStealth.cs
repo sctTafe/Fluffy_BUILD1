@@ -39,7 +39,7 @@ public class PlayerStealth : NetworkBehaviour
     public EventReference hide_sound;
 
     // Networked stealth state (minimal bandwidth)
-    private enum StealthNetState : byte { Visible, Hiding, Hidden, Revealing }
+    public enum StealthNetState : byte { Visible, Hiding, Hidden, Revealing }
 
     private NetworkVariable<StealthNetState> netState = new NetworkVariable<StealthNetState>(
         StealthNetState.Visible,
@@ -47,6 +47,8 @@ public class PlayerStealth : NetworkBehaviour
         NetworkVariableWritePermission.Owner);
 
     private StealthNetState lastAppliedState = StealthNetState.Visible; // for local change detection (non-owner)
+
+    public StealthNetState CurrentStelthState => lastAppliedState;
 
     public override void OnNetworkSpawn()
     {
@@ -283,6 +285,16 @@ public class PlayerStealth : NetworkBehaviour
             time_in_bush = 0f;
             // If currently hiding or hidden, start reveal next Update()
         }
+    }
+
+    /// <summary>
+    /// Set State to unhide - for when bush is destoryed
+    /// </summary>
+    public void fn_setUnhide()
+    {
+        in_bush = false;
+        time_in_bush = 0f;
+        // If currently hiding or hidden, start reveal next Update()
     }
 
     // Forces the player to reveal for 10 seconds (scan attack)

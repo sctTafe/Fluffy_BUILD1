@@ -5681,8 +5681,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  MoveSpeed: 3.5
-  SprintSpeed: 6.5
+  MoveSpeed: 4
+  SprintSpeed: 10
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
   LandingAudioClip: {fileID: 0}
@@ -5703,12 +5703,8 @@ MonoBehaviour:
   BottomClamp: -30
   CameraAngleOverride: 0
   LockCameraPosition: 0
-  _forwardsSpeed_NWV:
-    m_InternalValue: 0
-  _sidewaysSpeed_NWV:
-    m_InternalValue: 0
-  _jumpState_NWV:
-    m_InternalValue: 0
+  previous_pos: {x: 0, y: 0, z: 0}
+  delta_pos: {x: 0, y: 0, z: 0}
   _jumpStartDuration: 0.15
   _landDuration: 0.3
   _floatTransitionDelay: 0.1
@@ -5767,7 +5763,7 @@ MonoBehaviour:
       m_Calls: []
   _playerControler: {fileID: 5928170330904496098}
   _staminaSystem: {fileID: -5489356403304203484}
-  _sprintCostPerSec: 10
+  _sprintCostPerSec: 15
 --- !u!114 &8046335248435032946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8642,12 +8638,40 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19800002, guid: dc9041db74f75e0429ce532faa7bfa2f, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800002, guid: dc9041db74f75e0429ce532faa7bfa2f, type: 3}
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19800002, guid: dc9041db74f75e0429ce532faa7bfa2f, type: 3}
       propertyPath: InitialModule.startSize.scalar
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800002, guid: dc9041db74f75e0429ce532faa7bfa2f, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800002, guid: dc9041db74f75e0429ce532faa7bfa2f, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800002, guid: dc9041db74f75e0429ce532faa7bfa2f, type: 3}
+      propertyPath: InitialModule.startSize.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800002, guid: dc9041db74f75e0429ce532faa7bfa2f, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800002, guid: dc9041db74f75e0429ce532faa7bfa2f, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800002, guid: dc9041db74f75e0429ce532faa7bfa2f, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19900000, guid: dc9041db74f75e0429ce532faa7bfa2f, type: 3}
       propertyPath: m_Materials.Array.size

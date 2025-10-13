@@ -74,7 +74,11 @@ public class DepositItemPoint : NetworkBehaviour
 	{
 		current_amount.Value += 1;
 
-		Debug.Log($"Deposited item! {current_amount.Value} / {amount_needed}");
+		// Max Value is the target amount
+		if(current_amount.Value > amount_needed)
+            amount_needed = current_amount.Value;
+
+        Debug.Log($"Deposited item! {current_amount.Value} / {amount_needed}");
 
 		if(current_amount.Value >= amount_needed)
 		{
@@ -82,11 +86,12 @@ public class DepositItemPoint : NetworkBehaviour
 		}
 	}
 
+
 	public void BroadcastObjectiveComplete()
 	{
 		ObjectiveManager.Instance.CompletedObjectiveServerRPC();
 		ObjectiveManager.Instance.CompletedObjective();
-		Destroy(GameObject.FindWithTag(objective_UI_tag));
+		Destroy(GameObject.FindWithTag(objective_UI_tag));  // THis only works on host, it is only called on the server i.e. host
 	}
 
 	public void UpdateUI()

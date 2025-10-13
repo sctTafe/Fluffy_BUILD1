@@ -78,9 +78,6 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
     // Player Input 
     private bool _isInput;
 
-    void Start()
-    {
-    }
 
     void Update()
     {
@@ -176,6 +173,12 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
             return;
         }
 
+        if (IsTargetCurrentlyHidden(biteTarget))
+        {
+            Debug.Log("Bite Target is currently Hidden and carnt be bitten");
+            return;
+        }
+
 
         //NOTE: - Bite Is Sucessfull! -
 
@@ -200,7 +203,6 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
         RequestPlayBiteServerRpc();
     }
 
-    
     private void TryRelease()
     {
         if (!IsOwner)
@@ -393,6 +395,21 @@ public class ScottsBackup_PlayerAction_BiteActivator : PlayerActionBase, IHudAbi
 
         return false;
     }
+
+    /// <summary>
+    /// Checks if
+    /// </summary>
+    private bool IsTargetCurrentlyHidden(GameObject biteTarget)
+    {
+        if(biteTarget.TryGetComponent<PlayerStealth>(out var ps))
+        {
+            if(ps.CurrentStelthState == PlayerStealth.StealthNetState.Hidden)
+                return true;
+        }
+
+        return false;
+    }
+
 
     #endregion
 
