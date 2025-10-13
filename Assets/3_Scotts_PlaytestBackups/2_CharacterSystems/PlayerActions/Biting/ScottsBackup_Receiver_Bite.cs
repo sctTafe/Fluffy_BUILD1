@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 /// <summary>
 /// Local Client Bite_Receiver
-/// 
+///
 /// Base on Braedon's, 'GrabPlayer' Script
 /// Part of a Two Part System with 'Bite_Activator' & 'Bite_Receiver'
 /// </summary>
@@ -37,10 +37,10 @@ public class ScottsBackup_Receiver_Bite : NetworkBehaviour
         {
             Debug.LogError("No Health Resrouce Manager Attached!");
             //healthControler = GetComponent<ScottsBackup_ResourceMng>();
-        }           
+        }
     }
 
- 
+
     public void fn_SetBiteMode(bool isBitten, Vector3 pos)
     {
         if (ISDEBUGGING) Debug.Log("ScottsBackup_Receiver_Bite: fn_SetBiteMode Called");
@@ -48,11 +48,11 @@ public class ScottsBackup_Receiver_Bite : NetworkBehaviour
         if (isBitten) {
             ActivateBiteModeRpc(pos);
         }
-        else 
+        else
         {
             DisableBiteModeRPC();
         }
-            
+
     }
 
     [Rpc(SendTo.Everyone)]
@@ -80,10 +80,13 @@ public class ScottsBackup_Receiver_Bite : NetworkBehaviour
     private void DisableBiteModeRPC()
     {
         gameObject.GetComponent<NetworkTransform>().enabled = true;
-        this.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+        // this.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+        this.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+        // transform.Translate(new Vector3(0, 10, 0));
         controler.fn_IsMovementInputDisabled(false);
         isGrabbed = false;
         OnBiteStop?.Invoke();
+        Debug.Log("Bite ended");
     }
 
 }
