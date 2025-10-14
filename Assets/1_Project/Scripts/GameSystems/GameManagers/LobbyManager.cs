@@ -345,7 +345,7 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
 
         // Preload additively but don't activate
         var preloadOp = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-        preloadOp.allowSceneActivation = false;
+        //preloadOp.allowSceneActivation = false;
 
         while (preloadOp.progress < 0.9f)
         {
@@ -356,7 +356,7 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
 
 
         Debug.Log("[ScenePreloader] Activating preloaded scene (will not be visible)...");
-        preloadOp.allowSceneActivation = true;
+        //preloadOp.allowSceneActivation = true;
 
         // Wait one frame for the activation to finish
         yield return null;
