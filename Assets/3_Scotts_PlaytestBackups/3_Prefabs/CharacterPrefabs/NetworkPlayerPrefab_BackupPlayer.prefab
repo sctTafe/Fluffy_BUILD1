@@ -5857,19 +5857,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   _onReavealTriggered:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4697456264722702566}
-        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &4899998674329124845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8761,11 +8749,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 374180fbf28a3af4894bb436cb4bb2ea, type: 3}
---- !u!198 &4697456264722702566 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 19800000, guid: 374180fbf28a3af4894bb436cb4bb2ea, type: 3}
-  m_PrefabInstance: {fileID: 4697456264736997158}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4697456264736859558 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 374180fbf28a3af4894bb436cb4bb2ea, type: 3}

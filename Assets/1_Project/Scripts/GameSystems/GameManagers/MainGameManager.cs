@@ -195,15 +195,16 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
 
         EnableEndScreenClientRPC(isEndTriggeredByFluffies);
 
-        StartCoroutine(WaitThenChangeScene());
+        StartCoroutine(EndOfGame_ReturnToLobby());
     }
 
 
-    IEnumerator WaitThenChangeScene()
+    IEnumerator EndOfGame_ReturnToLobby()
     {
         Debug.Log("Waiting for 1.5 seconds...");
         yield return new WaitForSeconds(1.5f);
         Debug.Log("Done waiting!");
+        PlayerNetworkDataManager.Instance.fn_ReturnToLobbyPostGame();
         NetworkSceneManager.Instance.fn_GoToScene("4_Lobby");
     }
 
@@ -229,8 +230,14 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
     {
         DespawnNetworkObjectRPC(networkObjectID);
     }
+
+    /// <summary>
+    ///  Called Localy by client 
+    /// </summary>
     public void fn_KillPlayerAndSpawnGhost(ulong clientId, Vector3 pos)
     {
+
+
         Debug.Log("MainGameManager, fn_KillPlayerAndSpawnGhost Called");
 
         // Try Get the NetworkClient based on the clientID, then get back their primaryNO destory it, and clreate a new one (Ghost)
@@ -239,8 +246,13 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
             var thePlayerObject = networkClient.PlayerObject; // This is the main NetworkObject associated with the client
             ulong objectNetworkId = thePlayerObject.NetworkObjectId;
 
-            DespawnNetworkObjectRPC(objectNetworkId);
-            DelayedSpawnGhost(clientId, pos, 2f);
+            DespawnNetworkObjectRPC(objectNetworkId);  //Server RPC
+            DelayedSpawnGhost(clientId, pos, 1.5f);   // Function chain that trigers ServerRPC
+
+            if(TryGetComponent<AllPlayersDeadCheck>(out var apd))
+            {
+                StartCoroutine(WaitThenCallEndOfGameCheck(5f, apd));
+            }
         }
     }
 
@@ -255,6 +267,13 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
         yield return new WaitForSeconds(waitTime);
         fn_SpawnGhost(ghostPlayer, pos);
     }
+
+    IEnumerator WaitThenCallEndOfGameCheck(float waitTime, AllPlayersDeadCheck apd)
+    {
+        yield return new WaitForSeconds(waitTime);
+        apd.fn_ForceEndCheck();
+    }
+
 
     /// <summary>
     /// Spawns a ghost player prefab for the requesting player

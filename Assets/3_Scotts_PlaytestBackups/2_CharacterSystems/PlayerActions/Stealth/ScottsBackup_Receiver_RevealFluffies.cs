@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(ScottsBackup_PlayerStealthMng))]
+[RequireComponent(typeof(PlayerStealth))] // CHANGE (15/10/25) - Use Izaccs Update
 public class ScottsBackup_Receiver_RevealFluffies : NetworkBehaviour
 {
     private const bool ISDEBUGGING = true;
@@ -18,10 +19,19 @@ public class ScottsBackup_Receiver_RevealFluffies : NetworkBehaviour
         if (ISDEBUGGING) Debug.Log("RevealFluffies_Receiver: fn_Trigger Called!");
         TriggerRpc(delay);
 
+        /*
         //Current Version of PlayerStealth only runs locallly
         var c = GetComponent<ScottsBackup_PlayerStealthMng>();
         if (c != null)
             c.force_unhide();
+
+        */
+
+        // CHANGE (15/10/25) - Use Izaccs Update
+        var c = GetComponent<PlayerStealth>();
+        if (c != null)
+            c.force_unhide();
+
 
     }
 

@@ -68,7 +68,7 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
         {
             playerDataNetworkList.OnListChanged -= Handle_PlayerDataNetworkList_OnListChanged;
             mutantCountNV.OnValueChanged -= Handle_teamMonstersCountNVValueChange;
-            NetworkManager.Singleton.OnClientConnectedCallback += Handle_OnClientConnectedCallback_ServerReaction;
+            NetworkManager.Singleton.OnClientConnectedCallback -= Handle_OnClientConnectedCallback_ServerReaction;
             NetworkManager.Singleton.OnClientDisconnectCallback -= Handle_OnClientDisconnectCallback_ServerReaction;
         }
     }
@@ -101,6 +101,22 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
 
 
     #region Public Functions
+
+    /// <summary>
+    ///  Runs Data Cleaning and refreshment on the server when returning to lobby post game
+    /// </summary>
+    public void fn_ReturnToLobbyPostGame()
+    {
+        // Only Run on Server/Host
+        if (!IsServer && !IsHost)
+            return;
+
+        //1) Clear Current States
+        VerifyAndCleanPlayerDataList(); // Remove any exited players
+        ResetAllPlayersToGoodTeam(); // Reset All players teams to fluffy
+    }
+
+
     public void fn_SwitchTeamToggle() => LocalClient_ToggleTeam();
 
     public bool fn_GetLocalClinetTeaam() => GetLocalClientTeam();
@@ -412,8 +428,6 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
 
     #region Player Data Network List
 
-
-
     public int GetPlayerDataListIndexFromClientId(ulong clientId)
     {
         for (int i = 0; i < playerDataNetworkList.Count; i++)
@@ -490,4 +504,110 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
     {
         OnPlayerDataNVChanged?.Invoke(this, EventArgs.Empty);
     }
+
+
+
+
+    /// <summary>
+    /// Verifies all players in playerDataNetworkList are still connected and removes disconnected players
+    /// Should only be called by the Server/Host
+    /// </summary>
+    public void VerifyAndCleanPlayerDataList()
+    {
+        if (!IsServer)
+        {
+            Debug.LogWarning("VerifyAndCleanPlayerDataList can only be called by the Server!");
+            return;
+        }
+
+        if (playerDataNetworkList == null || playerDataNetworkList.Count == 0)
+        {
+            if (isDebuggingOn) Debug.Log("PlayerDataNetworkList is empty, nothing to verify.");
+            return;
+        }
+
+        List<int> indicesToRemove = new List<int>();
+
+        // Check each player in the list
+        for (int i = 0; i < playerDataNetworkList.Count; i++)
+        {
+            ulong clientId = playerDataNetworkList[i].clientId;
+
+            bool isCurrentClient = false;
+
+            foreach (var clientID_nm in NetworkManager.Singleton.ConnectedClientsIds)
+            {
+                // Check if this client is still connected
+                if (clientId == clientID_nm)
+                    isCurrentClient = true;
+            }
+
+            // If not founc in the current ID list
+            if(isCurrentClient == false)
+            {
+                if (isDebuggingOn) Debug.Log($"Client {clientId} is no longer connected. Marking for removal.");
+                indicesToRemove.Add(i);
+            }          
+        }
+
+        // Remove disconnected players (iterate backwards to maintain correct indices)
+        for (int i = indicesToRemove.Count - 1; i >= 0; i--)
+        {
+            if (isDebuggingOn) Debug.Log($"Removing disconnected player at index {indicesToRemove[i]}, ClientID: {playerDataNetworkList[indicesToRemove[i]].clientId}");
+            playerDataNetworkList.RemoveAt(indicesToRemove[i]);
+        }
+
+        if (indicesToRemove.Count > 0)
+        {
+            if (isDebuggingOn) Debug.Log($"Verification complete. Removed {indicesToRemove.Count} disconnected player(s). Current player count: {playerDataNetworkList.Count}");
+        }
+        else
+        {
+            if (isDebuggingOn) Debug.Log($"Verification complete. All players are still connected. Current player count: {playerDataNetworkList.Count}");
+        }
+    }
+
+    /// <summary>
+    /// Resets all players to the good team (goodTeam = true)
+    /// Should only be called by the Server/Host
+    /// </summary>
+    public void ResetAllPlayersToGoodTeam()
+    {
+        if (!IsServer)
+        {
+            Debug.LogWarning("ResetAllPlayersToGoodTeam can only be called by the Server!");
+            return;
+        }
+
+        if (playerDataNetworkList == null || playerDataNetworkList.Count == 0)
+        {
+            if (isDebuggingOn) Debug.Log("PlayerDataNetworkList is empty, nothing to reset.");
+            return;
+        }
+
+        if (isDebuggingOn) Debug.Log($"Resetting all {playerDataNetworkList.Count} players to good team...");
+
+        // Iterate through all players and set goodTeam to true
+        for (int i = 0; i < playerDataNetworkList.Count; i++)
+        {
+            PlayerData playerData = playerDataNetworkList[i];
+
+            // Only update if the player is not already on the good team
+            if (!playerData.goodTeam)
+            {
+                playerData.goodTeam = true;
+                playerDataNetworkList[i] = playerData;
+
+                if (isDebuggingOn) Debug.Log($"Reset ClientID {playerData.clientId} ({playerData.playerName}) to good team.");
+            }
+        }
+
+        if (isDebuggingOn) Debug.Log("All players have been reset to the good team.");
+
+        // Update the mutant count (should now be 0)
+        UpdateTotalMutantPlayersNVServerRpc();
+    }
+
+
+
 }
