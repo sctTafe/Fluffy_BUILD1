@@ -2,17 +2,22 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Unity.Netcode;
-
+/// <summary>
+/// 
+/// THIS SCRIPT IS REDUNDANT 
+/// ALL of this functionality now live in the Lobby Manger
+/// 
+/// </summary>
 public class ScenePreloader : MonoBehaviour
 {
     [SerializeField] private string targetSceneName = "N_IslandReplacement_Preload";
 
     LobbyManager preGameLobbyManager;
-    private void Start()
-    {
-        preGameLobbyManager = LobbyManager.Instance;
-        StartPreload();
-    }
+    //private void Start()
+    //{
+    //    preGameLobbyManager = LobbyManager.Instance;
+    //    StartPreload();
+    //}
 
     public void StartPreload()
     {

@@ -6566,6 +6566,7 @@ GameObject:
   m_Component:
   - component: {fileID: 135369955}
   - component: {fileID: 135369954}
+  - component: {fileID: 135369959}
   - component: {fileID: 135369953}
   - component: {fileID: 135369952}
   - component: {fileID: 135369951}
@@ -6725,6 +6726,19 @@ MonoBehaviour:
   - {fileID: 1342421005}
   toggleKey: 48
   toggleMode: 1
+--- !u!114 &135369959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135369950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf9f77284fb737a4dbdd565eea433d58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _UpdatePlayerPref_LastScene: 1
 --- !u!1001 &139392842
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66634,6 +66648,10 @@ PrefabInstance:
     - target: {fileID: 6721685252668074803, guid: 667b4c0761106b44a84ff6eeeb6d8045, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7002706831047038566, guid: 667b4c0761106b44a84ff6eeeb6d8045, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 19.199951
       objectReference: {fileID: 0}
     - target: {fileID: 7622696818511347196, guid: 667b4c0761106b44a84ff6eeeb6d8045, type: 3}
       propertyPath: m_AnchorMax.y

@@ -185,6 +185,11 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
         playerReadyDictionary[clientId] = state;
     }    // Runs only on the server
     
+   
+    
+    /// <summary>
+    /// Inform Server that the local client has preloaded the scene and is now ready.
+    /// </summary>
     [ServerRpc(RequireOwnership = false)]
     private void TogglePlayerLoadedServerRpc(ServerRpcParams serverRpcParams = default)
     {
@@ -195,6 +200,8 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
         //UpdateClientPLayerReadyDictionaries_ClientRpc(senderClientID, playerReadyDictionary[senderClientID]);
         Server_UpdatePlayerValues();
     }
+
+
 
     private void CheckIfAllPlayersReady()
     {
@@ -339,10 +346,15 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
         StartCoroutine(PreloadScene(_preloadGameSceneName));
     }
 
+
+    // The Primary Preload Function - Called on each of the client
+    // Loads a Copy of the main game scene, so all the assets have alocation
+    // in memory (in theory) making loading the game super quick
     private IEnumerator PreloadScene(string sceneName)
     {
-        Debug.Log($"[ScenePreloader] Preloading scene '{sceneName}'");
+        // --- 1) Preload Scene ---
 
+        Debug.Log($"[ScenePreloader] Preloading scene '{sceneName}'");
         // Preload additively but don't activate
         var preloadOp = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
         //preloadOp.allowSceneActivation = false;
@@ -353,13 +365,14 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
             yield return null;
         }
 
-
-
         Debug.Log("[ScenePreloader] Activating preloaded scene (will not be visible)...");
         //preloadOp.allowSceneActivation = true;
 
         // Wait one frame for the activation to finish
         yield return null;
+
+
+        // --- 2) Scene should be loaded -> unload scene ---
 
         Scene loadedScene = SceneManager.GetSceneByName(sceneName);
         if (!loadedScene.isLoaded)
@@ -376,7 +389,8 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
         //preloadOp.allowSceneActivation = true;
         yield return SceneManager.UnloadSceneAsync(sceneName);
 
-        TogglePlayerLoadedServerRpc();
+        // --- 3) Inform the server that it is loaded ---
+        TogglePlayerLoadedServerRpc();  
         yield return null;
     }
 

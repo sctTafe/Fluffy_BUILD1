@@ -672,8 +672,8 @@ GameObject:
   - component: {fileID: 661716542}
   - component: {fileID: 661716543}
   - component: {fileID: 661716544}
-  - component: {fileID: 661716545}
   - component: {fileID: 661716546}
+  - component: {fileID: 661716547}
   m_Layer: 0
   m_Name: '[Managers]'
   m_TagString: Untagged
@@ -725,19 +725,6 @@ MonoBehaviour:
   youtubeUrl: https://youtube.com/YourChannel
   itchURL: https://friendsandfangs.itch.io/friends-and-fangs
   gmailAddress: friendsandfangsgame@gmail.com
---- !u!114 &661716545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 661716539}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9255234381581b4d968d6a0dca5530e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  versionText: {fileID: 0}
 --- !u!114 &661716546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -750,6 +737,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34008af6a5698d647a7e66a484077ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &661716547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661716539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf9f77284fb737a4dbdd565eea433d58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _UpdatePlayerPref_LastScene: 1
 --- !u!1001 &760443323
 PrefabInstance:
   m_ObjectHideFlags: 0
