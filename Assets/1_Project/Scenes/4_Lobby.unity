@@ -3459,6 +3459,8 @@ MonoBehaviour:
   _isLoadingPlaytestingScene: 1
   _testGameSceneName: N_IslandReplacement
   _preloadGameSceneName: N_IslandReplacement_Preload
+  isPreloadComplete: 0
+  _startGameOverRideTime: 3
 --- !u!114 &1464690511
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -31,9 +31,7 @@ public class UIPlayerTeam : MonoBehaviour
         }
 
         UpdateUIValues();
-
     }
-
 
 
     private void OnDestroy()
@@ -55,7 +53,7 @@ public class UIPlayerTeam : MonoBehaviour
 
     private void UpdateUIValues()
     {
-        currentTeam_txt.text = playerNetworkDataManager.fn_GetLocalClinetTeaam() ? "Fluffy" : "Mutant";
+        currentTeam_txt.text = playerNetworkDataManager.fn_GetLocalClientTeam() ? "Fluffy" : "Mutant";
         mutantsTotal_txt.text = playerNetworkDataManager.fn_GetTotalMutantPlayers().ToString();
     }
 }

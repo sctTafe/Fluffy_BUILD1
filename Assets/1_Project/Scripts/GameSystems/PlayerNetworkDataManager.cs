@@ -21,8 +21,6 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
     /// </summary>
     public event EventHandler OnTeamsChanged;
 
-
-
     public event EventHandler OnPlayerDataNVChanged;
 
 
@@ -30,9 +28,7 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
 
     // Server NV
     private NetworkVariable<int> mutantCountNV = new NetworkVariable<int>();
-
     private NetworkList<PlayerData> playerDataNetworkList; //Must be initialized later 
-
 
     // - Local Variables -
     private string playerName_local; // local Player Name
@@ -40,6 +36,9 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
 
 
     private bool _isSetUpComplete;
+
+    private bool _isDisconnected; // Keeping track of if data is stale
+
     #region Unity Native Functions
     private void Awake()
     {
@@ -80,6 +79,8 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
 
         if (isDebuggingOn) Debug.Log("PlayerNetworkDataManager: OnNetworkSpawn");
 
+        _isDisconnected = false; // Reset on spawn  - list should be refreshed
+
         // On new clients joining the game
         NetworkManager.Singleton.OnClientConnectedCallback += Handle_OnClientConnectedCallback_ServerReaction;
         // On new clients leaving the game
@@ -95,6 +96,30 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
         }
 
     }
+
+    public override void OnNetworkDespawn()
+    {
+        base.OnNetworkDespawn();
+
+        if (isDebuggingOn) Debug.Log("PlayerNetworkDataManager: OnNetworkDespawn - Cleaning up");
+
+        // Clean up callbacks
+        NetworkManager.Singleton.OnClientConnectedCallback -= Handle_OnClientConnectedCallback_ServerReaction;
+        NetworkManager.Singleton.OnClientDisconnectCallback -= Handle_OnClientDisconnectCallback_ServerReaction;
+
+        // CRITICAL: Clear stale data on disconnect
+        if (IsClient && !IsServer)
+        {
+            // Client-side cleanup - the NetworkList will be read-only but we can prepare for next connection
+            if (isDebuggingOn) Debug.Log($"Client disconnecting with {playerDataNetworkList.Count} stale entries");
+
+            // Note: We cannot clear the NetworkList as a client (it's read-only) - But we can prevent other
+            // code from using stale data
+            _isDisconnected = true;
+        }
+    }
+
+
 
 
     #endregion END: Unity Native Functions
@@ -119,9 +144,28 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
 
     public void fn_SwitchTeamToggle() => LocalClient_ToggleTeam();
 
-    public bool fn_GetLocalClinetTeaam() => GetLocalClientTeam();
+    public bool fn_GetLocalClientTeam()
+    {
+        if (!IsDataValid())
+        {
+            Debug.LogWarning("Attempting to read stale network data!");
+            return true; // Return a safe default
+        }
+        return GetLocalClientTeam();
+    }
 
-    public int fn_GetTotalMutantPlayers() => mutantCountNV.Value;
+    public int fn_GetTotalMutantPlayers()
+    {
+        if (!IsDataValid())
+        {
+            Debug.LogWarning("Attempting to read stale network data!");
+            return 0;
+        }
+        return mutantCountNV.Value;
+    }
+
+
+
 
     public bool fn_GetClientTeamByClientID(ulong id) => GetClientTeamByClientID(id);
 
@@ -222,7 +266,7 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
             }
 
             // Is Match
-            if (indexPos > 0)
+            if (indexPos >= 0)   // Changed from '>'
             {
                 playerDataNetworkList.RemoveAt(indexPos);
             }
@@ -618,5 +662,15 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
     }
 
 
+
+    /// <summary>
+    /// Returns true if we're connected and data is valid
+    /// </summary>
+    public bool IsDataValid()
+    {
+        return NetworkManager.Singleton != null &&
+               NetworkManager.Singleton.IsConnectedClient &&
+               !_isDisconnected;
+    }
 
 }

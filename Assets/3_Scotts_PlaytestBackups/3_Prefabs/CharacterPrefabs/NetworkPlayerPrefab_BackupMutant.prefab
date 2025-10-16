@@ -1689,7 +1689,7 @@ MonoBehaviour:
   _effectDelay: 0.5
   _staminaSystem: {fileID: -991564175368876500}
   _enegryCost: 15
-  _abilityCooldownLength: 10
+  _abilityCooldownLength: 8
   _targetTag: Player
   _animator: {fileID: 2699195283259488457}
 --- !u!114 &-991564175368876500
@@ -1778,7 +1778,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   _staminaSystem: {fileID: -991564175368876500}
   _enegryCost: 30
-  _abilityCooldownLength: 30
+  _abilityCooldownLength: 20
   _RevealDuration: 8
   _animator: {fileID: 2699195283259488457}
   _mutantRevealResetDelay: 0.6
