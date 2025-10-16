@@ -131,6 +131,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: CreditsPage
       objectReference: {fileID: 0}
+    - target: {fileID: 1930371855845101352, guid: 28a2c83720a02f449b02f80158623f8c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1930371855845101352, guid: 28a2c83720a02f449b02f80158623f8c, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1930371855845101352, guid: 28a2c83720a02f449b02f80158623f8c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1930371855845101352, guid: 28a2c83720a02f449b02f80158623f8c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8713901914321129496, guid: 28a2c83720a02f449b02f80158623f8c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 830.6325
