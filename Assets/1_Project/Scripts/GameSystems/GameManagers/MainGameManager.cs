@@ -201,11 +201,31 @@ public class MainGameManager : NetworkSingleton<MainGameManager>
 
     IEnumerator EndOfGame_ReturnToLobby()
     {
+        /*
         Debug.Log("Waiting for 1.5 seconds...");
         yield return new WaitForSeconds(1.5f);
         Debug.Log("Done waiting!");
         PlayerNetworkDataManager.Instance.fn_ReturnToLobbyPostGame();
         NetworkSceneManager.Instance.fn_GoToScene("4_Lobby");
+        */
+
+        yield return new WaitForSeconds(1.5f);
+
+        // NOTE: Temporary work around for the preload manager
+
+        // Exit To Main Menu
+        if (NetworkSceneManager.Instance != null)
+        {
+            NetworkSceneManager.Instance.fn_Disconnect();
+        }
+        else
+        {
+            Debug.LogWarning("Cant Find Network Scene Manger! Creating new to change scene!");
+            GameObject go = new GameObject("TempNetworkManger");
+            go.AddComponent<NetworkSceneManager>();
+            NetworkSceneManager.Instance.fn_Disconnect();
+        }
+
     }
 
 

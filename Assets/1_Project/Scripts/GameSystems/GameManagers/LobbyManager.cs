@@ -32,10 +32,18 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
     private List<ulong> playerLoadedList = new List<ulong>();
     private int numberOfLoadedPlayers;
 
-	PlayerNetworkDataManager playerNetworkDataManager;
+    [Header("Preload")]
+    // Preload tracking
+    private Coroutine preloadCoroutine;
+    [SerializeField] private bool isPreloadComplete = false;
+    private bool shouldAbortPreload = false;
+    [SerializeField] private float _startGameOverRideTime = 5f;
 
-	#region Unity Native Functions
-	private void Awake()
+    PlayerNetworkDataManager playerNetworkDataManager;
+    
+
+    #region Unity Native Functions
+    private void Awake()
     {
         playerReadyDictionary = new Dictionary<ulong, bool>();
     }
@@ -55,6 +63,9 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
             NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += SceneManager_OnLoadEventCompleted;
             NetworkManager.Singleton.OnClientConnectedCallback += Server_OnPlayerJoinedEvent;
             Server_UpdatePlayerValues();
+
+            // NOTE: Clears any data from a previouse game
+            playerNetworkDataManager.fn_ReturnToLobbyPostGame(); 
         }
         if (IsHost)
         {
@@ -132,19 +143,21 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
         {
             Debug.Log("Host Trying to Start Game");
 
-            // If all players ready, can switch to next scene
-            if (fn_GetNumberOfPlayersInLobby() == fn_GetNumberOfReadyPlayersInLobby() && fn_GetNumberOfPlayersInLobby() == numberOfLoadedPlayers)
+            // If all players ready
+            if (fn_GetNumberOfPlayersInLobby() == fn_GetNumberOfReadyPlayersInLobby())
             {
-                playerNetworkDataManager.fn_SelectMonsterOnStart();
-
-                if (!_isLoadingPlaytestingScene)
+                // Check if all players are loaded
+                if (fn_GetNumberOfPlayersInLobby() == numberOfLoadedPlayers)
                 {
-                    NetworkSceneManager.Instance.fn_GoToScene("5_Game");
+                    // All players loaded, start immediately
+                    StartGameTransition();
                 }
                 else
                 {
-                    NetworkSceneManager.Instance.fn_GoToScene(_testGameSceneName);
-                }			
+                    // Not all players loaded, start countdown
+                    Debug.Log($"Not all players loaded ({numberOfLoadedPlayers}/{fn_GetNumberOfPlayersInLobby()}). Starting {_startGameOverRideTime} second countdown...");
+                    StartCoroutine(CountdownAndStartGame());
+                }
             }
             else
             {
@@ -152,6 +165,54 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
             }
         }
     }
+
+    private void StartGameTransition()
+    {
+        playerNetworkDataManager.fn_SelectMonsterOnStart();
+
+        if (!_isLoadingPlaytestingScene)
+        {
+            NetworkSceneManager.Instance.fn_GoToScene("5_Game");
+        }
+        else
+        {
+            NetworkSceneManager.Instance.fn_GoToScene(_testGameSceneName);
+        }
+    }
+
+    private IEnumerator CountdownAndStartGame()
+    {
+        // Wait 5 seconds
+        yield return new WaitForSeconds(_startGameOverRideTime);
+
+        Debug.Log("Countdown complete. Aborting preload operations and starting game...");
+
+        // Tell all clients to abort their preload
+        AbortPreload_ClientRpc();
+
+        // Small delay to let clients process the abort
+        yield return new WaitForSeconds(0.5f);
+
+        // Start the game regardless of preload status
+        StartGameTransition();
+    }
+
+    [ClientRpc]
+    private void AbortPreload_ClientRpc()
+    {
+        Debug.Log("[Client] Received abort preload instruction from server.");
+        shouldAbortPreload = true;
+
+        // If preload is still running, stop it
+        if (preloadCoroutine != null && !isPreloadComplete)
+        {
+            StopCoroutine(preloadCoroutine);
+            preloadCoroutine = null;
+            Debug.Log("[Client] Preload coroutine aborted.");
+        }
+    }
+
+
     #endregion END: Public Functions
 
 
@@ -183,10 +244,10 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
     private void UpdateClientPLayerReadyDictionaries_ClientRpc(ulong clientId, bool state)
     {
         playerReadyDictionary[clientId] = state;
-    }    // Runs only on the server
-    
-   
-    
+    }
+
+
+
     /// <summary>
     /// Inform Server that the local client has preloaded the scene and is now ready.
     /// </summary>
@@ -237,6 +298,8 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
     {
         numberOfPlayersNV.Value = NetworkManager.Singleton.ConnectedClients.Count;
     }
+
+
     [ServerRpc]
     private void UpdatePlayerReadyValues_ServerRPC()
     {
@@ -250,6 +313,7 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
         }
         numberOfReadyPlayersNV.Value = rdyCount;
     }
+
 
     [ServerRpc]
     private void UpdatePlayerLoadedValues_ServerRPC()
@@ -352,6 +416,9 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
     // in memory (in theory) making loading the game super quick
     private IEnumerator PreloadScene(string sceneName)
     {
+        isPreloadComplete = false;
+        shouldAbortPreload = false;
+
         // --- 1) Preload Scene ---
 
         Debug.Log($"[ScenePreloader] Preloading scene '{sceneName}'");
@@ -361,8 +428,22 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
 
         while (preloadOp.progress < 0.9f)
         {
+            // Check if we should abort
+            if (shouldAbortPreload)
+            {
+                Debug.Log("[ScenePreloader] Preload aborted by server command.");
+                yield break;
+            }
+
             Debug.Log(preloadOp.progress);
             yield return null;
+        }
+
+        // Check again before continuing
+        if (shouldAbortPreload)
+        {
+            Debug.Log("[ScenePreloader] Preload aborted by server command.");
+            yield break;
         }
 
         Debug.Log("[ScenePreloader] Activating preloaded scene (will not be visible)...");
@@ -371,6 +452,12 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
         // Wait one frame for the activation to finish
         yield return null;
 
+        // Check if aborted
+        if (shouldAbortPreload)
+        {
+            Debug.Log("[ScenePreloader] Preload aborted by server command during activation.");
+            yield break;
+        }
 
         // --- 2) Scene should be loaded -> unload scene ---
 
@@ -390,9 +477,20 @@ public class LobbyManager : NetworkSingleton<LobbyManager>
         yield return SceneManager.UnloadSceneAsync(sceneName);
 
         // --- 3) Inform the server that it is loaded ---
-        TogglePlayerLoadedServerRpc();  
+        if (!shouldAbortPreload)
+        {
+            isPreloadComplete = true;
+            TogglePlayerLoadedServerRpc();
+            Debug.Log("[ScenePreloader] Preload complete and server notified.");
+        }
+        else
+        {
+            Debug.Log("[ScenePreloader] Preload aborted, not notifying server.");
+        }
+
         yield return null;
     }
+
 
     #endregion END: Preload Functions
 }

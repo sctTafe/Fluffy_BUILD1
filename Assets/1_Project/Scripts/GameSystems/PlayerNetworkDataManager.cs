@@ -528,28 +528,37 @@ public class PlayerNetworkDataManager : NetworkSingleton<PlayerNetworkDataManage
 
         List<int> indicesToRemove = new List<int>();
 
+        
         // Check each player in the list
         for (int i = 0; i < playerDataNetworkList.Count; i++)
         {
             ulong clientId = playerDataNetworkList[i].clientId;
 
             bool isCurrentClient = false;
+            int countOfCoppies = 0;
 
             foreach (var clientID_nm in NetworkManager.Singleton.ConnectedClientsIds)
             {
                 // Check if this client is still connected
                 if (clientId == clientID_nm)
+                {
                     isCurrentClient = true;
+                    countOfCoppies++;
+                }                   
             }
 
+            if (countOfCoppies > 1)
+                Debug.LogError("Multiple instances of the same player in the PlayerDataList!!! THis is very broken!");
+
             // If not founc in the current ID list
-            if(isCurrentClient == false)
-            {
+            if (isCurrentClient == false)
+            {            
                 if (isDebuggingOn) Debug.Log($"Client {clientId} is no longer connected. Marking for removal.");
                 indicesToRemove.Add(i);
             }          
         }
 
+       
         // Remove disconnected players (iterate backwards to maintain correct indices)
         for (int i = indicesToRemove.Count - 1; i >= 0; i--)
         {
