@@ -28,6 +28,7 @@ Shader "Custom/ParticleDitherSimple"
             #pragma fragment frag
             #pragma multi_compile_instancing
             #pragma shader_feature_local _AMBIENT_OFF
+            #pragma target 3.0
             #define _ALPHATEST_ON 1
 
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
@@ -58,15 +59,31 @@ Shader "Custom/ParticleDitherSimple"
             half  _AmbientMul;    // Scales ambient SH lighting
             CBUFFER_END
 
-            // 4x4 Bayer matrix normalized 0..1 (half precision OK)
+            // 4x4 Bayer matrix normalized 0..1 (avoid dynamic array indexing for better backend compatibility)
             inline half Dither4x4Bayer(int x, int y)
             {
-                const half dither[16] = {
-                    half(1.0/17.0), half(9.0/17.0), half(3.0/17.0), half(11.0/17.0),
-                    half(13.0/17.0), half(5.0/17.0), half(15.0/17.0), half(7.0/17.0),
-                    half(4.0/17.0), half(12.0/17.0), half(2.0/17.0), half(10.0/17.0),
-                    half(16.0/17.0), half(8.0/17.0), half(14.0/17.0), half(6.0/17.0) };
-                return dither[(y & 3) * 4 + (x & 3)];
+                int ix = x & 3;
+                int iy = y & 3;
+                int idx = iy * 4 + ix;
+                switch (idx)
+                {
+                    case 0:  return half(1.0/17.0);
+                    case 1:  return half(9.0/17.0);
+                    case 2:  return half(3.0/17.0);
+                    case 3:  return half(11.0/17.0);
+                    case 4:  return half(13.0/17.0);
+                    case 5:  return half(5.0/17.0);
+                    case 6:  return half(15.0/17.0);
+                    case 7:  return half(7.0/17.0);
+                    case 8:  return half(4.0/17.0);
+                    case 9:  return half(12.0/17.0);
+                    case 10: return half(2.0/17.0);
+                    case 11: return half(10.0/17.0);
+                    case 12: return half(16.0/17.0);
+                    case 13: return half(8.0/17.0);
+                    case 14: return half(14.0/17.0);
+                    default: return half(6.0/17.0);
+                }
             }
 
             Varyings vert (Attributes IN)
@@ -93,13 +110,12 @@ Shader "Custom/ParticleDitherSimple"
 
                 // Lighting (main directional + optional ambient SH)
                 half3 n = normalize(IN.normalWS);
-                // Access pre-populated main light params directly (cheaper than GetMainLight())
-                // _MainLightPosition.xyz is direction (pointing TO light) in URP when w == 0
-                half3 L = normalize(_MainLightPosition.xyz);
-                half ndotl = max(0, dot(n, L));
+                // Use URP helper to get main light
+                Light mainLight = GetMainLight();
+                half ndotl = max(0, dot(n, mainLight.direction));
                 // Lift shadows: remap ndotl 0..1 to _ShadowMin..1
                 ndotl = mad(ndotl, (half)1.0 - _ShadowMin, _ShadowMin); // ndotl*(1-_ShadowMin)+_ShadowMin
-                half3 lightColor = _MainLightColor.rgb * ndotl;
+                half3 lightColor = mainLight.color.rgb * ndotl;
                 #ifndef _AMBIENT_OFF
                     half3 ambient = SampleSH(n) * _AmbientMul;
                     lightColor += ambient;
