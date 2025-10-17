@@ -59,19 +59,11 @@ public class ScottsBackup_Receiver_Bite : NetworkBehaviour
     private void ActivateBiteModeRpc(Vector3 pos)
     {
         // Reposition the bite target transform position to that of the bitter
-        var nt = gameObject.GetComponent<NetworkTransform>();
         this.transform.position = pos;
-        this.transform.localEulerAngles = new Vector3(0f, 0f, 90f); // set local child rotation (sideways)
+        this.transform.localEulerAngles = new Vector3(0f, 0f, 90f); //set local child rotation
         this.transform.position += _positionOffset;
 
-        // Snap state across the network before disabling sync while being carried
-        if (nt != null && nt.enabled)
-        {
-            nt.Teleport(this.transform.position, this.transform.rotation, this.transform.localScale);
-        }
-
-        if (nt != null)
-            nt.enabled = false;
+        gameObject.GetComponent<NetworkTransform>().enabled = false;
         controler.fn_IsMovementInputDisabled(true);
 
         if (IsOwner)
@@ -87,17 +79,8 @@ public class ScottsBackup_Receiver_Bite : NetworkBehaviour
     [Rpc(SendTo.Everyone)]
     private void DisableBiteModeRPC()
     {
-        // Re-enable network sync and force-correct orientation for all clients
-        var nt = gameObject.GetComponent<NetworkTransform>();
-        // Reset to upright in local space (works regardless of parent state)
-        this.transform.localEulerAngles = Vector3.zero;
-
-        if (nt != null)
-        {
-            nt.enabled = true;
-            // Force a network snap so every client gets the corrected rotation immediately
-            nt.Teleport(this.transform.position, this.transform.rotation, this.transform.localScale);
-        }
+        gameObject.GetComponent<NetworkTransform>().enabled = true;
+        this.transform.eulerAngles = new Vector3(0f, 0f, 0f);
         controler.fn_IsMovementInputDisabled(false);
         isGrabbed = false;
         OnBiteStop?.Invoke();
