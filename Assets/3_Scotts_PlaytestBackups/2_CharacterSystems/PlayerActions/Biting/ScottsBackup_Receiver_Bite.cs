@@ -80,7 +80,7 @@ public class ScottsBackup_Receiver_Bite : NetworkBehaviour
     private void DisableBiteModeRPC()
     {
         gameObject.GetComponent<NetworkTransform>().enabled = true;
-        this.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+        this.transform.eulerAngles = Vector3.zero;
         controler.fn_IsMovementInputDisabled(false);
         isGrabbed = false;
         OnBiteStop?.Invoke();
