@@ -118,7 +118,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 696c25220aca4b9b8c8031449727f5f4, type: 2}
     - target: {fileID: 4742473837712756890, guid: 18adfde208f84a0c9fa653f7dffa3402, type: 3}
       propertyPath: m_FadeMode
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 18adfde208f84a0c9fa653f7dffa3402, type: 3}
+      propertyPath: m_AnimateCrossFading
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: 18adfde208f84a0c9fa653f7dffa3402, type: 3}
       propertyPath: m_LODs.Array.data[0].fadeTransitionWidth

@@ -6,9 +6,11 @@ Shader "Toon/TEM_CustomToon"
 	{
 		[HideInInspector] _AlphaCutoff("Alpha Cutoff ", Range(0, 1)) = 0.5
 		_DitherAlpha("Dither Alpha", Range(0, 1)) = 1.0
-		[HideInInspector] _EmissionColor("Emission Color", Color) = (1,1,1,1)
+		[HDR]_EmissionColor("Emission Color", Color) = (1,1,1,1)
 		_TextureSample("Texture Sample", 2D) = "white" {}
 		_TextureRamp("Texture Ramp", 2D) = "white" {}
+		_EmissionMap("Emission Map", 2D) = "black" {}
+		_EmissionStrength("Emission Strength", Range(0, 10)) = 1
 		[HideInInspector] _texcoord( "", 2D ) = "white" {}
 
 
@@ -309,6 +311,9 @@ Shader "Toon/TEM_CustomToon"
 			CBUFFER_START(UnityPerMaterial)
 			float4 _TextureSample_ST;
 			float  _DitherAlpha;  
+		float4 _EmissionColor;
+		float4 _EmissionMap_ST;
+		float _EmissionStrength;
 			#ifdef ASE_TESSELLATION
 				float _TessPhongStrength;
 				float _TessValue;
@@ -321,6 +326,7 @@ Shader "Toon/TEM_CustomToon"
 
 			sampler2D _TextureSample;
 			sampler2D _TextureRamp;
+		sampler2D _EmissionMap;
 
 
 			half4 CalculateShadowMask216_g1(  )
@@ -613,7 +619,11 @@ Shader "Toon/TEM_CustomToon"
 				
 				float3 BakedAlbedo = 0;
 				float3 BakedEmission = 0;
-				float3 Color = ( ( float4( temp_output_58_0 , 0.0 ) * tex2DNode18 ) + ( ( tex2DNode18 * float4( staticSwitch16 , 0.0 ) ) * ( ( tex2D( _TextureRamp, temp_cast_3 ) * float4( RampColor44 , 0.0 ) ) * ( temp_output_12_0 * max( max( break5.x , break5.y ) , break5.z ) ) ) ) ).rgb;
+			float3 Color = ( ( float4( temp_output_58_0 , 0.0 ) * tex2DNode18 ) + ( ( tex2DNode18 * float4( staticSwitch16 , 0.0 ) ) * ( ( tex2D( _TextureRamp, temp_cast_3 ) * float4( RampColor44 , 0.0 ) ) * ( temp_output_12_0 * max( max( break5.x , break5.y ) , break5.z ) ) ) ) ).rgb;
+			// Emission
+			float2 uv_EmissionMap = input.ase_texcoord7.xy * _EmissionMap_ST.xy + _EmissionMap_ST.zw;
+			float3 Emission = tex2D( _EmissionMap, uv_EmissionMap ).rgb * _EmissionColor.rgb * _EmissionStrength;
+			Color += Emission;
 				float Alpha = 1;
 				float AlphaClipThreshold = 0.5;
 				float AlphaClipThresholdShadow = 0.5;

@@ -8,19 +8,11 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CoconutTrunk
-  m_Shader: {fileID: 4800000, guid: d9d09221179189a449fe37a0ddad2931, type: 3}
+  m_Shader: {fileID: 4800000, guid: 3eef0d371a3baf64ebd4e79cbdbebbd5, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _BASEWINDCHANNEL_R
-  - _BLENDNORMALS_ON
-  - _DEPOSITCHANNEL_G
-  - _INVERTMASK_ON
-  - _LAYERCHANNEL_R
-  - _NORMALMAP
-  - _USEVERTEXCOLOR_ON
-  - _VERTEXCOLORCHANNEL_R
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -79,6 +71,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: c07d179b519c4f5a8cfb51f20575b4f7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MainTexture:
+        m_Texture: {fileID: 2800000, guid: c07d179b519c4f5a8cfb51f20575b4f7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 2800000, guid: c5d1d7af562de9241b66d7b271117823, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -87,12 +83,24 @@ Material:
         m_Texture: {fileID: 2800000, guid: c3fc47bc532a4241843b6891c3af0618, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NoiseTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: 19b16ad57faf442aa54c30f5418f336f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 2800000, guid: 183b9371016e6704f8f6ab8bb500135e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureRamp:
+        m_Texture: {fileID: 2800000, guid: d6bb1a260fcbe874989b84f39648a1e2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -127,7 +135,9 @@ Material:
     - _DepositPower: 0.324
     - _DepositThreshold: 50
     - _DetailNormalMapScale: 1
+    - _DitherAlpha: 1
     - _DstBlend: 0
+    - _EnableWind: 0
     - _EnvironmentReflections: 1
     - _Float1: 6.38
     - _Float2: 0
@@ -151,9 +161,11 @@ Material:
     - _LayerPower: 0
     - _LayerSmoothnessPower: 0.5
     - _LayerThreshold: 100
+    - _MaskClipValue: 0.5
     - _Metallic: 0
     - _MetallicPower: 0.5
     - _Mode: 0
+    - _NormalMapScale: 0.851
     - _NormalPower: 0.75
     - _OcclusionPower: 0.279
     - _OcclusionStrength: 1
@@ -181,12 +193,16 @@ Material:
     - _WindBurstsScale: 1
     - _WindBurstsSpeed: 50
     - _WindDebugView: 0
+    - _WindJitterSpeed: 0
+    - _WindJitterStrength: 0
     - _WindMultiplier: 0.5
     - _WindMultiplier1: 1
     - _WindPosContrast: 6.5
     - _WindPosition: 6
     - _WindPower: 0.01
     - _WindSpeed: 1
+    - _WindSwaySpeed: 0
+    - _WindSwayStrength: 0
     - _WindTrunkContrast: 1
     - _WindTrunkPosition: 10
     - _ZWrite: 1
@@ -195,4 +211,6 @@ Material:
     - _2ndColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _WindDirection: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1

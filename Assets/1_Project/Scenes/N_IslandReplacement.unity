@@ -16213,6 +16213,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A (34)
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20858,6 +20862,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (36)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26658,6 +26666,7 @@ GameObject:
   - component: {fileID: 507486808}
   - component: {fileID: 507486807}
   - component: {fileID: 507486806}
+  - component: {fileID: 507486811}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -26821,6 +26830,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &507486811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507486805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e578c506ef3c05140a2d6e70b910ea43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startSphereCastRadius: 2.2
+  endSphereCastRadius: 0.73
+  castSamples: 3
+  treeLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  fadeSpeed: 0.5
+  minFadeAmount: 0.66
+  startOffsetDistance: 0.88
+  offsetEndDistance: 3.08
 --- !u!4 &509332033 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4150320729586925891, guid: d2254d1b74ed66196bb62f55b095cc19, type: 3}
@@ -59208,6 +59239,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A (33)
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -73150,6 +73185,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5396018859017873799, guid: 36b5f5989781a7d49ba19138aad936b3, type: 3}
   m_PrefabInstance: {fileID: 1494308357}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1496098536
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: bcafae047914a024aae52acbb8f2bb15, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -64.13
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bcafae047914a024aae52acbb8f2bb15, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.21363544
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bcafae047914a024aae52acbb8f2bb15, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 67.83
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bcafae047914a024aae52acbb8f2bb15, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bcafae047914a024aae52acbb8f2bb15, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bcafae047914a024aae52acbb8f2bb15, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bcafae047914a024aae52acbb8f2bb15, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bcafae047914a024aae52acbb8f2bb15, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bcafae047914a024aae52acbb8f2bb15, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bcafae047914a024aae52acbb8f2bb15, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bcafae047914a024aae52acbb8f2bb15, type: 3}
+      propertyPath: m_Name
+      value: Mutant_Rig_Textured
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bcafae047914a024aae52acbb8f2bb15, type: 3}
 --- !u!1001 &1497519709
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -93138,7 +93230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7084071009957247494, guid: 405ae0ac84e068c419692248968fe906, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5331602
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 7084071009957247494, guid: 405ae0ac84e068c419692248968fe906, type: 3}
       propertyPath: m_LocalPosition.z
@@ -100516,6 +100608,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A (35)
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -106495,6 +106591,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -107672,6 +107772,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (27)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -110733,6 +110837,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -112279,6 +112387,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -112589,6 +112701,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -112650,6 +112766,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -113084,6 +113204,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -114226,6 +114350,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -115656,6 +115784,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -119015,6 +119147,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -119448,6 +119584,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -120333,6 +120473,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -120832,6 +120976,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -122015,18 +122163,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05B (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 6292500067264782588, guid: 3dc3178f84012a148b5946907cdecd57, type: 3}
-      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
-      value: 0.82035154
-      objectReference: {fileID: 0}
-    - target: {fileID: 6292500067264782588, guid: 3dc3178f84012a148b5946907cdecd57, type: 3}
-      propertyPath: m_LODs.Array.data[1].screenRelativeHeight
-      value: 0.4366107
-      objectReference: {fileID: 0}
-    - target: {fileID: 6292500067264782588, guid: 3dc3178f84012a148b5946907cdecd57, type: 3}
-      propertyPath: m_LODs.Array.data[2].screenRelativeHeight
-      value: 0.09566817
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -123061,6 +123197,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -123286,22 +123426,6 @@ PrefabInstance:
     - target: {fileID: 1870292790144699911, guid: 4c42ac458eb0b0a448ecb4daaf6f389c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894591890042272118, guid: 4c42ac458eb0b0a448ecb4daaf6f389c, type: 3}
-      propertyPath: m_Size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894591890042272118, guid: 4c42ac458eb0b0a448ecb4daaf6f389c, type: 3}
-      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
-      value: 0.038315058
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894591890042272118, guid: 4c42ac458eb0b0a448ecb4daaf6f389c, type: 3}
-      propertyPath: m_LODs.Array.data[1].screenRelativeHeight
-      value: 0.024382308
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894591890042272118, guid: 4c42ac458eb0b0a448ecb4daaf6f389c, type: 3}
-      propertyPath: m_LODs.Array.data[2].screenRelativeHeight
-      value: 0.003483187
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -124156,6 +124280,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (29)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -125596,6 +125724,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -127833,18 +127965,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 664230337192089534}
     m_Modifications:
-    - target: {fileID: 315564067378645085, guid: f6b432ab29364fb0a0b0ab7a44d1e899, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.89
-      objectReference: {fileID: 0}
-    - target: {fileID: 315564067378645085, guid: f6b432ab29364fb0a0b0ab7a44d1e899, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 315564067378645085, guid: f6b432ab29364fb0a0b0ab7a44d1e899, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.65
-      objectReference: {fileID: 0}
     - target: {fileID: 8485893231006620345, guid: f6b432ab29364fb0a0b0ab7a44d1e899, type: 3}
       propertyPath: m_Name
       value: Coconut2 (1)
@@ -129404,6 +129524,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (30)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -131087,6 +131211,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -131400,6 +131528,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (28)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -133198,6 +133330,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -134415,6 +134551,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -134621,22 +134761,6 @@ PrefabInstance:
     - target: {fileID: 3079479647208147444, guid: 0500c9cc85014f5f9807902c10469a4e, type: 3}
       propertyPath: m_Name
       value: Coconut6 (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3079479647208147444, guid: 0500c9cc85014f5f9807902c10469a4e, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 4349069072258889618, guid: 0500c9cc85014f5f9807902c10469a4e, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 4448515909493054578, guid: 0500c9cc85014f5f9807902c10469a4e, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 8974285377317872363, guid: 0500c9cc85014f5f9807902c10469a4e, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -134879,6 +135003,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (31)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -135565,6 +135693,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -137764,6 +137896,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -139468,6 +139604,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -140046,6 +140186,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -140231,6 +140375,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -140996,6 +141144,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -141119,6 +141271,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -142177,6 +142333,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -142676,6 +142836,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -143983,6 +144147,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -144106,6 +144274,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -144796,22 +144968,6 @@ PrefabInstance:
     - target: {fileID: 3079479647208147444, guid: 0500c9cc85014f5f9807902c10469a4e, type: 3}
       propertyPath: m_Name
       value: Coconut6 (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3079479647208147444, guid: 0500c9cc85014f5f9807902c10469a4e, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 4349069072258889618, guid: 0500c9cc85014f5f9807902c10469a4e, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 4448515909493054578, guid: 0500c9cc85014f5f9807902c10469a4e, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 8974285377317872363, guid: 0500c9cc85014f5f9807902c10469a4e, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -146258,6 +146414,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -147857,6 +148017,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -147918,22 +148082,6 @@ PrefabInstance:
     - target: {fileID: 3079479647208147444, guid: 0500c9cc85014f5f9807902c10469a4e, type: 3}
       propertyPath: m_Name
       value: Coconut6 (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3079479647208147444, guid: 0500c9cc85014f5f9807902c10469a4e, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 4349069072258889618, guid: 0500c9cc85014f5f9807902c10469a4e, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 4448515909493054578, guid: 0500c9cc85014f5f9807902c10469a4e, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 8974285377317872363, guid: 0500c9cc85014f5f9807902c10469a4e, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -148930,6 +149078,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -153931,6 +154083,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -154512,22 +154668,6 @@ PrefabInstance:
     - target: {fileID: 3079479647208147444, guid: 0500c9cc85014f5f9807902c10469a4e, type: 3}
       propertyPath: m_Name
       value: Coconut6 (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3079479647208147444, guid: 0500c9cc85014f5f9807902c10469a4e, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 4349069072258889618, guid: 0500c9cc85014f5f9807902c10469a4e, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 4448515909493054578, guid: 0500c9cc85014f5f9807902c10469a4e, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 8974285377317872363, guid: 0500c9cc85014f5f9807902c10469a4e, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -155214,6 +155354,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (24)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -156458,22 +156602,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Coconut6
       objectReference: {fileID: 0}
-    - target: {fileID: 3079479647208147444, guid: 0500c9cc85014f5f9807902c10469a4e, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 4349069072258889618, guid: 0500c9cc85014f5f9807902c10469a4e, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 4448515909493054578, guid: 0500c9cc85014f5f9807902c10469a4e, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 8974285377317872363, guid: 0500c9cc85014f5f9807902c10469a4e, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -156969,6 +157097,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -157567,6 +157699,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (32)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -162780,6 +162916,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -164091,6 +164231,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -164405,6 +164549,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -164590,6 +164738,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -167033,18 +167185,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 664230337192089534}
     m_Modifications:
-    - target: {fileID: 6370602768686623629, guid: f6b432ab29364fb0a0b0ab7a44d1e899, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.48
-      objectReference: {fileID: 0}
-    - target: {fileID: 6370602768686623629, guid: f6b432ab29364fb0a0b0ab7a44d1e899, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.64
-      objectReference: {fileID: 0}
-    - target: {fileID: 6370602768686623629, guid: f6b432ab29364fb0a0b0ab7a44d1e899, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.29
-      objectReference: {fileID: 0}
     - target: {fileID: 8485893231006620345, guid: f6b432ab29364fb0a0b0ab7a44d1e899, type: 3}
       propertyPath: m_Name
       value: Coconut2 (6)
@@ -167336,6 +167476,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -168395,6 +168539,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -168766,6 +168914,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -170217,6 +170369,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -170795,6 +170951,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (30)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -171415,6 +171575,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -173014,6 +173178,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -173331,6 +173499,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -174323,6 +174495,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -176910,6 +177086,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -177220,6 +177400,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -177467,6 +177651,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -178406,6 +178594,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A (32)
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -178796,18 +178988,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 664230337192089534}
     m_Modifications:
-    - target: {fileID: 5111565118978570647, guid: 2f3e9539bda247f49c4d64b142c4bbae, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.51
-      objectReference: {fileID: 0}
-    - target: {fileID: 5111565118978570647, guid: 2f3e9539bda247f49c4d64b142c4bbae, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5111565118978570647, guid: 2f3e9539bda247f49c4d64b142c4bbae, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.08
-      objectReference: {fileID: 0}
     - target: {fileID: 8076818776803282231, guid: 2f3e9539bda247f49c4d64b142c4bbae, type: 3}
       propertyPath: m_LocalPosition.x
       value: -84.66235
@@ -179905,22 +180085,6 @@ PrefabInstance:
     - target: {fileID: 3079479647208147444, guid: 0500c9cc85014f5f9807902c10469a4e, type: 3}
       propertyPath: m_Name
       value: Coconut6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3079479647208147444, guid: 0500c9cc85014f5f9807902c10469a4e, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 4349069072258889618, guid: 0500c9cc85014f5f9807902c10469a4e, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 4448515909493054578, guid: 0500c9cc85014f5f9807902c10469a4e, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 8974285377317872363, guid: 0500c9cc85014f5f9807902c10469a4e, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -182220,6 +182384,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -183798,6 +183966,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEM_Tree_05A (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -183987,6 +184159,10 @@ PrefabInstance:
     - target: {fileID: 1892282038959902007, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
       propertyPath: m_Name
       value: TEM_Tree_05A (29)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292500067264782588, guid: 66d5b0701997d3e4f88b896283e97673, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -184331,3 +184507,4 @@ SceneRoots:
   - {fileID: 1376635194}
   - {fileID: 973234594}
   - {fileID: 1193951362}
+  - {fileID: 1496098536}

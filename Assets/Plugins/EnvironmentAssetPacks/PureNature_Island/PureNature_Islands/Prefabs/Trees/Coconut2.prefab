@@ -1,5 +1,60 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1951608090628942186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2367051436227743152}
+  - component: {fileID: 1424261503574523356}
+  m_Layer: 9
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2367051436227743152
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951608090628942186}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.11409882, y: -0, z: -0, w: 0.9934694}
+  m_LocalPosition: {x: 0.012, y: 1.755, z: -0.437}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 9117575114332487683}
+  m_LocalEulerAnglesHint: {x: -13.103, y: 0, z: 0}
+--- !u!136 &1424261503574523356
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951608090628942186}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.15
+  m_Height: 3.13
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &8719702523696883688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -69,6 +124,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: a6cc06aab65945acb2cb5c979e084935, type: 2}
     - target: {fileID: -5570593629270373155, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -5570593629270373155, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -77,8 +136,16 @@ PrefabInstance:
       value: Coconut2
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2951751567772122773, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2951751567772122773, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -86,7 +153,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
       propertyPath: m_FadeMode
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
+      propertyPath: m_AnimateCrossFading
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
       propertyPath: m_LODs.Array.data[0].fadeTransitionWidth
@@ -117,6 +188,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: a6cc06aab65945acb2cb5c979e084935, type: 2}
     - target: {fileID: 6971927459548260991, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6971927459548260991, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -134,7 +209,10 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 7c9368944de24c0cbe67914a00f1a4e9, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2367051436227743152}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
       insertIndex: -1
@@ -165,6 +243,11 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.35304177
-  m_Height: 1.616722
+  m_Height: 1.24
   m_Direction: 1
-  m_Center: {x: 0, y: 0.308361, z: -0.085710764}
+  m_Center: {x: 0, y: 0.03, z: -0.085710764}
+--- !u!4 &9117575114332487683 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9259f644049a408bb21dc01fd64fa279, type: 3}
+  m_PrefabInstance: {fileID: 8719702523696883688}
+  m_PrefabAsset: {fileID: 0}

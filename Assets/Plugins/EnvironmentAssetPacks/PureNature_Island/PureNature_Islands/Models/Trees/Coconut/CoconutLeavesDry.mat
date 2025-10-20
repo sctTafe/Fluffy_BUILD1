@@ -8,17 +8,11 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CoconutLeavesDry
-  m_Shader: {fileID: 4800000, guid: 0f96a2937f6bace459a5fdaac39c0fb3, type: 3}
+  m_Shader: {fileID: 4800000, guid: 3eef0d371a3baf64ebd4e79cbdbebbd5, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _BASEWINDCHANNEL_R
-  - _BASEWIND_B
-  - _HIDEHARDANGLES_ON
-  - _MICROWINDCHANNEL_B
-  - _MICROWIND_R
-  - _USEDITHER_ON
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -73,6 +67,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: f702406db7a985649ade93cb60009e67, type: 3}
         m_Scale: {x: 2, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MainTexture:
+        m_Texture: {fileID: 2800000, guid: 9eb6b358ebc0416fb2174c46c1ce93ae, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Mask:
         m_Texture: {fileID: 2800000, guid: 2239c0b3329bd0f4dbd413ec1c01033e, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -85,7 +83,15 @@ Material:
         m_Texture: {fileID: 2800000, guid: 56fc026eb79effe4b85400592e33d639, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NoiseTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Normal:
+        m_Texture: {fileID: 2800000, guid: 68e0bf94b437469c9c7c78fefd1b5f7b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
         m_Texture: {fileID: 2800000, guid: 68e0bf94b437469c9c7c78fefd1b5f7b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -103,6 +109,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _Texture0:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureRamp:
+        m_Texture: {fileID: 2800000, guid: d6bb1a260fcbe874989b84f39648a1e2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample0:
@@ -146,10 +156,12 @@ Material:
     - _Cutoff: 0.4
     - _DetailNormalMapScale: 1
     - _Dither: 3
+    - _DitherAlpha: 1
     - _DitherPower: 2.5
     - _DstBlend: 0
     - _EdgeFlutter: 4
     - _EdgeFlutter1: 1.93
+    - _EnableWind: 0
     - _EnvironmentReflections: 1
     - _Float0: 1
     - _Float1: 1
@@ -169,6 +181,7 @@ Material:
     - _Int0: 0
     - _InvertGradient: 0
     - _Keyword0: 0
+    - _MaskClipValue: 0.5
     - _Metallic: 0
     - _MicroFrequency: 5
     - _MicroPower: 0.1
@@ -180,6 +193,7 @@ Material:
     - _NoiseScale: 0.05
     - _NormalAttenuation: 1
     - _NormalDistortion: 1
+    - _NormalMapScale: 1
     - _NormalPower: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
@@ -219,10 +233,14 @@ Material:
     - _WindBurstsScale: 1
     - _WindBurstsSpeed: 50
     - _WindDebugView: 0
+    - _WindJitterSpeed: 0.4
+    - _WindJitterStrength: 1
     - _WindMultiplier: 0
     - _WindMultiplier2: 1
     - _WindPower: 0.01
     - _WindSpeed: 1
+    - _WindSwaySpeed: 0.4
+    - _WindSwayStrength: 0.5
     - _WindTrunkContrast: 0
     - _WindTrunkContrast1: 50
     - _WindTrunkPosition: 0
@@ -245,5 +263,7 @@ Material:
     - _TreeOffset: {r: 0, g: 0, b: 0, a: 0}
     - _TreeOffset1: {r: 0, g: 5, b: 0, a: 0}
     - _Vector0: {r: 1, g: 1, b: 0, a: 0}
+    - _WindDirection: {r: 1, g: 0, b: 0.5, a: 0}
     - _windOrientation: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1

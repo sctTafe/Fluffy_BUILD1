@@ -43,7 +43,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ColorVariationNoise:
-        m_Texture: {fileID: 2800000, guid: 9f2a885222e78414ea86bb96efe57223, type: 3}
+        m_Texture: {fileID: 2800000, guid: 61cf8b91d960bee468b88972b74fb7e5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -143,7 +143,7 @@ Material:
     - _BranchPhase: 0.35
     - _BranchPhase1: 1.05
     - _BumpScale: 1
-    - _ColorVariationPower: 0.095
+    - _ColorVariationPower: 0.547
     - _Cutoff: 0.1
     - _DetailNormalMapScale: 1
     - _Dither: 3
@@ -165,7 +165,7 @@ Material:
     - _GradientFaloff: 1
     - _GradientPosition: 0.422
     - _HideHardAngles: 1
-    - _HidePower: 16.46
+    - _HidePower: 13.5
     - _HideSides: 0
     - _Int0: 0
     - _InvertGradient: 1
@@ -178,10 +178,10 @@ Material:
     - _MicroWindChannel: 2
     - _MicroWindMultiplier: 0.3
     - _Mode: 0
-    - _NoiseScale: 0.02
+    - _NoiseScale: 65.61
     - _NormalAttenuation: 1
     - _NormalDistortion: 1
-    - _NormalPower: 0.274
+    - _NormalPower: 0.596
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Power: 0.1
@@ -208,8 +208,8 @@ Material:
     - _TransNormal: 0.5
     - _TransNormalDistortion: 1
     - _TransScattering: 1
-    - _TransShadow: 0.6
-    - _TransStrength: 1
+    - _TransShadow: 0.649
+    - _TransStrength: 4.6
     - _Translucency: 1
     - _TrunkWindAmplitude: 0.09
     - _TrunkWindPower: 1
@@ -220,13 +220,13 @@ Material:
     - _WindBurstsScale: 1
     - _WindBurstsSpeed: 50
     - _WindDebugView: 0
-    - _WindMultiplier: 0
+    - _WindMultiplier: 1
     - _WindMultiplier2: 1
     - _WindPower: 0.01
     - _WindSpeed: 1
     - _WindTrunkContrast: 10
     - _WindTrunkContrast1: 50
-    - _WindTrunkPosition: 3
+    - _WindTrunkPosition: 0.01
     - _WindTrunkPosition1: 12
     - _ZWrite: 1
     - __dirty: 0

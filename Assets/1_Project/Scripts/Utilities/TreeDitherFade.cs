@@ -3,7 +3,9 @@ using System.Collections.Generic;
 
 public class TreeDitherFade : MonoBehaviour
 {
-    [SerializeField] private float sphereCastRadius = 0.5f;
+    [SerializeField] private float startSphereCastRadius = 0.5f;
+    [SerializeField] private float endSphereCastRadius = 0.5f;
+    [SerializeField, Range(2, 12)] private int castSamples = 3; // number of samples along the path to approximate a tapered cast
     [SerializeField] private LayerMask treeLayer;
     [SerializeField] private float fadeSpeed = 2f;
     [SerializeField] private float minFadeAmount = 0.5f;
@@ -27,20 +29,29 @@ public class TreeDitherFade : MonoBehaviour
 
         // Debug the spherecast
         Debug.DrawRay(start, dir * dist, Color.cyan);
-        DebugDrawSphereCast(start, dir, dist, sphereCastRadius, Color.green);
+        DebugDrawSphereCast(start, dir, dist, startSphereCastRadius, endSphereCastRadius, Color.green);
 
 
         HashSet<Renderer> hitRenderers = new HashSet<Renderer>();
 
-        RaycastHit[] hits = Physics.SphereCastAll(start, sphereCastRadius, dir, dist, treeLayer);
-        foreach (var hit in hits)
+        // Approximate a tapered cast by sampling overlap spheres along the path
+        int samples = Mathf.Max(2, castSamples);
+        for (int i = 0; i < samples; i++)
         {
-            Renderer r = hit.collider.GetComponentInChildren<Renderer>();
-            if (r != null)
+            float t = samples == 1 ? 0f : (float)i / (samples - 1);
+            Vector3 p = Vector3.Lerp(start, end, t);
+            float r = Mathf.Lerp(startSphereCastRadius, endSphereCastRadius, t);
+            Collider[] overlaps = Physics.OverlapSphere(p, r, treeLayer, QueryTriggerInteraction.Ignore);
+            for (int j = 0; j < overlaps.Length; j++)
             {
-                hitRenderers.Add(r);
-                if (!treeTargets.ContainsKey(r))
-                    treeTargets[r] = 1f;
+                var col = overlaps[j];
+                Renderer rend = col.GetComponentInChildren<Renderer>();
+                if (rend != null)
+                {
+                    hitRenderers.Add(rend);
+                    if (!treeTargets.ContainsKey(rend))
+                        treeTargets[rend] = 1f;
+                }
             }
         }
 
@@ -77,12 +88,12 @@ public class TreeDitherFade : MonoBehaviour
         }
     }
 
-    // Helper to draw a representation of a spherecast in the editor
-    void DebugDrawSphereCast(Vector3 origin, Vector3 direction, float distance, float radius, Color color)
+    // Helper to draw a representation of a tapered spherecast in the editor
+    void DebugDrawSphereCast(Vector3 origin, Vector3 direction, float distance, float startRadius, float endRadius, Color color)
     {
         Vector3 end = origin + direction.normalized * distance;
-        DebugDrawWireSphere(origin, radius, color);
-        DebugDrawWireSphere(end, radius, color);
+        DebugDrawWireSphere(origin, startRadius, color);
+        DebugDrawWireSphere(end, endRadius, color);
     }
 
     void DebugDrawWireSphere(Vector3 center, float radius, Color color)

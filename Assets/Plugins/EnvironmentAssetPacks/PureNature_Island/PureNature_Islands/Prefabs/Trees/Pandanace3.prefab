@@ -49,19 +49,19 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -5176055611096027837, guid: ce7bb17300ac47aa9e1d3b3fcca5d27e, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: b8df9d4d34414e68acce9932a2607840, type: 2}
     - target: {fileID: -5176055611096027837, guid: ce7bb17300ac47aa9e1d3b3fcca5d27e, type: 3}
-      propertyPath: m_Materials.Array.data[1]
+      propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 1770a598aa984f2d9e9ad025340308ac, type: 2}
     - target: {fileID: -2552005849323567337, guid: ce7bb17300ac47aa9e1d3b3fcca5d27e, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 1770a598aa984f2d9e9ad025340308ac, type: 2}
     - target: {fileID: -2552005849323567337, guid: ce7bb17300ac47aa9e1d3b3fcca5d27e, type: 3}
-      propertyPath: m_Materials.Array.data[1]
+      propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: b8df9d4d34414e68acce9932a2607840, type: 2}
     - target: {fileID: 919132149155446097, guid: ce7bb17300ac47aa9e1d3b3fcca5d27e, type: 3}
@@ -69,15 +69,23 @@ PrefabInstance:
       value: Pandanace3
       objectReference: {fileID: 0}
     - target: {fileID: 1163363115608059012, guid: ce7bb17300ac47aa9e1d3b3fcca5d27e, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: e79720a7632d42ee9e5dfa44cd923a46, type: 2}
+    - target: {fileID: 4742473837712756890, guid: ce7bb17300ac47aa9e1d3b3fcca5d27e, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: ce7bb17300ac47aa9e1d3b3fcca5d27e, type: 3}
+      propertyPath: m_AnimateCrossFading
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9015577784398991799, guid: ce7bb17300ac47aa9e1d3b3fcca5d27e, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 1770a598aa984f2d9e9ad025340308ac, type: 2}
     - target: {fileID: 9015577784398991799, guid: ce7bb17300ac47aa9e1d3b3fcca5d27e, type: 3}
-      propertyPath: m_Materials.Array.data[1]
+      propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: b8df9d4d34414e68acce9932a2607840, type: 2}
     m_RemovedComponents: []

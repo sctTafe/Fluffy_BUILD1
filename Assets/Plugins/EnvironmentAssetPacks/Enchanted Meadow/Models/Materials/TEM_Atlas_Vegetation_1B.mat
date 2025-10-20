@@ -151,7 +151,7 @@ Material:
     - _Wind: 1
     - _WindJitter: 0.25
     - _WindJitterSpeed: 0.35
-    - _WindJitterStrength: 0.13
+    - _WindJitterStrength: 0.012
     - _WindSpeed: 0.7
     - _WindStrenght: 0.9
     - _WindSwaySpeed: 1.75
@@ -162,6 +162,6 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color0: {r: 1, g: 0.7817018, b: 0, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _WindDirection: {r: 0.25, g: 0, b: 0.25, a: 0}
+    - _WindDirection: {r: 0.25, g: 0.05, b: 0.25, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
