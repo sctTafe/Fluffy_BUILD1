@@ -119,7 +119,7 @@ TextureImporter:
         height: 198
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 74, y: 80, z: 76, w: 51}
       customData: 
       outline: []
       physicsShape: []
@@ -141,7 +141,7 @@ TextureImporter:
         height: 192
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 55, y: 37, z: 49, w: 54}
       customData: 
       outline: []
       physicsShape: []
@@ -163,7 +163,7 @@ TextureImporter:
         height: 204
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 87, y: 51, z: 55, w: 56}
       customData: 
       outline: []
       physicsShape: []
@@ -185,7 +185,7 @@ TextureImporter:
         height: 206
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 68, y: 39, z: 64, w: 50}
       customData: 
       outline: []
       physicsShape: []
@@ -202,12 +202,12 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 78
-        y: 81
+        y: 92
         width: 329
-        height: 183
+        height: 172
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 39, y: 46, z: 33, w: 38}
       customData: 
       outline: []
       physicsShape: []
@@ -241,6 +241,50 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: HandleUI
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 889
+        width: 101
+        height: 109
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 237db56da229a4d4d9ab3eb82e8796da
+      internalID: -497467909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HandleMetal
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 773
+        width: 106
+        height: 105
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 31, y: 36, z: 33, w: 30}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c39572f07e313d4fa6bab025ed8cafe
+      internalID: 1337986958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -261,6 +305,8 @@ TextureImporter:
       Button_Med: 1147048739
       Button_Short: -261859525
       Button_Square: 408783058
+      HandleUI: -497467909
+      UI_HandleMetal: 1337986958
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
