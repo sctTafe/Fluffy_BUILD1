@@ -50,14 +50,9 @@ public class GetToTheBoat : NetworkSingleton<GetToTheBoat>
     }
 
 
-    public void fn_TriggerGetToTheBoat_ServerOnly()
-    {       
-        if (!IsServer)
-        {
-            Debug.LogError("GetToTheBoat: This Function Can only be called by the server");
-            return;
-        }
-
+    public void fn_TriggerGetToTheBoat()
+    {
+        Debug.Log("GetToTheBoat: fn_TriggerGetToTheBoat Called!");
         GetToTheBoat_ServerRpc();
     }
 
@@ -67,6 +62,7 @@ public class GetToTheBoat : NetworkSingleton<GetToTheBoat>
     private void GetToTheBoat_ServerRpc()
     {
         GetToTheBoat_ClientRpc();
+        Debug.Log("GetToTheBoat: GetToTheBoat_ServerRpc Called!");
     }
 
     // ClientRpc - called from server, runs on all clients
@@ -79,6 +75,7 @@ public class GetToTheBoat : NetworkSingleton<GetToTheBoat>
 
     private void GetToTheBoat_Main()
     {
+        Debug.Log("GetToTheBoat: GetToTheBoat_Main Called!");
         // Disable Effects on pickups Round the Island
         DisableAllParticleSystems();
 
@@ -86,7 +83,7 @@ public class GetToTheBoat : NetworkSingleton<GetToTheBoat>
         _GetToTheBoatObjects.SetActive(true);
 
         // Message All Player (Inc Mutant)
-        HUD_PopUpMessages_Singelton.Instance.fn_PopupMessage("Boat Reeady! Get to the boat", HUD_PopUpMessages_Singelton.PopupStyle.Bounce, 3f);
+        HUD_PopUpMessages_Singelton.Instance.fn_PopupMessage("Boat’s ready! Let’s get meow-ta here!", HUD_PopUpMessages_Singelton.PopupStyle.Bounce, 3f);
 
         _OnObjectivesComplete?.Invoke();
     }

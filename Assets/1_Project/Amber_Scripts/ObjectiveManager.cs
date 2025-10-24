@@ -68,7 +68,7 @@ public class ObjectiveManager : NetworkSingleton<ObjectiveManager>
     private void TriggerBoatThing_ServerRPC()
     {
         Debug.Log("TriggerBoatThing_ServerRPC Called");
-        GetToTheBoat.Instance.fn_TriggerGetToTheBoat_ServerOnly();
+        GetToTheBoat.Instance.fn_TriggerGetToTheBoat();
     }
 
 

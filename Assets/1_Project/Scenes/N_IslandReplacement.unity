@@ -45054,7 +45054,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5053856305109603999, guid: f7772ca76c6c26c4eb99bd1659a92768, type: 3}
       propertyPath: amount_needed
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5053856305109603999, guid: f7772ca76c6c26c4eb99bd1659a92768, type: 3}
       propertyPath: objective_name
@@ -56335,6 +56335,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1139201271}
   - component: {fileID: 1139201272}
+  - component: {fileID: 1139201273}
   m_Layer: 0
   m_Name: '[EscapePoint]'
   m_TagString: Untagged
@@ -56444,6 +56445,31 @@ MonoBehaviour:
   - {fileID: 1581584687}
   - {fileID: 617061398}
   _GetToTheBoatObjects: {fileID: 431624214}
+--- !u!114 &1139201273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139201270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 572477298
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1001 &1144090553
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -74510,7 +74536,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 934052901229669100, guid: a3d1e447c93bcf443a562586114ef7aa, type: 3}
       propertyPath: amount_needed
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 934052901229669100, guid: a3d1e447c93bcf443a562586114ef7aa, type: 3}
       propertyPath: objective_name
@@ -94600,7 +94626,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8791376843712151818, guid: a1590b3498112f04bbc6f0d57893e5eb, type: 3}
       propertyPath: amount_needed
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8791376843712151818, guid: a1590b3498112f04bbc6f0d57893e5eb, type: 3}
       propertyPath: objective_name
