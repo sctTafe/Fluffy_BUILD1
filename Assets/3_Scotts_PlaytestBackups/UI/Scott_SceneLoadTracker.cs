@@ -22,6 +22,7 @@ public class Scott_SceneLoadTracker : NetworkBehaviour
         if (loadingCanvas != null)
         {
             loadingCanvas.gameObject.SetActive(true);
+            loadingCanvas.enabled = true;
         }
 
 
@@ -63,6 +64,7 @@ public class Scott_SceneLoadTracker : NetworkBehaviour
         // Disable the canvas
         if (loadingCanvas != null)
         {
+            loadingCanvas.enabled = false;
             loadingCanvas.gameObject.SetActive(false);
         }
     }

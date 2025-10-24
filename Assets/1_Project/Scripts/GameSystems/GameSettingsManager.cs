@@ -62,9 +62,37 @@ public class GameSettingsManager : MonoBehaviour
             mouseSensitivitySlider.onValueChanged.AddListener((value) => { SetMouseSensitivity(value); SaveSettings(); });
     }
 
+    //void SetupResolutions()
+    //{
+    //    resolutions = Screen.resolutions;
+
+    //    if (resolutionDropdown == null) return;
+    //    resolutionDropdown.ClearOptions();
+
+    //    List<string> options = new List<string>();
+    //    int currentIndex = 0;
+
+    //    for (int i = 0; i < resolutions.Length; i++)
+    //    {
+    //        string option = resolutions[i].width + " x " + resolutions[i].height + " @ " + resolutions[i].refreshRate + "Hz";
+    //        options.Add(option);
+
+    //        if (resolutions[i].width == Screen.currentResolution.width &&
+    //            resolutions[i].height == Screen.currentResolution.height &&
+    //            resolutions[i].refreshRate == Screen.currentResolution.refreshRate)
+    //        {
+    //            currentIndex = i;
+    //        }
+    //    }
+
+    //    resolutionDropdown.AddOptions(options);
+    //    resolutionDropdown.value = currentIndex;
+    //    resolutionDropdown.RefreshShownValue();
+    //}
+
     void SetupResolutions()
     {
-        resolutions = Screen.resolutions;
+        resolutions = FilterResolutions(Screen.resolutions);
         if (resolutionDropdown == null) return;
         resolutionDropdown.ClearOptions();
 
@@ -88,6 +116,75 @@ public class GameSettingsManager : MonoBehaviour
         resolutionDropdown.value = currentIndex;
         resolutionDropdown.RefreshShownValue();
     }
+
+    private Resolution[] FilterResolutions(Resolution[] allResolutions)
+    {
+        List<Resolution> filteredResolutions = new List<Resolution>();
+
+        var res_all = Screen.resolutions;
+
+        // Define allowed resolutions (width, height)
+        var allowedResolutions = new List<(int width, int height)>
+        {
+            (1280, 720),   // 720p
+            (1600, 900),   // 1600x900
+            (1920, 1080),  // 1080p
+            (2560, 1440)   // 1440p (2K)
+        };
+
+        // First pass: try to find resolutions at common refresh rates (59-61Hz range)
+        foreach (Resolution res in allResolutions)
+        {
+            foreach (var allowed in allowedResolutions)
+            {
+                if (res.width == allowed.width &&
+                    res.height == allowed.height &&
+                    res.refreshRate >= 45 && res.refreshRate <= 70)
+                {
+                    filteredResolutions.Add(res);
+                    break;
+                }
+            }
+        }
+
+        // Second pass: if no 60Hz resolutions found, get the highest refresh rate for each allowed resolution
+        if (filteredResolutions.Count == 0)
+        {
+            Debug.Log("No 60Hz resolutions found. Using highest available refresh rate for each resolution.");
+
+            foreach (var allowed in allowedResolutions)
+            {
+                Resolution? highestRefreshRes = null;
+
+                foreach (Resolution res in allResolutions)
+                {
+                    if (res.width == allowed.width && res.height == allowed.height)
+                    {
+                        if (highestRefreshRes == null || res.refreshRate > highestRefreshRes.Value.refreshRate)
+                        {
+                            highestRefreshRes = res;
+                        }
+                    }
+                }
+
+                if (highestRefreshRes != null)
+                {
+                    filteredResolutions.Add(highestRefreshRes.Value);
+                }
+            }
+        }
+
+        // Final fallback: if still no resolutions matched, use all available
+        if (filteredResolutions.Count == 0)
+        {
+            Debug.LogWarning("No matching resolutions found. Using all available resolutions.");
+            return allResolutions;
+        }
+
+        return filteredResolutions.ToArray();
+    }
+
+
 
     public void SetResolution(int index)
     {

@@ -1,0 +1,529 @@
+fileFormatVersion: 2
+guid: 213d13c4312b60e49b3351513d245fb6
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Game_Teamcolour_NoWhite_0
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 1809
+        width: 161
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20b02f49dce352f4cb522c7abaad9f0e
+      internalID: 51958720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game_Teamcolour_NoWhite_6
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 1027
+        width: 517
+        height: 750
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec5b8d9d3cb7ef74abe2479b84f51c87
+      internalID: 1423366471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game_Teamcolour_NoWhite_7
+      rect:
+        serializedVersion: 2
+        x: 637
+        y: 1031
+        width: 499
+        height: 742
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16971604b0504324a8a89c046a08f876
+      internalID: 575042802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game_Teamcolour_NoWhite_8
+      rect:
+        serializedVersion: 2
+        x: 1161
+        y: 1502
+        width: 25
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd4312685941ec940bccbf5efec245f2
+      internalID: 1844403187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game_Teamcolour_NoWhite_9
+      rect:
+        serializedVersion: 2
+        x: 1192
+        y: 1030
+        width: 488
+        height: 742
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd8ae8fa75e73d441afc01bafc992245
+      internalID: -611485692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game_Teamcolour_NoWhite_10
+      rect:
+        serializedVersion: 2
+        x: 1757
+        y: 1031
+        width: 510
+        height: 740
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 087c28a8001fa7f428148fe18a3f2af4
+      internalID: 653860274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game_Teamcolour_NoWhite_13
+      rect:
+        serializedVersion: 2
+        x: 757
+        y: 879
+        width: 235
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df0aa6ad82a0ffa4f9f7428c46279e60
+      internalID: -265163938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game_Teamcolour_NoWhite_16
+      rect:
+        serializedVersion: 2
+        x: 1924
+        y: 870
+        width: 160
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1879f2c672d2eb40b77d4a59e0afe7a
+      internalID: -151392578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game_Teamcolour_NoWhite_18
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 78
+        width: 474
+        height: 740
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74c5dd2164ab86e40abe63eafa70dace
+      internalID: 1103694826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game_Teamcolour_NoWhite_19
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 79
+        width: 511
+        height: 740
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d3e0ae76579bcb49b38c4944cdfbb0b
+      internalID: -113032604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game_Teamcolour_NoWhite_20
+      rect:
+        serializedVersion: 2
+        x: 1202
+        y: 78
+        width: 475
+        height: 750
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d0a2a9fa6f2dbe4ead4afb688d2b3ca
+      internalID: -1425607196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game_Teamcolour_NoWhite_22
+      rect:
+        serializedVersion: 2
+        x: 1746
+        y: 79
+        width: 531
+        height: 749
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c23c19e355bf074090e97b73e4033c7
+      internalID: 1324633856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game_Teamcolour_NoWhite_14
+      rect:
+        serializedVersion: 2
+        x: 1361
+        y: 861
+        width: 165
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5df9cc01a8eb354a9519afa971ef030
+      internalID: -55767468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game_Teamcolour_NoWhite_11
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 857
+        width: 220
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 620768e791f81974592d207dbc6ee6ac
+      internalID: 1954339277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game_Teamcolour_NoWhite_1
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 1811
+        width: 180
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3e9b19bf8c141f4e99c5d9a4ecaaa34
+      internalID: -1367249614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game_Teamcolour_NoWhite_2
+      rect:
+        serializedVersion: 2
+        x: 1303
+        y: 1809
+        width: 255
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 809d6acda3f3cef469faf9544e31d0eb
+      internalID: 846382696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game_Teamcolour_NoWhite_3
+      rect:
+        serializedVersion: 2
+        x: 1912
+        y: 1785
+        width: 190
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ed933832520beb4eb375e52a36721a2
+      internalID: -1280380858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 7b875b2a4b8cd8f48afd55a973812d0e
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Game_Teamcolour_NoWhite_0: 51958720
+      Game_Teamcolour_NoWhite_1: -1367249614
+      Game_Teamcolour_NoWhite_10: 653860274
+      Game_Teamcolour_NoWhite_11: 1954339277
+      Game_Teamcolour_NoWhite_12: -9772707
+      Game_Teamcolour_NoWhite_13: -265163938
+      Game_Teamcolour_NoWhite_14: -55767468
+      Game_Teamcolour_NoWhite_15: 811917278
+      Game_Teamcolour_NoWhite_16: -151392578
+      Game_Teamcolour_NoWhite_17: 1152767237
+      Game_Teamcolour_NoWhite_18: 1103694826
+      Game_Teamcolour_NoWhite_19: -113032604
+      Game_Teamcolour_NoWhite_2: 846382696
+      Game_Teamcolour_NoWhite_20: -1425607196
+      Game_Teamcolour_NoWhite_21: -57441015
+      Game_Teamcolour_NoWhite_22: 1324633856
+      Game_Teamcolour_NoWhite_23: 2060030174
+      Game_Teamcolour_NoWhite_24: 962072665
+      Game_Teamcolour_NoWhite_3: -1280380858
+      Game_Teamcolour_NoWhite_4: -1635701978
+      Game_Teamcolour_NoWhite_5: 2119689555
+      Game_Teamcolour_NoWhite_6: 1423366471
+      Game_Teamcolour_NoWhite_7: 575042802
+      Game_Teamcolour_NoWhite_8: 1844403187
+      Game_Teamcolour_NoWhite_9: -611485692
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

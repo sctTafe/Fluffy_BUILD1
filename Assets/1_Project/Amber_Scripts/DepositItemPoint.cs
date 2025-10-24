@@ -22,8 +22,11 @@ public class DepositItemPoint : NetworkBehaviour
 	public NetworkVariable<int> current_amount = new NetworkVariable<int>(0);
 	public string objective_name = "Deposit petrol containers";
 	public string objective_UI_tag = "objective_prompt";
+	public ResoruceType resoruceType;
 	
-	[SerializeField] private TMP_Text objective_prompt;
+    [SerializeField] private TMP_Text objective_prompt;
+
+    bool _isCompleted = false;
 
     public void Start()
 	{
@@ -56,6 +59,14 @@ public class DepositItemPoint : NetworkBehaviour
     {
         UpdateUI();
     }
+    public void UpdateUI()
+    {
+        if (objective_prompt != null)
+        {
+            objective_prompt.text = $"{objective_name} {current_amount.Value} / {amount_needed}";
+        }
+    }
+
 
     public string GetNeededItem()
 	{
@@ -72,33 +83,31 @@ public class DepositItemPoint : NetworkBehaviour
 	[ServerRpc(RequireOwnership = false)]
 	private void IncreaseAmountServerRPC()
 	{
-		current_amount.Value += 1;
+		// Only Increase the number if its below the needed amount
+        if (current_amount.Value < amount_needed)
+            current_amount.Value += 1;
 
 		// Max Value is the target amount
-		if(current_amount.Value > amount_needed)
-            amount_needed = current_amount.Value;
+		if (current_amount.Value > amount_needed)
+			current_amount.Value = amount_needed;
 
         Debug.Log($"Deposited item! {current_amount.Value} / {amount_needed}");
-
-		if(current_amount.Value >= amount_needed)
+		
+		if(_isCompleted == false)
 		{
-			BroadcastObjectiveComplete();
-		}
+            _isCompleted = true;
+            if (current_amount.Value == amount_needed)
+            {
+                BroadcastObjectiveComplete();
+            }
+        }
 	}
-
 
 	public void BroadcastObjectiveComplete()
 	{
-		ObjectiveManager.Instance.CompletedObjectiveServerRPC();
-		ObjectiveManager.Instance.CompletedObjective();
-		Destroy(GameObject.FindWithTag(objective_UI_tag));  // THis only works on host, it is only called on the server i.e. host
+		ObjectiveManager.Instance.fn_CompletedObjective_ServerONLY(resoruceType);
+		//Destroy(GameObject.FindWithTag(objective_UI_tag));  // THis only works on host, it is only called on the server i.e. host
 	}
 
-	public void UpdateUI()
-	{
-		if(objective_prompt != null)
-		{
-        	objective_prompt.text = $"{objective_name} {current_amount.Value} / {amount_needed}";
-		}
-    }
+
 }
