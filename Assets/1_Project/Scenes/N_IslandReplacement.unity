@@ -23544,7 +23544,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2610018299628357066, guid: a1a65ceb772b049419fc54e46277657c, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3465635238951897373, guid: a1a65ceb772b049419fc54e46277657c, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -23557,6 +23557,10 @@ PrefabInstance:
     - target: {fileID: 3675702087898921101, guid: a1a65ceb772b049419fc54e46277657c, type: 3}
       propertyPath: m_Name
       value: SceneLoading_Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3675702087898921101, guid: a1a65ceb772b049419fc54e46277657c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4107302103806911544, guid: a1a65ceb772b049419fc54e46277657c, type: 3}
       propertyPath: m_Pivot.x
@@ -45045,8 +45049,12 @@ PrefabInstance:
       value: ObjectiveGroup_Grape
       objectReference: {fileID: 0}
     - target: {fileID: 5053856305109603999, guid: f7772ca76c6c26c4eb99bd1659a92768, type: 3}
+      propertyPath: resoruceType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5053856305109603999, guid: f7772ca76c6c26c4eb99bd1659a92768, type: 3}
       propertyPath: amount_needed
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5053856305109603999, guid: f7772ca76c6c26c4eb99bd1659a92768, type: 3}
       propertyPath: objective_name
@@ -74502,7 +74510,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 934052901229669100, guid: a3d1e447c93bcf443a562586114ef7aa, type: 3}
       propertyPath: amount_needed
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 934052901229669100, guid: a3d1e447c93bcf443a562586114ef7aa, type: 3}
       propertyPath: objective_name
@@ -94585,6 +94593,14 @@ PrefabInstance:
     - target: {fileID: 8504989522404456045, guid: a1590b3498112f04bbc6f0d57893e5eb, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 107466633
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791376843712151818, guid: a1590b3498112f04bbc6f0d57893e5eb, type: 3}
+      propertyPath: resoruceType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791376843712151818, guid: a1590b3498112f04bbc6f0d57893e5eb, type: 3}
+      propertyPath: amount_needed
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8791376843712151818, guid: a1590b3498112f04bbc6f0d57893e5eb, type: 3}
       propertyPath: objective_name

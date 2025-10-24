@@ -4,7 +4,10 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class GetToTheBoat : NetworkBehaviour
+/// <summary>
+/// ServerOnly, triggered by: 'ObjectiveManager.Instance._OnObjectivesComplete'
+/// </summary>
+public class GetToTheBoat : NetworkSingleton<GetToTheBoat>
 {
     public bool _IsInputCheatEnabled = false;
 
@@ -20,11 +23,13 @@ public class GetToTheBoat : NetworkBehaviour
 
     void Start()
     {
-        ObjectiveManager.Instance._OnObjectivesComplete += HandleOnObjectivesComplete;
+        if(IsServer)
+            ObjectiveManager.Instance._OnObjectivesComplete += HandleOnObjectivesComplete;
     }
     void OnDisable()
     {
-        ObjectiveManager.Instance._OnObjectivesComplete -= HandleOnObjectivesComplete;
+        if (IsServer)
+            ObjectiveManager.Instance._OnObjectivesComplete -= HandleOnObjectivesComplete;
     }
 
     private void Update()
@@ -41,21 +46,34 @@ public class GetToTheBoat : NetworkBehaviour
     // Priamary / Main Function
     private void HandleOnObjectivesComplete()
     {
-        ServerRpc();
+        GetToTheBoat_ServerRpc();
+    }
+
+
+    public void fn_TriggerGetToTheBoat_ServerOnly()
+    {       
+        if (!IsServer)
+        {
+            Debug.LogError("GetToTheBoat: This Function Can only be called by the server");
+            return;
+        }
+
+        GetToTheBoat_ServerRpc();
     }
 
 
     // ServerRpc - called from client, runs on server
-    [Rpc(SendTo.Server)]
-    private void ServerRpc()
+    [ServerRpc(RequireOwnership = false)]
+    private void GetToTheBoat_ServerRpc()
     {
-        ClientRpc();
+        GetToTheBoat_ClientRpc();
     }
 
     // ClientRpc - called from server, runs on all clients
     [Rpc(SendTo.ClientsAndHost)]
-    private void ClientRpc()
+    private void GetToTheBoat_ClientRpc()
     {
+        Debug.Log("GetToTheBoat_ClientRpc Called");
         GetToTheBoat_Main();
     }
 
